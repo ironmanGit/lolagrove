@@ -1,3 +1,10 @@
 /target/
 .project
 .classpath
+/test-output/
+/.settings/
+/log/
+/out/
+/test-output/
+debug.log
+/bin/

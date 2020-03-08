@@ -4,9 +4,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>TestNGTest</artifactId>
+	<artifactId>lolagrove</artifactId>
 
-	<name>TestNGTest</name>
+	<name>lolagrove</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -159,6 +159,13 @@
 			<artifactId>opencsv</artifactId>
 			<version>4.6</version>
 		</dependency>
+		
+		<dependency>
+            <groupId>com.relevantcodes</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>2.41.2</version>
+        </dependency>
+		
 
 	</dependencies>
 	<build>
@@ -181,7 +188,7 @@
 				<version>2.21.0</version>
 				<configuration>
 					<suiteXmlFiles>
-						<suiteXmlFile>target/test-classes/demoTest/testSuites/navigation/DummyTestSuite.xml</suiteXmlFile>
+						<suiteXmlFile>target/test-classes/campaign/testSuites/navigation/DummyTestSuite.xml</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>
@@ -217,7 +224,7 @@
 						<version>2.21.0</version>
 						<configuration>
 							<suiteXmlFiles>
-								<suiteXmlFile>target/test-classes/demoTest/testSuites/navigation/DummyTestSuite.xml</suiteXmlFile>
+								<suiteXmlFile>target/test-classes/campaign/testSuites/DummyTestSuite.xml</suiteXmlFile>
 							</suiteXmlFiles>
 						</configuration>
 					</plugin>

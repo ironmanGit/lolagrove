@@ -497,28 +497,13 @@ public abstract class AbstractBasePage {
 	//@FindBy(id = "pageName")
 	//private WebElement pageName;
 
-	public String getPageNameText() throws Exception {
+	public String getPageNameText(WebElement pageName) throws Exception {
 		String pageTitle = null;
 		String errorMessage = null;
 		try {
-			WebElement pageName = driver.findElement(By.id("pageName"));
-			//logger.info("getPageName");
-			errorMessage = getErrorMessageIfAny();
-			if (errorMessage != null) {
-				logger.info("Error: Expecting new page " + pageName + ", but got system error, error message = '"+ errorMessage + "'");
-				throw new Exception("Error: Expecting new page " + pageName+ ", but got system error, error message = '" + errorMessage + "'");
-			}
 			pageTitle = pageName.getText().trim();
-			//logger.info("Page Title is : '" + pageTitle + "'");
 		} catch (Exception e) {
-			if(errorMessage != null){
 				throw new Exception("Error: Got error message = '" + errorMessage + "'");
-			}			
-			errorMessage = getSystemErrorIfAny();
-			if (errorMessage != null) {
-				throw new Exception("Error: Got system error, error message = '" + errorMessage + "'");
-			}
-			throw e;
 		}
 		return pageTitle;
 	}
@@ -764,6 +749,34 @@ public abstract class AbstractBasePage {
 		String currentTime = DateUtils.getCurrentTimestamp();
 		String myMethodId = DateUtils.convertTimeStamptoId(currentTime);
 		return myMethodId;
+	}
+	
+	public boolean validateLandingPageNameAndThrowError(String expectedPageName, WebElement elem) throws Exception {		
+		String actualpageName = null;
+		int maxTry = 3;
+		for (int numTry = 1; numTry <= maxTry; numTry++) {
+			try {
+				actualpageName = this.getPageNameText(elem).trim();
+				if (actualpageName.equals(expectedPageName))  {
+					break;
+				}
+				logger.info(numTry + " out of " + maxTry + ", page name is '" + actualpageName + "', expecting '" + expectedPageName + "'");
+				if ( numTry == maxTry) {
+					throw new Exception("Error: invalid page name '" + actualpageName + "', should be '" + expectedPageName + "'");
+				}
+				TestUtils.pauseShort(5);
+			} catch (Exception e) {
+				String errorMsg = e.getMessage();
+				if (errorMsg.contains("error message")) {
+					throw e;
+				}
+				logger.info(numTry + " out of  2, page name not found");
+				if ( numTry > 1) {		
+					throw new Exception("Error: cannot find page name, expectedPageName = " + expectedPageName);
+				}
+			}
+		}
+		return true;
 	}
 
 }
