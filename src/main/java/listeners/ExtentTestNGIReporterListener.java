@@ -53,7 +53,7 @@ public class ExtentTestNGIReporterListener extends InitMethod implements IReport
 		{
 			extent.setTestRunnerOutput(s);
 		}       
-		extent.setSystemInfo("Author", "Gladson Antony");
+		extent.setSystemInfo("Author", "Vivekanandan Sampath");
 		extent.setSystemInfo("Browser", Browser);
 		extent.setSystemInfo("OS", OSName);		
 		extent.setSystemInfo("OS Version", OSVersion);
@@ -72,8 +72,8 @@ public class ExtentTestNGIReporterListener extends InitMethod implements IReport
 	private void init() 
 	{
 		ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(OUTPUT_FOLDER + FILE_NAME);
-		htmlReporter.config().setDocumentTitle("Extent Report_Gladson Antony");
-		htmlReporter.config().setReportName("Extent Report_Gladson Antony");
+		htmlReporter.config().setDocumentTitle("Lead Scale Report");
+		htmlReporter.config().setReportName("Lead Scale Report");
 		//htmlReporter.config().setTestViewChartLocation(ChartLocation.BOTTOM);
 		htmlReporter.config().setTheme(Theme.STANDARD);
 		extent = new ExtentReports();

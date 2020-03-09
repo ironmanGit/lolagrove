@@ -9,7 +9,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -72,13 +71,6 @@ public class BrowserFactory extends InitMethod
 			optionsOpera.setBinary("C:/Program Files/Opera/launcher.exe");
 			capabilities.setCapability(ChromeOptions.CAPABILITY, optionsOpera);
 			driver = new ChromeDriver(capabilities);
-			break;
-
-		case "ghost":
-		case "phantom":
-			driver = new PhantomJSDriver();
-			WebDriverWait wait = new WebDriverWait(driver, 30);
-			wait.until(ExpectedConditions.urlContains(WebsiteURL));
 			break;
 
 		case "safari":

@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.gladson</groupId>
+    <groupId>com.merit</groupId>
     <artifactId>lolagrove</artifactId>
     <version>1.1-SNAPSHOT</version>
     <name>lolagrove</name>
@@ -60,12 +60,6 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-ie-driver</artifactId>
             <version>${selenium.version}</version>
-        </dependency>
-        <!-- Ghost/Phantom Webdriver Headerless Browser Dependency -->
-        <dependency>
-            <groupId>com.github.detro</groupId>
-            <artifactId>ghostdriver</artifactId>
-            <version>${ghostdriver.version}</version>
         </dependency>
         <!-- Selenium Support Dependency -->
         <dependency>
