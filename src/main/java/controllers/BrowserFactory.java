@@ -34,12 +34,20 @@ public class BrowserFactory extends InitMethod
 		switch(Browser.toLowerCase())
 		{
 		case "chrome":
-			System.setProperty("webdriver.chrome.driver", "src/main/resources/Drivers/chromedriver");
+			if (System.getProperty("os.name").toLowerCase().contains("win")) {
+				System.setProperty("webdriver.chrome.driver", "src/main/resources/Drivers/chromedriver.exe");
+			} else if (System.getProperty("os.name").toLowerCase().contains("mac")) {
+				System.setProperty("webdriver.chrome.driver", "src/main/resources/Drivers/chromedriver");
+			}
 			driver = new ChromeDriver();
 			break;
 
 		case "chrome_headless":
-			System.setProperty("webdriver.chrome.driver", "src/main/resources/Drivers/chromedriver.exe");
+			if (System.getProperty("os.name").toLowerCase().contains("win")) {
+				System.setProperty("webdriver.chrome.driver", "src/main/resources/Drivers/chromedriver.exe");
+			} else if (System.getProperty("os.name").toLowerCase().contains("mac")) {
+				System.setProperty("webdriver.chrome.driver", "src/main/resources/Drivers/chromedriver");
+			}
 			ChromeOptions chromeOptions = new ChromeOptions();
 			chromeOptions.addArguments("--headless");  
 			chromeOptions.addArguments("--disable-gpu");  

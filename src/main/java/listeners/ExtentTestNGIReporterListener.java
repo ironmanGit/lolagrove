@@ -72,8 +72,8 @@ public class ExtentTestNGIReporterListener extends InitMethod implements IReport
 	private void init() 
 	{
 		ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(OUTPUT_FOLDER + FILE_NAME);
-		htmlReporter.config().setDocumentTitle("Lead Scale Report");
-		htmlReporter.config().setReportName("Lead Scale Report");
+		htmlReporter.config().setDocumentTitle("Lolagrove Report");
+		htmlReporter.config().setReportName("Lolagrove Report");
 		//htmlReporter.config().setTestViewChartLocation(ChartLocation.BOTTOM);
 		htmlReporter.config().setTheme(Theme.STANDARD);
 		extent = new ExtentReports();
