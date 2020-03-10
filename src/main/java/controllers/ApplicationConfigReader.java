@@ -27,11 +27,32 @@ public class ApplicationConfigReader
 	@Property(value="MaxPageLoadTime")
 	private int MaxPageLoadTime;
 	
+	@Property(value="Username")
+	private String Username;
+	
+	@Property(value="Password")
+	private String Password;
+	
+	@Property(value="Campaign")
+	private String Campaign;
+	
 	@Property(value="ImplicitlyWait")
 	private int ImplicitlyWait;
 	
 	public String getBrowser() {
 		return Browser;
+	}
+	
+	public String getUsername() {
+		return Username;
+	}
+
+	public String getPassword() {
+		return Password;
+	}
+
+	public String getCampaign() {
+		return Campaign;
 	}
 
 	public String getWebsiteUrl() {
