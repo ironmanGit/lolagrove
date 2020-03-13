@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -388,5 +389,13 @@ public class BaseMethod extends WebDriverFactory
 		{
 			System.out.println(window);
 		}
+	}
+	
+	/*Return web element using dynamic xpath*/
+	public WebElement getXpath(String xpath, String dynamicValue) throws Exception	
+	{
+		String actualXpath = String.format(xpath, dynamicValue);
+		WebElement element = getWebDriver().findElement(By.xpath(actualXpath));
+		return element;
 	}
 }

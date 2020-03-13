@@ -18,6 +18,12 @@ public class LandingPageObjects extends PageFactoryInitializer {
 	@FindBy(xpath = "//div[contains(text(),'Campaigns')]")
 	private WebElement landingPageName;
 
+	@FindBy(xpath = "//a[contains(text(), 'Open Notes')]")
+	private WebElement openNotesLink;
+	
+	@FindBy(css = "input[value='Show Data']")
+	private WebElement showDataButton;
+	
 	@FindBy(css = "div [class='alpha'] a")
 	private List<WebElement> selectCampaign;
 
@@ -83,6 +89,19 @@ public class LandingPageObjects extends PageFactoryInitializer {
 		click(nextButton);
 	}
 
+	public void clickOpenNotesLink() {
+		click(openNotesLink);
+	}
+	
+	public void clickShowDataButton() {
+		click(showDataButton);
+	}
+	
+	public void clickEditLead(String leadId) throws Exception {
+		WebElement editLead = getXpath("//td/span[contains(text(),'%s')]/../preceding-sibling::td/i", leadId);
+		click(editLead);
+	}
+	
 	public boolean checkPaginationNextIsDisplayed() throws Exception {
 		if (nextButtonList.size() != 0) {
 			return true;

@@ -12,6 +12,7 @@ import controllers.BaseMethod;
 import pageObjects.modules.GMailPageObjects;
 import pageObjects.modules.GoogleHomePageObjects;
 import pageObjects.modules.LandingPageObjects;
+import pageObjects.modules.LeadPageObjects;
 import pageObjects.modules.LoginPageObjects;
 
 /**
@@ -40,5 +41,8 @@ public class PageFactoryInitializer extends BaseMethod
 	{
 		return PageFactory.initElements(getWebDriver(), LandingPageObjects.class);
 	}
-
+	public LeadPageObjects leadPage() 
+	{
+		return PageFactory.initElements(getWebDriver(), LeadPageObjects.class);
+	}
 }
