@@ -10,11 +10,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
-import pageObjects.initializePageObjects.PageFactoryInitializer;
-import tests.campaign.CampaignTest;
+import tests.campaign.process.CampaignDataRecord;
+import tests.campaign.process.CampaignTestProcess;
 import utils.ExcelUtils;
 
-public class LandingPageObjects extends PageFactoryInitializer {
+public class LandingPageObjects extends CampaignTestProcess {
 	private Logger logger = Logger.getLogger(LandingPageObjects.class.getName());
 
 	@FindBy(xpath = "//div[contains(text(),'Campaigns')]")
@@ -111,9 +111,20 @@ public class LandingPageObjects extends PageFactoryInitializer {
 		String campaignName = appConfig.getCampaign();
 		String campaignPath = "campaignFiles/" + campaignName + "_Leads.csv";
 		List<String> leadsData = ExcelUtils.readFileToLines(campaignPath);
+		setcampaignDataLines(leadsData);
+		logger.info(leadsData);
+	}
+	
+	public void clickLeadsFromFile(String leadsLine) throws Exception {
+		CampaignDataRecord leadsRecord = new CampaignDataRecord(leadsLine);
+		String leadId = leadsRecord.getCampaignLead();
+		String eyeBalling = leadsRecord.getEyeballing();
+		if(!eyeBalling.trim().equals("0")) {
+			clickEditLead(leadId);
+		}
 	}
 
-	private void createCampaignFile(List<String> campaignLead, String campaignPath, boolean append) throws IOException {
+	public void createCampaignFile(List<String> campaignLead, String campaignPath, boolean append) throws IOException {
 		boolean fileExists = ExcelUtils.fileExist(campaignPath);
 		String headerLine = campaignLead.get(0);
 		if(!append || !fileExists) {
@@ -124,7 +135,6 @@ public class LandingPageObjects extends PageFactoryInitializer {
 			String line = campaignLead.get(i);
 			ExcelUtils.appendToFile(campaignPath, line);
 		}
-		return;
 	}
 
 	public void clickPaginationNext() {
