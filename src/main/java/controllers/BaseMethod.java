@@ -12,6 +12,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 import javax.imageio.ImageIO;
 
@@ -402,5 +405,36 @@ public class BaseMethod extends WebDriverFactory
 		String actualXpath = String.format(xpath, dynamicValue);
 		WebElement element = getWebDriver().findElement(By.xpath(actualXpath));
 		return element;
+	}
+	
+	public void switchToNewTab() {
+		boolean closeFlag = false;
+		switchToOtherHandle(getWebDriver(), closeFlag);
+	}
+	
+	public void closeTab() {
+		boolean closeFlag = true;
+		switchToOtherHandle(getWebDriver(), closeFlag);
+	}
+
+	private org.openqa.selenium.WebDriver switchToOtherHandle(org.openqa.selenium.WebDriver webDriver, boolean closeFlag) {
+		Set<String> listOfHandles = webDriver.getWindowHandles();
+		List<String> ls = new ArrayList<String>();
+		ls.addAll(listOfHandles);
+		Iterator WindowHandleIterator = listOfHandles.iterator();
+		String existingHandle = webDriver.getWindowHandle();
+		if(closeFlag) {
+			webDriver.close();
+		}
+		while (WindowHandleIterator.hasNext()) {
+			String newPageHandle = WindowHandleIterator.next().toString();
+			if(newPageHandle.contains(existingHandle)) {
+				webDriver.switchTo().window(newPageHandle);
+				break;
+			}
+		}
+		
+		return webDriver;
+		
 	}
 }
