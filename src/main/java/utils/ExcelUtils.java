@@ -1,8 +1,15 @@
 package utils;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -280,5 +287,134 @@ public class ExcelUtils
 	{
 		int rowNum = xlsWorkSheet.getRow(0).getLastCellNum();
 		return rowNum;
+	}
+
+
+	public static void writeLinesToFile(String campaignPath, List<String> campaignLead) throws IOException {
+		writeLinesToFile(campaignPath, campaignLead, null);
+	}
+
+
+	public static void writeLinesToFile(String campaignPath, List<String> campaignLead, String header) throws IOException {
+		boolean noHeader = true;
+		if (header != null && !header.isEmpty()) {
+			writeToFile(campaignPath, header);
+			noHeader = false;
+		}
+		int i = 0;
+		for (String line : campaignLead) {
+			i++;
+			if(noHeader && i == 1) {
+				writeToFile(campaignPath, campaignLead.get(0));
+			}
+			else {
+				appendToFile(campaignPath, line);
+			}
+		}
+		return;
+	}
+
+
+	public static void appendToFile(String campaignPath, String line) throws IOException {
+		writeToFile(campaignPath, line, true);		
+	}
+
+
+	public static void writeToFile(String campaignPath, String content) throws IOException {
+		writeToFile(campaignPath, content, false);
+	}
+
+
+	public static void writeToFile(String campaignPath, String content, boolean append) throws IOException {
+		createFolderForPathName(campaignPath);
+		FileWriter fileWriter = new FileWriter(campaignPath, append);
+		PrintWriter printWriter = new PrintWriter(fileWriter);
+		printWriter.print(content+"\n");
+		printWriter.close();
+	}
+
+
+	public static void createFolderForPathName(String campaignPath) {
+		String[] dirs = campaignPath.replaceAll("\\\\", "/").split("/");
+		String path ="";
+		int last =dirs.length -1;
+		for(int i=0; i < last; i++) {
+			String dir = dirs[i];
+			path = path.isEmpty() ? dir : path+ "/" + dir;
+			createFolder(path);
+		}
+	}
+
+
+	public static void createFolder(String folderName) {
+		File file = new File(folderName);
+		boolean result = false;
+		try {
+			if (!file.exists()) {
+				file.mkdir();
+			}
+			result = true;
+		} catch (SecurityException e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+
+	public static boolean fileExist(String campaignPath) {
+		File file = new File(campaignPath);
+		boolean exists = file != null && file.exists();
+		return exists;
+	}
+
+
+	public static List<String> readFileToLines(String campaignPath) throws Exception {
+		boolean skipCommentLine = false;
+		boolean debug = false;
+		return readFileToLines(campaignPath, skipCommentLine, 0, 0, debug);
+	}
+
+
+	private static List<String> readFileToLines(String campaignPath, boolean skipCommentLine, Integer lo, Integer hi,
+			boolean debug) throws Exception {
+		List<String> lines = new ArrayList<String>();
+
+		try {
+			if (debug) {
+				System.out.println("filename :" + campaignPath);
+			}
+			BufferedReader br = new BufferedReader(new FileReader(campaignPath));
+			int i = 0;
+			String line;
+			do {
+				i++;
+				if (hi != null && hi != 0 && i > hi) {
+					break;
+				}
+				line = br.readLine();
+				if (debug) {
+					System.out.println("lines [" + i + " ] : " + line);
+				}
+
+				if (line == null || line.trim().isEmpty()) {
+					break;
+				}
+
+				if (line.trim().isEmpty()) {
+					continue;
+				}
+				if (skipCommentLine && line.trim().startsWith("#")) {
+					continue;
+				}
+				if (lo != null && i >= lo) {
+					lines.add(line);
+				}
+			} while (line != null);
+			br.close();
+
+		} catch (Exception e) {
+			throw e;
+		}
+		return lines;
 	}
 }
