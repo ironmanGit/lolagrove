@@ -274,6 +274,11 @@ public class BaseMethod extends WebDriverFactory
 		element.sendKeys(value);
 	}
 
+	/* To get value from the specified location */
+	public String getText(WebElement element) 
+	{
+		return element.getText();
+	}
 
 	/* To Clear the content in the input location */
 	public void clear(WebElement element) 
