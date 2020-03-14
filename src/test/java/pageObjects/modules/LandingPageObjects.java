@@ -1,5 +1,6 @@
 package pageObjects.modules;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import org.testng.Assert;
 
 import pageObjects.initializePageObjects.PageFactoryInitializer;
 import tests.campaign.CampaignTest;
+import utils.ExcelUtils;
 
 public class LandingPageObjects extends PageFactoryInitializer {
 	private Logger logger = Logger.getLogger(LandingPageObjects.class.getName());
@@ -83,6 +85,46 @@ public class LandingPageObjects extends PageFactoryInitializer {
 		} while (hasNext);
 		logger.info(result);
 		return result;
+	}
+	
+	public void createCampaignLeadsFile() throws Exception {
+		String campaignName = appConfig.getCampaign();
+		String campaignPath = "campaignFiles/" + campaignName + "_Leads.csv";
+		List<List<String>> campaignLeads = this.getCampaignDetailsFromAllPages();
+		List<String> campaignLines = new ArrayList<String>();
+		for (List<String> campaignLead : campaignLeads) {
+			String getName = campaignLead.get(0);
+			String getAdvertiser = campaignLead.get(1);
+			String getStatus = campaignLead.get(2);
+			String getEdit = campaignLead.get(3);
+			String getDelete = campaignLead.get(4);
+			String getEyeballing = campaignLead.get(5);
+			String getUncheckedLeads = campaignLead.get(6);
+			String line = getName + "," + getAdvertiser + "," + getStatus + "," + getEdit + "," + getDelete + ","
+					+ getEyeballing + "," + getUncheckedLeads;
+			campaignLines.add(line);
+		}
+		createCampaignFile(campaignLines, campaignPath, true);
+	}
+	
+	public void readCampaignLeadsFile() throws Exception {
+		String campaignName = appConfig.getCampaign();
+		String campaignPath = "campaignFiles/" + campaignName + "_Leads.csv";
+		List<String> leadsData = ExcelUtils.readFileToLines(campaignPath);
+	}
+
+	private void createCampaignFile(List<String> campaignLead, String campaignPath, boolean append) throws IOException {
+		boolean fileExists = ExcelUtils.fileExist(campaignPath);
+		String headerLine = campaignLead.get(0);
+		if(!append || !fileExists) {
+			ExcelUtils.writeToFile(campaignPath, headerLine);
+		}
+		int len = campaignLead.size();
+		for (int i=1; i < len; i++) {
+			String line = campaignLead.get(i);
+			ExcelUtils.appendToFile(campaignPath, line);
+		}
+		return;
 	}
 
 	public void clickPaginationNext() {

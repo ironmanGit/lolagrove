@@ -15,7 +15,7 @@ public class CampaignTest extends PageFactoryInitializer {
 		.login()
 		.verifyCampaignTab()
 		.selectCampaign()
-		.getCampaignDetailsFromAllPages();
+		.createCampaignLeadsFile();
 	}
 	
 }
