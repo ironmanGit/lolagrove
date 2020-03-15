@@ -41,6 +41,7 @@ public class PageFactoryInitializer extends BaseMethod
 	{
 		return PageFactory.initElements(getWebDriver(), LandingPageObjects.class);
 	}
+	
 	public LeadPageObjects leadPage() 
 	{
 		return PageFactory.initElements(getWebDriver(), LeadPageObjects.class);
