@@ -34,10 +34,16 @@ public class LandingPageObjects extends CampaignTestProcess {
 	
 	@FindBy(css = "div [class='fab'][title='Next']")
 	private List<WebElement> nextButtonList;
+	
+	@FindBy(css = "div [class='fab'][title='Back']")
+	private WebElement backButton;
+	
+	@FindBy(css = "div [class='fab'][title='Back']")
+	private List<WebElement> backButtonList;
 
 	@FindBy(css = "table[class='table-hover'] tr")
-	private List<WebElement> getTransactionRows;
-
+	private List<WebElement> getCampaignRows;
+	
 	public LandingPageObjects verifyCampaignTab() throws Exception {
 		String campaignTab = landingPageName.getText();
 		Assert.assertEquals(campaignTab, "Campaigns", "Expected Page is 'Campaign' But actual page is " + campaignTab);
@@ -47,10 +53,20 @@ public class LandingPageObjects extends CampaignTestProcess {
 	public LandingPageObjects selectCampaign() throws Exception {
 		String campaignText = appConfig.getCampaign();
 		char campaignChar = campaignText.charAt(0);
-		campaignText = Character.toString(campaignChar);
-		WebElement target = findCampaignFirstLetter(campaignText);
+		String campaignFirstText = Character.toString(campaignChar);
+		WebElement target = findCampaignFirstLetter(campaignFirstText);
 		click(target);
 		return this;
+	}
+	
+	public LeadPageObjects navigateToLeadsPage() throws Exception {
+		String campaignText = appConfig.getCampaign();
+		WebElement campaignTarget = findCampaignLink(campaignText);
+		click(campaignTarget);
+		Thread.sleep(3000);
+		click(showDataButton);
+		Thread.sleep(3000);
+		return leadPage();
 	}
 
 	public WebElement findCampaignFirstLetter(String campaignText) {
@@ -62,6 +78,53 @@ public class LandingPageObjects extends CampaignTestProcess {
 			String campaignTextUI = row.getText();
 			if (campaignTextUI.equals(campaignText)) {
 				target = row;
+				break;
+			}
+		}
+		return target;
+	}
+	
+	public void goToFirstPage() throws Exception {
+		while(checkPaginationBackIsDisplayed()) {
+			click(backButton);
+		}
+	}
+	
+	public WebElement findCampaignLink(String campaignText) throws Exception {
+		List<String> leadsList = new ArrayList<String>();
+		WebElement target = null;
+		int maxTry =3;
+		for (int i = 1; i < maxTry && target == null; i++) {
+			goToFirstPage();
+			while (target == null) {
+				target = findCampaignLinkFromCurrentPage(campaignText);
+				if(target != null || !checkPaginationNextIsDisplayed()) {
+					break;
+				}
+				click(nextButton);
+			}
+		}
+		
+		if (target == null) {
+			throw new Exception("Error : Cannot find Campaign name - "+campaignText);
+		}
+		
+		return target;
+	}
+	
+	public WebElement findCampaignLinkFromCurrentPage(String campaignText) {
+		List<WebElement> rows = getCampaignRows;
+		WebElement target = null;
+		int columnIndex = 0;
+		int rowSize = rows.size();
+		for (int i = 1; i < rowSize; i++) {
+			WebElement row = rows.get(i);
+			List<WebElement> cols = row.findElements(By.xpath("./td"));
+			WebElement campaignElement = cols.get(columnIndex);
+			String campaignTextUI = campaignElement.getText();
+			if (campaignTextUI.equals(campaignText)) {
+				campaignElement = campaignElement.findElement(By.cssSelector(" a"));
+				target = campaignElement;
 				break;
 			}
 		}
@@ -161,9 +224,17 @@ public class LandingPageObjects extends CampaignTestProcess {
 			return false;
 		}
 	}
+	
+	public boolean checkPaginationBackIsDisplayed() throws Exception {
+		if (backButtonList.size() != 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	public List<List<String>> getCampaignDetailsFromOnePage() {
-		List<WebElement> rows = getTransactionRows;
+		List<WebElement> rows = getCampaignRows;
 		int len = rows.size();
 		List<List<String>> textRows = new ArrayList<List<String>>();
 		for (int i = 1; i < len; i++) {

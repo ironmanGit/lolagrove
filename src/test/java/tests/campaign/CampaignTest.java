@@ -10,12 +10,12 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import pageObjects.initializePageObjects.PageFactoryInitializer;
-import pageObjects.modules.LandingPageObjects;
+import pageObjects.modules.LeadPageObjects;
 
 public class CampaignTest extends PageFactoryInitializer {
 	private Logger logger = Logger.getLogger(CampaignTest.class.getName());
 	
-	private LandingPageObjects landingPage = new LandingPageObjects();
+	private LeadPageObjects leadsPage = new LeadPageObjects();
 
 	@Test(priority = 1, description = "Scenario 1")
 	public void campaignCheck() throws Exception {
@@ -23,13 +23,15 @@ public class CampaignTest extends PageFactoryInitializer {
 		.login()
 		.verifyCampaignTab()
 		.selectCampaign()
+		.navigateToLeadsPage()
 		.createCampaignLeadsFile();
+		leadsPage.readCampaignLeadsFile();
 	}
 	
 	@DataProvider
 	public Iterator<Object[]> getLeadsData(){
 		List<Object[]> dataList = new ArrayList<Object[]>();
-		List<String> campaignLeadsLine = landingPage.getcampaignDataLines();
+		List<String> campaignLeadsLine = leadsPage.getcampaignDataLines();
 		for(String Leadsline : campaignLeadsLine) {
 			dataList.add(new Object[] {Leadsline});
 		}
@@ -38,7 +40,11 @@ public class CampaignTest extends PageFactoryInitializer {
 	
 	@Test(dataProvider="getLeadsData", priority =2 )
 	public void leadsCheck(String leadsLine) throws Exception {
-		landingPage.clickLeadsFromFile(leadsLine);
+		loginPage()
+		.login()
+		.selectCampaign()
+		.navigateToLeadsPage();
+		leadsPage.clickLeadsFromFile(leadsLine);
 	}
 	
 }
