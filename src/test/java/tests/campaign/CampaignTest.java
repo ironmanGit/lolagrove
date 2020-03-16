@@ -18,7 +18,7 @@ public class CampaignTest extends PageFactoryInitializer {
 	private LeadPageObjects leadsPage = new LeadPageObjects();
 	
 	@Test(priority = 1, description = "Scenario 1")
-	public void campaignCheck(String leadsLine) throws Exception {
+	public void campaignCheck() throws Exception {
 		loginPage()
 		.login()
 		.verifyCampaignTab()
