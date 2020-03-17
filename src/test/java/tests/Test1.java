@@ -14,14 +14,14 @@ public class Test1 extends PageFactoryInitializer
 	   public static Object[][] roles() {
 	       return new Object[][] {{"Developer"},{"Team Lead"},{"QA"},{"Business Analyst"},{"DevOps Eng"},{"PMO"} };
 	   }
-	
-	@BeforeMethod
-	public void BeforeMethod(Object[] testData, ITestContext ctx){
-		if (testData.length > 0) {
-		      ctx.setAttribute("description", "Lead Id-->" + testData[1]);
-		   } else
-			   ctx.setAttribute("description", "No Lead Id");
-	}
+//	
+//	@BeforeMethod
+//	public void BeforeMethod(Object[] testData, ITestContext ctx){
+//		if (testData.length > 0) {
+//		      ctx.setAttribute("description", "Lead Id-->" + testData[1]);
+//		   } else
+//			   ctx.setAttribute("description", "No Lead Id");
+//	}
 	
 	@Test(dataProvider = "role", priority = 0, description = "Google test description1")
 	public void testGoogle0(Method method, String leadsLine) throws Exception

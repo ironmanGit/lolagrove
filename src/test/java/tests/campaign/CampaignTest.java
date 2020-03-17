@@ -15,7 +15,7 @@ import pageObjects.modules.LeadPageObjects;
 public class CampaignTest extends PageFactoryInitializer {
 	private Logger logger = Logger.getLogger(CampaignTest.class.getName());
 	private LeadPageObjects leadPage = leadPage();
-
+	 
 	@BeforeMethod
 	public void BeforeMethod(Object[] testData, ITestContext ctx) {
 		if (testData.length > 0) {

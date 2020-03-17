@@ -7,7 +7,7 @@
 	</listeners>
 	<test thread-count="1" name="Test">
 		<classes>
-			<class name="tests.campaign.CampaignTest" />
+			<class name="tests.Test1" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
