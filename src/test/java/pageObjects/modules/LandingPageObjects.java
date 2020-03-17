@@ -93,9 +93,9 @@ public class LandingPageObjects extends CampaignTestProcess {
 	public WebElement findCampaignLink(String campaignText) throws Exception {
 		List<String> leadsList = new ArrayList<String>();
 		WebElement target = null;
-		int maxTry =3;
-		for (int i = 1; i < maxTry && target == null; i++) {
-			goToFirstPage();
+		int maxTry =1;
+		for (int i = 0; i < maxTry && target == null; i++) {
+			//goToFirstPage();
 			while (target == null) {
 				target = findCampaignLinkFromCurrentPage(campaignText);
 				if(target != null || !checkPaginationNextIsDisplayed()) {
@@ -112,7 +112,7 @@ public class LandingPageObjects extends CampaignTestProcess {
 		return target;
 	}
 	
-	public WebElement findCampaignLinkFromCurrentPage(String campaignText) {
+	public WebElement findCampaignLinkFromCurrentPage1(String campaignText) {
 		List<WebElement> rows = getCampaignRows;
 		WebElement target = null;
 		int columnIndex = 0;
@@ -131,6 +131,11 @@ public class LandingPageObjects extends CampaignTestProcess {
 		return target;
 	}
 
+	public WebElement findCampaignLinkFromCurrentPage(String campaignText) throws Exception {
+		WebElement editLead = getXpath("//td/a[contains(text(), '%s')]", campaignText);
+		return editLead;
+	}
+	
 	public List<List<String>> getCampaignDetailsFromAllPages() throws Exception {
 		List<List<String>> result = new ArrayList<List<String>>();
 		boolean hasNext = true;
@@ -178,15 +183,6 @@ public class LandingPageObjects extends CampaignTestProcess {
 		logger.info(leadsData);
 	}
 	
-	public void clickLeadsFromFile(String leadsLine) throws Exception {
-		CampaignDataRecord leadsRecord = new CampaignDataRecord(leadsLine);
-		String leadId = leadsRecord.getCampaignLead();
-		String eyeBalling = leadsRecord.getEyeballing();
-		if(!eyeBalling.trim().equals("0")) {
-			clickEditLead(leadId);
-		}
-	}
-
 	public void createCampaignFile(List<String> campaignLead, String campaignPath, boolean append) throws IOException {
 		boolean fileExists = ExcelUtils.fileExist(campaignPath);
 		String headerLine = campaignLead.get(0);
@@ -200,21 +196,25 @@ public class LandingPageObjects extends CampaignTestProcess {
 		}
 	}
 
-	public void clickPaginationNext() {
+	public LandingPageObjects clickPaginationNext() {
 		click(nextButton);
+		return this;
 	}
 
-	public void clickOpenNotesLink() {
+	public OpenNotesPageObjects clickOpenNotesLink() {
 		click(openNotesLink);
+		return openNotesPage();
 	}
 	
-	public void clickShowDataButton() {
+	public LeadPageObjects clickShowDataButton() {
 		click(showDataButton);
+		return leadPage();
 	}
 	
-	public void clickEditLead(String leadId) throws Exception {
+	public LeadPageObjects clickEditLead(String leadId) throws Exception {
 		WebElement editLead = getXpath("//td/span[contains(text(),'%s')]/../preceding-sibling::td/i", leadId);
 		click(editLead);
+		return leadPage();
 	}
 	
 	public boolean checkPaginationNextIsDisplayed() throws Exception {

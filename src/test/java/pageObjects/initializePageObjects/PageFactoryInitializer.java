@@ -14,6 +14,7 @@ import pageObjects.modules.GoogleHomePageObjects;
 import pageObjects.modules.LandingPageObjects;
 import pageObjects.modules.LeadPageObjects;
 import pageObjects.modules.LoginPageObjects;
+import pageObjects.modules.OpenNotesPageObjects;
 
 /**
  * @Author Vivekanandan Sampath
@@ -45,5 +46,10 @@ public class PageFactoryInitializer extends BaseMethod
 	public LeadPageObjects leadPage() 
 	{
 		return PageFactory.initElements(getWebDriver(), LeadPageObjects.class);
+	}
+	
+	public OpenNotesPageObjects openNotesPage() 
+	{
+		return PageFactory.initElements(getWebDriver(), OpenNotesPageObjects.class);
 	}
 }

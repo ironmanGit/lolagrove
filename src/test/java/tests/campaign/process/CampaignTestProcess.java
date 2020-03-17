@@ -10,7 +10,7 @@ import pageObjects.initializePageObjects.PageFactoryInitializer;
 public class CampaignTestProcess extends PageFactoryInitializer {
 	private Logger logger = Logger.getLogger(CampaignTestProcess.class.getName());
 
-	private List<String> campaignDataLines;
+	private List<String> campaignDataLines = new ArrayList<String>();
 	private List<CampaignDataRecord> campaignLeadsData = new ArrayList<CampaignDataRecord>();
 
 	public List<CampaignDataRecord> getCampaignLeadsData() {
@@ -25,8 +25,8 @@ public class CampaignTestProcess extends PageFactoryInitializer {
 		return campaignDataLines;
 	}
 
-	public List<String> setcampaignDataLines(List<String> campaignDataLines) {
-		return this.campaignDataLines = campaignDataLines;
+	public void setcampaignDataLines(List<String> campaignDataLines) {
+		this.campaignDataLines = campaignDataLines;
 	}
 	
 }

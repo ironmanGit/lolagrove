@@ -10,7 +10,9 @@ import javax.imageio.ImageIO;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
 import ru.yandex.qatools.ashot.AShot;
@@ -26,8 +28,8 @@ public class WebDriverFactory extends BrowserFactory {
 	public static String browser;
 	public static String url;
 
-	@BeforeMethod
-	public void beforeMethod() throws Exception
+	@BeforeClass
+	public void beforeClass() throws Exception
 	{
 		System.out.println("Browser: " + Browser);
 		System.out.println("WebsiteURL: " + WebsiteURL);
@@ -57,6 +59,11 @@ public class WebDriverFactory extends BrowserFactory {
 			saveFullPageScreenshot("./src/test/resources/Reports/Images/" + result.getTestClass().getName() + "."
 					+ result.getMethod().getMethodName() + ".png");
 		}
+	}
+	
+	@AfterClass(alwaysRun = true, enabled = true)
+	public void afterClass() throws Exception {
+		Thread.sleep(2000);
 		getWebDriver().quit();
 	}
 }
