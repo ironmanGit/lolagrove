@@ -2,23 +2,30 @@ package tests.campaign;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
+import org.testng.ITestContext;
+import org.testng.annotations.BeforeMethod;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-
 import pageObjects.initializePageObjects.PageFactoryInitializer;
 import pageObjects.modules.LeadPageObjects;
 
 public class CampaignTest extends PageFactoryInitializer {
 	private Logger logger = Logger.getLogger(CampaignTest.class.getName());
-
 	private LeadPageObjects leadPage = leadPage();
 
-	@Test(priority = 1, description = "Scenario 1")
+	@BeforeMethod
+	public void BeforeMethod(Object[] testData, ITestContext ctx) {
+		if (testData.length > 0) {
+			String td = testData[0].toString();
+			ctx.setAttribute("description", "Lead Id-->" + td.substring(td.length() - 9));
+		} else
+			ctx.setAttribute("description", "Navigate to Campaign");
+	}
+
+	@Test(priority = 1, description = "Navigate to Campaign")
 	public void campaignCheck() throws Exception {
 		loginPage()
 		.login()
@@ -29,11 +36,10 @@ public class CampaignTest extends PageFactoryInitializer {
 		// leadsPage.readCampaignLeadsFile();
 	}
 
-	@DataProvider
+	@DataProvider(name = "getLeadsData")
 	public Iterator<Object[]> getLeadsData() throws Exception {
 		List<Object[]> dataList = new ArrayList<Object[]>();
-		
-		
+
 		leadPage.readCampaignLeadsFile();
 		List<String> campaignLeadsLine = leadPage.getcampaignDataLines();
 		for (String Leadsline : campaignLeadsLine) {
@@ -42,7 +48,7 @@ public class CampaignTest extends PageFactoryInitializer {
 		return dataList.iterator();
 	}
 
-	@Test(dataProvider = "getLeadsData", priority = 2)
+	@Test(dataProvider = "getLeadsData", priority = 2, description = "Navigate to Campaign")
 	public void leadsCheck(String leadsLine) throws Exception {
 		leadPage()
 		.clickLeadsFromFile(leadsLine)

@@ -109,6 +109,12 @@
             <artifactId>extentreports-testng-adapter</artifactId>
             <version>1.0.3</version>
         </dependency>
+        <!-- Another Extent Report-Generation Dependency -->
+        <dependency>
+            <groupId>com.relevantcodes</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>2.41.2</version>
+        </dependency>
         <!-- JAVA Templete Maker for HTML -->
         <dependency>
             <groupId>org.freemarker</groupId>

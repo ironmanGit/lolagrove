@@ -37,6 +37,12 @@ public class GoogleHomePageObjects extends PageFactoryInitializer
 	}
 
 	
+	public GoogleHomePageObjects verifyPageTitle1() throws Exception 
+	{
+		Assert.assertEquals(getWebDriver().getTitle(), "Google A");
+		return this;
+	}
+	
 	public GoogleHomePageObjects verifyPageTitle() throws Exception 
 	{
 		Assert.assertEquals(getWebDriver().getTitle(), "Google");
