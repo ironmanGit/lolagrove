@@ -3,19 +3,19 @@ package pageObjects.modules;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
-
 import pageObjects.initializePageObjects.PageFactoryInitializer;
 import tests.campaign.CampaignTest;
 import tests.campaign.process.CampaignDataRecord;
 import tests.campaign.process.CampaignLeadsDataRecord;
 import tests.campaign.process.CampaignTestProcess;
 import utils.ExcelUtils;
+import utils.ExtentReports.ExtentTestManager;
+import com.relevantcodes.extentreports.LogStatus;
 
 public class LeadPageObjects extends CampaignTestProcess {
 	private Logger logger = Logger.getLogger(LeadPageObjects.class.getName());

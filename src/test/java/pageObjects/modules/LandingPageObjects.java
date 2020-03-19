@@ -9,10 +9,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
-
-import tests.campaign.process.CampaignDataRecord;
 import tests.campaign.process.CampaignTestProcess;
 import utils.ExcelUtils;
+import utils.ExtentReports.ExtentTestManager;
+import com.relevantcodes.extentreports.LogStatus;
 
 public class LandingPageObjects extends CampaignTestProcess {
 	private Logger logger = Logger.getLogger(LandingPageObjects.class.getName());
