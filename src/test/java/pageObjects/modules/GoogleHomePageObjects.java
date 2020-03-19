@@ -27,8 +27,13 @@ public class GoogleHomePageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public GoogleHomePageObjects enterTextToSearchBox() {
-		SearchBox.sendKeys(RandomGenerator.GenerateRandomEMAILIDs("google.com"));
+	public GoogleHomePageObjects enterTextToSearchBox(String value) {
+		try {
+			SearchBox.sendKeys(value);
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Value entered in search box is " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Unable to enter value in search box" + e);
+		}
 		return this;
 	}
 

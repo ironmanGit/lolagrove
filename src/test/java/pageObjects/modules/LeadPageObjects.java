@@ -273,7 +273,7 @@ public class LeadPageObjects extends CampaignTestProcess {
 	private List<WebElement> getLeadRows;
 
 	@FindBy(css = "ul[class=pagination] li a")
-	
+
 	private List<WebElement> getPageNumbers;
 
 	public List<List<String>> getLeadsDetailsFromAllPages() throws Exception {
@@ -287,6 +287,7 @@ public class LeadPageObjects extends CampaignTestProcess {
 			result.addAll(getLeadsDetailsFromOnePage());
 		}
 		logger.info(result);
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Retrived Lead Details from all Page");
 		return result;
 	}
 
@@ -311,7 +312,7 @@ public class LeadPageObjects extends CampaignTestProcess {
 
 	public LeadPageObjects createCampaignLeadsFile() throws Exception {
 		String campaignName = appConfig.getCampaign();
-		String campaignPath = "campaignFiles/" + campaignName + "_Leads.csv";
+		String campaignPath = "campaignFiles/ " + campaignName + "_Leads.csv";
 		List<List<String>> campaignLeads = this.getLeadsDetailsFromAllPages();
 		List<String> campaignLines = new ArrayList<String>();
 		for (List<String> campaignLead : campaignLeads) {
@@ -390,7 +391,7 @@ public class LeadPageObjects extends CampaignTestProcess {
 //			String IPAddress = campaignLead.get(72);
 //			String sub_id = campaignLead.get(73);
 //			String CALLBACK_ID = campaignLead.get(74);
-			String line = eyeIcon + "," + leadsId + "," + tickIcon;
+			String line = eyeIcon + ", " + leadsId + ", " + tickIcon;
 //					+","+rejectionReason+","+wrongIcon+","+redactionTest+","+email+","+title+","+firstName+","+lastName+","+
 //					Address1+","+Address2+","+Address3+","+townCity+","+countryState+","+country+","+postalZipCode+","+telephone+","+userAgent+","+source+","+
 //					supplierLeadId+","+urlReferrer+","+startTime+","+endTime+","+fingerPrint+","+leadStatus+","+companyName+","+jobTitle+","+industry+","+platform+","+
@@ -402,6 +403,7 @@ public class LeadPageObjects extends CampaignTestProcess {
 			campaignLines.add(line);
 		}
 		createCampaignFile(campaignLines, campaignPath, true);
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Campaign Lead File Created");
 		return this;
 	}
 
@@ -422,7 +424,8 @@ public class LeadPageObjects extends CampaignTestProcess {
 		return this;
 	}
 
-	public LeadPageObjects createCampaignFile(List<String> campaignLead, String campaignPath, boolean append) throws IOException {
+	public LeadPageObjects createCampaignFile(List<String> campaignLead, String campaignPath, boolean append)
+			throws IOException {
 		boolean fileExists = ExcelUtils.fileExist(campaignPath);
 		String headerLine = campaignLead.get(0);
 		if (!append || !fileExists) {
@@ -438,615 +441,1421 @@ public class LeadPageObjects extends CampaignTestProcess {
 
 	public LeadPageObjects clickEditLead(String leadId) throws Exception {
 		WebElement editLead = getXpath("//td/span[contains(text(),'%s')]/../preceding-sibling::td/i", leadId);
-		click(editLead);
+		try {
+			click(editLead);
+			ExtentTestManager.getTest().log(LogStatus.PASS, leadId + "Clicked lead edit icon");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, leadId + "Unable to click lead edit icon " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickEmailNoEvidenceFoundBtn() {
-		click(emailNoEvidenceFoundBtn);
+		try {
+			click(emailNoEvidenceFoundBtn);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked email NoEvidenceFound button");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click email NoEvidenceFound button " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickEmailIndirectEvidenceBtn() {
-		click(emailIndirectEvidenceBtn);
+		try {
+			click(emailIndirectEvidenceBtn);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked email IndirectEvidence button");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click email IndirectEvidence button " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickPhoneCallVerifiedBtn() {
-		click(phoneCallVerifiedBtn);
+		try {
+			click(phoneCallVerifiedBtn);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked phone CallVerified button");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click phone CallVerified button " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickPhoneNoEvidenceFoundBtn() {
-		click(phoneNoEvidenceFoundBtn);
+		try {
+			click(phoneNoEvidenceFoundBtn);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked phone NoEvidenceFound button");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click phone NoEvidenceFound button " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickPostcodeUpperCaseBtn() {
-		click(postcodeUpperCaseBtn);
+		try {
+			click(postcodeUpperCaseBtn);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked postcode UpperCase button");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click postcode UpperCase button " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickAddressNoEvidenceFoundBtn() {
-		click(addressNoEvidenceFoundBtn);
+		try {
+			click(addressNoEvidenceFoundBtn);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked address NoEvidenceFound button");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click address NoEvidenceFound button " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickAddressIndirectEvidenceBtn() {
-		click(addressIndirectEvidenceBtn);
+		try {
+			click(addressIndirectEvidenceBtn);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked address IndirectEvidence button");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click address IndirectEvidence button " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickLinkedinIdUrlNoEvidenceFoundBtn() {
-		click(linkedinIdUrlNoEvidenceFoundBtn);
+		try {
+			click(linkedinIdUrlNoEvidenceFoundBtn);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked linkedinIdUrl NoEvidenceFound button");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL,
+					"Unable to click linkedinIdUrl NoEvidenceFound button " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickJobTitleEvidenceCopyLinkedinUrlBtn() {
-		click(jobTitleEvidenceCopyLinkedinUrlBtn);
+		try {
+			click(jobTitleEvidenceCopyLinkedinUrlBtn);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked jobTitleEvidence CopyLinkedinUrl button");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL,
+					"Unable to click jobTitleEvidence CopyLinkedinUrl button " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickJobTitleEvidenceCallVerifiedBtn() {
-		click(jobTitleEvidenceCallVerifiedBtn);
+		try {
+			click(jobTitleEvidenceCallVerifiedBtn);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked jobTitleEvidence CallVerified button");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL,
+					"Unable to click jobTitleEvidence CallVerified button " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickJobTitleEvidenceNoEvidenceFoundBtn() {
-		click(jobTitleEvidenceNoEvidenceFoundBtn);
+		try {
+			click(jobTitleEvidenceNoEvidenceFoundBtn);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked jobTitleEvidence NoEvidenceFound button");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL,
+					"Unable to click jobTitleEvidence NoEvidenceFound button " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickCompanyNameTargetListMatch1() {
-		click(companyNameTargetListMatch1);
+		try {
+			click(companyNameTargetListMatch1);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked companyName TargetListMatch1");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click companyName TargetListMatch1 " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickCompanyNameTargetListMatch2() {
-		click(companyNameTargetListMatch2);
+		try {
+			click(companyNameTargetListMatch2);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked companyNameTarget ListMatch2");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click companyName TargetListMatch2 " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickCompanyNameTargetListMatch3() {
-		click(companyNameTargetListMatch3);
+		try {
+			click(companyNameTargetListMatch3);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked companyName TargetListMatch3");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click companyName TargetListMatch3 " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickCompanyEvidenceCopyBtn() {
-		click(companyEvidenceCopyBtn);
+		try {
+			click(companyEvidenceCopyBtn);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked companyEvidence Copy button");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click companyEvidence Copy button " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickCompanyEvidencePasteBtn() {
-		click(companyEvidencePasteBtn);
+		try {
+			click(companyEvidencePasteBtn);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked companyEvidence Paste button");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click companyEvidence Paste button " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickCompanyEvidenceUpperCaseBtn() {
-		click(companyEvidenceUpperCaseBtn);
+		try {
+			click(companyEvidenceUpperCaseBtn);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked companyEvidence UpperCase button");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click companyEvidence UpperCase button " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickCompanyEvidenceProperCaseBtn() {
-		click(companyEvidenceProperCaseBtn);
+		try {
+			click(companyEvidenceProperCaseBtn);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked companyEvidence ProperCase button");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click companyEvidence ProperCase button " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickCompanySizeNoEvidenceFoundBtn() {
-		click(companySizeNoEvidenceFoundBtn);
+		try {
+			click(companySizeNoEvidenceFoundBtn);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked companySize NoEvidenceFound button");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click companySize NoEvidenceFound button " + e);
+		}
+
 		return this;
 	}
 
 	public LeadPageObjects clickCompanySizeIndirectEvidenceBtn() {
-		click(companySizeIndirectEvidenceBtn);
+		try {
+			click(companySizeIndirectEvidenceBtn);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked companySize IndirectEvidence button");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click companySize IndirectEvidence button " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickTurnoverNoEvidenceFoundBtn() {
-		click(turnoverNoEvidenceFoundBtn);
+		try {
+			click(turnoverNoEvidenceFoundBtn);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked turnover NoEvidenceFound button");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click turnover NoEvidenceFound button " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickTurnoverIndirectEvidenceBtn() {
-		click(turnoverIndirectEvidenceBtn);
+		try {
+			click(turnoverIndirectEvidenceBtn);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked turnover IndirectEvidence button");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click turnover IndirectEvidence button " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickRejectionReasonJobtitleBtn() {
-		click(rejectionReasonJobtitleBtn);
+		try {
+			click(rejectionReasonJobtitleBtn);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked rejectionReason Jobtitle button");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click rejectionReason Jobtitle button " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickRejectionReasonCompanySizeBtn() {
-		click(rejectionReasonCompanySizeBtn);
+		try {
+			click(rejectionReasonCompanySizeBtn);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked rejectionReason CompanySize button");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click rejectionReason CompanySize button " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickResetBtn() {
-		click(resetBtn);
+		try {
+			click(resetBtn);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked reset button");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click reset button " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickSaveBtn() {
-		click(saveBtn);
+		try {
+			click(saveBtn);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked save button");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click save button " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickSaveAndReverifyBtn() {
-		click(saveAndReverifyBtn);
+		try {
+			click(saveAndReverifyBtn);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked saveAndReverify button");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click saveAndReverify button " + e);
+		}
 		return this;
 	}
 
 	public LeadPageObjects clickCloseBtn() {
-		click(closeBtn);
-		return this;
-	}
-	
-	public String getValuePlacementReadOly() {
-		return getText(placementReadOly);
-	}
-
-	public String getValueAssetReadOly() {
-		return getText(assetReadOly);
-	}
-
-	public String getValueLeadTypeReadOly() {
-		return getText(leadTypeReadOly);
-	}
-
-	public String getValueCountryReadOly() {
-		return getText(countryReadOly);
-	}
-
-	public LeadPageObjects setValueLeadId(String value) {
-		clear(leadId);
-		sendKeys(leadId, value);
+		try {
+			click(closeBtn);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked close button");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click close button " + e);
+		}
 		return this;
 	}
 
-	public String getValueLeadId() {
-		return getText(leadId);
+	public String getvaluePlacementReadOly() {
+		String value = getText(placementReadOly);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "placementReadOly value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "placementReadOly value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from placementReadOly " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueEmail(String value) {
-		clear(email);
-		sendKeys(email, value);
+	public String getvalueAssetReadOly() {
+		String value = getText(assetReadOly);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "assetReadOly value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "assetReadOly value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from assetReadOly " + e);
+		}
+		return value;
+	}
+
+	public String getvalueLeadTypeReadOly() {
+		String value = getText(leadTypeReadOly);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "leadTypeReadOly value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "leadTypeReadOly value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from leadTypeReadOly " + e);
+		}
+		return value;
+	}
+
+	public String getvalueCountryReadOly() {
+		String value = getText(countryReadOly);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "countryReadOly value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "countryReadOly value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from countryReadOly " + e);
+		}
+		return value;
+	}
+
+	public LeadPageObjects setvalueLeadId(String value) {
+		try {
+			clear(leadId);
+			sendKeys(leadId, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for leadId is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for leadId " + e);
+		}
 		return this;
 	}
 
-	public String getValueEmail() {
-		return getText(email);
+	public String getvalueLeadId() {
+		String value = getText(leadId);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "leadId value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "leadId value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from leadId " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueEmailEvidence(String value) {
-		clear(emailEvidence);
-		sendKeys(emailEvidence, value);
+	public LeadPageObjects setvalueEmail(String value) {
+		try {
+			clear(email);
+			sendKeys(email, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for email is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for email " + e);
+		}
 		return this;
 	}
 
-	public String getValueEmailEvidence() {
-		return getText(emailEvidence);
+	public String getvalueEmail() {
+		String value = getText(email);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "email value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "email value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from email " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueTelephone(String value) {
-		clear(telephone);
-		sendKeys(telephone, value);
+	public LeadPageObjects setvalueEmailEvidence(String value) {
+		try {
+			clear(emailEvidence);
+			sendKeys(emailEvidence, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for emailEvidence is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for emailEvidence " + e);
+		}
 		return this;
 	}
 
-	public String getValueTelephone() {
-		return getText(telephone);
+	public String getvalueEmailEvidence() {
+		String value = getText(emailEvidence);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "emailEvidence value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "emailEvidence value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from emailEvidence " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValuePhoneEvidence(String value) {
-		clear(phoneEvidence);
-		sendKeys(phoneEvidence, value);
+	public LeadPageObjects setvalueTelephone(String value) {
+		try {
+			clear(telephone);
+			sendKeys(telephone, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for telephone is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for telephone " + e);
+		}
 		return this;
 	}
 
-	public String getValuePhoneEvidence() {
-		return getText(phoneEvidence);
+	public String getvalueTelephone() {
+		String value = getText(telephone);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "telephone value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "telephone value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from telephone " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueTelephone2(String value) {
-		clear(telephone2);
-		sendKeys(telephone2, value);
+	public LeadPageObjects setvaluePhoneEvidence(String value) {
+		try {
+			clear(phoneEvidence);
+			sendKeys(phoneEvidence, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for phoneEvidence is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for phoneEvidence " + e);
+		}
 		return this;
 	}
 
-	public String getValueTelephone2() {
-		return getText(telephone2);
+	public String getvaluePhoneEvidence() {
+		String value = getText(phoneEvidence);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "phoneEvidence value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "phoneEvidence value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from phoneEvidence " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValuePhoneEvidence2(String value) {
-		clear(phoneEvidence2);
-		sendKeys(phoneEvidence2, value);
+	public LeadPageObjects setvalueTelephone2(String value) {
+		try {
+			clear(telephone2);
+			sendKeys(telephone2, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for telephone2 is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for telephone2 " + e);
+		}
 		return this;
 	}
 
-	public String getValuePhoneEvidence2() {
-		return getText(phoneEvidence2);
+	public String getvalueTelephone2() {
+		String value = getText(telephone2);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "telephone2 value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "telephone2 value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from telephone2 " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueAddress1(String value) {
-		clear(address1);
-		sendKeys(address1, value);
+	public LeadPageObjects setvaluePhoneEvidence2(String value) {
+		try {
+			clear(phoneEvidence2);
+			sendKeys(phoneEvidence2, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for phoneEvidence2 is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for phoneEvidence2 " + e);
+		}
 		return this;
 	}
 
-	public String getValueAddress1() {
-		return getText(address1);
+	public String getvaluePhoneEvidence2() {
+		String value = getText(phoneEvidence2);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "phoneEvidence2 value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "phoneEvidence2 value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from phoneEvidence2 " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueAddress2(String value) {
-		clear(address2);
-		sendKeys(address2, value);
+	public LeadPageObjects setvalueAddress1(String value) {
+		try {
+			clear(address1);
+			sendKeys(address1, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for address1 is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for address1 " + e);
+		}
 		return this;
 	}
 
-	public String getValueAddress2() {
-		return getText(address2);
+	public String getvalueAddress1() {
+		String value = getText(address1);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "address1 value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "address1 value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from address1 " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueTowncity(String value) {
-		clear(towncity);
-		sendKeys(towncity, value);
+	public LeadPageObjects setvalueAddress2(String value) {
+		try {
+			clear(address2);
+			sendKeys(address2, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for address2 is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for address2 " + e);
+		}
 		return this;
 	}
 
-	public String getValueTowncity() {
-		return getText(towncity);
+	public String getvalueAddress2() {
+		String value = getText(address2);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "address2 value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "address2 value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from address2 " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueCounty(String value) {
-		clear(county);
-		sendKeys(county, value);
+	public LeadPageObjects setvalueTowncity(String value) {
+		try {
+			clear(towncity);
+			sendKeys(towncity, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for towncity is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for towncity " + e);
+		}
 		return this;
 	}
 
-	public String getValueCounty() {
-		return getText(county);
+	public String getvalueTowncity() {
+		String value = getText(towncity);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "towncity value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "towncity value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from towncity " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValuePostcode(String value) {
-		clear(postcode);
-		sendKeys(postcode, value);
+	public LeadPageObjects setvalueCounty(String value) {
+		try {
+			clear(county);
+			sendKeys(county, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for county is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for county " + e);
+		}
 		return this;
 	}
 
-	public String getValuePostcode() {
-		return getText(postcode);
+	public String getvalueCounty() {
+		String value = getText(county);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "county value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "county value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from county " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueCountry(String value) {
-		clear(country);
-		sendKeys(country, value);
+	public LeadPageObjects setvaluePostcode(String value) {
+		try {
+			clear(postcode);
+			sendKeys(postcode, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for postcode is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for postcode " + e);
+		}
 		return this;
 	}
 
-	public String getValueCountry() {
-		return getText(country);
+	public String getvaluePostcode() {
+		String value = getText(postcode);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "postcode value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "postcode value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from postcode " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueAddressEvidence(String value) {
-		clear(addressEvidence);
-		sendKeys(addressEvidence, value);
+	public LeadPageObjects setvalueCountry(String value) {
+		try {
+			clear(country);
+			sendKeys(country, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for country is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for country " + e);
+		}
 		return this;
 	}
 
-	public String getValueAddressEvidence() {
-		return getText(addressEvidence);
+	public String getvalueCountry() {
+		String value = getText(country);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "country value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "country value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from country " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueFirstName(String value) {
-		clear(firstName);
-		sendKeys(firstName, value);
+	public LeadPageObjects setvalueAddressEvidence(String value) {
+		try {
+			clear(addressEvidence);
+			sendKeys(addressEvidence, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for addressEvidence is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for addressEvidence " + e);
+		}
 		return this;
 	}
 
-	public String getValueFirstName() {
-		return getText(firstName);
+	public String getvalueAddressEvidence() {
+		String value = getText(addressEvidence);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "addressEvidence value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "addressEvidence value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from addressEvidence " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueLastName(String value) {
-		clear(lastName);
-		sendKeys(lastName, value);
+	public LeadPageObjects setvalueFirstName(String value) {
+		try {
+			clear(firstName);
+			sendKeys(firstName, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for firstName is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for firstName " + e);
+		}
 		return this;
 	}
 
-	public String getValueLastName() {
-		return getText(lastName);
+	public String getvalueFirstName() {
+		String value = getText(firstName);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "firstName value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "firstName value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from firstName " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueLinkedinIdUrl(String value) {
-		clear(linkedinIdUrl);
-		sendKeys(linkedinIdUrl, value);
+	public LeadPageObjects setvalueLastName(String value) {
+		try {
+			clear(lastName);
+			sendKeys(lastName, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for lastName is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for lastName " + e);
+		}
 		return this;
 	}
 
-	public String getValueLinkedinIdUrl() {
-		return getText(linkedinIdUrl);
+	public String getvalueLastName() {
+		String value = getText(lastName);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "lastName value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "lastName value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from lastName " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueJobTitle(String value) {
-		clear(jobTitle);
-		sendKeys(jobTitle, value);
+	public LeadPageObjects setvalueLinkedinIdUrl(String value) {
+		try {
+			clear(linkedinIdUrl);
+			sendKeys(linkedinIdUrl, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for linkedinIdUrl is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for linkedinIdUrl " + e);
+		}
 		return this;
 	}
 
-	public String getValueJobTitle() {
-		return getText(jobTitle);
+	public String getvalueLinkedinIdUrl() {
+		String value = getText(linkedinIdUrl);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "linkedinIdUrl value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "linkedinIdUrl value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from linkedinIdUrl " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueJobTitleEvidence(String value) {
-		clear(jobTitleEvidence);
-		sendKeys(jobTitleEvidence, value);
+	public LeadPageObjects setvalueJobTitle(String value) {
+		try {
+			clear(jobTitle);
+			sendKeys(jobTitle, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for jobTitle is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for jobTitle " + e);
+		}
 		return this;
 	}
 
-	public String getValueJobTitleEvidence() {
-		return getText(jobTitleEvidence);
+	public String getvalueJobTitle() {
+		String value = getText(jobTitle);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "jobTitle value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "jobTitle value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from jobTitle " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueJobFunction(String value) {
-		clear(jobFunction);
-		sendKeys(jobFunction, value);
+	public LeadPageObjects setvalueJobTitleEvidence(String value) {
+		try {
+			clear(jobTitleEvidence);
+			sendKeys(jobTitleEvidence, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for jobTitleEvidence is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for jobTitleEvidence " + e);
+		}
 		return this;
 	}
 
-	public String getValueJobFunction() {
-		return getText(jobFunction);
+	public String getvalueJobTitleEvidence() {
+		String value = getText(jobTitleEvidence);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "jobTitleEvidence value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "jobTitleEvidence value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from jobTitleEvidence " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueCompanyName(String value) {
-		clear(companyName);
-		sendKeys(companyName, value);
+	public LeadPageObjects setvalueJobFunction(String value) {
+		try {
+			clear(jobFunction);
+			sendKeys(jobFunction, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for jobFunction is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for jobFunction " + e);
+		}
 		return this;
 	}
 
-	public String getValueCompanyName() {
-		return getText(companyName);
+	public String getvalueJobFunction() {
+		String value = getText(jobFunction);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "jobFunction value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "jobFunction value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from jobFunction " + e);
+		}
+		return value;
 	}
 
-	public String getValueCompanyNameTargetListMatch1() {
-		return getText(companyNameTargetListMatch1);
-	}
-
-	public String getValueCompanyNameTargetListMatch2() {
-		return getText(companyNameTargetListMatch2);
-	}
-
-	public String getValueCompanyNameTargetListMatch3() {
-		return getText(companyNameTargetListMatch3);
-	}
-
-	public LeadPageObjects setValueIndustry(String value) {
-		clear(industry);
-		sendKeys(industry, value);
+	public LeadPageObjects setvalueCompanyName(String value) {
+		try {
+			clear(companyName);
+			sendKeys(companyName, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for companyName is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for companyName " + e);
+		}
 		return this;
 	}
 
-	public String getValueIndustry() {
-		return getText(industry);
+	public String getvalueCompanyName() {
+		String value = getText(companyName);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "companyName value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "companyName value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from companyName " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueCompanyEvidence(String value) {
-		clear(companyEvidence);
-		sendKeys(companyEvidence, value);
+	public String getvalueCompanyNameTargetListMatch1() {
+		String value = getText(companyNameTargetListMatch1);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "companyNameTargetListMatch1 value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "companyNameTargetListMatch1 value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL,
+					"Unable to get value from companyNameTargetListMatch1 " + e);
+		}
+		return value;
+	}
+
+	public String getvalueCompanyNameTargetListMatch2() {
+		String value = getText(companyNameTargetListMatch2);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "companyNameTargetListMatch2 value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "companyNameTargetListMatch2 value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL,
+					"Unable to get value from companyNameTargetListMatch2 " + e);
+		}
+		return value;
+	}
+
+	public String getvalueCompanyNameTargetListMatch3() {
+		String value = getText(companyNameTargetListMatch3);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "companyNameTargetListMatch3 value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "companyNameTargetListMatch3 value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL,
+					"Unable to get value from companyNameTargetListMatch3 " + e);
+		}
+		return value;
+	}
+
+	public LeadPageObjects setvalueIndustry(String value) {
+		try {
+			clear(industry);
+			sendKeys(industry, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for industry is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for industry " + e);
+		}
 		return this;
 	}
 
-	public String getValueCompanyEvidence() {
-		return getText(companyEvidence);
+	public String getvalueIndustry() {
+		String value = getText(industry);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "industry value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "industry value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from industry " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueCompanySize(String value) {
-		clear(companySize);
-		sendKeys(companySize, value);
+	public LeadPageObjects setvalueCompanyEvidence(String value) {
+		try {
+			clear(companyEvidence);
+			sendKeys(companyEvidence, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for companyEvidence is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for companyEvidence " + e);
+		}
 		return this;
 	}
 
-	public String getValueCompanySize() {
-		return getText(companySize);
+	public String getvalueCompanyEvidence() {
+		String value = getText(companyEvidence);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "companyEvidence value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "companyEvidence value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from companyEvidence " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueCompanySizeEvidence(String value) {
-		clear(companySizeEvidence);
-		sendKeys(companySizeEvidence, value);
+	public LeadPageObjects setvalueCompanySize(String value) {
+		try {
+			clear(companySize);
+			sendKeys(companySize, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for companySize is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for companySize " + e);
+		}
 		return this;
 	}
 
-	public String getValueCompanySizeEvidence() {
-		return getText(companySizeEvidence);
+	public String getvalueCompanySize() {
+		String value = getText(companySize);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "companySize value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "companySize value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from companySize " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueTurnover(String value) {
-		clear(turnover);
-		sendKeys(turnover, value);
+	public LeadPageObjects setvalueCompanySizeEvidence(String value) {
+		try {
+			clear(companySizeEvidence);
+			sendKeys(companySizeEvidence, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for companySizeEvidence is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for companySizeEvidence " + e);
+		}
 		return this;
 	}
 
-	public String getValueTurnover() {
-		return getText(turnover);
+	public String getvalueCompanySizeEvidence() {
+		String value = getText(companySizeEvidence);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "companySizeEvidence value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "companySizeEvidence value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from companySizeEvidence " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueTurnoverEvidence(String value) {
-		clear(turnoverEvidence);
-		sendKeys(turnoverEvidence, value);
+	public LeadPageObjects setvalueTurnover(String value) {
+		try {
+			clear(turnover);
+			sendKeys(turnover, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for turnover is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for turnover " + e);
+		}
 		return this;
 	}
 
-	public String getValueTurnoverEvidence() {
-		return getText(turnoverEvidence);
+	public String getvalueTurnover() {
+		String value = getText(turnover);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "turnover value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "turnover value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from turnover " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueRejectionReason(String value) {
-		clear(rejectionReason);
-		sendKeys(rejectionReason, value);
+	public LeadPageObjects setvalueTurnoverEvidence(String value) {
+		try {
+			clear(turnoverEvidence);
+			sendKeys(turnoverEvidence, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for turnoverEvidence is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for turnoverEvidence " + e);
+		}
 		return this;
 	}
 
-	public String getValueRejectionReason() {
-		return getText(rejectionReason);
+	public String getvalueTurnoverEvidence() {
+		String value = getText(turnoverEvidence);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "turnoverEvidence value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "turnoverEvidence value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from turnoverEvidence " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueRejectionReasonEvidence(String value) {
-		clear(rejectionReasonEvidence);
-		sendKeys(rejectionReasonEvidence, value);
+	public LeadPageObjects setvalueRejectionReason(String value) {
+		try {
+			clear(rejectionReason);
+			sendKeys(rejectionReason, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for rejectionReason is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for rejectionReason " + e);
+		}
 		return this;
 	}
 
-	public String getValueRejectionReasonEvidence() {
-		return getText(rejectionReasonEvidence);
+	public String getvalueRejectionReason() {
+		String value = getText(rejectionReason);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "rejectionReason value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "rejectionReason value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from rejectionReason " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueUserAgent(String value) {
-		clear(userAgent);
-		sendKeys(userAgent, value);
+	public LeadPageObjects setvalueRejectionReasonEvidence(String value) {
+		try {
+			clear(rejectionReasonEvidence);
+			sendKeys(rejectionReasonEvidence, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for rejectionReasonEvidence is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for rejectionReasonEvidence " + e);
+		}
 		return this;
 	}
 
-	public String getValueUserAgent() {
-		return getText(userAgent);
+	public String getvalueRejectionReasonEvidence() {
+		String value = getText(rejectionReasonEvidence);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "rejectionReasonEvidence value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "rejectionReasonEvidence value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from rejectionReasonEvidence " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueLeadType(String value) {
-		clear(leadType);
-		sendKeys(leadType, value);
+	public LeadPageObjects setvalueUserAgent(String value) {
+		try {
+			clear(userAgent);
+			sendKeys(userAgent, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for userAgent is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for userAgent " + e);
+		}
 		return this;
 	}
 
-	public String getValueLeadType() {
-		return getText(leadType);
+	public String getvalueUserAgent() {
+		String value = getText(userAgent);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "userAgent value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "userAgent value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from userAgent " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueSfdcCode(String value) {
-		clear(sfdcCode);
-		sendKeys(sfdcCode, value);
+	public LeadPageObjects setvalueLeadType(String value) {
+		try {
+			clear(leadType);
+			sendKeys(leadType, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for leadType is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for leadType " + e);
+		}
 		return this;
 	}
 
-	public String getValueSfdcCode() {
-		return getText(sfdcCode);
+	public String getvalueLeadType() {
+		String value = getText(leadType);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "leadType value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "leadType value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from leadType " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueProductOfInterest(String value) {
-		clear(productOfInterest);
-		sendKeys(productOfInterest, value);
+	public LeadPageObjects setvalueSfdcCode(String value) {
+		try {
+			clear(sfdcCode);
+			sendKeys(sfdcCode, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for sfdcCode is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for sfdcCode " + e);
+		}
 		return this;
 	}
 
-	public String getValueProductOfInterest() {
-		return getText(productOfInterest);
+	public String getvalueSfdcCode() {
+		String value = getText(sfdcCode);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "sfdcCode value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "sfdcCode value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from sfdcCode " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueCallComments(String value) {
-		clear(callComments);
-		sendKeys(callComments, value);
+	public LeadPageObjects setvalueProductOfInterest(String value) {
+		try {
+			clear(productOfInterest);
+			sendKeys(productOfInterest, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for productOfInterest is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for productOfInterest " + e);
+		}
 		return this;
 	}
 
-	public String getValueCallComments() {
-		return getText(callComments);
+	public String getvalueProductOfInterest() {
+		String value = getText(productOfInterest);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "productOfInterest value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "productOfInterest value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from productOfInterest " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueSecure(String value) {
-		clear(secure);
-		sendKeys(secure, value);
+	public LeadPageObjects setvalueCallComments(String value) {
+		try {
+			clear(callComments);
+			sendKeys(callComments, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for callComments is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for callComments " + e);
+		}
 		return this;
 	}
 
-	public String getValueSecure() {
-		return getText(secure);
+	public String getvalueCallComments() {
+		String value = getText(callComments);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "callComments value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "callComments value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from callComments " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueBiggestChallenge(String value) {
-		clear(biggestChallenge);
-		sendKeys(biggestChallenge, value);
+	public LeadPageObjects setvalueSecure(String value) {
+		try {
+			clear(secure);
+			sendKeys(secure, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for secure is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for secure " + e);
+		}
 		return this;
 	}
 
-	public String getValueBiggestChallenge() {
-		return getText(biggestChallenge);
+	public String getvalueSecure() {
+		String value = getText(secure);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "secure value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "secure value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from secure " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects setValueWhichPlatforms(String value) {
-		clear(whichPlatforms);
-		sendKeys(whichPlatforms, value);
+	public LeadPageObjects setvalueBiggestChallenge(String value) {
+		try {
+			clear(biggestChallenge);
+			sendKeys(biggestChallenge, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for biggestChallenge is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for biggestChallenge " + e);
+		}
 		return this;
 	}
 
-	public String getValueWhichPlatforms() {
-		return getText(whichPlatforms);
+	public String getvalueBiggestChallenge() {
+		String value = getText(biggestChallenge);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "biggestChallenge value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "biggestChallenge value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from biggestChallenge " + e);
+		}
+		return value;
 	}
 
-	public LeadPageObjects selectValueEmailToolsDropdown(String value) {
-		selectByVisibleText(emailToolsDropdown, value);
+	public LeadPageObjects setvalueWhichPlatforms(String value) {
+		try {
+			clear(whichPlatforms);
+			sendKeys(whichPlatforms, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for whichPlatforms is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for whichPlatforms " + e);
+		}
 		return this;
 	}
 
-	public LeadPageObjects selectValuePhoneReformatDropdown(String value) {
-		selectByVisibleText(phoneReformatDropdown, value);
+	public String getvalueWhichPlatforms() {
+		String value = getText(whichPlatforms);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "whichPlatforms value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "whichPlatforms value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from whichPlatforms " + e);
+		}
+		return value;
+	}
+
+	public LeadPageObjects selectvalueEmailToolsDropdown(String value) {
+		try {
+			selectByVisibleText(emailToolsDropdown, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from emailToolsDropdown is " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from emailToolsDropdown " + e);
+		}
 		return this;
 	}
 
-	public LeadPageObjects selectValuePhoneToolsDropdown(String value) {
-		selectByVisibleText(phoneToolsDropdown, value);
+	public LeadPageObjects selectvaluePhoneReformatDropdown(String value) {
+		try {
+			selectByVisibleText(phoneReformatDropdown, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from phoneReformatDropdown is " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from phoneReformatDropdown " + e);
+		}
 		return this;
 	}
 
-	public LeadPageObjects selectValuePhoneReformatDropdown2(String value) {
-		selectByVisibleText(phoneReformatDropdown2, value);
+	public LeadPageObjects selectvaluePhoneToolsDropdown(String value) {
+		try {
+			selectByVisibleText(phoneToolsDropdown, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from phoneToolsDropdown is " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from phoneToolsDropdown " + e);
+		}
 		return this;
 	}
 
-	public LeadPageObjects selectValueCountryDropdown(String value) {
-		selectByVisibleText(countryDropdown, value);
+	public LeadPageObjects selectvaluePhoneReformatDropdown2(String value) {
+		try {
+			selectByVisibleText(phoneReformatDropdown2, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from phoneReformatDropdown2 is " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from phoneReformatDropdown2 " + e);
+		}
 		return this;
 	}
 
-	public LeadPageObjects selectValueJobTitleDropdown(String value) {
-		selectByVisibleText(jobTitleDropdown, value);
+	public LeadPageObjects selectvalueCountryDropdown(String value) {
+		try {
+			selectByVisibleText(countryDropdown, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from countryDropdown is " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from countryDropdown " + e);
+		}
 		return this;
 	}
 
-	public LeadPageObjects selectValueJobFunctionDropdown(String value) {
-		selectByVisibleText(jobFunctionDropdown, value);
+	public LeadPageObjects selectvalueJobTitleDropdown(String value) {
+		try {
+			selectByVisibleText(jobTitleDropdown, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for jobTitleDropdown is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from jobTitleDropdown " + e);
+		}
 		return this;
 	}
 
-	public LeadPageObjects selectValueCompanyToolsDropdown(String value) {
-		selectByVisibleText(companyToolsDropdown, value);
+	public LeadPageObjects selectvalueJobFunctionDropdown(String value) {
+		try {
+			selectByVisibleText(jobFunctionDropdown, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from jobFunctionDropdown is " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from jobFunctionDropdown " + e);
+		}
 		return this;
 	}
 
-	public LeadPageObjects selectValueIndustryDropdown(String value) {
-		selectByVisibleText(industryDropdown, value);
+	public LeadPageObjects selectvalueCompanyToolsDropdown(String value) {
+		try {
+			selectByVisibleText(companyToolsDropdown, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companyToolsDropdown is " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from companyToolsDropdown " + e);
+		}
 		return this;
 	}
 
-	public LeadPageObjects selectValueCompanySizeDropDown(String value) {
-		selectByVisibleText(companySizeDropDown, value);
+	public LeadPageObjects selectvalueIndustryDropdown(String value) {
+		try {
+			selectByVisibleText(industryDropdown, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from industryDropdown is " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from industryDropdown " + e);
+		}
 		return this;
 	}
 
-	public LeadPageObjects selectValueTurnoverDropdown(String value) {
-		selectByVisibleText(turnoverDropdown, value);
+	public LeadPageObjects selectvalueCompanySizeDropDown(String value) {
+		try {
+			selectByVisibleText(companySizeDropDown, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companySizeDropDown is " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from companySizeDropDown " + e);
+		}
 		return this;
 	}
 
-	public LeadPageObjects selectValueTurnoverCompanyToolsDropdown(String value) {
-		selectByVisibleText(turnoverCompanyToolsDropdown, value);
+	public LeadPageObjects selectvalueTurnoverDropdown(String value) {
+		try {
+			selectByVisibleText(turnoverDropdown, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from turnoverDropdown is " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from turnoverDropdown " + e);
+		}
 		return this;
 	}
 
-	public LeadPageObjects selectValueRejectionReasonDropdown(String value) {
-		selectByVisibleText(rejectionReasonDropdown, value);
+	public LeadPageObjects selectvalueTurnoverCompanyToolsDropdown(String value) {
+		try {
+			selectByVisibleText(turnoverCompanyToolsDropdown, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS,
+					"Selected value from turnoverCompanyToolsDropdown is " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL,
+					"Unable to select value from turnoverCompanyToolsDropdown " + e);
+		}
 		return this;
 	}
 
-	public LeadPageObjects selectValueCallCommentsDropDown(String value) {
-		selectByVisibleText(callCommentsDropDown, value);
+	public LeadPageObjects selectvalueRejectionReasonDropdown(String value) {
+		try {
+			selectByVisibleText(rejectionReasonDropdown, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from rejectionReasonDropdown is " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from rejectionReasonDropdown " + e);
+		}
+		return this;
+	}
+
+	public LeadPageObjects selectvalueCallCommentsDropDown(String value) {
+		try {
+			selectByVisibleText(callCommentsDropDown, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from callCommentsDropDown is " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from callCommentsDropDown " + e);
+		}
 		return this;
 	}
 
