@@ -43,17 +43,36 @@ public class LoginPageObjects extends PageFactoryInitializer
 	}
 
 	public LoginPageObjects enterUsername(String username) {
-		inputUserid.sendKeys(username);
+		try{
+			inputUserid.sendKeys(username);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Username Entered");
+		}
+		catch(Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Username Entry Failed");
+		}
 		return this;
 	}
 
 	public LoginPageObjects enterPassword(String password) {
-		inputPassword.sendKeys(password);
+		try{
+			inputPassword.sendKeys(password);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Password Entered");
+		}
+		catch(Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Password Entry Failed");
+		}
 		return this;
 	}
 
 	public LandingPageObjects clickSubmit(String username) throws Exception {
-		linkSubmit.click();
+		
+		try{
+			linkSubmit.click();
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Submit Button Clicked");
+		}
+		catch(Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Click Submit Button Failed");
+		}
 		return landingPage();
 	}
 
