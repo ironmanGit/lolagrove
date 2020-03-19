@@ -7,13 +7,14 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pageObjects.initializePageObjects.PageFactoryInitializer;
+import utils.ExtentReports.ExtentTestManager;
 
 public class Test1 extends PageFactoryInitializer
 {	
-	@DataProvider(name = "role")
-	   public static Object[][] roles() {
-	       return new Object[][] {{"Developer"},{"Team Lead"},{"QA"},{"Business Analyst"},{"DevOps Eng"},{"PMO"} };
-	   }
+//	@DataProvider(name = "role")
+//	   public static Object[][] roles() {
+//	       return new Object[][] {{"Developer"},{"Team Lead"},{"QA"},{"Business Analyst"},{"DevOps Eng"},{"PMO"} };
+//	   }
 //	
 //	@BeforeMethod
 //	public void BeforeMethod(Object[] testData, ITestContext ctx){
@@ -23,9 +24,10 @@ public class Test1 extends PageFactoryInitializer
 //			   ctx.setAttribute("description", "No Lead Id");
 //	}
 	
-	@Test(dataProvider = "role", priority = 0, description = "Google test description1")
-	public void testGoogle0(Method method, String leadsLine) throws Exception
+	@Test(priority = 0, description = "Google test description")
+	public void testGoogle0() throws Exception
 	{
+		ExtentTestManager.startTest("Google Test", "Google test description");
 		googleHomePage()
 		.verifyPageTitle();
 	}

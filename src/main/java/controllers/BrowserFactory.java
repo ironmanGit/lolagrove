@@ -20,7 +20,6 @@ import org.testng.annotations.Listeners;
  * @Date Mar 09, 2020
  */
 
-@Listeners({listeners.ExtentTestNGIReporterListener.class,com.automation.remarks.testng.VideoListener.class})
 public class BrowserFactory extends InitMethod
 {
 	static WebDriver driver;		
