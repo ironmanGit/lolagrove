@@ -443,9 +443,9 @@ public class LeadPageObjects extends CampaignTestProcess {
 		WebElement editLead = getXpath("//td/span[contains(text(),'%s')]/../preceding-sibling::td/i", leadId);
 		try {
 			click(editLead);
-			ExtentTestManager.getTest().log(LogStatus.PASS, leadId + "Clicked lead edit icon");
+			ExtentTestManager.getTest().log(LogStatus.PASS, leadId + " Clicked lead edit icon");
 		} catch (Exception e) {
-			ExtentTestManager.getTest().log(LogStatus.FAIL, leadId + "Unable to click lead edit icon " + e);
+			ExtentTestManager.getTest().log(LogStatus.FAIL, leadId + " Unable to click lead edit icon " + e);
 		}
 		return this;
 	}

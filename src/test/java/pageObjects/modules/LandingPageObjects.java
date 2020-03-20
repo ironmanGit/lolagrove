@@ -45,13 +45,21 @@ public class LandingPageObjects extends CampaignTestProcess {
 	private List<WebElement> getCampaignRows;
 	
 	public LandingPageObjects verifyCampaignTab() throws Exception {
-		String campaignTab = landingPageName.getText();
-		Assert.assertEquals(campaignTab, "Campaigns", "Expected Page is 'Campaign' But actual page is " + campaignTab);
+		String campaignTab = null;
+		try{
+			campaignTab = landingPageName.getText();
+			Assert.assertEquals(campaignTab, "Campaigns", "Expected Page is 'Campaign' But actual page is " + campaignTab);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Navigated to campaign page");
+		}
+		catch(Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Expected Page is 'Campaign' But actual page is " + campaignTab);
+		}
 		return this;
 	}
 
 	public LandingPageObjects selectCampaign() throws Exception {
 		String campaignText = appConfig.getCampaign();
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Selected campaign is : "+campaignText);
 		char campaignChar = campaignText.charAt(0);
 		String campaignFirstText = Character.toString(campaignChar);
 		WebElement target = findCampaignFirstLetter(campaignFirstText);
@@ -62,7 +70,12 @@ public class LandingPageObjects extends CampaignTestProcess {
 	public LeadPageObjects navigateToLeadsPage() throws Exception {
 		String campaignText = appConfig.getCampaign();
 		WebElement campaignTarget = findCampaignLink(campaignText);
-		click(campaignTarget);
+		try {
+			click(campaignTarget);	
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Successfuly "+campaignText+" selected");
+		}catch(Exception e){
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Failed to select "+campaignText);
+		}
 		Thread.sleep(3000);
 		click(showDataButton);
 		Thread.sleep(3000);
@@ -132,7 +145,13 @@ public class LandingPageObjects extends CampaignTestProcess {
 	}
 
 	public WebElement findCampaignLinkFromCurrentPage(String campaignText) throws Exception {
-		WebElement editLead = getXpath("//td/a[contains(text(), '%s')]", campaignText);
+		WebElement editLead = null;
+		try {
+			editLead = getXpath("//td/a[contains(text(), '%s')]", campaignText);	
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Successfuly "+campaignText+" selected");
+		}catch(Exception e){
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Failed to select "+campaignText);
+		}
 		return editLead;
 	}
 	
@@ -181,6 +200,7 @@ public class LandingPageObjects extends CampaignTestProcess {
 		List<String> leadsData = ExcelUtils.readFileToLines(campaignPath);
 		setcampaignDataLines(leadsData);
 		logger.info(leadsData);
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Leads lists are "+leadsData);
 	}
 	
 	public void createCampaignFile(List<String> campaignLead, String campaignPath, boolean append) throws IOException {
@@ -202,18 +222,34 @@ public class LandingPageObjects extends CampaignTestProcess {
 	}
 
 	public OpenNotesPageObjects clickOpenNotesLink() {
-		click(openNotesLink);
+		try {
+			click(openNotesLink);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked 'Open Notes' successfully");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Failed to click 'Open Notes' link");
+		}
 		return openNotesPage();
 	}
 	
 	public LeadPageObjects clickShowDataButton() {
-		click(showDataButton);
+		try {
+			click(showDataButton);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked 'Show Data' button successfully");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Failed to click 'Show Data' button");
+		}
+		
 		return leadPage();
 	}
 	
 	public LeadPageObjects clickEditLead(String leadId) throws Exception {
-		WebElement editLead = getXpath("//td/span[contains(text(),'%s')]/../preceding-sibling::td/i", leadId);
-		click(editLead);
+		try {
+			WebElement editLead = getXpath("//td/span[contains(text(),'%s')]/../preceding-sibling::td/i", leadId);
+			click(editLead);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Successfully navigated to '" + leadId + "' link");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Failed to navigate to '" + leadId + "' link");
+		}
 		return leadPage();
 	}
 	
