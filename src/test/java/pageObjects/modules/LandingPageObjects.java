@@ -224,6 +224,8 @@ public class LandingPageObjects extends CampaignTestProcess {
 	public OpenNotesPageObjects clickOpenNotesLink() {
 		try {
 			click(openNotesLink);
+			logger.info("Open notes");
+			switchToNewTab();
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked 'Open Notes' successfully");
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Failed to click 'Open Notes' link");

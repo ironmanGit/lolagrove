@@ -428,7 +428,7 @@ public class BaseMethod extends WebDriverFactory
 		}
 		while (WindowHandleIterator.hasNext()) {
 			String newPageHandle = WindowHandleIterator.next().toString();
-			if(newPageHandle.contains(existingHandle)) {
+			if(!newPageHandle.contains(existingHandle)) {
 				webDriver.switchTo().window(newPageHandle);
 				break;
 			}

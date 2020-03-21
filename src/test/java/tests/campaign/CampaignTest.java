@@ -22,9 +22,13 @@ public class CampaignTest extends PageFactoryInitializer {
 		.login()
 		.verifyCampaignTab()
 		.selectCampaign()
-		.navigateToLeadsPage();
-		// .createCampaignLeadsFile();
-		// leadsPage.readCampaignLeadsFile();
+		.navigateToLeadsPage()
+		.clickOpenNotesLink()
+		.getAllFieldsFromOpenNotes();
+		openNotesPage().closeOpenNotesTab();
+		leadPage.setTestDataCheck();
+//		 .createCampaignLeadsFile();
+//		 leadPage.readCampaignLeadsFile();
 		ExtentTestManager.endTest();
 	}
 
@@ -40,7 +44,7 @@ public class CampaignTest extends PageFactoryInitializer {
 		return dataList.iterator();
 	}
 
-	@Test(dataProvider = "getLeadsData", priority = 2, description = "Lead Testing")
+//	@Test(dataProvider = "getLeadsData", priority = 2, description = "Lead Testing")
 	public void leadsCheck(String leadsLine) throws Exception {
 		String leadId = leadsLine.substring(leadsLine.length() - 9);
 		ExtentTestManager.startTest("Lead Id--> " + leadId, "Lead Testing");

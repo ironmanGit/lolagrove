@@ -271,6 +271,9 @@ public class LeadPageObjects extends CampaignTestProcess {
 
 	@FindBy(css = "table#validate-me tr")
 	private List<WebElement> getLeadRows;
+	
+	@FindBy(xpath = "//a[contains(text(), 'Open Notes')]")
+	private WebElement openNotesLink;
 
 	@FindBy(css = "ul[class=pagination] li a")
 
@@ -448,6 +451,18 @@ public class LeadPageObjects extends CampaignTestProcess {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, leadId + " Unable to click lead edit icon " + e);
 		}
 		return this;
+	}
+	
+	public OpenNotesPageObjects clickOpenNotesLink() {
+		try {
+			click(openNotesLink);
+			logger.info("Open notes");
+			switchToNewTab();
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked 'Open Notes' successfully");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Failed to click 'Open Notes' link");
+		}
+		return openNotesPage();
 	}
 
 	public LeadPageObjects clickEmailNoEvidenceFoundBtn() {
@@ -1856,6 +1871,21 @@ public class LeadPageObjects extends CampaignTestProcess {
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from callCommentsDropDown " + e);
 		}
+		return this;
+	}
+	
+	public LeadPageObjects setTestDataCheck() {
+			String country = getLeadsCountry();
+			logger.info("country Test data value check is: "+country);
+			String companySize = getLeadsCompanySize();
+			logger.info("companySize Test data value check is: "+companySize);
+			String industrial = getLeadsIndustrialVertical();
+			logger.info("industrial Test data value check is: "+industrial);
+			String jobFunction = getLeadsJobFunction();
+			logger.info("jobFunction Test data value check is: "+jobFunction);
+			String jobTitle = getLeadsJobTitle();
+			logger.info("jobTitle Test data value check is: "+jobTitle);
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Test data value check is: ");
 		return this;
 	}
 

@@ -218,7 +218,9 @@
             <version>${slf4j.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- SL4J LOG4J Dependency -->
+        <!-- SL4J 
+
+ Dependency -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
@@ -239,6 +241,12 @@
             <version>${slf4j.version}</version>
             <scope>test</scope>
         </dependency>
+
+	<dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>1.2.14</version>
+	</dependency>
     </dependencies>
     <build>
         <plugins>
