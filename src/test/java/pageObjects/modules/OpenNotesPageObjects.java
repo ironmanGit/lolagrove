@@ -19,6 +19,8 @@ import utils.ExtentReports.ExtentTestManager;
  * @Date Mar 09, 2020
  */
 public class OpenNotesPageObjects extends CampaignTestProcess {
+	
+	public LandingPageObjects landingPage = landingPage();
 
 	@FindBy(css = "#GroupA > div:nth-child(3) > div.panel-body")
 	private WebElement country;
@@ -43,12 +45,14 @@ public class OpenNotesPageObjects extends CampaignTestProcess {
 	}
 
 	public String getCompanySize() {
-		String text = companySize.getText();
-		boolean isTAL = text.contains("TAL");
+		String companySizes = companySize.getText();
+		boolean isTAL = companySizes.contains("TAL");
 		if (isTAL) {
-			text = "TAL";
+			companySizes = "TAL";
+		}else {
+			companySizes = getListOfTexts(companySize);
 		}
-		return text;
+		return companySizes;
 	}
 
 	public OpenNotesPageObjects getCompanySizeFromOpenNotes() {
@@ -59,12 +63,14 @@ public class OpenNotesPageObjects extends CampaignTestProcess {
 	}
 
 	public String getIndustryVertical() {
-		String text = industrialVertical.getText();
-		boolean isTAL = text.contains("TAL");
+		String industrialVerticalText = industrialVertical.getText();
+		boolean isTAL = industrialVerticalText.contains("TAL");
 		if (isTAL) {
-			text = "TAL";
+			industrialVerticalText = "TAL";
+		}else {
+			industrialVerticalText = getListOfTexts(industrialVertical);
 		}
-		return text;
+		return industrialVerticalText;
 	}
 
 	public OpenNotesPageObjects getIndustryVerticalFromOpenNotes() {
@@ -93,9 +99,47 @@ public class OpenNotesPageObjects extends CampaignTestProcess {
 		text = text.replace("\n", "|");
 		text = text.replace(",", "|");
 		text = text.replace("&", "|");
-		text = text.replaceAll("\\([^)]*?\\)", "");
+//		text = text.replaceAll("\\([^)]*?\\)", "");
+		text = text.replace("(", "|");
+		text = text.replace(")", "|");
 		text = text.replace("|", ",");
+		String[] listOfTexts = text.split(",");
+		text = convertArrayToStringMethod(listOfTexts);
 		return text;
+	}
+	
+	public static String convertArrayToStringMethod(String[] strArray) {
+		StringBuilder stringBuilder = new StringBuilder();
+		for (int i = 0; i < strArray.length; i++) {
+			if (!strArray[i].trim().isEmpty()) {
+				if (strArray[i].trim().length() > 35) {
+					strArray[i] = getUpperCaseWords(strArray[i].trim());
+				}
+				if (i == strArray.length - 1) {
+					stringBuilder.append(strArray[i].trim());
+				} else {
+					stringBuilder.append(strArray[i].trim());
+					stringBuilder.append(", ");
+				}
+			}
+		}
+		return stringBuilder.toString();
+	}
+	
+	public static String getUpperCaseWords(String name){
+		name = name.replaceAll("(?:\\b)[a-z]*(?:\\b)", "").replaceAll("\\s+", " ");  
+	    return name;
+	}
+	
+	public static String getUpperCaseWordsold(String name){
+	    String uppercaseCharacters = "";
+	    for (int i=0;i<name.length();i++){
+	        char ch = name.charAt(i);
+	        if (Character.isUpperCase(ch)){
+	            uppercaseCharacters += ch;
+	        }
+	    }   
+	    return uppercaseCharacters;
 	}
 	
 	public OpenNotesPageObjects getAllFieldsFromOpenNotes() {
@@ -107,14 +151,14 @@ public class OpenNotesPageObjects extends CampaignTestProcess {
 		return this;
 	}
 
-	public void closeOpenNotesTab() {
+	public LandingPageObjects closeOpenNotesTab() {
 		try {
 			closeTab();
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Closed 'Open Notes' tab successfully");
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Failed to close 'Open Notes' tab");
 		}
-//		return leadPage();
+		return landingPage;
 	}
-
+	
 }

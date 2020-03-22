@@ -6,9 +6,12 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import pageObjects.initializePageObjects.PageFactoryInitializer;
+import pageObjects.modules.LandingPageObjects;
 
 public class CampaignTestProcess extends PageFactoryInitializer {
 	private Logger logger = Logger.getLogger(CampaignTestProcess.class.getName());
+	
+//	public LandingPageObjects landingPage = landingPage();
 
 	private List<String> campaignDataLines = new ArrayList<String>();
 	private List<CampaignDataRecord> campaignLeadsData = new ArrayList<CampaignDataRecord>();

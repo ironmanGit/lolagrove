@@ -67,7 +67,7 @@ public class LandingPageObjects extends CampaignTestProcess {
 		return this;
 	}
 	
-	public LeadPageObjects navigateToLeadsPage() throws Exception {
+	public LandingPageObjects navigateToLeadsPage() throws Exception {
 		String campaignText = appConfig.getCampaign();
 		WebElement campaignTarget = findCampaignLink(campaignText);
 		try {
@@ -79,7 +79,7 @@ public class LandingPageObjects extends CampaignTestProcess {
 		Thread.sleep(3000);
 		click(showDataButton);
 		Thread.sleep(3000);
-		return leadPage();
+		return this;
 	}
 
 	public WebElement findCampaignFirstLetter(String campaignText) {
@@ -286,6 +286,21 @@ public class LandingPageObjects extends CampaignTestProcess {
 			textRows.add(textRow);
 		}
 		return textRows;
+	}
+	
+	public LandingPageObjects setTestDataCheck() {
+		String country = getLeadsCountry();
+		logger.info("country Test data value check is: " + country);
+		String companySize = getLeadsCompanySize();
+		logger.info("companySize Test data value check is: " + companySize);
+		String industrial = getLeadsIndustrialVertical();
+		logger.info("industrial Test data value check is: " + industrial);
+		String jobFunction = getLeadsJobFunction();
+		logger.info("jobFunction Test data value check is: " + jobFunction);
+		String jobTitle = getLeadsJobTitle();
+		logger.info("jobTitle Test data value check is: " + jobTitle);
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Test data value check is: ");
+		return this;
 	}
 
 }

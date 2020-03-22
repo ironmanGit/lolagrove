@@ -13,7 +13,11 @@ import utils.ExtentReports.ExtentTestManager;
 public class CampaignTest extends PageFactoryInitializer {
 	private Logger logger = Logger.getLogger(CampaignTest.class.getName());
 	private LeadPageObjects leadPage = leadPage();
-	 
+	private String getCompanySize;
+	private String getIndustrialVertical;
+	private String getJobFunction;
+	private String getJobTitle;
+	private String getCountry;
 	
 	@Test(priority = 1, description = "Navigate to Campaign")
 	public void campaignCheck() throws Exception {
@@ -24,18 +28,26 @@ public class CampaignTest extends PageFactoryInitializer {
 		.selectCampaign()
 		.navigateToLeadsPage()
 		.clickOpenNotesLink()
-		.getAllFieldsFromOpenNotes();
-		openNotesPage().closeOpenNotesTab();
-		leadPage.setTestDataCheck();
+		.getAllFieldsFromOpenNotes()
+		.closeOpenNotesTab()
+		.setTestDataCheck();
 //		 .createCampaignLeadsFile();
 //		 leadPage.readCampaignLeadsFile();
 		ExtentTestManager.endTest();
+	}
+	
+	@Test(priority = 2, description = "Get open records data")
+	public void getOpenNotesRecord() throws Exception {
+		getCountry = leadPage.getLeadsCountry();
+		getCompanySize = leadPage.getLeadsCompanySize();
+		getIndustrialVertical = leadPage.getLeadsIndustrialVertical();
+		getJobFunction = leadPage.getLeadsJobFunction();
+		getJobTitle = leadPage.getLeadsJobTitle();
 	}
 
 	@DataProvider(name = "getLeadsData")
 	public Iterator<Object[]> getLeadsData() throws Exception {
 		List<Object[]> dataList = new ArrayList<Object[]>();
-
 		leadPage.readCampaignLeadsFile();
 		List<String> campaignLeadsLine = leadPage.getcampaignDataLines();
 		for (String Leadsline : campaignLeadsLine) {
@@ -44,8 +56,13 @@ public class CampaignTest extends PageFactoryInitializer {
 		return dataList.iterator();
 	}
 
-//	@Test(dataProvider = "getLeadsData", priority = 2, description = "Lead Testing")
+	@Test(dataProvider = "getLeadsData", priority = 3, description = "Lead Testing")
 	public void leadsCheck(String leadsLine) throws Exception {
+		logger.info("Country details : " +getCountry);
+		logger.info("Company Size : "+getCompanySize);
+		logger.info("Industrial : " +getIndustrialVertical);
+		logger.info("Job Function: " +getJobFunction);
+		logger.info("Job Title : "+getJobTitle);
 		String leadId = leadsLine.substring(leadsLine.length() - 9);
 		ExtentTestManager.startTest("Lead Id--> " + leadId, "Lead Testing");
 		leadPage()
