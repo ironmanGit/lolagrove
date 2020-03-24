@@ -8,8 +8,8 @@ import org.apache.log4j.Logger;
 import pageObjects.initializePageObjects.PageFactoryInitializer;
 import pageObjects.modules.LandingPageObjects;
 
-public class CampaignTestProcess extends PageFactoryInitializer {
-	private static Logger logger = Logger.getLogger(CampaignTestProcess.class.getName());
+public class CampaignTestDataProcess extends PageFactoryInitializer {
+	private static Logger logger = Logger.getLogger(CampaignTestDataProcess.class.getName());
 	
 	private static List<String> campaignDataLines = new ArrayList<String>();
 	private static List<CampaignDataRecord> campaignLeadsData = new ArrayList<CampaignDataRecord>();

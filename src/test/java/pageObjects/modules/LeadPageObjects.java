@@ -12,7 +12,7 @@ import pageObjects.initializePageObjects.PageFactoryInitializer;
 import tests.campaign.CampaignTest;
 import tests.campaign.process.CampaignDataRecord;
 import tests.campaign.process.CampaignLeadsDataRecord;
-import tests.campaign.process.CampaignTestProcess;
+import tests.campaign.process.CampaignTestDataProcess;
 import utils.ExcelUtils;
 import utils.ExtentReports.ExtentTestManager;
 import com.relevantcodes.extentreports.LogStatus;

@@ -15,7 +15,7 @@ import pageObjects.modules.LandingPageObjects;
 import pageObjects.modules.LeadPageObjects;
 import pageObjects.modules.LoginPageObjects;
 import pageObjects.modules.OpenNotesPageObjects;
-import tests.campaign.process.CampaignTestProcess;
+import tests.campaign.process.CampaignTestDataProcess;
 
 /**
  * @Author Vivekanandan Sampath
@@ -54,8 +54,8 @@ public class PageFactoryInitializer extends BaseMethod
 		return PageFactory.initElements(getWebDriver(), OpenNotesPageObjects.class);
 	}
 	
-	public CampaignTestProcess campaignTestDataProcess() 
+	public CampaignTestDataProcess campaignTestDataProcess() 
 	{
-		return PageFactory.initElements(getWebDriver(), CampaignTestProcess.class);
+		return PageFactory.initElements(getWebDriver(), CampaignTestDataProcess.class);
 	}
 }

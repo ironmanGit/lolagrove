@@ -1,6 +1,6 @@
 package tests.campaign.process;
 
-public class CampaignLeadsDataRecord extends CampaignTestProcess{
+public class CampaignLeadsDataRecord extends CampaignTestDataProcess{
 	private static String eyeIcon;
 	private static String verificationStatus;
 	private static String leadsId;

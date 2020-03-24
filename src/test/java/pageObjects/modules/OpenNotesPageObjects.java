@@ -12,7 +12,7 @@ import org.openqa.selenium.support.FindBy;
 import com.relevantcodes.extentreports.LogStatus;
 
 import pageObjects.initializePageObjects.PageFactoryInitializer;
-import tests.campaign.process.CampaignTestProcess;
+import tests.campaign.process.CampaignTestDataProcess;
 import utils.ExtentReports.ExtentTestManager;
 
 /**

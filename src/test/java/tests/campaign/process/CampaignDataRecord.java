@@ -2,7 +2,7 @@ package tests.campaign.process;
 
 import org.apache.log4j.Logger;
 
-public class CampaignDataRecord extends CampaignTestProcess{
+public class CampaignDataRecord extends CampaignTestDataProcess{
 	private Logger logger = Logger.getLogger(CampaignDataRecord.class.getName());
 	
 	private String campaignLead;
