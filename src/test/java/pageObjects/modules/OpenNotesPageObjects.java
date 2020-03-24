@@ -11,6 +11,7 @@ import org.openqa.selenium.support.FindBy;
 
 import com.relevantcodes.extentreports.LogStatus;
 
+import pageObjects.initializePageObjects.PageFactoryInitializer;
 import tests.campaign.process.CampaignTestProcess;
 import utils.ExtentReports.ExtentTestManager;
 
@@ -18,10 +19,8 @@ import utils.ExtentReports.ExtentTestManager;
  * @Author Vivekanandan Sampath
  * @Date Mar 09, 2020
  */
-public class OpenNotesPageObjects extends CampaignTestProcess {
+public class OpenNotesPageObjects extends PageFactoryInitializer {
 	
-	public LandingPageObjects landingPage = landingPage();
-
 	@FindBy(css = "#GroupA > div:nth-child(3) > div.panel-body")
 	private WebElement country;
 
@@ -39,7 +38,7 @@ public class OpenNotesPageObjects extends CampaignTestProcess {
 
 	public OpenNotesPageObjects getCountryDetailsFromOpenNotes() {
 		String countryDetails = getListOfTexts(country);
-		setLeadsCountry(countryDetails);
+		campaignTestDataProcess().setLeadsCountry(countryDetails);
 		ExtentTestManager.getTest().log(LogStatus.INFO, "Country Names in Open Notes : " + countryDetails);
 		return this;
 	}
@@ -57,7 +56,7 @@ public class OpenNotesPageObjects extends CampaignTestProcess {
 
 	public OpenNotesPageObjects getCompanySizeFromOpenNotes() {
 		String companySize = getCompanySize();
-		setLeadsCompanySize(companySize);
+		campaignTestDataProcess().setLeadsCompanySize(companySize);
 		ExtentTestManager.getTest().log(LogStatus.INFO, "company Size details in Open Notes : " + companySize);
 		return this;
 	}
@@ -75,21 +74,21 @@ public class OpenNotesPageObjects extends CampaignTestProcess {
 
 	public OpenNotesPageObjects getIndustryVerticalFromOpenNotes() {
 		String industrialVertical = getIndustryVertical();
-		setLeadsIndustrialVertical(industrialVertical);
+		campaignTestDataProcess().setLeadsIndustrialVertical(industrialVertical);
 		ExtentTestManager.getTest().log(LogStatus.INFO,	"Industry vertical details in Open Notes are : " + industrialVertical);
 		return this;
 	}
 
 	public OpenNotesPageObjects getJobFunctionFromOpenNotes() {
 		String jobFunctions = getListOfTexts(jobFunction);
-		setLeadsJobFunction(jobFunctions);
+		campaignTestDataProcess().setLeadsJobFunction(jobFunctions);
 		ExtentTestManager.getTest().log(LogStatus.INFO, "Job functions in Open Notes : " + jobFunctions);
 		return this;
 	}
 
 	public OpenNotesPageObjects getJobTitleFromOpenNotes() {
 		String jobTitles = getListOfTexts(jobTitle);
-		setLeadsJobTitle(jobTitles);
+		campaignTestDataProcess().setLeadsJobTitle(jobTitles);
 		ExtentTestManager.getTest().log(LogStatus.INFO, "Job title in Open Notes : " + jobTitles);
 		return this;
 	}
@@ -158,7 +157,7 @@ public class OpenNotesPageObjects extends CampaignTestProcess {
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Failed to close 'Open Notes' tab");
 		}
-		return landingPage;
+		return landingPage();
 	}
 	
 }

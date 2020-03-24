@@ -17,7 +17,7 @@ import utils.ExcelUtils;
 import utils.ExtentReports.ExtentTestManager;
 import com.relevantcodes.extentreports.LogStatus;
 
-public class LeadPageObjects extends CampaignTestProcess {
+public class LeadPageObjects extends PageFactoryInitializer {
 	private Logger logger = Logger.getLogger(LeadPageObjects.class.getName());
 
 	@FindBy(css = "div#editLeadNew table#tablecustom tbody tr td:nth-child(1) span")
@@ -354,7 +354,7 @@ public class LeadPageObjects extends CampaignTestProcess {
 //			String comments = campaignLead.get(32);
 //			String leadCreationDate = campaignLead.get(33);
 //			String subSource = campaignLead.get(34);
-//			String tactic = campaignLead.get(35);
+//			String tactics = campaignLead.get(35);
 //			String telephone2 = campaignLead.get(36);
 //			String ADDRESS_C = campaignLead.get(37);
 //			String ADDRESS_EVIDENCE = campaignLead.get(38);
@@ -398,7 +398,7 @@ public class LeadPageObjects extends CampaignTestProcess {
 //					+","+rejectionReason+","+wrongIcon+","+redactionTest+","+email+","+title+","+firstName+","+lastName+","+
 //					Address1+","+Address2+","+Address3+","+townCity+","+countryState+","+country+","+postalZipCode+","+telephone+","+userAgent+","+source+","+
 //					supplierLeadId+","+urlReferrer+","+startTime+","+endTime+","+fingerPrint+","+leadStatus+","+companyName+","+jobTitle+","+industry+","+platform+","+
-//					freeListFlag+","+assetTitle+","+comments+","+leadCreationDate+","+subSource+","+tactic+","+telephone2+","+ADDRESS_C+","+ADDRESS_EVIDENCE+","+COMPANY_C+","+
+//					freeListFlag+","+assetTitle+","+comments+","+leadCreationDate+","+subSource+","+tactics+","+telephone2+","+ADDRESS_C+","+ADDRESS_EVIDENCE+","+COMPANY_C+","+
 //					COMPANY_EVIDENCE+","+COMPANYSIZE_EVIDENCE+","+EMAIL_C+","+EMAIL_EVIDENCE+","+INDIVIDUAL_EVIDENCE+","+JOBTITLE_EVIDENCE+","+LINKEDIN_ID_URL+","+PHONE_C+","+
 //					PHONE_EVIDENCE+","+REJECTION_EVIDENCE+","+TURNOVER_EVIDENCE+","+UPDATE_DATE+","+COMPANY_SIZE+","+SWITCHING_TO_CLOUD+","+INTERNATIONAL_BUSINESS_PAYMENTS+","+
 //					TURNOVER+","+BREACH_DOCUMENTS+","+JOB_EXPERIENCE+","+PHONE2_EVIDENCE+","+VOICE_VERIFIED+","+JOB_FUNCTION+","+ANNUAL_FOREIGN_EXCHANGE+","+ANNUAL_REVENUE+","+
@@ -414,7 +414,7 @@ public class LeadPageObjects extends CampaignTestProcess {
 		String campaignName = appConfig.getCampaign();
 		String campaignPath = "campaignFiles/" + campaignName + "_Leads.csv";
 		List<String> leadsData = ExcelUtils.readFileToLines(campaignPath);
-		setcampaignDataLines(leadsData);
+		campaignTestDataProcess().setcampaignDataLines(leadsData);
 		logger.info(leadsData);
 	}
 
@@ -1861,7 +1861,5 @@ public class LeadPageObjects extends CampaignTestProcess {
 		}
 		return this;
 	}
-	
-	
 
 }

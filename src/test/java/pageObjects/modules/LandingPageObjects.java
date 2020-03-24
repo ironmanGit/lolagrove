@@ -9,12 +9,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
-import tests.campaign.process.CampaignTestProcess;
 import utils.ExcelUtils;
 import utils.ExtentReports.ExtentTestManager;
 import com.relevantcodes.extentreports.LogStatus;
+import pageObjects.initializePageObjects.PageFactoryInitializer;
 
-public class LandingPageObjects extends CampaignTestProcess {
+public class LandingPageObjects extends PageFactoryInitializer {
 	private Logger logger = Logger.getLogger(LandingPageObjects.class.getName());
 
 	@FindBy(xpath = "//div[contains(text(),'Campaigns')]")
@@ -198,7 +198,7 @@ public class LandingPageObjects extends CampaignTestProcess {
 		String campaignName = appConfig.getCampaign();
 		String campaignPath = "campaignFiles/" + campaignName + "_Leads.csv";
 		List<String> leadsData = ExcelUtils.readFileToLines(campaignPath);
-		setcampaignDataLines(leadsData);
+		campaignTestDataProcess().setcampaignDataLines(leadsData);
 		logger.info(leadsData);
 		ExtentTestManager.getTest().log(LogStatus.INFO, "Leads lists are "+leadsData);
 	}
@@ -289,15 +289,15 @@ public class LandingPageObjects extends CampaignTestProcess {
 	}
 	
 	public LandingPageObjects setTestDataCheck() {
-		String country = getLeadsCountry();
+		String country = campaignTestDataProcess().getLeadsCountry();
 		logger.info("country Test data value check is: " + country);
-		String companySize = getLeadsCompanySize();
+		String companySize = campaignTestDataProcess().getLeadsCompanySize();
 		logger.info("companySize Test data value check is: " + companySize);
-		String industrial = getLeadsIndustrialVertical();
+		String industrial = campaignTestDataProcess().getLeadsIndustrialVertical();
 		logger.info("industrial Test data value check is: " + industrial);
-		String jobFunction = getLeadsJobFunction();
+		String jobFunction = campaignTestDataProcess().getLeadsJobFunction();
 		logger.info("jobFunction Test data value check is: " + jobFunction);
-		String jobTitle = getLeadsJobTitle();
+		String jobTitle = campaignTestDataProcess().getLeadsJobTitle();
 		logger.info("jobTitle Test data value check is: " + jobTitle);
 		ExtentTestManager.getTest().log(LogStatus.INFO, "Test data value check is: ");
 		return this;

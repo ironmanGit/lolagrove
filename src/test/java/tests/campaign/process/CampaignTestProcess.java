@@ -9,19 +9,17 @@ import pageObjects.initializePageObjects.PageFactoryInitializer;
 import pageObjects.modules.LandingPageObjects;
 
 public class CampaignTestProcess extends PageFactoryInitializer {
-	private Logger logger = Logger.getLogger(CampaignTestProcess.class.getName());
+	private static Logger logger = Logger.getLogger(CampaignTestProcess.class.getName());
 	
-//	public LandingPageObjects landingPage = landingPage();
-
-	private List<String> campaignDataLines = new ArrayList<String>();
-	private List<CampaignDataRecord> campaignLeadsData = new ArrayList<CampaignDataRecord>();
-	private String leadsPlacment;
-	private String leadsCompanySize;
-	private String leadsIndustrialVertical;
-	private String leadsJobFunction;
-	private String leadsJobTitle;
-	private String leadsCountry;
-	private String leadsCompanyName;
+	private static List<String> campaignDataLines = new ArrayList<String>();
+	private static List<CampaignDataRecord> campaignLeadsData = new ArrayList<CampaignDataRecord>();
+	private static String leadsPlacment;
+	private static String leadsCompanySize;
+	private static String leadsIndustrialVertical;
+	private static String leadsJobFunction;
+	private static String leadsJobTitle;
+	private static String leadsCountry;
+	private static String leadsCompanyName;
 
 	public List<CampaignDataRecord> getCampaignLeadsData() {
 		return campaignLeadsData;

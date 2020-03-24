@@ -7,12 +7,10 @@ import java.util.Iterator;
 import java.util.List;
 import org.apache.log4j.Logger;
 import pageObjects.initializePageObjects.PageFactoryInitializer;
-import pageObjects.modules.LeadPageObjects;
 import utils.ExtentReports.ExtentTestManager;
 
 public class CampaignTest extends PageFactoryInitializer {
 	private Logger logger = Logger.getLogger(CampaignTest.class.getName());
-	private LeadPageObjects leadPage = leadPage();
 	private String getCompanySize;
 	private String getIndustrialVertical;
 	private String getJobFunction;
@@ -38,18 +36,18 @@ public class CampaignTest extends PageFactoryInitializer {
 	
 	@Test(priority = 2, description = "Get open records data")
 	public void getOpenNotesRecord() throws Exception {
-		getCountry = leadPage.getLeadsCountry();
-		getCompanySize = leadPage.getLeadsCompanySize();
-		getIndustrialVertical = leadPage.getLeadsIndustrialVertical();
-		getJobFunction = leadPage.getLeadsJobFunction();
-		getJobTitle = leadPage.getLeadsJobTitle();
+		getCountry = campaignTestDataProcess().getLeadsCountry();
+		getCompanySize = campaignTestDataProcess().getLeadsCompanySize();
+		getIndustrialVertical = campaignTestDataProcess().getLeadsIndustrialVertical();
+		getJobFunction = campaignTestDataProcess().getLeadsJobFunction();
+		getJobTitle = campaignTestDataProcess().getLeadsJobTitle();
 	}
 
 	@DataProvider(name = "getLeadsData")
 	public Iterator<Object[]> getLeadsData() throws Exception {
 		List<Object[]> dataList = new ArrayList<Object[]>();
-		leadPage.readCampaignLeadsFile();
-		List<String> campaignLeadsLine = leadPage.getcampaignDataLines();
+		leadPage().readCampaignLeadsFile();
+		List<String> campaignLeadsLine = campaignTestDataProcess().getcampaignDataLines();
 		for (String Leadsline : campaignLeadsLine) {
 			dataList.add(new Object[] { Leadsline });
 		}
