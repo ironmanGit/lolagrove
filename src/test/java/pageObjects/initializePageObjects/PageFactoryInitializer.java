@@ -15,6 +15,7 @@ import pageObjects.modules.LandingPageObjects;
 import pageObjects.modules.LeadPageObjects;
 import pageObjects.modules.LoginPageObjects;
 import pageObjects.modules.OpenNotesPageObjects;
+import tests.campaign.process.CampaignTestProcess;
 
 /**
  * @Author Vivekanandan Sampath
@@ -51,5 +52,10 @@ public class PageFactoryInitializer extends BaseMethod
 	public OpenNotesPageObjects openNotesPage() 
 	{
 		return PageFactory.initElements(getWebDriver(), OpenNotesPageObjects.class);
+	}
+	
+	public CampaignTestProcess campaignTestDataProcess() 
+	{
+		return PageFactory.initElements(getWebDriver(), CampaignTestProcess.class);
 	}
 }

@@ -9,12 +9,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
-import tests.campaign.process.CampaignTestProcess;
 import utils.ExcelUtils;
 import utils.ExtentReports.ExtentTestManager;
 import com.relevantcodes.extentreports.LogStatus;
+import pageObjects.initializePageObjects.PageFactoryInitializer;
 
-public class LandingPageObjects extends CampaignTestProcess {
+public class LandingPageObjects extends PageFactoryInitializer {
 	private Logger logger = Logger.getLogger(LandingPageObjects.class.getName());
 
 	@FindBy(xpath = "//div[contains(text(),'Campaigns')]")
@@ -67,7 +67,7 @@ public class LandingPageObjects extends CampaignTestProcess {
 		return this;
 	}
 	
-	public LeadPageObjects navigateToLeadsPage() throws Exception {
+	public LandingPageObjects navigateToLeadsPage() throws Exception {
 		String campaignText = appConfig.getCampaign();
 		WebElement campaignTarget = findCampaignLink(campaignText);
 		try {
@@ -79,7 +79,7 @@ public class LandingPageObjects extends CampaignTestProcess {
 		Thread.sleep(3000);
 		click(showDataButton);
 		Thread.sleep(3000);
-		return leadPage();
+		return this;
 	}
 
 	public WebElement findCampaignFirstLetter(String campaignText) {
@@ -198,7 +198,7 @@ public class LandingPageObjects extends CampaignTestProcess {
 		String campaignName = appConfig.getCampaign();
 		String campaignPath = "campaignFiles/" + campaignName + "_Leads.csv";
 		List<String> leadsData = ExcelUtils.readFileToLines(campaignPath);
-		setcampaignDataLines(leadsData);
+		campaignTestDataProcess().setcampaignDataLines(leadsData);
 		logger.info(leadsData);
 		ExtentTestManager.getTest().log(LogStatus.INFO, "Leads lists are "+leadsData);
 	}
@@ -224,6 +224,8 @@ public class LandingPageObjects extends CampaignTestProcess {
 	public OpenNotesPageObjects clickOpenNotesLink() {
 		try {
 			click(openNotesLink);
+			logger.info("Open notes");
+			switchToNewTab();
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked 'Open Notes' successfully");
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Failed to click 'Open Notes' link");
@@ -284,6 +286,21 @@ public class LandingPageObjects extends CampaignTestProcess {
 			textRows.add(textRow);
 		}
 		return textRows;
+	}
+	
+	public LandingPageObjects setTestDataCheck() {
+		String country = campaignTestDataProcess().getLeadsCountry();
+		logger.info("country Test data value check is: " + country);
+		String companySize = campaignTestDataProcess().getLeadsCompanySize();
+		logger.info("companySize Test data value check is: " + companySize);
+		String industrial = campaignTestDataProcess().getLeadsIndustrialVertical();
+		logger.info("industrial Test data value check is: " + industrial);
+		String jobFunction = campaignTestDataProcess().getLeadsJobFunction();
+		logger.info("jobFunction Test data value check is: " + jobFunction);
+		String jobTitle = campaignTestDataProcess().getLeadsJobTitle();
+		logger.info("jobTitle Test data value check is: " + jobTitle);
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Test data value check is: ");
+		return this;
 	}
 
 }
