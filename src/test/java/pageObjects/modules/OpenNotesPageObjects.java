@@ -3,16 +3,11 @@
  */
 package pageObjects.modules;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import com.relevantcodes.extentreports.LogStatus;
-
 import pageObjects.initializePageObjects.PageFactoryInitializer;
-import tests.campaign.process.CampaignTestDataProcess;
 import utils.ExtentReports.ExtentTestManager;
 
 /**
@@ -126,7 +121,7 @@ public class OpenNotesPageObjects extends PageFactoryInitializer {
 	}
 	
 	public static String getUpperCaseWords(String name){
-		name = name.replaceAll("(?:\\b)[a-z]*(?:\\b)", "").replaceAll("\\s+", " ");  
+		name = name.replaceAll("[A-Z]?[a-z]|:|;|,", "").replaceAll("\\s+", " ");  
 	    return name;
 	}
 	
