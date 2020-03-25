@@ -2,11 +2,8 @@ package tests.campaign.process;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.log4j.Logger;
-
 import pageObjects.initializePageObjects.PageFactoryInitializer;
-import pageObjects.modules.LandingPageObjects;
 
 public class CampaignTestDataProcess extends PageFactoryInitializer {
 	private static Logger logger = Logger.getLogger(CampaignTestDataProcess.class.getName());

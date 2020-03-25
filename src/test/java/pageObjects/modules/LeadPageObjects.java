@@ -7,12 +7,9 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 import pageObjects.initializePageObjects.PageFactoryInitializer;
-import tests.campaign.CampaignTest;
-import tests.campaign.process.CampaignDataRecord;
+import tests.campaign.leads.PlacementReadOnly;
 import tests.campaign.process.CampaignLeadsDataRecord;
-import tests.campaign.process.CampaignTestDataProcess;
 import utils.ExcelUtils;
 import utils.ExtentReports.ExtentTestManager;
 import com.relevantcodes.extentreports.LogStatus;
@@ -23,13 +20,13 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	@FindBy(css = "div#editLeadNew table#tablecustom tbody tr td:nth-child(1) span")
 	private WebElement placementReadOly;
 
-	@FindBy(xpath = "div#editLeadNew table#tablecustom tbody tr td:nth-child(2) span")
+	@FindBy(css = "div#editLeadNew table#tablecustom tbody tr td:nth-child(2) span")
 	private WebElement assetReadOly;
 
-	@FindBy(xpath = "div#editLeadNew table#tablecustom tbody tr td:nth-child(3) span")
+	@FindBy(css = "div#editLeadNew table#tablecustom tbody tr td:nth-child(3) span")
 	private WebElement leadTypeReadOly;
 
-	@FindBy(xpath = "div#editLeadNew table#tablecustom tbody tr td:nth-child(4) span")
+	@FindBy(css = "div#editLeadNew table#tablecustom tbody tr td:nth-child(4) span")
 	private WebElement countryReadOly;
 
 	@FindBy(css = "input[name='meritleadid']")
@@ -1862,4 +1859,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
+	public LeadPageObjects placementCheck() throws Exception {
+		placementReadOnly().placementCheck();
+		return this;
+	}
 }

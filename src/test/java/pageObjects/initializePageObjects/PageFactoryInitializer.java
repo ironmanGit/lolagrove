@@ -3,11 +3,7 @@
  */
 package pageObjects.initializePageObjects;
 
-import java.util.List;
-
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-
 import controllers.BaseMethod;
 import pageObjects.modules.GMailPageObjects;
 import pageObjects.modules.GoogleHomePageObjects;
@@ -15,6 +11,7 @@ import pageObjects.modules.LandingPageObjects;
 import pageObjects.modules.LeadPageObjects;
 import pageObjects.modules.LoginPageObjects;
 import pageObjects.modules.OpenNotesPageObjects;
+import tests.campaign.leads.PlacementReadOnly;
 import tests.campaign.process.CampaignTestDataProcess;
 
 /**
@@ -58,4 +55,10 @@ public class PageFactoryInitializer extends BaseMethod
 	{
 		return PageFactory.initElements(getWebDriver(), CampaignTestDataProcess.class);
 	}
+	
+	public PlacementReadOnly placementReadOnly() 
+	{
+		return PageFactory.initElements(getWebDriver(), PlacementReadOnly.class);
+	}
+	
 }
