@@ -8,5 +8,5 @@
 /test-output/
 debug.log
 /bin/
-*.html
-*.png
+/ExtentReports/*.html
+/src/test/resources/Reports/Images/*.png
