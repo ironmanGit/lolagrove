@@ -8,3 +8,5 @@
 /test-output/
 debug.log
 /bin/
+*.html
+*.png
