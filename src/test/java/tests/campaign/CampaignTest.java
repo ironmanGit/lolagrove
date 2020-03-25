@@ -41,6 +41,11 @@ public class CampaignTest extends PageFactoryInitializer {
 		getIndustrialVertical = campaignTestDataProcess().getLeadsIndustrialVertical();
 		getJobFunction = campaignTestDataProcess().getLeadsJobFunction();
 		getJobTitle = campaignTestDataProcess().getLeadsJobTitle();
+		logger.info("Country details : " +getCountry);
+		logger.info("Company Size : "+getCompanySize);
+		logger.info("Industrial : " +getIndustrialVertical);
+		logger.info("Job Function: " +getJobFunction);
+		logger.info("Job Title : "+getJobTitle);
 	}
 
 	@DataProvider(name = "getLeadsData")
@@ -56,11 +61,6 @@ public class CampaignTest extends PageFactoryInitializer {
 
 	@Test(dataProvider = "getLeadsData", priority = 3, description = "Lead Testing")
 	public void leadsCheck(String leadsLine) throws Exception {
-		logger.info("Country details : " +getCountry);
-		logger.info("Company Size : "+getCompanySize);
-		logger.info("Industrial : " +getIndustrialVertical);
-		logger.info("Job Function: " +getJobFunction);
-		logger.info("Job Title : "+getJobTitle);
 		String leadId = leadsLine.substring(leadsLine.length() - 9);
 		ExtentTestManager.startTest("Lead Id--> " + leadId, "Lead Testing");
 		leadPage()
