@@ -15,7 +15,6 @@ public class PlacementReadOnly extends LeadPageObjects {
 	public LeadPageObjects placementCheck() {
 		String placement = getvaluePlacementReadOly();
 		String leadType = getvalueLeadTypeReadOly();
-		String leadType1 = getvalueLeadTypeReadOly();
 		try {
 			logger.info("Placement value is:" + placement);
 			logger.info("Lead type value is:" + leadType);
