@@ -3,6 +3,7 @@ package pageObjects.modules;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import utils.ExplicitWaiting;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -268,7 +269,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	@FindBy(css = "table#validate-me tr")
 	private List<WebElement> getLeadRows;
-	
+
 	@FindBy(xpath = "//a[contains(text(), 'Open Notes')]")
 	private WebElement openNotesLink;
 
@@ -441,6 +442,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public LeadPageObjects clickEditLead(String leadId) throws Exception {
 		WebElement editLead = getXpath("//td/span[contains(text(),'%s')]/../preceding-sibling::td/i", leadId);
+		ExplicitWaiting.explicitWaitVisibilityOfElement(editLead, 15);
 		try {
 			click(editLead);
 			ExtentTestManager.getTest().log(LogStatus.PASS, leadId + " Clicked lead edit icon");
@@ -450,8 +452,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickEmailNoEvidenceFoundBtn() {
+	public LeadPageObjects clickEmailNoEvidenceFoundBtn() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(emailNoEvidenceFoundBtn, 15);
 			click(emailNoEvidenceFoundBtn);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked email NoEvidenceFound button");
 		} catch (Exception e) {
@@ -460,8 +463,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickEmailIndirectEvidenceBtn() {
+	public LeadPageObjects clickEmailIndirectEvidenceBtn() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(emailIndirectEvidenceBtn, 15);
 			click(emailIndirectEvidenceBtn);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked email IndirectEvidence button");
 		} catch (Exception e) {
@@ -470,8 +474,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickPhoneCallVerifiedBtn() {
+	public LeadPageObjects clickPhoneCallVerifiedBtn() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(phoneCallVerifiedBtn, 15);
 			click(phoneCallVerifiedBtn);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked phone CallVerified button");
 		} catch (Exception e) {
@@ -480,8 +485,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickPhoneNoEvidenceFoundBtn() {
+	public LeadPageObjects clickPhoneNoEvidenceFoundBtn() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(phoneNoEvidenceFoundBtn, 15);
 			click(phoneNoEvidenceFoundBtn);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked phone NoEvidenceFound button");
 		} catch (Exception e) {
@@ -490,8 +496,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickPostcodeUpperCaseBtn() {
+	public LeadPageObjects clickPostcodeUpperCaseBtn() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(postcodeUpperCaseBtn, 15);
 			click(postcodeUpperCaseBtn);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked postcode UpperCase button");
 		} catch (Exception e) {
@@ -500,8 +507,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickAddressNoEvidenceFoundBtn() {
+	public LeadPageObjects clickAddressNoEvidenceFoundBtn() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(addressNoEvidenceFoundBtn, 15);
 			click(addressNoEvidenceFoundBtn);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked address NoEvidenceFound button");
 		} catch (Exception e) {
@@ -510,8 +518,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickAddressIndirectEvidenceBtn() {
+	public LeadPageObjects clickAddressIndirectEvidenceBtn() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(addressIndirectEvidenceBtn, 15);
 			click(addressIndirectEvidenceBtn);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked address IndirectEvidence button");
 		} catch (Exception e) {
@@ -520,8 +529,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickLinkedinIdUrlNoEvidenceFoundBtn() {
+	public LeadPageObjects clickLinkedinIdUrlNoEvidenceFoundBtn() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(linkedinIdUrlNoEvidenceFoundBtn, 15);
 			click(linkedinIdUrlNoEvidenceFoundBtn);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked linkedinIdUrl NoEvidenceFound button");
 		} catch (Exception e) {
@@ -531,8 +541,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickJobTitleEvidenceCopyLinkedinUrlBtn() {
+	public LeadPageObjects clickJobTitleEvidenceCopyLinkedinUrlBtn() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitleEvidenceCopyLinkedinUrlBtn, 15);
 			click(jobTitleEvidenceCopyLinkedinUrlBtn);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked jobTitleEvidence CopyLinkedinUrl button");
 		} catch (Exception e) {
@@ -542,8 +553,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickJobTitleEvidenceCallVerifiedBtn() {
+	public LeadPageObjects clickJobTitleEvidenceCallVerifiedBtn() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitleEvidenceCallVerifiedBtn, 15);
 			click(jobTitleEvidenceCallVerifiedBtn);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked jobTitleEvidence CallVerified button");
 		} catch (Exception e) {
@@ -553,8 +565,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickJobTitleEvidenceNoEvidenceFoundBtn() {
+	public LeadPageObjects clickJobTitleEvidenceNoEvidenceFoundBtn() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitleEvidenceNoEvidenceFoundBtn, 15);
 			click(jobTitleEvidenceNoEvidenceFoundBtn);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked jobTitleEvidence NoEvidenceFound button");
 		} catch (Exception e) {
@@ -564,8 +577,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickCompanyNameTargetListMatch1() {
+	public LeadPageObjects clickCompanyNameTargetListMatch1() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(companyNameTargetListMatch1, 15);
 			click(companyNameTargetListMatch1);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked companyName TargetListMatch1");
 		} catch (Exception e) {
@@ -574,8 +588,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickCompanyNameTargetListMatch2() {
+	public LeadPageObjects clickCompanyNameTargetListMatch2() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(companyNameTargetListMatch2, 15);
 			click(companyNameTargetListMatch2);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked companyNameTarget ListMatch2");
 		} catch (Exception e) {
@@ -584,8 +599,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickCompanyNameTargetListMatch3() {
+	public LeadPageObjects clickCompanyNameTargetListMatch3() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(companyNameTargetListMatch3, 15);
 			click(companyNameTargetListMatch3);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked companyName TargetListMatch3");
 		} catch (Exception e) {
@@ -594,8 +610,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickCompanyEvidenceCopyBtn() {
+	public LeadPageObjects clickCompanyEvidenceCopyBtn() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(companyEvidenceCopyBtn, 15);
 			click(companyEvidenceCopyBtn);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked companyEvidence Copy button");
 		} catch (Exception e) {
@@ -604,8 +621,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickCompanyEvidencePasteBtn() {
+	public LeadPageObjects clickCompanyEvidencePasteBtn() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(companyEvidencePasteBtn, 15);
 			click(companyEvidencePasteBtn);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked companyEvidence Paste button");
 		} catch (Exception e) {
@@ -614,8 +632,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickCompanyEvidenceUpperCaseBtn() {
+	public LeadPageObjects clickCompanyEvidenceUpperCaseBtn() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(companyEvidenceUpperCaseBtn, 15);
 			click(companyEvidenceUpperCaseBtn);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked companyEvidence UpperCase button");
 		} catch (Exception e) {
@@ -624,8 +643,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickCompanyEvidenceProperCaseBtn() {
+	public LeadPageObjects clickCompanyEvidenceProperCaseBtn() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(companyEvidenceProperCaseBtn, 15);
 			click(companyEvidenceProperCaseBtn);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked companyEvidence ProperCase button");
 		} catch (Exception e) {
@@ -634,8 +654,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickCompanySizeNoEvidenceFoundBtn() {
+	public LeadPageObjects clickCompanySizeNoEvidenceFoundBtn() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(companySizeNoEvidenceFoundBtn, 15);
 			click(companySizeNoEvidenceFoundBtn);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked companySize NoEvidenceFound button");
 		} catch (Exception e) {
@@ -645,8 +666,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickCompanySizeIndirectEvidenceBtn() {
+	public LeadPageObjects clickCompanySizeIndirectEvidenceBtn() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(companySizeIndirectEvidenceBtn, 15);
 			click(companySizeIndirectEvidenceBtn);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked companySize IndirectEvidence button");
 		} catch (Exception e) {
@@ -655,8 +677,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickTurnoverNoEvidenceFoundBtn() {
+	public LeadPageObjects clickTurnoverNoEvidenceFoundBtn() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(turnoverNoEvidenceFoundBtn, 15);
 			click(turnoverNoEvidenceFoundBtn);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked turnover NoEvidenceFound button");
 		} catch (Exception e) {
@@ -665,8 +688,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickTurnoverIndirectEvidenceBtn() {
+	public LeadPageObjects clickTurnoverIndirectEvidenceBtn() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(turnoverIndirectEvidenceBtn, 15);
 			click(turnoverIndirectEvidenceBtn);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked turnover IndirectEvidence button");
 		} catch (Exception e) {
@@ -675,8 +699,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickRejectionReasonJobtitleBtn() {
+	public LeadPageObjects clickRejectionReasonJobtitleBtn() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(rejectionReasonJobtitleBtn, 15);
 			click(rejectionReasonJobtitleBtn);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked rejectionReason Jobtitle button");
 		} catch (Exception e) {
@@ -685,8 +710,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickRejectionReasonCompanySizeBtn() {
+	public LeadPageObjects clickRejectionReasonCompanySizeBtn() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(rejectionReasonCompanySizeBtn, 15);
 			click(rejectionReasonCompanySizeBtn);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked rejectionReason CompanySize button");
 		} catch (Exception e) {
@@ -695,8 +721,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickResetBtn() {
+	public LeadPageObjects clickResetBtn() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(resetBtn, 15);
 			click(resetBtn);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked reset button");
 		} catch (Exception e) {
@@ -705,8 +732,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickSaveBtn() {
+	public LeadPageObjects clickSaveBtn() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(saveBtn, 15);
 			click(saveBtn);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked save button");
 		} catch (Exception e) {
@@ -715,8 +743,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickSaveAndReverifyBtn() {
+	public LeadPageObjects clickSaveAndReverifyBtn() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(saveAndReverifyBtn, 15);
 			click(saveAndReverifyBtn);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked saveAndReverify button");
 		} catch (Exception e) {
@@ -725,8 +754,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects clickCloseBtn() {
+	public LeadPageObjects clickCloseBtn() throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(closeBtn, 15);
 			click(closeBtn);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked close button");
 		} catch (Exception e) {
@@ -735,7 +765,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvaluePlacementReadOly() {
+	public String getvaluePlacementReadOly() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(placementReadOly, 15);
 		String value = getText(placementReadOly);
 		try {
 			if (value != null) {
@@ -748,8 +779,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public String getvalueAssetReadOly() {
+	public String getvalueAssetReadOly() throws Exception {
 		String value = getText(assetReadOly);
+		ExplicitWaiting.explicitWaitVisibilityOfElement(assetReadOly, 15);
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "assetReadOly value is " + value);
@@ -761,7 +793,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public String getvalueLeadTypeReadOly() {
+	public String getvalueLeadTypeReadOly() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(leadTypeReadOly, 15);
 		String value = getText(leadTypeReadOly);
 		try {
 			if (value != null) {
@@ -774,7 +807,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public String getvalueCountryReadOly() {
+	public String getvalueCountryReadOly() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(countryReadOly, 15);
 		String value = getText(countryReadOly);
 		try {
 			if (value != null) {
@@ -787,8 +821,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueLeadId(String value) {
+	public LeadPageObjects setvalueLeadId(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(leadId, 15);
 			clear(leadId);
 			sendKeys(leadId, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for leadId is set as " + value);
@@ -798,7 +833,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueLeadId() {
+	public String getvalueLeadId() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(leadId, 15);
 		String value = getText(leadId);
 		try {
 			if (value != null) {
@@ -811,8 +847,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueEmail(String value) {
+	public LeadPageObjects setvalueEmail(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(email, 15);
 			clear(email);
 			sendKeys(email, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for email is set as " + value);
@@ -822,7 +859,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueEmail() {
+	public String getvalueEmail() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(email, 15);
 		String value = getText(email);
 		try {
 			if (value != null) {
@@ -835,8 +873,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueEmailEvidence(String value) {
+	public LeadPageObjects setvalueEmailEvidence(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(emailEvidence, 15);
 			clear(emailEvidence);
 			sendKeys(emailEvidence, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for emailEvidence is set as " + value);
@@ -846,7 +885,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueEmailEvidence() {
+	public String getvalueEmailEvidence() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(emailEvidence, 15);
 		String value = getText(emailEvidence);
 		try {
 			if (value != null) {
@@ -859,8 +899,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueTelephone(String value) {
+	public LeadPageObjects setvalueTelephone(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(telephone, 15);
 			clear(telephone);
 			sendKeys(telephone, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for telephone is set as " + value);
@@ -870,7 +911,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueTelephone() {
+	public String getvalueTelephone() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(telephone, 15);
 		String value = getText(telephone);
 		try {
 			if (value != null) {
@@ -883,8 +925,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvaluePhoneEvidence(String value) {
+	public LeadPageObjects setvaluePhoneEvidence(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(phoneEvidence, 15);
 			clear(phoneEvidence);
 			sendKeys(phoneEvidence, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for phoneEvidence is set as " + value);
@@ -894,7 +937,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvaluePhoneEvidence() {
+	public String getvaluePhoneEvidence() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(phoneEvidence, 15);
 		String value = getText(phoneEvidence);
 		try {
 			if (value != null) {
@@ -907,8 +951,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueTelephone2(String value) {
+	public LeadPageObjects setvalueTelephone2(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(telephone2, 15);
 			clear(telephone2);
 			sendKeys(telephone2, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for telephone2 is set as " + value);
@@ -918,7 +963,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueTelephone2() {
+	public String getvalueTelephone2() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(telephone2, 15);
 		String value = getText(telephone2);
 		try {
 			if (value != null) {
@@ -931,8 +977,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvaluePhoneEvidence2(String value) {
+	public LeadPageObjects setvaluePhoneEvidence2(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(phoneEvidence2, 15);
 			clear(phoneEvidence2);
 			sendKeys(phoneEvidence2, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for phoneEvidence2 is set as " + value);
@@ -942,7 +989,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvaluePhoneEvidence2() {
+	public String getvaluePhoneEvidence2() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(phoneEvidence2, 15);
 		String value = getText(phoneEvidence2);
 		try {
 			if (value != null) {
@@ -955,8 +1003,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueAddress1(String value) {
+	public LeadPageObjects setvalueAddress1(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(address1, 15);
 			clear(address1);
 			sendKeys(address1, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for address1 is set as " + value);
@@ -966,7 +1015,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueAddress1() {
+	public String getvalueAddress1() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(address1, 15);
 		String value = getText(address1);
 		try {
 			if (value != null) {
@@ -979,8 +1029,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueAddress2(String value) {
+	public LeadPageObjects setvalueAddress2(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(address2, 15);
 			clear(address2);
 			sendKeys(address2, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for address2 is set as " + value);
@@ -990,7 +1041,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueAddress2() {
+	public String getvalueAddress2() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(address2, 15);
 		String value = getText(address2);
 		try {
 			if (value != null) {
@@ -1003,8 +1055,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueTowncity(String value) {
+	public LeadPageObjects setvalueTowncity(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(towncity, 15);
 			clear(towncity);
 			sendKeys(towncity, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for towncity is set as " + value);
@@ -1014,7 +1067,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueTowncity() {
+	public String getvalueTowncity() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(towncity, 15);
 		String value = getText(towncity);
 		try {
 			if (value != null) {
@@ -1027,8 +1081,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueCounty(String value) {
+	public LeadPageObjects setvalueCounty(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(county, 15);
 			clear(county);
 			sendKeys(county, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for county is set as " + value);
@@ -1038,7 +1093,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueCounty() {
+	public String getvalueCounty() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(county, 15);
 		String value = getText(county);
 		try {
 			if (value != null) {
@@ -1051,8 +1107,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvaluePostcode(String value) {
+	public LeadPageObjects setvaluePostcode(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(postcode, 15);
 			clear(postcode);
 			sendKeys(postcode, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for postcode is set as " + value);
@@ -1062,7 +1119,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvaluePostcode() {
+	public String getvaluePostcode() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(postcode, 15);
 		String value = getText(postcode);
 		try {
 			if (value != null) {
@@ -1075,8 +1133,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueCountry(String value) {
+	public LeadPageObjects setvalueCountry(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(country, 15);
 			clear(country);
 			sendKeys(country, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for country is set as " + value);
@@ -1086,7 +1145,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueCountry() {
+	public String getvalueCountry() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(country, 15);
 		String value = getText(country);
 		try {
 			if (value != null) {
@@ -1099,8 +1159,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueAddressEvidence(String value) {
+	public LeadPageObjects setvalueAddressEvidence(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(addressEvidence, 15);
 			clear(addressEvidence);
 			sendKeys(addressEvidence, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for addressEvidence is set as " + value);
@@ -1110,7 +1171,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueAddressEvidence() {
+	public String getvalueAddressEvidence() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(addressEvidence, 15);
 		String value = getText(addressEvidence);
 		try {
 			if (value != null) {
@@ -1123,8 +1185,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueFirstName(String value) {
+	public LeadPageObjects setvalueFirstName(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(firstName, 15);
 			clear(firstName);
 			sendKeys(firstName, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for firstName is set as " + value);
@@ -1134,7 +1197,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueFirstName() {
+	public String getvalueFirstName() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(firstName, 15);
 		String value = getText(firstName);
 		try {
 			if (value != null) {
@@ -1147,8 +1211,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueLastName(String value) {
+	public LeadPageObjects setvalueLastName(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(lastName, 15);
 			clear(lastName);
 			sendKeys(lastName, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for lastName is set as " + value);
@@ -1158,7 +1223,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueLastName() {
+	public String getvalueLastName() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(lastName, 15);
 		String value = getText(lastName);
 		try {
 			if (value != null) {
@@ -1171,8 +1237,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueLinkedinIdUrl(String value) {
+	public LeadPageObjects setvalueLinkedinIdUrl(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(linkedinIdUrl, 15);
 			clear(linkedinIdUrl);
 			sendKeys(linkedinIdUrl, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for linkedinIdUrl is set as " + value);
@@ -1182,7 +1249,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueLinkedinIdUrl() {
+	public String getvalueLinkedinIdUrl() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(linkedinIdUrl, 15);
 		String value = getText(linkedinIdUrl);
 		try {
 			if (value != null) {
@@ -1195,8 +1263,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueJobTitle(String value) {
+	public LeadPageObjects setvalueJobTitle(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitle, 15);
 			clear(jobTitle);
 			sendKeys(jobTitle, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for jobTitle is set as " + value);
@@ -1206,7 +1275,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueJobTitle() {
+	public String getvalueJobTitle() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitle, 15);
 		String value = getText(jobTitle);
 		try {
 			if (value != null) {
@@ -1219,8 +1289,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueJobTitleEvidence(String value) {
+	public LeadPageObjects setvalueJobTitleEvidence(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitleEvidence, 15);
 			clear(jobTitleEvidence);
 			sendKeys(jobTitleEvidence, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for jobTitleEvidence is set as " + value);
@@ -1230,7 +1301,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueJobTitleEvidence() {
+	public String getvalueJobTitleEvidence() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitleEvidence, 15);
 		String value = getText(jobTitleEvidence);
 		try {
 			if (value != null) {
@@ -1243,8 +1315,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueJobFunction(String value) {
+	public LeadPageObjects setvalueJobFunction(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(jobFunction, 15);
 			clear(jobFunction);
 			sendKeys(jobFunction, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for jobFunction is set as " + value);
@@ -1254,7 +1327,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueJobFunction() {
+	public String getvalueJobFunction() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(jobFunction, 15);
 		String value = getText(jobFunction);
 		try {
 			if (value != null) {
@@ -1267,8 +1341,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueCompanyName(String value) {
+	public LeadPageObjects setvalueCompanyName(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(companyName, 15);
 			clear(companyName);
 			sendKeys(companyName, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for companyName is set as " + value);
@@ -1278,7 +1353,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueCompanyName() {
+	public String getvalueCompanyName() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(companyName, 15);
 		String value = getText(companyName);
 		try {
 			if (value != null) {
@@ -1291,7 +1367,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public String getvalueCompanyNameTargetListMatch1() {
+	public String getvalueCompanyNameTargetListMatch1() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(companyNameTargetListMatch1, 15);
 		String value = getText(companyNameTargetListMatch1);
 		try {
 			if (value != null) {
@@ -1305,7 +1382,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public String getvalueCompanyNameTargetListMatch2() {
+	public String getvalueCompanyNameTargetListMatch2() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(companyNameTargetListMatch2, 15);
 		String value = getText(companyNameTargetListMatch2);
 		try {
 			if (value != null) {
@@ -1319,7 +1397,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public String getvalueCompanyNameTargetListMatch3() {
+	public String getvalueCompanyNameTargetListMatch3() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(companyNameTargetListMatch3, 15);
 		String value = getText(companyNameTargetListMatch3);
 		try {
 			if (value != null) {
@@ -1333,8 +1412,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueIndustry(String value) {
+	public LeadPageObjects setvalueIndustry(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(industry, 15);
 			clear(industry);
 			sendKeys(industry, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for industry is set as " + value);
@@ -1344,7 +1424,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueIndustry() {
+	public String getvalueIndustry() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(industry, 15);
 		String value = getText(industry);
 		try {
 			if (value != null) {
@@ -1357,8 +1438,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueCompanyEvidence(String value) {
+	public LeadPageObjects setvalueCompanyEvidence(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(companyEvidence, 15);
 			clear(companyEvidence);
 			sendKeys(companyEvidence, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for companyEvidence is set as " + value);
@@ -1368,7 +1450,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueCompanyEvidence() {
+	public String getvalueCompanyEvidence() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(companyEvidence, 15);
 		String value = getText(companyEvidence);
 		try {
 			if (value != null) {
@@ -1381,8 +1464,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueCompanySize(String value) {
+	public LeadPageObjects setvalueCompanySize(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(companySize, 15);
 			clear(companySize);
 			sendKeys(companySize, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for companySize is set as " + value);
@@ -1392,7 +1476,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueCompanySize() {
+	public String getvalueCompanySize() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(companySize, 15);
 		String value = getText(companySize);
 		try {
 			if (value != null) {
@@ -1405,8 +1490,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueCompanySizeEvidence(String value) {
+	public LeadPageObjects setvalueCompanySizeEvidence(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(companySizeEvidence, 15);
 			clear(companySizeEvidence);
 			sendKeys(companySizeEvidence, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for companySizeEvidence is set as " + value);
@@ -1416,7 +1502,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueCompanySizeEvidence() {
+	public String getvalueCompanySizeEvidence() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(companySizeEvidence, 15);
 		String value = getText(companySizeEvidence);
 		try {
 			if (value != null) {
@@ -1429,8 +1516,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueTurnover(String value) {
+	public LeadPageObjects setvalueTurnover(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(turnover, 15);
 			clear(turnover);
 			sendKeys(turnover, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for turnover is set as " + value);
@@ -1440,7 +1528,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueTurnover() {
+	public String getvalueTurnover() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(turnover, 15);
 		String value = getText(turnover);
 		try {
 			if (value != null) {
@@ -1453,8 +1542,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueTurnoverEvidence(String value) {
+	public LeadPageObjects setvalueTurnoverEvidence(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(turnoverEvidence, 15);
 			clear(turnoverEvidence);
 			sendKeys(turnoverEvidence, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for turnoverEvidence is set as " + value);
@@ -1464,7 +1554,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueTurnoverEvidence() {
+	public String getvalueTurnoverEvidence() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(turnoverEvidence, 15);
 		String value = getText(turnoverEvidence);
 		try {
 			if (value != null) {
@@ -1477,8 +1568,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueRejectionReason(String value) {
+	public LeadPageObjects setvalueRejectionReason(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(rejectionReason, 15);
 			clear(rejectionReason);
 			sendKeys(rejectionReason, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for rejectionReason is set as " + value);
@@ -1488,7 +1580,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueRejectionReason() {
+	public String getvalueRejectionReason() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(rejectionReason, 15);
 		String value = getText(rejectionReason);
 		try {
 			if (value != null) {
@@ -1501,8 +1594,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueRejectionReasonEvidence(String value) {
+	public LeadPageObjects setvalueRejectionReasonEvidence(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(rejectionReasonEvidence, 15);
 			clear(rejectionReasonEvidence);
 			sendKeys(rejectionReasonEvidence, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for rejectionReasonEvidence is set as " + value);
@@ -1512,7 +1606,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueRejectionReasonEvidence() {
+	public String getvalueRejectionReasonEvidence() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(rejectionReasonEvidence, 15);
 		String value = getText(rejectionReasonEvidence);
 		try {
 			if (value != null) {
@@ -1525,8 +1620,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueUserAgent(String value) {
+	public LeadPageObjects setvalueUserAgent(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(userAgent, 15);
 			clear(userAgent);
 			sendKeys(userAgent, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for userAgent is set as " + value);
@@ -1536,7 +1632,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueUserAgent() {
+	public String getvalueUserAgent() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(userAgent, 15);
 		String value = getText(userAgent);
 		try {
 			if (value != null) {
@@ -1549,8 +1646,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueLeadType(String value) {
+	public LeadPageObjects setvalueLeadType(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(leadType, 15);
 			clear(leadType);
 			sendKeys(leadType, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for leadType is set as " + value);
@@ -1560,7 +1658,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueLeadType() {
+	public String getvalueLeadType() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(leadType, 15);
 		String value = getText(leadType);
 		try {
 			if (value != null) {
@@ -1573,8 +1672,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueSfdcCode(String value) {
+	public LeadPageObjects setvalueSfdcCode(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(sfdcCode, 15);
 			clear(sfdcCode);
 			sendKeys(sfdcCode, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for sfdcCode is set as " + value);
@@ -1584,7 +1684,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueSfdcCode() {
+	public String getvalueSfdcCode() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(sfdcCode, 15);
 		String value = getText(sfdcCode);
 		try {
 			if (value != null) {
@@ -1597,8 +1698,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueProductOfInterest(String value) {
+	public LeadPageObjects setvalueProductOfInterest(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(productOfInterest, 15);
 			clear(productOfInterest);
 			sendKeys(productOfInterest, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for productOfInterest is set as " + value);
@@ -1608,7 +1710,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueProductOfInterest() {
+	public String getvalueProductOfInterest() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(productOfInterest, 15);
 		String value = getText(productOfInterest);
 		try {
 			if (value != null) {
@@ -1621,8 +1724,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueCallComments(String value) {
+	public LeadPageObjects setvalueCallComments(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(callComments, 15);
 			clear(callComments);
 			sendKeys(callComments, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for callComments is set as " + value);
@@ -1632,7 +1736,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueCallComments() {
+	public String getvalueCallComments() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(callComments, 15);
 		String value = getText(callComments);
 		try {
 			if (value != null) {
@@ -1645,8 +1750,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueSecure(String value) {
+	public LeadPageObjects setvalueSecure(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(secure, 15);
 			clear(secure);
 			sendKeys(secure, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for secure is set as " + value);
@@ -1656,7 +1762,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueSecure() {
+	public String getvalueSecure() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(secure, 15);
 		String value = getText(secure);
 		try {
 			if (value != null) {
@@ -1669,8 +1776,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueBiggestChallenge(String value) {
+	public LeadPageObjects setvalueBiggestChallenge(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(biggestChallenge, 15);
 			clear(biggestChallenge);
 			sendKeys(biggestChallenge, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for biggestChallenge is set as " + value);
@@ -1680,7 +1788,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueBiggestChallenge() {
+	public String getvalueBiggestChallenge() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(biggestChallenge, 15);
 		String value = getText(biggestChallenge);
 		try {
 			if (value != null) {
@@ -1693,8 +1802,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects setvalueWhichPlatforms(String value) {
+	public LeadPageObjects setvalueWhichPlatforms(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(whichPlatforms, 15);
 			clear(whichPlatforms);
 			sendKeys(whichPlatforms, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for whichPlatforms is set as " + value);
@@ -1704,7 +1814,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public String getvalueWhichPlatforms() {
+	public String getvalueWhichPlatforms() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(whichPlatforms, 15);
 		String value = getText(whichPlatforms);
 		try {
 			if (value != null) {
@@ -1717,8 +1828,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects selectvalueEmailToolsDropdown(String value) {
+	public LeadPageObjects selectvalueEmailToolsDropdown(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(emailToolsDropdown, 15);
 			selectByVisibleText(emailToolsDropdown, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from emailToolsDropdown is " + value);
 		} catch (Exception e) {
@@ -1727,8 +1839,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects selectvaluePhoneReformatDropdown(String value) {
+	public LeadPageObjects selectvaluePhoneReformatDropdown(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(phoneReformatDropdown, 15);
 			selectByVisibleText(phoneReformatDropdown, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from phoneReformatDropdown is " + value);
 		} catch (Exception e) {
@@ -1737,8 +1850,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects selectvaluePhoneToolsDropdown(String value) {
+	public LeadPageObjects selectvaluePhoneToolsDropdown(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(phoneToolsDropdown, 15);
 			selectByVisibleText(phoneToolsDropdown, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from phoneToolsDropdown is " + value);
 		} catch (Exception e) {
@@ -1747,8 +1861,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects selectvaluePhoneReformatDropdown2(String value) {
+	public LeadPageObjects selectvaluePhoneReformatDropdown2(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(phoneReformatDropdown2, 15);
 			selectByVisibleText(phoneReformatDropdown2, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from phoneReformatDropdown2 is " + value);
 		} catch (Exception e) {
@@ -1757,8 +1872,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects selectvalueCountryDropdown(String value) {
+	public LeadPageObjects selectvalueCountryDropdown(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(countryDropdown, 15);
 			selectByVisibleText(countryDropdown, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from countryDropdown is " + value);
 		} catch (Exception e) {
@@ -1767,8 +1883,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects selectvalueJobTitleDropdown(String value) {
+	public LeadPageObjects selectvalueJobTitleDropdown(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitleDropdown, 15);
 			selectByVisibleText(jobTitleDropdown, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for jobTitleDropdown is set as " + value);
 		} catch (Exception e) {
@@ -1777,8 +1894,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects selectvalueJobFunctionDropdown(String value) {
+	public LeadPageObjects selectvalueJobFunctionDropdown(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(jobFunctionDropdown, 15);
 			selectByVisibleText(jobFunctionDropdown, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from jobFunctionDropdown is " + value);
 		} catch (Exception e) {
@@ -1787,8 +1905,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects selectvalueCompanyToolsDropdown(String value) {
+	public LeadPageObjects selectvalueCompanyToolsDropdown(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
 			selectByVisibleText(companyToolsDropdown, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companyToolsDropdown is " + value);
 		} catch (Exception e) {
@@ -1797,8 +1916,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects selectvalueIndustryDropdown(String value) {
+	public LeadPageObjects selectvalueIndustryDropdown(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(industryDropdown, 15);
 			selectByVisibleText(industryDropdown, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from industryDropdown is " + value);
 		} catch (Exception e) {
@@ -1807,8 +1927,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects selectvalueCompanySizeDropDown(String value) {
+	public LeadPageObjects selectvalueCompanySizeDropDown(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(companySizeDropDown, 15);
 			selectByVisibleText(companySizeDropDown, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companySizeDropDown is " + value);
 		} catch (Exception e) {
@@ -1817,8 +1938,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects selectvalueTurnoverDropdown(String value) {
+	public LeadPageObjects selectvalueTurnoverDropdown(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(turnoverDropdown, 15);
 			selectByVisibleText(turnoverDropdown, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from turnoverDropdown is " + value);
 		} catch (Exception e) {
@@ -1827,8 +1949,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects selectvalueTurnoverCompanyToolsDropdown(String value) {
+	public LeadPageObjects selectvalueTurnoverCompanyToolsDropdown(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(turnoverCompanyToolsDropdown, 15);
 			selectByVisibleText(turnoverCompanyToolsDropdown, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS,
 					"Selected value from turnoverCompanyToolsDropdown is " + value);
@@ -1839,8 +1962,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects selectvalueRejectionReasonDropdown(String value) {
+	public LeadPageObjects selectvalueRejectionReasonDropdown(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(rejectionReasonDropdown, 15);
 			selectByVisibleText(rejectionReasonDropdown, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from rejectionReasonDropdown is " + value);
 		} catch (Exception e) {
@@ -1849,8 +1973,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects selectvalueCallCommentsDropDown(String value) {
+	public LeadPageObjects selectvalueCallCommentsDropDown(String value) throws Exception {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(callCommentsDropDown, 15);
 			selectByVisibleText(callCommentsDropDown, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from callCommentsDropDown is " + value);
 		} catch (Exception e) {

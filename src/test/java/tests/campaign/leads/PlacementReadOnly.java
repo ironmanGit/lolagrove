@@ -13,9 +13,9 @@ public class PlacementReadOnly extends LeadPageObjects {
 	private Logger logger = Logger.getLogger(LeadPageObjects.class.getName());
 
 	public LeadPageObjects placementCheck() {
-		String placement = getvaluePlacementReadOly();
-		String leadType = getvalueLeadTypeReadOly();
 		try {
+			String placement = getvaluePlacementReadOly();
+			String leadType = getvalueLeadTypeReadOly();
 			logger.info("Placement value is:" + placement);
 			logger.info("Lead type value is:" + leadType);
 			Assert.assertTrue(placement.contains(leadType));
