@@ -17,19 +17,22 @@ import com.relevantcodes.extentreports.LogStatus;
  */
 public class GoogleHomePageObjects extends PageFactoryInitializer {
 	@FindBy(xpath = "//a[text()='Gmail']")
-	private WebElement GmailLink;
+	private WebElement gmailLink;
 
 	@FindBy(id = "lst-ib")
-	private WebElement SearchBox;
+	private WebElement searchBox;
 
+	@FindBy(css = "a>h3")
+	private WebElement searchResult1;
+	
 	public GoogleHomePageObjects clickonGmailLink() throws Exception {
-		click(GmailLink);
+		click(gmailLink);
 		return this;
 	}
-
+	
 	public GoogleHomePageObjects enterTextToSearchBox(String value) {
 		try {
-			SearchBox.sendKeys(value);
+			searchBox.sendKeys(value);
 			ExtentTestManager.getTest().log(LogStatus.INFO, "Value entered in search box is " + value);
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.INFO, "Unable to enter value in search box" + e);

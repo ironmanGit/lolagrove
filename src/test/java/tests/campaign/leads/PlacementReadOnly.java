@@ -12,7 +12,7 @@ public class PlacementReadOnly extends LeadPageObjects {
 
 	private Logger logger = Logger.getLogger(LeadPageObjects.class.getName());
 
-	public LeadPageObjects placementCheck() {
+	public LeadPageObjects placementCheck() throws Exception {
 		try {
 			String placement = getvaluePlacementReadOly();
 			String leadType = getvalueLeadTypeReadOly();
@@ -21,6 +21,7 @@ public class PlacementReadOnly extends LeadPageObjects {
 			Assert.assertTrue(placement.contains(leadType));
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Placement check is successfully done");
 		} catch (Exception e) {
+			setvalueRejectionReason("placement check does not match as per open notes");
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Placement check failed" + e);
 		}
 		return leadPage();

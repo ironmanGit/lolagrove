@@ -6,11 +6,15 @@ package pageObjects.initializePageObjects;
 import org.openqa.selenium.support.PageFactory;
 import controllers.BaseMethod;
 import pageObjects.modules.GMailPageObjects;
+import pageObjects.modules.WikipediaPageObjects;
 import pageObjects.modules.GoogleHomePageObjects;
 import pageObjects.modules.LandingPageObjects;
 import pageObjects.modules.LeadPageObjects;
+import pageObjects.modules.LinkedInPageObjects;
 import pageObjects.modules.LoginPageObjects;
 import pageObjects.modules.OpenNotesPageObjects;
+import pageObjects.modules.ZoomInfoPageObjects;
+import tests.campaign.leads.CompanySize;
 import tests.campaign.leads.PlacementReadOnly;
 import tests.campaign.process.CampaignTestDataProcess;
 
@@ -56,9 +60,29 @@ public class PageFactoryInitializer extends BaseMethod
 		return PageFactory.initElements(getWebDriver(), CampaignTestDataProcess.class);
 	}
 	
+	public LinkedInPageObjects linkedInPage() 
+	{
+		return PageFactory.initElements(getWebDriver(), LinkedInPageObjects.class);
+	}
+	
+	public ZoomInfoPageObjects zoomInfoPage() 
+	{
+		return PageFactory.initElements(getWebDriver(), ZoomInfoPageObjects.class);
+	}
+	
+	public WikipediaPageObjects glassDoorPage() 
+	{
+		return PageFactory.initElements(getWebDriver(), WikipediaPageObjects.class);
+	}
+	
 	public PlacementReadOnly placementReadOnly() 
 	{
 		return PageFactory.initElements(getWebDriver(), PlacementReadOnly.class);
+	}
+	
+	public CompanySize companySize() 
+	{
+		return PageFactory.initElements(getWebDriver(), CompanySize.class);
 	}
 	
 }

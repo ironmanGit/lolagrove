@@ -15,7 +15,7 @@ import com.relevantcodes.extentreports.LogStatus;
  * @Author Vivekanandan Sampath
  * @Date Mar 09, 2020
  */
-public class GlassDoorPageObjects extends PageFactoryInitializer {
+public class WikipediaPageObjects extends PageFactoryInitializer {
 	
 
 }

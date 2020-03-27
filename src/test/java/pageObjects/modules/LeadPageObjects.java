@@ -1909,6 +1909,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
 			selectByVisibleText(companyToolsDropdown, value);
+			logger.info(value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companyToolsDropdown is " + value);
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from companyToolsDropdown " + e);
@@ -1916,6 +1917,48 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
+	public LinkedInPageObjects selectLinkedInvalueCompanyToolsDropdown() throws Exception {
+		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
+			selectByVisibleText(companyToolsDropdown, "Linkedin");
+			logger.info("Linkedin");
+			switchToNewTab();
+			clickSearchResult1();
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companyToolsDropdown is Linkedin");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from companyToolsDropdown " + e);
+		}
+		return linkedInPage();
+	}
+	
+	public ZoomInfoPageObjects selectZoomInfovalueCompanyToolsDropdown() throws Exception {
+		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
+			selectByVisibleText(companyToolsDropdown, "Zoominfo");
+			logger.info("Zoominfo");
+			switchToNewTab();
+			clickSearchResult1();
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companyToolsDropdown is Zoominfo");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from companyToolsDropdown " + e);
+		}
+		return zoomInfoPage();
+	}
+	
+	public WikipediaPageObjects selectGlassDoorvalueCompanyToolsDropdown() throws Exception {
+		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
+			selectByVisibleText(companyToolsDropdown, "Glassdoor");
+			logger.info("Glassdoor");
+			switchToNewTab();
+			clickSearchResult1();
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companyToolsDropdown is Glassdoor");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from companyToolsDropdown " + e);
+		}
+		return glassDoorPage();
+	}
+	
 	public LeadPageObjects selectvalueIndustryDropdown(String value) throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(industryDropdown, 15);
@@ -1986,6 +2029,11 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public LeadPageObjects placementCheck() throws Exception {
 		placementReadOnly().placementCheck();
+		return this;
+	}
+	
+	public LeadPageObjects companySizeCheck() throws Exception {
+		placementReadOnly().companySizeCheck();
 		return this;
 	}
 }
