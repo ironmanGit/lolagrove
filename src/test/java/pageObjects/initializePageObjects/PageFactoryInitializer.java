@@ -6,7 +6,7 @@ package pageObjects.initializePageObjects;
 import org.openqa.selenium.support.PageFactory;
 import controllers.BaseMethod;
 import pageObjects.modules.GMailPageObjects;
-import pageObjects.modules.WikipediaPageObjects;
+import pageObjects.modules.EndolePageObjects;
 import pageObjects.modules.GoogleHomePageObjects;
 import pageObjects.modules.LandingPageObjects;
 import pageObjects.modules.LeadPageObjects;
@@ -15,6 +15,8 @@ import pageObjects.modules.LoginPageObjects;
 import pageObjects.modules.OpenNotesPageObjects;
 import pageObjects.modules.ZoomInfoPageObjects;
 import tests.campaign.leads.CompanySize;
+import tests.campaign.leads.CompanyTurnover;
+import tests.campaign.leads.Country;
 import tests.campaign.leads.PlacementReadOnly;
 import tests.campaign.process.CampaignTestDataProcess;
 
@@ -70,9 +72,9 @@ public class PageFactoryInitializer extends BaseMethod
 		return PageFactory.initElements(getWebDriver(), ZoomInfoPageObjects.class);
 	}
 	
-	public WikipediaPageObjects glassDoorPage() 
+	public EndolePageObjects endolePage() 
 	{
-		return PageFactory.initElements(getWebDriver(), WikipediaPageObjects.class);
+		return PageFactory.initElements(getWebDriver(), EndolePageObjects.class);
 	}
 	
 	public PlacementReadOnly placementReadOnly() 
@@ -85,4 +87,13 @@ public class PageFactoryInitializer extends BaseMethod
 		return PageFactory.initElements(getWebDriver(), CompanySize.class);
 	}
 	
+	public CompanyTurnover companyTurnover() 
+	{
+		return PageFactory.initElements(getWebDriver(), CompanyTurnover.class);
+	}
+	
+	public Country country() 
+	{
+		return PageFactory.initElements(getWebDriver(), Country.class);
+	}
 }

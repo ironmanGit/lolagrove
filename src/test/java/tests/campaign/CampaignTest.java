@@ -66,7 +66,9 @@ public class CampaignTest extends PageFactoryInitializer {
 		leadPage()
 		.clickLeadsFromFile(leadsLine)
 		.placementCheck()
+		.countryCheck()
 		.companySizeCheck()
+		.companyTurnoverCheck()
 		.clickCloseBtn();
 		ExtentTestManager.endTest();
 	}

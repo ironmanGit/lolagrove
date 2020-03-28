@@ -1945,7 +1945,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return zoomInfoPage();
 	}
 	
-	public WikipediaPageObjects selectGlassDoorvalueCompanyToolsDropdown() throws Exception {
+	public EndolePageObjects selectGlassDoorvalueCompanyToolsDropdown() throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
 			selectByVisibleText(companyToolsDropdown, "Glassdoor");
@@ -1956,7 +1956,22 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from companyToolsDropdown " + e);
 		}
-		return glassDoorPage();
+		return endolePage();
+	}
+	
+	public EndolePageObjects selectGooglevalueAndUpdateEndoleCompanyToolsDropdown(String searchValue) throws Exception {
+		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
+			selectByVisibleText(companyToolsDropdown, "Google (Generic)");
+			logger.info("Google (Generic)");
+			switchToNewTab();
+			updateSearchValueInGoogle(searchValue);
+			clickSearchResult1();
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companyToolsDropdown is Glassdoor");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from companyToolsDropdown " + e);
+		}
+		return endolePage();
 	}
 	
 	public LeadPageObjects selectvalueIndustryDropdown(String value) throws Exception {
@@ -2033,7 +2048,17 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	}
 	
 	public LeadPageObjects companySizeCheck() throws Exception {
-		placementReadOnly().companySizeCheck();
+		companySize().companySizeCheck();
+		return this;
+	}
+	
+	public LeadPageObjects companyTurnoverCheck() throws Exception {
+		companyTurnover().companyTurnoverCheck();
+		return this;
+	}
+	
+	public LeadPageObjects countryCheck() throws Exception {
+		country().countryCheck();
 		return this;
 	}
 }

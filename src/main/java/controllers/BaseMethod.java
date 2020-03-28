@@ -326,6 +326,12 @@ public class BaseMethod extends WebDriverFactory {
 	}
 
 	/* Click on google search result1 */
+	public void updateSearchValueInGoogle(String value) throws Exception {
+		WebElement element = getWebDriver().findElement(By.cssSelector("input[title='Search']"));
+		element.sendKeys(value);
+	}
+	
+	/* Click on google search result1 */
 	public void clickSearchResult1() throws Exception {
 		WebElement element = getWebDriver().findElement(By.cssSelector("a>h3"));
 		click(element);
@@ -359,6 +365,28 @@ public class BaseMethod extends WebDriverFactory {
 		return result;
 	}
 
+	/* get company turnover as per lolagrove */
+	public String roundOffTurnover(String value) throws Exception {
+		int turnOver = Integer.parseInt(value);
+		String result = null;
+		if (turnOver < 5) {
+			result = "$100k - $4.9m[£80k - £3.9m]";
+		} else if ((turnOver >= 5) && (turnOver < 25)) {
+			result = "$5m - $25m[£4m - £20m]";
+		} else if ((turnOver >= 25) && (turnOver < 800)) {
+			result = "$25.1m - $1b[£20m - £800m]";
+		} else if ((turnOver >= 800) && (turnOver < 4000)) {
+			result = "$1b - $5b[£800m - £4b]";
+		} else if ((turnOver >= 4000) && (turnOver < 8000)) {
+			result = "$5b - $10b[£4b - £8b]";
+		} else if ((turnOver > 8000)) {
+			result = "$10b+[£8b+]";
+		} else {
+			result = "$25.1m - $1b[£20m - £800m]";
+		}
+		return result;
+	}
+	
 	public void switchToNewTab() {
 		boolean closeFlag = false;
 		switchToOtherHandle(getWebDriver(), closeFlag);
