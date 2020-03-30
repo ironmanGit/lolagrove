@@ -1894,6 +1894,20 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
+	public LinkedInPageObjects selectLinkedInCompanySerachInJobTitleDropdown() throws Exception {
+		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitleDropdown, 15);
+			selectByVisibleText(jobTitleDropdown, "Linkedin Company Search");
+			logger.info("Linkedin Company Search");
+			switchToNewTab();
+			clickSearchResult1();
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for jobTitleDropdown is set as Linkedin Company Search");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value Linkedin Company Search from jobTitleDropdown " + e);
+		}
+		return linkedInPage();
+	}
+	
 	public LeadPageObjects selectvalueJobFunctionDropdown(String value) throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(jobFunctionDropdown, 15);
@@ -2059,6 +2073,16 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	
 	public LeadPageObjects countryCheck() throws Exception {
 		country().countryCheck();
+		return this;
+	}
+	
+	public LeadPageObjects firstnameLastnameCheck() throws Exception {
+		firstnameLastname().firstnameLastnameCheck();
+		return this;
+	}
+	
+	public LeadPageObjects jobTitleCheck() throws Exception {
+		jobTitle().jobTitleCheck();
 		return this;
 	}
 }

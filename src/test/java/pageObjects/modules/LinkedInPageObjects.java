@@ -42,6 +42,13 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	@FindBy(xpath = "//dt[contains(text(), 'Specialties')]/following-sibling::dd")
 	private WebElement specialtiesValue;
 
+	@FindBy(css = "div h1.top-card-layout__title")
+	private WebElement fullName;
+	
+	@FindBy(css = "div h2.top-card-layout__headline")
+	private WebElement jobTitleAndCompany;
+	
+	
 	public String getWebsiteValue() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(websiteValue, 15);
 		String value = getText(websiteValue);
@@ -150,5 +157,49 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to close linkedin page" + e);
 		}
 		return leadPage();
+	}
+	
+	public String getFullNameValue() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(fullName, 15);
+		String value = getText(fullName);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "full name value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "full name value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from full name " + e);
+		}
+		return value;
+	}
+	
+	public String getJobTitleValue() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitleAndCompany, 15);
+		String value = getText(jobTitleAndCompany);
+		value = value.replaceAll(".+(?= at)", value);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "job title value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "job title value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from job title " + e);
+		}
+		return value;
+	}
+	
+	public String getCompanyValue() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitleAndCompany, 15);
+		String value = getText(jobTitleAndCompany);
+		value = value.replaceAll("(?<=at ).+", value);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "person company value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "person company value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from person company " + e);
+		}
+		return value;
 	}
 }
