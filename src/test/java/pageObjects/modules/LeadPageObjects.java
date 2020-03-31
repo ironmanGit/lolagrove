@@ -1199,7 +1199,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueFirstName() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(firstName, 15);
-		String value = getText(firstName);
+		String value = getTextUsingScript("firstname");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "firstName value is " + value);
@@ -1225,7 +1225,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueLastName() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(lastName, 15);
-		String value = getText(lastName);
+		String value = getTextUsingScript("lastname");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "lastName value is " + value);
@@ -1979,9 +1979,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 			selectByVisibleText(companyToolsDropdown, "Google (Generic)");
 			logger.info("Google (Generic)");
 			switchToNewTab();
-			updateSearchValueInGoogle(searchValue);
+			updateSearchValueInGoogleAndSearch(searchValue);
 			clickSearchResult1();
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companyToolsDropdown is Glassdoor");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companyToolsDropdown is Google (Generic)");
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from companyToolsDropdown " + e);
 		}
