@@ -32,6 +32,7 @@ public class FirstnameLastname extends LeadPageObjects {
 			setvalueLinkedinIdUrl(linkedInUrl);
 			ExtentTestManager.getTest().log(LogStatus.INFO,"Linkedin url evidence is updated in lead page");
 		} catch (Exception e) {
+			linkedInPage().closeLinkedInPage();
 			setvalueLinkedinIdUrl("Linkedin URL not found");
 			ExtentTestManager.getTest().log(LogStatus.INFO,"Unable to find linkedin url so evidence is not updated in lead page");
 		}
