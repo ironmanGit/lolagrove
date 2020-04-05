@@ -1,9 +1,11 @@
 package tests.campaign.process;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.apache.log4j.Logger;
 import pageObjects.initializePageObjects.PageFactoryInitializer;
+import utils.ExcelUtils;
 
 public class CampaignTestDataProcess extends PageFactoryInitializer {
 	private static Logger logger = Logger.getLogger(CampaignTestDataProcess.class.getName());
@@ -88,6 +90,69 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 
 	public void setLeadsCompanyName(String leadsCompanyName) {
 		this.leadsCompanyName = leadsCompanyName;
+	}
+	
+	public static String getCustomRegions(String type, String FilePath) throws Exception {
+		String result = null;
+
+		List<String> lines = ExcelUtils.readFileToLines(FilePath);
+		for (String line : lines) {
+			String[] columns = line.split(",");
+			String regionType = columns[0];
+			String regionValue = columns[1];
+			if (regionType.equals(type)) {
+				result = regionValue;
+				break;
+			}
+		}
+
+		if (result == null) {
+			throw new Exception("Error : Cannot find region type for " + type + " from file " + FilePath);
+		}
+
+		return result;
+	}
+
+	public static List<String> getCustomRegions(String region) throws Exception {
+		String filePath = "./src/test/resources/Test Data/Excel Files/CustomRegionsMapping.csv";
+		String customRegions = getCustomRegions(region, filePath);
+		String[] listOfCustomRegions = customRegions.split("|");
+		List<String> listOfCusRegions = Arrays.asList(listOfCustomRegions);
+		return listOfCusRegions;
+	}
+
+	public static String getCountryMapping(String country, String countryCode, String FilePath) throws Exception {
+		String result = null;
+		List<String> lines = ExcelUtils.readFileToLines(FilePath);
+		for (String line : lines) {
+			String[] columns = line.split(",");
+			String countryName = columns[0];
+			String countryCodeOne = columns[1];
+			String countryCodeTwo = columns[1];
+			if (countryName.equals(country)) {
+				if (countryCode.equals("countryCode1")) {
+					result = countryCodeOne;
+					break;
+				} else {
+					result = countryCodeTwo;
+					break;
+				}
+			}
+		}
+
+		if (result == null) {
+			throw new Exception("Error : Cannot find country code for " + country + " from file " + FilePath);
+		}
+
+		return result;
+	}
+
+	public static List<String> getCountryMapping(String country, String countryCode) throws Exception {
+		String filePath = "./src/test/resources/Test Data/Excel Files/CountryCodeMapping.csv";
+		String countryMap = getCountryMapping(country, countryCode, filePath);
+		String[] listOfCountryMap = countryMap.split("|");
+		List<String> listOfCountryMapping = Arrays.asList(listOfCountryMap);
+		return listOfCountryMapping;
 	}
 	
 }
