@@ -21,7 +21,7 @@ public class EndolePageObjects extends PageFactoryInitializer {
 	
 	private Logger logger = Logger.getLogger(LeadPageObjects.class.getName());
 
-	@FindBy(xpath = "//div[@class='financial-overview']/span[contains(text(),'Turnover ')]")
+	@FindBy(xpath = "//div[@class='financial-overview']/span[contains(text(),'Turnover ')]/following-sibling::span")
 	private WebElement turnOverValue;
 
 	public String getTurnoverValue() throws Exception {

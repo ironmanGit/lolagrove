@@ -21,6 +21,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.JavascriptExecutor;
 
 /**
  * @Author Vivekanandan Sampath
@@ -326,9 +327,11 @@ public class BaseMethod extends WebDriverFactory {
 	}
 
 	/* Click on google search result1 */
-	public void updateSearchValueInGoogle(String value) throws Exception {
+	public void updateSearchValueInGoogleAndSearch(String value) throws Exception {
 		WebElement element = getWebDriver().findElement(By.cssSelector("input[title='Search']"));
 		element.sendKeys(value);
+		WebElement searchButton = getWebDriver().findElement(By.cssSelector("button[type='submit']"));
+		click(searchButton);
 	}
 	
 	/* Click on google search result1 */
@@ -343,6 +346,13 @@ public class BaseMethod extends WebDriverFactory {
 		return url;
 	}
 
+	/* get innner text using js */
+	public String getTextUsingScript(String fieldName) throws Exception {
+		JavascriptExecutor js = (JavascriptExecutor) getWebDriver();  
+		String value = js.executeScript("return document.getElementsByName('"+fieldName+"')[0]['value']").toString();
+		return value;
+	}
+	
 	/* get company size as per lolagrove */
 	public String roundOffCompanySize(String value) throws Exception {
 		int size = Integer.parseInt(value);

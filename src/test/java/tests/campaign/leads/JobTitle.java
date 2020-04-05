@@ -29,6 +29,7 @@ public class JobTitle extends LeadPageObjects {
 			setvalueJobTitleEvidence(linkedInUrl);
 			ExtentTestManager.getTest().log(LogStatus.INFO,"job title url evidence is updated in lead page");
 		} catch (Exception e) {
+			linkedInPage().closeLinkedInPage();
 			setvalueJobTitleEvidence("Job title evidence not found");
 			ExtentTestManager.getTest().log(LogStatus.INFO,"Job title evidence not found");
 		}
