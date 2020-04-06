@@ -101,7 +101,9 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 			String regionType = columns[0];
 			String regionValue = columns[1];
 			if (regionType.equals(type)) {
+				regionValue = regionValue.toString();
 				result = regionValue;
+				result = result.replace("|", ",");
 				break;
 			}
 		}
@@ -116,8 +118,7 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 	public static List<String> getCustomRegions(String region) throws Exception {
 		String filePath = "./src/test/resources/Test Data/Excel Files/CustomRegionsMapping.csv";
 		String customRegions = getCustomRegions(region, filePath);
-		String[] listOfCustomRegions = customRegions.split("|");
-		List<String> listOfCusRegions = Arrays.asList(listOfCustomRegions);
+		List<String> listOfCusRegions = Arrays.asList(customRegions);
 		return listOfCusRegions;
 	}
 
@@ -128,8 +129,8 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 			String[] columns = line.split(",");
 			String countryName = columns[0];
 			String countryCodeOne = columns[1];
-			String countryCodeTwo = columns[1];
-			if (countryName.equals(country)) {
+			String countryCodeTwo = columns[2];
+			if (countryName.contains(country)) {
 				if (countryCode.equals("countryCode1")) {
 					result = countryCodeOne;
 					break;
@@ -150,8 +151,7 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 	public static List<String> getCountryMapping(String country, String countryCode) throws Exception {
 		String filePath = "./src/test/resources/Test Data/Excel Files/CountryCodeMapping.csv";
 		String countryMap = getCountryMapping(country, countryCode, filePath);
-		String[] listOfCountryMap = countryMap.split("|");
-		List<String> listOfCountryMapping = Arrays.asList(listOfCountryMap);
+		List<String> listOfCountryMapping = Arrays.asList(countryMap);
 		return listOfCountryMapping;
 	}
 	
