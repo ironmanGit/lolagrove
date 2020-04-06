@@ -1,20 +1,20 @@
 country,countryCode1,countryCode2
-"NORDIC (Denmark, Finland, Iceland, Sweden, Norway)",NORD,NORD
-MEA (Middle East and Africa),See region table below for confirmation,
+NORDIC (Denmark | Finland | Iceland | Sweden | Norway),NORD,NORD
+MEA (Middle East and Africa),See region table below for confirmation,See region table below for confirmation
 SEA (South East Asia),SEA,SEA
-"EMEA (Europe, the Middle East and Africa)",EMEA,EMEA
-"USC (United States, Canada)",USC,USC
-"ANZ (Australia, New Zealand)",ANZ,ANZ
-"DACH (Deutschland, Austria, Switzerland)",DACH,DACH
-"Benelux (Belgium, Netherlands, Luxembourg)",BEN,BEN
+EMEA (Europe| the Middle East and Africa),EMEA,EMEA
+USC (United States | Canada),USC,USC
+ANZ (Australia | New Zealand),ANZ,ANZ
+DACH (Deutschland | Austria | Switzerland),DACH,DACH
+Benelux (Belgium | Netherlands | Luxembourg),BEN,BEN
 UKI (United Kingdom & Ireland),UK-I,UK-I
 SEA & HK (South East Asia & Hong Kong),SEA-HK,SEA-HK
 Hong Kong & Tiawan,HK-TW,HK-TW
-"RCIS - Kazakstan, Russia, Uzbekistan (Custom)",RCIS,RCIS
-"META - UAE, SA, KW, OM, QA (Custom)",META,META
-"Italy, Spain (Custom)",IT-SP,IT-SP
-"Belgium, Netherlands, Norway, Sweden (Custom)",BE-NL-NO-SE,BE-NL-NO-SE
-"ASEAN (HK, ID, MY, MM, PH, SG, TW, TH, VN)",ASEAN,ASEAN
+RCIS - Kazakstan | Russia | Uzbekistan (Custom),RCIS,RCIS
+META - UAE |  SA | KW | OM | QA (Custom),META,META
+Italy | Spain (Custom),IT-SP,IT-SP
+Belgium| Netherlands| Norway| Sweden (Custom),BE-NL-NO-SE,BE-NL-NO-SE
+ASEAN (HK| ID| MY| MM| PH| SG| TW| TH| VN),ASEAN,ASEAN
 Afghanistan,AF,AFG
 Aland Islands,AX,ALA
 Albania,AL,ALB
@@ -66,7 +66,7 @@ Cocos (Keeling) Islands,CC,CCK
 Colombia,CO,COL
 Comoros,KM,COM
 Congo (Brazzaville),CG,COG
-"Congo, (Kinshasa)",CD,COD
+Congo| (Kinshasa),CD,COD
 Cook Islands,CK,COK
 Costa Rica,CR,CRI
 Côte d'Ivoire,CI,CIV
@@ -113,12 +113,12 @@ Haiti,HT,HTI
 Heard and Mcdonald Islands,HM,HMD
 Holy See (Vatican City State),VA,VAT
 Honduras,HN,HND
-"Hong Kong, SAR China",HK,HKG
+Hong Kong| SAR China,HK,HKG
 Hungary,HU,HUN
 Iceland,IS,ISL
 India,IN,IND
 Indonesia,ID,IDN
-"Iran, Islamic Republic of",IR,IRN
+Iran| Islamic Republic of,IR,IRN
 Iraq,IQ,IRQ
 Ireland,IE,IRL
 Isle of Man,IM,IMN
@@ -144,8 +144,8 @@ Libya,LY,LBY
 Liechtenstein,LI,LIE
 Lithuania,LT,LTU
 Luxembourg,LU,LUX
-"Macao, SAR China",MO,MAC
-"Macedonia, Republic of",MK,MKD
+Macao| SAR China,MO,MAC
+Macedonia| Republic of,MK,MKD
 Madagascar,MG,MDG
 Malawi,MW,MWI
 Malaysia,MY,MYS
@@ -158,7 +158,7 @@ Mauritania,MR,MRT
 Mauritius,MU,MUS
 Mayotte,YT,MYT
 Mexico,MX,MEX
-"Micronesia, Federated States of",FM,FSM
+Micronesia| Federated States of,FM,FSM
 Moldova,MD,MDA
 Monaco,MC,MCO
 Mongolia,MN,MNG
@@ -231,9 +231,9 @@ Swaziland,SZ,SWZ
 Sweden,SE,SWE
 Switzerland,CH,CHE
 Syrian Arab Republic (Syria),SY,SYR
-"Taiwan, Republic of China",TW,TWN
+Taiwan| Republic of China,TW,TWN
 Tajikistan,TJ,TJK
-"Tanzania, United Republic of",TZ,TZA
+Tanzania| United Republic of,TZ,TZA
 Thailand,TH,THA
 Timor-Leste,TL,TLS
 Togo,TG,TGO
@@ -256,7 +256,7 @@ Uzbekistan,UZ,UZB
 Vanuatu,VU,VUT
 Venezuela (Bolivarian Republic),VE,VEN
 Viet Nam,VN,VNM
-"Virgin Islands, US",VI,VIR
+Virgin Islands| US,VI,VIR
 Wallis and Futuna Islands,WF,WLF
 Western Sahara,EH,ESH
 Yemen,YE,YEM

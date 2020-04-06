@@ -17,7 +17,7 @@ public class CampaignTest extends PageFactoryInitializer {
 	private String getJobFunction;
 	private String getJobTitle;
 	private String getCountry;
-	
+
 	@Test(priority = 1, description = "Navigate to Campaign")
 	public void campaignCheck() throws Exception {
 		ExtentTestManager.startTest("Navigate to Campaign", "Navigate to Campaign");
@@ -34,7 +34,7 @@ public class CampaignTest extends PageFactoryInitializer {
 //		 leadPage.readCampaignLeadsFile();
 		ExtentTestManager.endTest();
 	}
-	
+
 	@Test(priority = 2, description = "Get open records data")
 	public void getOpenNotesRecord() throws Exception {
 		getCountry = campaignTestDataProcess().getLeadsCountry();
@@ -42,15 +42,15 @@ public class CampaignTest extends PageFactoryInitializer {
 		getIndustrialVertical = campaignTestDataProcess().getLeadsIndustrialVertical();
 		getJobFunction = campaignTestDataProcess().getLeadsJobFunction();
 		getJobTitle = campaignTestDataProcess().getLeadsJobTitle();
-		logger.info("Country details : " +getCountry);
-		logger.info("Company Size : "+getCompanySize);
-		logger.info("Industrial : " +getIndustrialVertical);
-		logger.info("Job Function: " +getJobFunction);
-		logger.info("Job Title : "+getJobTitle);
-		List<String> customRegions = CampaignTestDataProcess.getCustomRegions("EMEA_Africa");
-		logger.info("custom Regions data : "+customRegions);
-		List<String> countryMapping =  CampaignTestDataProcess.getCountryMapping("NORDIC", "countryCode1");
-		logger.info("country Mapping data : "+countryMapping);
+		logger.info("Country details : " + getCountry);
+		logger.info("Company Size : " + getCompanySize);
+		logger.info("Industrial : " + getIndustrialVertical);
+		logger.info("Job Function: " + getJobFunction);
+		logger.info("Job Title : " + getJobTitle);
+		List<String> customRegions = CampaignTestDataProcess.getCustomRegions("Cus_EMEA");
+		logger.info("custom Regions data : " + customRegions);
+		List<String> countryMapping = CampaignTestDataProcess.getCountryMapping("NORDIC", "countryCode1");
+		logger.info("country Mapping data : " + countryMapping);
 	}
 
 	@DataProvider(name = "getLeadsData")
