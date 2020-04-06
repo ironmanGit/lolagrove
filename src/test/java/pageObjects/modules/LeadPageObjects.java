@@ -1355,7 +1355,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueCompanyName() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(companyName, 15);
-		String value = getText(companyName);
+		String value = getTextUsingScript("companyname");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "companyName value is " + value);

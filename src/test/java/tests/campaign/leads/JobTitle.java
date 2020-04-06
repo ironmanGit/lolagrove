@@ -15,7 +15,7 @@ public class JobTitle extends LeadPageObjects {
 	public LeadPageObjects jobTitleCheck() throws Exception {
 		String openNotesJobTitle = campaignTestDataProcess().getLeadsJobTitle();
 		try {
-			ExtentTestManager.getTest().log(LogStatus.INFO, "job title check in linkedin");
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Job title check in linkedin");
 			selectLinkedInCompanySerachInJobTitleDropdown();
 			String jobTitle = linkedInPage().getJobTitleValue();
 			if(openNotesJobTitle.contains(jobTitle)) {
