@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import org.apache.log4j.Logger;
 import pageObjects.initializePageObjects.PageFactoryInitializer;
+import tests.campaign.process.CampaignTestDataProcess;
 import utils.ExtentReports.ExtentTestManager;
 
 public class CampaignTest extends PageFactoryInitializer {
@@ -46,6 +47,10 @@ public class CampaignTest extends PageFactoryInitializer {
 		logger.info("Industrial : " +getIndustrialVertical);
 		logger.info("Job Function: " +getJobFunction);
 		logger.info("Job Title : "+getJobTitle);
+		List<String> customRegions = CampaignTestDataProcess.getCustomRegions("EMEA_Africa");
+		logger.info("custom Regions data : "+customRegions);
+		List<String> countryMapping =  CampaignTestDataProcess.getCountryMapping("NORDIC", "countryCode1");
+		logger.info("country Mapping data : "+countryMapping);
 	}
 
 	@DataProvider(name = "getLeadsData")
