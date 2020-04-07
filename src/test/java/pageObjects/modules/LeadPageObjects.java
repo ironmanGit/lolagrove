@@ -835,7 +835,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueLeadId() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(leadId, 15);
-		String value = getText(leadId);
+		String value = getTextUsingScript("meritleadid");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "leadId value is " + value);
@@ -861,7 +861,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueEmail() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(email, 15);
-		String value = getText(email);
+		String value = getTextUsingScript("email");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "email value is " + value);
@@ -887,7 +887,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueEmailEvidence() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(emailEvidence, 15);
-		String value = getText(emailEvidence);
+		String value = getTextUsingScript("email_evidence");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "emailEvidence value is " + value);
@@ -913,7 +913,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueTelephone() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(telephone, 15);
-		String value = getText(telephone);
+		String value = getTextUsingScript("telephone");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "telephone value is " + value);
@@ -939,7 +939,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvaluePhoneEvidence() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(phoneEvidence, 15);
-		String value = getText(phoneEvidence);
+		String value = getTextUsingScript("phone_evidence");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "phoneEvidence value is " + value);
@@ -965,7 +965,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueTelephone2() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(telephone2, 15);
-		String value = getText(telephone2);
+		String value = getTextUsingScript("telephone2");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "telephone2 value is " + value);
@@ -991,7 +991,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvaluePhoneEvidence2() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(phoneEvidence2, 15);
-		String value = getText(phoneEvidence2);
+		String value = getTextUsingScript("phone2_evidence");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "phoneEvidence2 value is " + value);
@@ -1017,7 +1017,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueAddress1() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(address1, 15);
-		String value = getText(address1);
+		String value = getTextUsingScript("address1");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "address1 value is " + value);
@@ -1043,7 +1043,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueAddress2() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(address2, 15);
-		String value = getText(address2);
+		String value = getTextUsingScript("address2");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "address2 value is " + value);
@@ -1069,7 +1069,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueTowncity() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(towncity, 15);
-		String value = getText(towncity);
+		String value = getTextUsingScript("towncity");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "towncity value is " + value);
@@ -1095,7 +1095,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueCounty() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(county, 15);
-		String value = getText(county);
+		String value = getTextUsingScript("county");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "county value is " + value);
@@ -1121,7 +1121,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvaluePostcode() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(postcode, 15);
-		String value = getText(postcode);
+		String value = getTextUsingScript("postcode");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "postcode value is " + value);
@@ -1147,7 +1147,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueCountry() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(country, 15);
-		String value = getText(country);
+		String value = getTextUsingScript("country");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "country value is " + value);
@@ -1173,7 +1173,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueAddressEvidence() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(addressEvidence, 15);
-		String value = getText(addressEvidence);
+		String value = getTextUsingScript("address_evidence");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "addressEvidence value is " + value);
@@ -1251,7 +1251,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueLinkedinIdUrl() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(linkedinIdUrl, 15);
-		String value = getText(linkedinIdUrl);
+		String value = getTextUsingScript("linkedin_id_url");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "linkedinIdUrl value is " + value);
@@ -1277,7 +1277,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueJobTitle() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitle, 15);
-		String value = getText(jobTitle);
+		String value = getTextUsingScript("jobtitle");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "jobTitle value is " + value);
@@ -1303,7 +1303,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueJobTitleEvidence() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitleEvidence, 15);
-		String value = getText(jobTitleEvidence);
+		String value = getTextUsingScript("jobtitle_evidence");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "jobTitleEvidence value is " + value);
@@ -1329,7 +1329,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueJobFunction() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(jobFunction, 15);
-		String value = getText(jobFunction);
+		String value = getTextUsingScript("job_function");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "jobFunction value is " + value);
@@ -1426,7 +1426,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueIndustry() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(industry, 15);
-		String value = getText(industry);
+		String value = getTextUsingScript("industry");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "industry value is " + value);
@@ -1452,7 +1452,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueCompanyEvidence() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(companyEvidence, 15);
-		String value = getText(companyEvidence);
+		String value = getTextUsingScript("company_evidence");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "companyEvidence value is " + value);
@@ -1478,7 +1478,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueCompanySize() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(companySize, 15);
-		String value = getText(companySize);
+		String value = getTextUsingScript("company_size");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "companySize value is " + value);
@@ -1504,7 +1504,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueCompanySizeEvidence() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(companySizeEvidence, 15);
-		String value = getText(companySizeEvidence);
+		String value = getTextUsingScript("companysize_evidence");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "companySizeEvidence value is " + value);
@@ -1530,7 +1530,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueTurnover() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(turnover, 15);
-		String value = getText(turnover);
+		String value = getTextUsingScript("turnover");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "turnover value is " + value);
@@ -1556,7 +1556,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueTurnoverEvidence() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(turnoverEvidence, 15);
-		String value = getText(turnoverEvidence);
+		String value = getTextUsingScript("turnover_evidence");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "turnoverEvidence value is " + value);
@@ -1582,7 +1582,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueRejectionReason() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(rejectionReason, 15);
-		String value = getText(rejectionReason);
+		String value = getTextUsingScript("comments");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "rejectionReason value is " + value);
@@ -1608,7 +1608,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueRejectionReasonEvidence() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(rejectionReasonEvidence, 15);
-		String value = getText(rejectionReasonEvidence);
+		String value = getTextUsingScript("rejection_evidence");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "rejectionReasonEvidence value is " + value);
@@ -1634,7 +1634,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueUserAgent() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(userAgent, 15);
-		String value = getText(userAgent);
+		String value = getTextUsingScript("useragent");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "userAgent value is " + value);
@@ -1660,7 +1660,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueLeadType() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(leadType, 15);
-		String value = getText(leadType);
+		String value = getTextUsingScript("lead_type");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "leadType value is " + value);
@@ -1686,7 +1686,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueSfdcCode() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(sfdcCode, 15);
-		String value = getText(sfdcCode);
+		String value = getTextUsingScript("sfdc_code");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "sfdcCode value is " + value);
@@ -1712,7 +1712,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueProductOfInterest() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(productOfInterest, 15);
-		String value = getText(productOfInterest);
+		String value = getTextUsingScript("product_of_interest");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "productOfInterest value is " + value);
@@ -1738,7 +1738,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueCallComments() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(callComments, 15);
-		String value = getText(callComments);
+		String value = getTextUsingScript("call_comments");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "callComments value is " + value);
@@ -1764,7 +1764,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueSecure() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(secure, 15);
-		String value = getText(secure);
+		String value = getTextUsingScript("secure");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "secure value is " + value);
@@ -1790,7 +1790,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueBiggestChallenge() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(biggestChallenge, 15);
-		String value = getText(biggestChallenge);
+		String value = getTextUsingScript("biggest_challenge");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "biggestChallenge value is " + value);
@@ -1816,7 +1816,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public String getvalueWhichPlatforms() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(whichPlatforms, 15);
-		String value = getText(whichPlatforms);
+		String value = getTextUsingScript("which_platforms");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "whichPlatforms value is " + value);
