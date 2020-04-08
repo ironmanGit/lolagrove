@@ -18,8 +18,13 @@ public class PlacementReadOnly extends LeadPageObjects {
 			String leadType = getvalueLeadTypeReadOly();
 			logger.info("Placement value is:" + placement);
 			logger.info("Lead type value is:" + leadType);
-			Assert.assertTrue(placement.contains(leadType));
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Placement check is successfully done");
+			if (placement.contains(leadType)) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Placement check is successfully done");
+			} else {
+				setvalueRejectionReason("placement check does not match as per open notes");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Placement check failed");
+			}
+
 		} catch (Exception e) {
 			setvalueRejectionReason("placement check does not match as per open notes");
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Placement check failed" + e);

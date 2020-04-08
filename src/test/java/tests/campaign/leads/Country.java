@@ -15,11 +15,20 @@ public class Country extends LeadPageObjects {
 	public LeadPageObjects countryCheck() throws Exception {
 		String countryOpenNoteValue = campaignTestDataProcess().getLeadsCountry();
 		String leadCountryLeadOnly = getvalueCountryReadOly();
+		logger.info("Country read only value from lead:" + leadCountryLeadOnly);
 		try {
-			Assert.assertTrue(countryOpenNoteValue.contains(leadCountryLeadOnly));
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Country in open notes matches country read only field");
-			setvalueCountry(leadCountryLeadOnly);
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Country value in lead page is updated as per open notes");
+			if (countryOpenNoteValue.contains(leadCountryLeadOnly)) {
+				ExtentTestManager.getTest().log(LogStatus.PASS,
+						"Country in open notes matches country read only field");
+				setvalueCountry(leadCountryLeadOnly);
+				ExtentTestManager.getTest().log(LogStatus.PASS,
+						"Country value in lead page is updated as per open notes");
+			} else {
+				setvalueRejectionReason("country value in open notes does not match with country in lead");
+				ExtentTestManager.getTest().log(LogStatus.FAIL,
+						"Country value in open notes does not match with country in lead");
+			}
+
 		} catch (Exception e) {
 			setvalueRejectionReason("country value in open notes does not match with country in lead");
 			ExtentTestManager.getTest().log(LogStatus.FAIL,
