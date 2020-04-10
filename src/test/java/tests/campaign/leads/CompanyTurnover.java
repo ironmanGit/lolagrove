@@ -69,6 +69,7 @@ public class CompanyTurnover extends LeadPageObjects {
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "company turn over check does not match in endole");
 			}
 		}
+		
 		return leadPage();
 	}
 }
