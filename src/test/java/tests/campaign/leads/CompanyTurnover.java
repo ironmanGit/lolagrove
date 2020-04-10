@@ -30,8 +30,6 @@ public class CompanyTurnover extends LeadPageObjects {
 			isMatchFound = false;
 			endolePage().closeEndolePage();
 			ExtentTestManager.getTest().log(LogStatus.INFO, "Company turnover does not available in endole");
-		}
-		if (!isMatchFound) {
 			setvalueRejectionReason("company turn over check does not match in endole");
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "company turn over check does not match in endole");
 		}

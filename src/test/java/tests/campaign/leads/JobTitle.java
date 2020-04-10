@@ -14,27 +14,26 @@ public class JobTitle extends LeadPageObjects {
 
 	public LeadPageObjects jobTitleCheck() throws Exception {
 		String openNotesJobTitle = campaignTestDataProcess().getLeadsJobTitle();
-		try {
-			ExtentTestManager.getTest().log(LogStatus.INFO, "Job title check in linkedin");
-			selectLinkedInCompanySerachInJobTitleDropdown();
-			String jobTitle = linkedInPage().getJobTitleValue();
-			if(openNotesJobTitle.contains(jobTitle)) {
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Job title in lead page matched with linkedin job title");
-			} else {
-				setvalueJobTitle(jobTitle);
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Job title in lead page is updated with linkedin job title");
-			}
-			String linkedInUrl = getCurrentUrl();
+		// boolean isMatchFound = true;
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Job title check in linkedin");
+		selectLinkedInCompanySerachInJobTitleDropdown();
+		String jobTitle = linkedInPage().getJobTitleValue();
+		String linkedInUrl = getCurrentUrl();
+		if (openNotesJobTitle.contains(jobTitle)) {
 			linkedInPage().closeLinkedInPage();
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Job title in lead page matched with linkedin job title");
+			setvalueJobTitle(jobTitle);
+			ExtentTestManager.getTest().log(LogStatus.PASS,
+					"Job title in lead page is updated with linkedin job title");
 			setvalueJobTitleEvidence(linkedInUrl);
-			ExtentTestManager.getTest().log(LogStatus.INFO,"job title url evidence is updated in lead page");
-		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "job title url evidence is updated in lead page");
+		} else {
 			linkedInPage().closeLinkedInPage();
 			setvalueJobTitleEvidence("Job title evidence not found");
-			ExtentTestManager.getTest().log(LogStatus.INFO,"Job title evidence not found");
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Job title evidence not found");
+			setvalueRejectionReason("Job title does not match with open notes");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Job title does not match with open notes");
 		}
 		return leadPage();
 	}
-
 }
-
