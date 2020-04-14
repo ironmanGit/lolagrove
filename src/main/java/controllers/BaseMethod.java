@@ -407,7 +407,7 @@ public class BaseMethod extends WebDriverFactory {
 		switchToOtherHandle(getWebDriver(), closeFlag);
 	}
 
-	private org.openqa.selenium.WebDriver switchToOtherHandle(org.openqa.selenium.WebDriver webDriver,
+	public org.openqa.selenium.WebDriver switchToOtherHandle(org.openqa.selenium.WebDriver webDriver,
 			boolean closeFlag) {
 		Set<String> listOfHandles = webDriver.getWindowHandles();
 		List<String> ls = new ArrayList<String>();
@@ -424,8 +424,36 @@ public class BaseMethod extends WebDriverFactory {
 				break;
 			}
 		}
-
 		return webDriver;
-
 	}
+	
+	public void switchToWindowWithMatchingTitle(String ExpectedTitle) {
+		switchToOtherHandles(getWebDriver(), false, ExpectedTitle);
+	}
+	
+	public void closeToWindowWithMatchingTitle(String ExpectedTitle) {
+		switchToOtherHandles(getWebDriver(), true, ExpectedTitle);
+	}
+	
+	public boolean switchToOtherHandles(org.openqa.selenium.WebDriver webDriver, boolean closeFlag,
+			String ExpectedTitle) {
+		boolean found = false;
+		String winHandleBefore = webDriver.getWindowHandle();
+		Set<String> listOfHandles = webDriver.getWindowHandles();
+		for (String winHandle : listOfHandles) {
+			webDriver.switchTo().window(winHandle);
+			String title = webDriver.getTitle();
+			title = title.trim();
+			if (title.equals(ExpectedTitle)) {
+				found = true;
+				break;
+			}
+		}
+
+		if (!found) {
+			webDriver.switchTo().window(winHandleBefore);
+		}
+		return found;
+	}
+	
 }
