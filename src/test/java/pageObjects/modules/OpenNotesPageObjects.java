@@ -4,8 +4,15 @@
 package pageObjects.modules;
 
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Function;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import com.google.common.collect.Lists;
 import com.relevantcodes.extentreports.LogStatus;
 import pageObjects.initializePageObjects.PageFactoryInitializer;
 import utils.ExtentReports.ExtentTestManager;
@@ -30,6 +37,15 @@ public class OpenNotesPageObjects extends PageFactoryInitializer {
 
 	@FindBy(css = "#GroupA > div:nth-child(6) > div.panel-body")
 	private WebElement jobTitle;
+	
+	@FindBy(css = "#GroupB > div.col-md-12 > div > div > a")
+	private List<WebElement> companyListsLink;
+	
+	@FindBy(css = "body > table")
+	private WebElement companyListsName;
+	
+	@FindBy(css = "body > table tr")
+	private List<WebElement> companyListsRow;
 
 	public OpenNotesPageObjects getCountryDetailsFromOpenNotes() {
 		String countryDetails = getListOfTexts(country);
@@ -142,9 +158,74 @@ public class OpenNotesPageObjects extends PageFactoryInitializer {
 		getIndustryVerticalFromOpenNotes();
 		getJobFunctionFromOpenNotes();
 		getJobTitleFromOpenNotes();
+		getCompanyListDetailsFromOpenNotes();
 		return this;
 	}
-
+	
+//	@SuppressWarnings("null")
+	public void getCompanyListDetailsFromOpenNotes() {
+		List<String> companyListDetails = new ArrayList<>();
+		List<WebElement> links = companyListsLink;
+		int linkSize = links.size();
+		for (int i = 0; i < linkSize; i++) {
+			switchToWindowWithMatchingTitle("Eyeballing Notes");
+			WebElement row = links.get(i);
+			row.click();
+			switchToWindowWithMatchingTitle("");
+			List<String> companyLists = getColumnValueBasedOnHeaderName(companyListsName, "Company Name");
+			companyListDetails.addAll(companyLists);
+			int totalCompanyList = companyListDetails.size();
+			System.out.println("Total Names: " + totalCompanyList);
+			System.out.println("link " + i + " list of names " + companyListDetails);
+			closeTab();
+		}
+		System.out.println("Full Lists :" + companyListDetails);
+		System.out.println("Total Names: " + companyListDetails.size());
+		campaignTestDataProcess().setLeadsCompanyListDetails(companyListDetails);
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Company list details in Open Notes : " + companyListDetails);
+	}
+	
+	public List<String> getColumnValueBasedOnHeaderName(WebElement table, String headerName) {
+		List<WebElement> thList = table.findElements(By.cssSelector("th"));
+		List<String> headers = new ArrayList<>();
+		thList.stream().forEach(th -> headers.add(th.getText()));
+		int index = headers.indexOf(headerName);
+		System.out.println("Index : " + index);
+		List<WebElement> rows = companyListsRow;
+		int len = rows.size();
+		System.out.println("rows length : " + len);
+		List<String> companyListsName = new ArrayList<>();
+		for (int i = 1; i < len; i++) {
+			WebElement row = rows.get(i);
+			List<WebElement> tdList = row.findElements(By.xpath("./td"));
+			if (tdList.size() > 0) {
+				WebElement cell = tdList.get(index);
+				String companyName = cell.getText();
+				companyListsName.add(companyName);
+			}
+		}
+		return companyListsName;
+	}
+	
+//	public List<String> getLeadsDetailsFromOnePage() {
+//		List<String> textRow = new ArrayList<String>();
+//		List<WebElement> rows = companyListsRow;
+//		int len = rows.size();
+////		List<List<String>> textRows = new ArrayList<List<String>>();
+//		for (int i = 1; i < len; i++) {
+//			WebElement row = rows.get(i);
+//			List<WebElement> cols = row.findElements(By.xpath("./td"));
+//			for (WebElement col : cols) {
+//				String text = col.
+//				text = text.replace("\n", "|");
+//				text = text.replace(",", "|");
+//				textRow.add(text);
+//			}
+////			textRows.add(textRow);
+//		}
+//		return textRow;
+//	}
+		
 	public LandingPageObjects closeOpenNotesTab() {
 		try {
 			closeTab();

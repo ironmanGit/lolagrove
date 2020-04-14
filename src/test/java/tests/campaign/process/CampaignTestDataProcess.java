@@ -19,6 +19,7 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 	private static String leadsJobTitle;
 	private static String leadsCountry;
 	private static String leadsCompanyName;
+	private static List<String> leadsCompanyListDetails = new ArrayList<String>();
 
 	public List<CampaignDataRecord> getCampaignLeadsData() {
 		return campaignLeadsData;
@@ -90,6 +91,14 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 
 	public void setLeadsCompanyName(String leadsCompanyName) {
 		this.leadsCompanyName = leadsCompanyName;
+	}
+	
+	public List<String> getLeadsCompanyListDetails() {
+		return leadsCompanyListDetails;
+	}
+
+	public void setLeadsCompanyListDetails(List<String> leadsCompanyList) {
+		this.leadsCompanyListDetails = leadsCompanyList;
 	}
 	
 	public static String getCustomRegions(String type, String FilePath) throws Exception {
