@@ -168,7 +168,6 @@ public class OpenNotesPageObjects extends PageFactoryInitializer {
 		List<WebElement> links = companyListsLink;
 		int linkSize = links.size();
 		for (int i = 0; i < linkSize; i++) {
-			switchToWindowWithMatchingTitle("Eyeballing Notes");
 			WebElement row = links.get(i);
 			row.click();
 			switchToWindowWithMatchingTitle("");
@@ -178,6 +177,7 @@ public class OpenNotesPageObjects extends PageFactoryInitializer {
 			System.out.println("Total Names: " + totalCompanyList);
 			System.out.println("link " + i + " list of names " + companyListDetails);
 			closeTab();
+			switchToWindowWithMatchingTitle("Eyeballing Notes");
 		}
 		System.out.println("Full Lists :" + companyListDetails);
 		System.out.println("Total Names: " + companyListDetails.size());
@@ -206,26 +206,7 @@ public class OpenNotesPageObjects extends PageFactoryInitializer {
 		}
 		return companyListsName;
 	}
-	
-//	public List<String> getLeadsDetailsFromOnePage() {
-//		List<String> textRow = new ArrayList<String>();
-//		List<WebElement> rows = companyListsRow;
-//		int len = rows.size();
-////		List<List<String>> textRows = new ArrayList<List<String>>();
-//		for (int i = 1; i < len; i++) {
-//			WebElement row = rows.get(i);
-//			List<WebElement> cols = row.findElements(By.xpath("./td"));
-//			for (WebElement col : cols) {
-//				String text = col.
-//				text = text.replace("\n", "|");
-//				text = text.replace(",", "|");
-//				textRow.add(text);
-//			}
-////			textRows.add(textRow);
-//		}
-//		return textRow;
-//	}
-		
+			
 	public LandingPageObjects closeOpenNotesTab() {
 		try {
 			closeTab();
