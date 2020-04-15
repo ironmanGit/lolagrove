@@ -346,6 +346,11 @@ public class BaseMethod extends WebDriverFactory {
 		return url;
 	}
 
+	/* To Refresh Current Tab */
+	public void refreshPage() {
+		getWebDriver().navigate().refresh();
+	}
+	
 	/* get innner text using js */
 	public String getTextUsingScript(String fieldName) throws Exception {
 		JavascriptExecutor js = (JavascriptExecutor) getWebDriver();  
