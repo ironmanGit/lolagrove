@@ -59,16 +59,24 @@ public class OpenNotesPageObjects extends PageFactoryInitializer {
 	public String getCompanySize() {
 		String companySizes = companySize.getText();
 		boolean isTAL = companySizes.contains("TAL");
+		boolean isAll = companySizes.contains("ALL");
+		boolean isPlus = companySizes.contains("+");
 		if (isTAL) {
 			companySizes = "TAL";
+		} else if(isAll){
+			companySizes = "ALL";
+		} else if(isPlus){
+			companySizes = companySizes.replaceAll("[^0-9]", " ");
 		} else {
-			companySizes = getListOfTexts(companySize);
+			companySizes = companySizes.replaceAll("[^0-9]", " ").trim();
+			companySizes = companySizes.replaceAll("  +", "-");
+			companySizes = companySizes.replaceAll(" ", "");
 		}
-		return companySizes;
+		return companySizes.trim();
 	}
 
 	public OpenNotesPageObjects getCompanySizeFromOpenNotes() {
-		String companySize = getCompanySize().replaceAll("[a-z]| ", "");
+		String companySize = getCompanySize();
 		campaignTestDataProcess().setLeadsCompanySize(companySize);
 		ExtentTestManager.getTest().log(LogStatus.INFO, "company Size details in Open Notes : " + companySize);
 		return this;

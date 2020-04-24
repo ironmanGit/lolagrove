@@ -43,7 +43,8 @@ public class CompanySize extends LeadPageObjects {
 						linkedInPage().closeLinkedInPage();
 						ExtentTestManager.getTest().log(LogStatus.INFO, "Company size does not match with linked in");
 					}
-				} else if (!isLinkedIn) {
+				} 
+				if (!isLinkedIn) {
 					ExtentTestManager.getTest().log(LogStatus.INFO, "company size check in zoom info");
 					selectZoomInfovalueCompanyToolsDropdown();
 					String zoomInfoCompanySize = zoomInfoPage().getEmployeesValue();
@@ -64,7 +65,8 @@ public class CompanySize extends LeadPageObjects {
 						ExtentTestManager.getTest().log(LogStatus.INFO,
 								"Company size evidence is updated in lead page");
 					}
-				} else if (!isMatchFound) {
+				} 
+				if (!isMatchFound) {
 					setvalueRejectionReason("company size check does not match in linked in and zoom info");
 					ExtentTestManager.getTest().log(LogStatus.FAIL,
 							"company size check does not match in linked in and zoom info");
