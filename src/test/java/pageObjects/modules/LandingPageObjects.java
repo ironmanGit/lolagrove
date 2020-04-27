@@ -173,7 +173,7 @@ public class LandingPageObjects extends PageFactoryInitializer {
 		return result;
 	}
 	
-	public void createCampaignLeadsFile() throws Exception {
+	public void createCampaignListFile() throws Exception {
 		String campaignName = appConfig.getCampaign();
 		String campaignPath = "campaignFiles/" + campaignName + "_Leads.csv";
 		List<List<String>> campaignLeads = this.getCampaignDetailsFromAllPages();
