@@ -85,7 +85,7 @@ public class LandingPageObjects extends PageFactoryInitializer {
 		List<WebElement> rows = selectCampaign;
 		WebElement target = null;
 		int rowSize = rows.size();
-		for (int i = 1; i < rowSize; i++) {
+		for (int i = 0; i < rowSize; i++) {
 			WebElement row = rows.get(i);
 			String campaignTextUI = row.getText();
 			if (campaignTextUI.equals(campaignText)) {
