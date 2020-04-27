@@ -17,6 +17,7 @@ import pageObjects.modules.ZoomInfoPageObjects;
 import tests.campaign.leads.CompanySize;
 import tests.campaign.leads.CompanyTurnover;
 import tests.campaign.leads.Country;
+import tests.campaign.leads.Email;
 import tests.campaign.leads.FirstnameLastname;
 import tests.campaign.leads.JobTitle;
 import tests.campaign.leads.PlacementReadOnly;
@@ -107,5 +108,10 @@ public class PageFactoryInitializer extends BaseMethod
 	public JobTitle jobTitle() 
 	{
 		return PageFactory.initElements(getWebDriver(), JobTitle.class);
+	}
+	
+	public Email email() 
+	{
+		return PageFactory.initElements(getWebDriver(), Email.class);
 	}
 }

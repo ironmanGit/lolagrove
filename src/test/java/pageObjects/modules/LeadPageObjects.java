@@ -2085,4 +2085,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		jobTitle().jobTitleCheck();
 		return this;
 	}
+	
+	public LeadPageObjects emailCheck() throws Exception {
+		email().emailCheck();
+		return this;
+	}
 }
