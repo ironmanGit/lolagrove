@@ -124,6 +124,40 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 		return result;
 	}
 
+	//Added by Anand
+	public static String getJobRoleInfo(String JobTitle, String FilePath) throws Exception {
+		String result = null;
+
+		List<String> lines = ExcelUtils.readFileToLines(FilePath);
+		for (String line : lines) {
+			String[] columns = line.split(",");
+			String JTitle = columns[1];
+			String JobRoleValue = columns[0];
+//			if (JTitle.equals(JobTile)) {
+			if (JTitle.contains(JobTitle)) {
+				JobRoleValue = JobRoleValue.toString();
+				result = JobRoleValue;
+//				result = result.replace("|", ",");
+				break;
+			}
+		}
+
+		if (result == null) {
+			throw new Exception("Error : Cannot find Job Tile: " + JobTitle + " from the CSV file " + FilePath);
+		}
+
+		return result;
+	}
+	
+		//Added by Anand
+	public static List<String> getJobRoleInfo(String JobTitle) throws Exception {
+		String filePath = "./src/test/resources/Test Data/Excel Files/JobInfo.csv";
+		String JobRole = getJobRoleInfo(JobTitle, filePath);
+		List<String> listOfJobRole = Arrays.asList(JobRole);
+		return listOfJobRole;
+	}
+	
+	
 	public static List<String> getCustomRegions(String region) throws Exception {
 		String filePath = "./src/test/resources/Test Data/Excel Files/CustomRegionsMapping.csv";
 		String customRegions = getCustomRegions(region, filePath);

@@ -143,6 +143,15 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	@FindBy(css = "select#ddlAdobeJobFunction")
 	private WebElement jobFunctionDropdown;
+	
+	//Added by Anand
+	@FindBy(css = "input[name='input[name='job_role']']")
+	private WebElement jobRole;
+	
+	//Added by Anand			
+	@FindBy(css = "select#ddlGenericLevel")
+	private WebElement jobRoleDropdown;
+	
 
 	@FindBy(css = "input[name='companyname']")
 	private WebElement companyName;
@@ -2083,6 +2092,24 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	
 	public LeadPageObjects jobTitleCheck() throws Exception {
 		jobTitle().jobTitleCheck();
+		return this;
+	}
+	
+	//added by Anand
+	public LeadPageObjects jobLevelCheck() throws Exception {
+		jobLevel().jobLevelCheck();
+		return this;
+	}
+	
+	//added by Anand
+	public LeadPageObjects selectvalueJobRoleDropdown(String value) throws Exception {
+		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(jobRoleDropdown, 15);
+			selectByVisibleText(jobRoleDropdown, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from jobRoleDropdown is " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from jobRoleDropdown " + e);
+		}
 		return this;
 	}
 }
