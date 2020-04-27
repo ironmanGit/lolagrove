@@ -77,6 +77,9 @@ public class OpenNotesPageObjects extends PageFactoryInitializer {
 
 	public OpenNotesPageObjects getCompanySizeFromOpenNotes() {
 		String companySize = getCompanySize();
+		if (companySize.contains("-")) {
+			companySize = companySize.replaceAll("[0-9]+-", "");
+		}
 		campaignTestDataProcess().setLeadsCompanySize(companySize);
 		ExtentTestManager.getTest().log(LogStatus.INFO, "company Size details in Open Notes : " + companySize);
 		return this;

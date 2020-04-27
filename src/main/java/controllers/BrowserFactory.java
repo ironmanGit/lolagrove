@@ -35,8 +35,10 @@ public class BrowserFactory extends InitMethod
 		case "chrome":
 			if (System.getProperty("os.name").toLowerCase().contains("win")) {
 				System.setProperty("webdriver.chrome.driver", "src/main/resources/Drivers/chromedriver.exe");
+				System.setProperty("webdriver.chrome.silentOutput","true");
 			} else if (System.getProperty("os.name").toLowerCase().contains("mac")) {
 				System.setProperty("webdriver.chrome.driver", "src/main/resources/Drivers/chromedriver");
+				System.setProperty("webdriver.chrome.silentOutput","true");
 			}
 			driver = new ChromeDriver();
 			break;
@@ -44,8 +46,10 @@ public class BrowserFactory extends InitMethod
 		case "chrome_headless":
 			if (System.getProperty("os.name").toLowerCase().contains("win")) {
 				System.setProperty("webdriver.chrome.driver", "src/main/resources/Drivers/chromedriver.exe");
+				System.setProperty("webdriver.chrome.silentOutput","true");
 			} else if (System.getProperty("os.name").toLowerCase().contains("mac")) {
 				System.setProperty("webdriver.chrome.driver", "src/main/resources/Drivers/chromedriver");
+				System.setProperty("webdriver.chrome.silentOutput","true");
 			}
 			ChromeOptions chromeOptions = new ChromeOptions();
 			chromeOptions.addArguments("--headless");  

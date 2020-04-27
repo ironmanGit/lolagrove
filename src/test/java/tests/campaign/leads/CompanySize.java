@@ -20,7 +20,6 @@ public class CompanySize extends LeadPageObjects {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Company size in open notes is 'TAL' so no check needed");
 		} else {
 			logger.info("Company size value is:" + companySizeOpenNoteValue);
-			if (placement.contains(companySizeOpenNoteValue)) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Company size check in placement is successfully done");
 				if (isLinkedIn) {
 					ExtentTestManager.getTest().log(LogStatus.INFO, "company size check in linkedin");
@@ -71,10 +70,6 @@ public class CompanySize extends LeadPageObjects {
 					ExtentTestManager.getTest().log(LogStatus.FAIL,
 							"company size check does not match in linked in and zoom info");
 				}
-			} else {
-				setvalueRejectionReason("company size in open notes does not match with placement");
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Company size check in placement is failed");
-			}
 		}
 		return leadPage();
 	}

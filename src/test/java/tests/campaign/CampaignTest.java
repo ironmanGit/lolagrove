@@ -30,9 +30,8 @@ public class CampaignTest extends PageFactoryInitializer {
 		.getAllFieldsFromOpenNotes()
 		.closeOpenNotesTab()
 		.setTestDataCheck();
-//		 .createCampaignLeadsFile();
-//		 leadPage.readCampaignLeadsFile();
-		ExtentTestManager.endTest();
+		leadPage()
+		.createCampaignLeadsFile();
 		
 	}
 
