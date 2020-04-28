@@ -83,6 +83,7 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(companySizeValue, 15);
 		String value = getText(companySizeValue).replaceAll("[a-z]| ", "");
 		value = value.replaceAll(".+(?<=-)", "");
+		value = value.replaceAll("([,|+])", "");
 		value = roundOffCompanySize(value);
 		try {
 			if (value != null) {
