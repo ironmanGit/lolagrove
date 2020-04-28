@@ -3,6 +3,7 @@ package tests.campaign;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import org.apache.log4j.Logger;
@@ -28,15 +29,15 @@ public class CampaignTest extends PageFactoryInitializer {
 		.navigateToLeadsPage()
 		.clickOpenNotesLink()
 		.getAllFieldsFromOpenNotes()
-		.closeOpenNotesTab()
-		.setTestDataCheck();
-		leadPage()
-		.createCampaignLeadsFile();
-		
+		.closeOpenNotesTab();
+//		.setTestDataCheck()
+//		leadPage()
+//		.createCampaignLeadsFile();
+//		
 	}
 
-//	@Test(priority = 1, description = "Get open records data")
-//	public void getOpenNotesRecord() throws Exception {
+	@Test(priority = 1, description = "Get open records data")
+	public void getOpenNotesRecord() throws Exception {
 //		getCountry = campaignTestDataProcess().getLeadsCountry();
 //		getCompanySize = campaignTestDataProcess().getLeadsCompanySize();
 //		getIndustrialVertical = campaignTestDataProcess().getLeadsIndustrialVertical();
@@ -51,9 +52,12 @@ public class CampaignTest extends PageFactoryInitializer {
 //		logger.info("custom Regions data : " + customRegions);
 //		List<String> countryMapping = CampaignTestDataProcess.getCountryMapping("NORDIC", "countryCode1");
 //		logger.info("country Mapping data : " + countryMapping);
-//		List<String> JobRole = CampaignTestDataProcess.getJobRoleInfo("Head of Information Systems and Strategy");
-//		logger.info("JobRole:" + JobRole + "for the Tile:");
-//	}
+		String DisplayJobTile = leadPage().getvalueJobTitle();
+		List<String> JobRole = CampaignTestDataProcess.getJobRoleInfo("Head of Information Systems and Strategy");
+		logger.info("Job Role:" + JobRole + "for the Title:");
+//		List<String> JobFunction = CampaignTestDataProcess.getJobFunctionInfo("Head of Information Systems and Strategy");
+//		logger.info("Job Function:" + JobFunction + "for the Title:");
+	}
 
 //	@DataProvider(name = "getLeadsData")
 //	public Iterator<Object[]> getLeadsData() throws Exception {
@@ -66,19 +70,36 @@ public class CampaignTest extends PageFactoryInitializer {
 //		return dataList.iterator();
 //	}
 //
-//	@Test(dataProvider = "getLeadsData", priority = 3, description = "Lead Testing")
-//	public void leadsCheck(String leadsLine) throws Exception {
-//		String leadId = leadsLine.substring(leadsLine.length() - 9);
-//		ExtentTestManager.startTest("Lead Id--> " + leadId, "Lead Testing");
-//		leadPage()
-//		.clickLeadsFromFile(leadsLine)
+	@Test(dataProvider = "getLeadsData", priority = 3, description = "Lead Testing")
+	public void leadsCheck(String leadsLine) throws Exception {
+		String leadId = leadsLine.substring(leadsLine.length() - 9);
+		ExtentTestManager.startTest("Lead Id--> " + leadId, "Lead Testing");
+		leadPage()
+		.clickLeadsFromFile(leadsLine)
 //		.placementCheck()
 //		.countryCheck()
 //		.companySizeCheck()
 //		.companyTurnoverCheck()
 //		.firstnameLastnameCheck()
 //		.jobTitleCheck()
+
+		//Added by Anand
+		.jobLevelCheck();
+
 //		.clickCloseBtn();
-//		ExtentTestManager.endTest();
+		ExtentTestManager.endTest();
 //	}
+	
+//	@Test()
+//	public void testrunning ()
+//	{
+//		List<String> listOfCusRegions = Arrays.asList("anand","kumar");
+//		System.out.println(listOfCusRegions.get(0));
+//		System.out.println(listOfCusRegions.get(1));
+//		System.out.println(listOfCusRegions);
+//	}
+	
 }
+
+
+

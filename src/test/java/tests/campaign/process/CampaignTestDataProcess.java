@@ -124,6 +124,23 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 		return result;
 	}
 
+	
+	//Added by Anand
+	public static List<String> getJobRoleInfo(String JobTitle) throws Exception {
+		String filePath = "./src/test/resources/Test Data/Excel Files/JobRoleInfo.csv";
+		String JobRole = getJobRoleInfo(JobTitle, filePath);
+		List<String> listOfJobRole = Arrays.asList(JobRole);
+		return listOfJobRole;
+	}
+
+	//Added by Anand
+	public static List<String> getJobFunctionInfo(String JobTitle) throws Exception {
+		String filePath = "./src/test/resources/Test Data/Excel Files/JobFunctionInfo.csv";
+		String JobFunction = getJobFunctionInfo(JobTitle, filePath);
+		List<String> listOfJobFunction = Arrays.asList(JobFunction);
+		return listOfJobFunction;
+	}
+	
 	//Added by Anand
 	public static String getJobRoleInfo(String JobTitle, String FilePath) throws Exception {
 		String result = null;
@@ -133,30 +150,50 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 			String[] columns = line.split(",");
 			String JTitle = columns[1];
 			String JobRoleValue = columns[0];
-//			if (JTitle.equals(JobTile)) {
-			if (JTitle.contains(JobTitle)) {
+			System.out.println(JobTitle);
+			System.out.println(JTitle);
+			if (JobTitle.contains(JTitle)) {
 				JobRoleValue = JobRoleValue.toString();
 				result = JobRoleValue;
 //				result = result.replace("|", ",");
+				System.out.println(JobRoleValue);
 				break;
 			}
 		}
 
 		if (result == null) {
-			throw new Exception("Error : Cannot find Job Tile: " + JobTitle + " from the CSV file " + FilePath);
+			throw new Exception("Error : Cannot find Job Tile: " + JobTitle + " from the CSV file for Job Function Field" + FilePath);
 		}
 
 		return result;
 	}
 	
-		//Added by Anand
-	public static List<String> getJobRoleInfo(String JobTitle) throws Exception {
-		String filePath = "./src/test/resources/Test Data/Excel Files/JobInfo.csv";
-		String JobRole = getJobRoleInfo(JobTitle, filePath);
-		List<String> listOfJobRole = Arrays.asList(JobRole);
-		return listOfJobRole;
+	//Added by Anand
+	public static String getJobFunctionInfo(String JobTitle, String FilePath) throws Exception {
+		String result = null;
+
+		List<String> lines = ExcelUtils.readFileToLines(FilePath);
+		for (String line : lines) {
+			String[] columns = line.split(",");
+			String JTitle = columns[1];
+			String JobFunctionValue = columns[0];
+			System.out.println(JobTitle);
+			System.out.println(JTitle);
+			if (JobTitle.contains(JTitle)) {
+				JobFunctionValue = JobFunctionValue.toString();
+				result = JobFunctionValue;
+//				result = result.replace("|", ",");
+				System.out.println(JobFunctionValue);
+				break;
+			}
+		}
+
+		if (result == null) {
+			throw new Exception("Error : Cannot find Job Tile: " + JobTitle + " from the CSV file for Job Function Field" + FilePath);
+		}
+
+		return result;
 	}
-	
 	
 	public static List<String> getCustomRegions(String region) throws Exception {
 		String filePath = "./src/test/resources/Test Data/Excel Files/CustomRegionsMapping.csv";
