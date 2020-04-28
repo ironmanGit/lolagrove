@@ -2076,8 +2076,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 	
-	public LeadPageObjects firstnameLastnameCheck() throws Exception {
-		firstnameLastname().firstnameLastnameCheck();
+	public LeadPageObjects firstnameLastnameJobTitleCheck() throws Exception {
+		firstnameLastnameJobTitle().firstnameLastnameJobTitleCheck();
 		return this;
 	}
 	

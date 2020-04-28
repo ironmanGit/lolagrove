@@ -21,7 +21,7 @@ public class CompanyTurnover extends LeadPageObjects {
 		if (endoleCompanyTurnOver != null) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Company turnover in endole is " + endoleCompanyTurnOver);
 			endolePage().closeEndolePage();
-			setvalueTurnover(endoleCompanyTurnOver);
+			selectvalueTurnoverDropdown(endoleCompanyTurnOver);
 			ExtentTestManager.getTest().log(LogStatus.PASS,
 					"Company turnover in lead page is updated as per evidence from endole");
 			setvalueTurnoverEvidence(endoleUrl);

@@ -18,7 +18,7 @@ import tests.campaign.leads.CompanySize;
 import tests.campaign.leads.CompanyTurnover;
 import tests.campaign.leads.Country;
 import tests.campaign.leads.Email;
-import tests.campaign.leads.FirstnameLastname;
+import tests.campaign.leads.FirstnameLastnameJobTitle;
 import tests.campaign.leads.JobTitle;
 import tests.campaign.leads.PlacementReadOnly;
 import tests.campaign.process.CampaignTestDataProcess;
@@ -100,9 +100,9 @@ public class PageFactoryInitializer extends BaseMethod
 		return PageFactory.initElements(getWebDriver(), Country.class);
 	}
 	
-	public FirstnameLastname firstnameLastname() 
+	public FirstnameLastnameJobTitle firstnameLastnameJobTitle() 
 	{
-		return PageFactory.initElements(getWebDriver(), FirstnameLastname.class);
+		return PageFactory.initElements(getWebDriver(), FirstnameLastnameJobTitle.class);
 	}
 	
 	public JobTitle jobTitle() 

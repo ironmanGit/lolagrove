@@ -46,8 +46,10 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	private WebElement fullName;
 	
 	@FindBy(css = "div h2.top-card-layout__headline")
-	private WebElement jobTitleAndCompany;
+	private WebElement jobTitle;
 	
+	@FindBy(css = "div[data-section='currentPositionsDetails'] a span.top-card-link__description")
+	private WebElement jobCompany;
 	
 	public String getWebsiteValue() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(websiteValue, 15);
@@ -174,9 +176,9 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	}
 	
 	public String getJobTitleValue() throws Exception {
-		ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitleAndCompany, 15);
-		String value = getText(jobTitleAndCompany);
-		value = value.replaceAll(".+(?= at)", value);
+		ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitle, 15);
+		String value = getText(jobTitle);
+		value = value.replaceAll("(?= at).+", "");
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "job title value is " + value);
@@ -189,9 +191,8 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	}
 	
 	public String getCompanyValue() throws Exception {
-		ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitleAndCompany, 15);
-		String value = getText(jobTitleAndCompany);
-		value = value.replaceAll("(?<=at ).+", value);
+		ExplicitWaiting.explicitWaitVisibilityOfElement(jobCompany, 15);
+		String value = getText(jobCompany);
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "person company value is " + value);
