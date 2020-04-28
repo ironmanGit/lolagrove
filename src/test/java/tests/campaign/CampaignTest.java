@@ -30,8 +30,8 @@ public class CampaignTest extends PageFactoryInitializer {
 		.getAllFieldsFromOpenNotes()
 		.closeOpenNotesTab()
 		.setTestDataCheck();
-		leadPage()
-		.createCampaignLeadsFile();
+		//leadPage()
+		//.createCampaignLeadsFile();
 	}
 
 	@Test(priority = 2, description = "Get open records data")

@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
+
 import javax.imageio.ImageIO;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -357,6 +359,17 @@ public class BaseMethod extends WebDriverFactory {
 		String value = js.executeScript("return document.getElementsByName('"+fieldName+"')[0]['value']").toString();
 		return value;
 	}
+	
+	/* email validator*/
+	public static boolean isValidEmail(String email) 
+    { 
+        String emailRegex = "^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$"; 
+                              
+        Pattern pat = Pattern.compile(emailRegex); 
+        if (email == null) 
+            return false; 
+        return pat.matcher(email).matches(); 
+    } 
 	
 	/* get company size as per lolagrove */
 	public String roundOffCompanySize(String value) throws Exception {

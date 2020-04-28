@@ -42,6 +42,9 @@ public class OpenNotesPageObjects extends PageFactoryInitializer {
 
 	@FindBy(xpath = "//div/h2[contains(text(),'Exclusions')]/../following-sibling::div//a")
 	private List<WebElement> companyExclusionListsLink;
+	
+	@FindBy(css = "#GroupA > div:nth-child(7) > div.panel-body")
+	private WebElement email;
 
 	@FindBy(css = "body > table")
 	private WebElement companyListsName;
@@ -118,6 +121,13 @@ public class OpenNotesPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
+	public OpenNotesPageObjects getEmailFromOpenNotes() {
+		String emailOpenNotes = getListOfTexts(email);
+		campaignTestDataProcess().setEmail(emailOpenNotes);
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Email in Open Notes : " + emailOpenNotes);
+		return this;
+	}
+	
 	public String getListOfTexts(WebElement element) {
 		String text = element.getText();
 		text = text.replace("\n", "|");
@@ -172,8 +182,8 @@ public class OpenNotesPageObjects extends PageFactoryInitializer {
 		getIndustryVerticalFromOpenNotes();
 		getJobFunctionFromOpenNotes();
 		getJobTitleFromOpenNotes();
-		getExclusionCompanyListDetailsFromOpenNotes();
-		getCompanyListDetailsFromOpenNotes();
+		//getExclusionCompanyListDetailsFromOpenNotes();
+		//getCompanyListDetailsFromOpenNotes();
 		return this;
 	}
 

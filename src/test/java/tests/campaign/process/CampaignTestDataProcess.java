@@ -19,6 +19,7 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 	private static String leadsJobTitle;
 	private static String leadsCountry;
 	private static String leadsCompanyName;
+	private static String email;
 	private static List<String> leadsCompanyListDetails = new ArrayList<String>();
 
 	public List<CampaignDataRecord> getCampaignLeadsData() {
@@ -85,6 +86,14 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 		this.leadsCountry = leadsCountry;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	public String getLeadsCompanyName() {
 		return leadsCompanyName;
 	}
