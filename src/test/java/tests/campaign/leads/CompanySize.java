@@ -18,6 +18,12 @@ public class CompanySize extends LeadPageObjects {
 		if (companySizeOpenNoteValue.contains("TAL")) {
 			logger.info("Company size value is:" + companySizeOpenNoteValue);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Company size in open notes is 'TAL' so no check needed");
+			selectLinkedInvalueCompanyToolsDropdown();
+			String linkedInUrl = getCurrentUrl();
+			linkedInPage().closeLinkedInPage();
+			setvalueCompanySizeEvidence(linkedInUrl);
+			ExtentTestManager.getTest().log(LogStatus.INFO,
+					"Company size evidence is updated in lead page");
 		} else {
 			logger.info("Company size value is:" + companySizeOpenNoteValue);
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Company size check in placement is successfully done");
