@@ -20,7 +20,7 @@ public class CompanyTurnover extends LeadPageObjects {
 		String endoleUrl = getCurrentUrl();
 		if (endoleCompanyTurnOver != null) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Company turnover in endole is " + endoleCompanyTurnOver);
-			endolePage().closeEndolePage();
+			googlePage().closeGooglePage();
 			selectvalueTurnoverDropdown(endoleCompanyTurnOver);
 			ExtentTestManager.getTest().log(LogStatus.PASS,
 					"Company turnover in lead page is updated as per evidence from endole");
@@ -28,7 +28,7 @@ public class CompanyTurnover extends LeadPageObjects {
 			ExtentTestManager.getTest().log(LogStatus.INFO, "Company turnover evidence is updated in lead page");
 		} else {
 			isMatchFound = false;
-			endolePage().closeEndolePage();
+			googlePage().closeGooglePage();
 			ExtentTestManager.getTest().log(LogStatus.INFO, "Company turnover does not available in endole");
 			setvalueRejectionReason("company turn over check does not match in endole");
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "company turn over check does not match in endole");

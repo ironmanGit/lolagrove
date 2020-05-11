@@ -34,7 +34,14 @@ public class CampaignTest extends PageFactoryInitializer {
 		//.createCampaignLeadsFile();
 	}
 
-	@Test(priority = 2, description = "Get open records data")
+	@Test(priority = 2, description = "Launch endole and linkedin browsers")
+	public void lauchSearchBrowsers() throws Exception {
+		ExtentTestManager.startTest("Launch endole and linkedin browsers", "Launch endole and linkedin browsers");
+		endoleDriver();
+		linkedInDriver();
+	}
+	
+	@Test(priority = 3, description = "Get open records data")
 	public void getOpenNotesRecord() throws Exception {
 		getCountry = campaignTestDataProcess().getLeadsCountry();
 		getCompanySize = campaignTestDataProcess().getLeadsCompanySize();

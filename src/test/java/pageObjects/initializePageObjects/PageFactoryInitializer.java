@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import controllers.BaseMethod;
 import pageObjects.modules.GMailPageObjects;
 import pageObjects.modules.EndolePageObjects;
-import pageObjects.modules.GoogleHomePageObjects;
+import pageObjects.modules.GooglePageObjects;
 import pageObjects.modules.LandingPageObjects;
 import pageObjects.modules.LeadPageObjects;
 import pageObjects.modules.LinkedInPageObjects;
@@ -30,9 +30,9 @@ import tests.campaign.process.CampaignTestDataProcess;
 
 public class PageFactoryInitializer extends BaseMethod 
 {
-	public GoogleHomePageObjects googleHomePage() 
+	public GooglePageObjects googlePage() 
 	{
-		return PageFactory.initElements(getWebDriver(), GoogleHomePageObjects.class);
+		return PageFactory.initElements(getWebDriver(), GooglePageObjects.class);
 	}
 
 	public GMailPageObjects gmailPage() 

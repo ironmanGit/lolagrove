@@ -51,7 +51,7 @@ public class FirstnameLastnameJobTitle extends LeadPageObjects {
 						"Company in lead page does not matched with linkedin company name");
 			}
 			String linkedInUrl = getCurrentUrl();
-			linkedInPage().closeLinkedInPage();
+			googlePage().closeGooglePage();
 			setvalueLinkedinIdUrl(linkedInUrl);
 			ExtentTestManager.getTest().log(LogStatus.INFO, "Linkedin url evidence is updated in lead page");
 			setvalueJobTitle(jobTitle);
@@ -60,7 +60,7 @@ public class FirstnameLastnameJobTitle extends LeadPageObjects {
 			setvalueJobTitleEvidence(linkedInUrl);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "job title url evidence is updated in lead page");
 		} catch (Exception e) {
-			linkedInPage().closeLinkedInPage();
+			googlePage().closeGooglePage();
 			setvalueLinkedinIdUrl("Linkedin URL not found");
 			ExtentTestManager.getTest().log(LogStatus.INFO,
 					"Unable to find linkedin url so evidence is not updated in lead page");

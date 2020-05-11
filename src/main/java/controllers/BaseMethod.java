@@ -321,6 +321,26 @@ public class BaseMethod extends WebDriverFactory {
 		}
 	}
 
+	/* Focus to default browser using JavaScript Executor */
+	public void switchToDefaultBrowser() throws Exception {
+		((JavascriptExecutor) getWebDriver()).executeScript("window.focus();");
+	}
+	
+	/* Focus to endole browser using JavaScript Executor */
+	public void switchToEndoleBrowser() throws Exception {
+		((JavascriptExecutor) getEndoleWebDriver()).executeScript("window.focus();");
+	}
+	
+	/* Focus to linkedin browser using JavaScript Executor */
+	public void switchToLinkedInBrowser() throws Exception {
+		((JavascriptExecutor) getLinkedInWebDriver()).executeScript("window.focus();");
+	}
+	
+	/* Focus to linkedin browser using JavaScript Executor */
+	public void switchToZoomInfoBrowser() throws Exception {
+		((JavascriptExecutor) getZoomInfoWebDriver()).executeScript("window.focus();");
+	}
+	
 	/* Return web element using dynamic xpath */
 	public WebElement getXpath(String xpath, String dynamicValue) throws Exception {
 		String actualXpath = String.format(xpath, dynamicValue);
@@ -342,6 +362,13 @@ public class BaseMethod extends WebDriverFactory {
 		click(element);
 	}
 
+	/* Click on google search result1 */
+	public String getSearchResult1() throws Exception {
+		WebElement element = getWebDriver().findElement(By.cssSelector("ol li>div>a"));
+		String url = element.getAttribute("href");
+		return url;
+	}
+	
 	/* return current url */
 	public String getCurrentUrl() throws Exception {
 		String url = getWebDriver().getCurrentUrl();

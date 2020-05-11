@@ -441,6 +441,10 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	}
 
 	public LeadPageObjects clickEditLead(String leadId) throws Exception {
+		switchToDefaultBrowser();
+		if(closeBtn.isDisplayed()) {
+			click(closeBtn);
+		}
 		WebElement editLead = getXpath("//td/span[contains(text(),'%s')]/../preceding-sibling::td/i", leadId);
 		ExplicitWaiting.explicitWaitVisibilityOfElement(editLead, 15);
 		try {
@@ -1900,7 +1904,10 @@ public class LeadPageObjects extends PageFactoryInitializer {
 			selectByVisibleText(jobTitleDropdown, "Linkedin Company Search");
 			logger.info("Linkedin Company Search");
 			switchToNewTab();
-			clickSearchResult1();
+			//clickSearchResult1();
+			String url =getSearchResult1();
+			switchToLinkedInBrowser();
+			getLinkedInWebDriver().navigate().to(url);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for jobTitleDropdown is set as Linkedin Company Search");
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value Linkedin Company Search from jobTitleDropdown " + e);
@@ -1937,7 +1944,10 @@ public class LeadPageObjects extends PageFactoryInitializer {
 			selectByVisibleText(companyToolsDropdown, "Linkedin");
 			logger.info("Linkedin");
 			switchToNewTab();
-			clickSearchResult1();
+			//clickSearchResult1();
+			String url =getSearchResult1();
+			switchToLinkedInBrowser();
+			getLinkedInWebDriver().navigate().to(url);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companyToolsDropdown is Linkedin");
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from companyToolsDropdown " + e);
@@ -1951,7 +1961,10 @@ public class LeadPageObjects extends PageFactoryInitializer {
 			selectByVisibleText(companyToolsDropdown, "Zoominfo");
 			logger.info("Zoominfo");
 			switchToNewTab();
-			clickSearchResult1();
+			//clickSearchResult1();
+			String url =getSearchResult1();
+			switchToZoomInfoBrowser();
+			getZoomInfoWebDriver().navigate().to(url);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companyToolsDropdown is Zoominfo");
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from companyToolsDropdown " + e);
@@ -1980,7 +1993,10 @@ public class LeadPageObjects extends PageFactoryInitializer {
 			logger.info("Google (Generic)");
 			switchToNewTab();
 			updateSearchValueInGoogleAndSearch(searchValue);
-			clickSearchResult1();
+			//clickSearchResult1();
+			String url =getSearchResult1();
+			switchToEndoleBrowser();
+			getEndoleWebDriver().navigate().to(url);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companyToolsDropdown is Google (Generic)");
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from companyToolsDropdown " + e);
