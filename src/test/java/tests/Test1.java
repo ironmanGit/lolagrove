@@ -28,7 +28,7 @@ public class Test1 extends PageFactoryInitializer
 	public void testGoogle0() throws Exception
 	{
 		ExtentTestManager.startTest("Google Test", "Google test description");
-		googleHomePage()
+		googlePage()
 		.verifyPageTitle();
 	}
 }
