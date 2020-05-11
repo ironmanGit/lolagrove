@@ -421,23 +421,29 @@ public class BaseMethod extends WebDriverFactory {
 	}
 
 	/* get company turnover as per lolagrove */
-	public String roundOffTurnover(String value) throws Exception {
+	public String roundOffTurnover(String value, String mORb) throws Exception {
 		int turnOver = Integer.parseInt(value);
 		String result = null;
-		if (turnOver < 5) {
-			result = "$100k - $4.9m[£80k - £3.9m]";
-		} else if ((turnOver >= 5) && (turnOver < 25)) {
-			result = "$5m - $25m[£4m - £20m]";
-		} else if ((turnOver >= 25) && (turnOver < 800)) {
-			result = "$25.1m - $1b[£20m - £800m]";
-		} else if ((turnOver >= 800) && (turnOver < 4000)) {
-			result = "$1b - $5b[£800m - £4b]";
-		} else if ((turnOver >= 4000) && (turnOver < 8000)) {
-			result = "$5b - $10b[£4b - £8b]";
-		} else if ((turnOver > 8000)) {
-			result = "$10b+[£8b+]";
+		if(mORb.contains("m")) {
+			if (turnOver < 5) {
+				result = "$100k - $4.9m[£80k - £3.9m]";
+			} else if ((turnOver >= 5) && (turnOver < 25)) {
+				result = "$5m - $25m[£4m - £20m]";
+			} else if ((turnOver >= 25) && (turnOver < 800)) {
+				result = "$25.1m - $1b[£20m - £800m]";
+			}
+		} else if (mORb.contains("b")) {
+			if ((turnOver >= 1) && (turnOver < 5)) {
+				result = "$1b - $5b[£800m - £4b]";
+			} else if ((turnOver >= 5) && (turnOver < 10)) {
+				result = "$5b - $10b[£4b - £8b]";
+			} else if ((turnOver >= 10)) {
+				result = "$10b+[£8b+]";
+			} else {
+				result = "$25.1m - $1b[£20m - £800m]";
+			}
 		} else {
-			result = "$25.1m - $1b[£20m - £800m]";
+			result = "$100k - $4.9m[£80k - £3.9m]";
 		}
 		return result;
 	}
