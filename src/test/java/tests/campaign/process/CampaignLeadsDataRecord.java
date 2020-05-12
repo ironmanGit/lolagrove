@@ -84,7 +84,7 @@ public class CampaignLeadsDataRecord extends CampaignTestDataProcess{
 		 * dataLine + "', number of columns "+len + ", should be "+columns); }
 		 */
 		int i=0;
-		eyeIcon = cols[i++];
+//		eyeIcon = cols[i++];
 //		verificationStatus = cols[i++];
 		leadsId = cols[i++];
 //		tickIcon = cols[i++];
