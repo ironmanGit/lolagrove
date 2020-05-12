@@ -18,6 +18,12 @@ public class CompanySize extends LeadPageObjects {
 		if (companySizeOpenNoteValue.contains("TAL")) {
 			logger.info("Company size value is:" + companySizeOpenNoteValue);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Company size in open notes is 'TAL' so no check needed");
+			selectLinkedInvalueCompanyToolsDropdown();
+			String linkedInUrl = getLinkedInCurrentUrl();
+			googlePage().closeGooglePage();
+			setvalueCompanySizeEvidence(linkedInUrl+"/about");
+			ExtentTestManager.getTest().log(LogStatus.INFO,
+					"Company size evidence is updated in lead page");
 		} else {
 			logger.info("Company size value is:" + companySizeOpenNoteValue);
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Company size check in placement is successfully done");
@@ -25,21 +31,21 @@ public class CompanySize extends LeadPageObjects {
 					ExtentTestManager.getTest().log(LogStatus.INFO, "company size check in linkedin");
 					selectLinkedInvalueCompanyToolsDropdown();
 					String linkedInCompanySize = linkedInPage().getCompanySizeValue();
-					String linkedInUrl = getCurrentUrl();
-					if (linkedInCompanySize.contains(companySizeOpenNoteValue)) {
+					String linkedInUrl = getLinkedInCurrentUrl();
+					if (linkedInCompanySize != null) {
 						ExtentTestManager.getTest().log(LogStatus.PASS,
 								"Company size in linkedin is matching open notes values");
-						linkedInPage().closeLinkedInPage();
-						setvalueCompanySize(linkedInCompanySize);
+						googlePage().closeGooglePage();
+						selectvalueCompanySizeDropDown(linkedInCompanySize);
 						ExtentTestManager.getTest().log(LogStatus.PASS,
 								"Company size in lead page is updated as per evidence from linkedin");
-						setvalueCompanyEvidence(linkedInUrl);
+						setvalueCompanySizeEvidence(linkedInUrl+"about");
 						ExtentTestManager.getTest().log(LogStatus.INFO,
 								"Company size evidence is updated in lead page");
 					} else {
 						isLinkedIn = false;
 						isMatchFound = false;
-						linkedInPage().closeLinkedInPage();
+						googlePage().closeGooglePage();
 						ExtentTestManager.getTest().log(LogStatus.INFO, "Company size does not match with linked in");
 					}
 				} 
@@ -47,20 +53,20 @@ public class CompanySize extends LeadPageObjects {
 					ExtentTestManager.getTest().log(LogStatus.INFO, "company size check in zoom info");
 					selectZoomInfovalueCompanyToolsDropdown();
 					String zoomInfoCompanySize = zoomInfoPage().getEmployeesValue();
-					String zoomInfoUrl = getCurrentUrl();
-					if (zoomInfoCompanySize.contains(companySizeOpenNoteValue)) {
+					String zoomInfoUrl = getZoomInfoCurrentUrl();
+					if (zoomInfoCompanySize != null) {
 						ExtentTestManager.getTest().log(LogStatus.PASS,
 								"Company size in zoom info is matching open notes values");
-						zoomInfoPage().closeZoomInfoPage();
-						setvalueCompanySize(zoomInfoCompanySize);
+						googlePage().closeGooglePage();
+						selectvalueCompanySizeDropDown(zoomInfoCompanySize);
 						ExtentTestManager.getTest().log(LogStatus.PASS,
 								"Company size in lead page is updated as per evidence from zoom info");
-						setvalueCompanyEvidence(zoomInfoUrl);
+						setvalueCompanySizeEvidence(zoomInfoUrl);
 						ExtentTestManager.getTest().log(LogStatus.INFO,
 								"Company size evidence is updated in lead page");
 					} else {
 						isMatchFound = false;
-						zoomInfoPage().closeZoomInfoPage();
+						googlePage().closeGooglePage();
 						ExtentTestManager.getTest().log(LogStatus.INFO,
 								"Company size evidence is updated in lead page");
 					}

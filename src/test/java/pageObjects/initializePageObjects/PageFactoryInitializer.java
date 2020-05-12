@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import controllers.BaseMethod;
 import pageObjects.modules.GMailPageObjects;
 import pageObjects.modules.EndolePageObjects;
-import pageObjects.modules.GoogleHomePageObjects;
+import pageObjects.modules.GooglePageObjects;
 import pageObjects.modules.LandingPageObjects;
 import pageObjects.modules.LeadPageObjects;
 import pageObjects.modules.LinkedInPageObjects;
@@ -18,8 +18,7 @@ import tests.campaign.leads.CompanySize;
 import tests.campaign.leads.CompanyTurnover;
 import tests.campaign.leads.Country;
 import tests.campaign.leads.Email;
-import tests.campaign.leads.FirstnameLastname;
-import tests.campaign.leads.JobLevel;
+import tests.campaign.leads.FirstnameLastnameJobTitle;
 import tests.campaign.leads.JobTitle;
 import tests.campaign.leads.PlacementReadOnly;
 import tests.campaign.process.CampaignTestDataProcess;
@@ -31,9 +30,9 @@ import tests.campaign.process.CampaignTestDataProcess;
 
 public class PageFactoryInitializer extends BaseMethod 
 {
-	public GoogleHomePageObjects googleHomePage() 
+	public GooglePageObjects googlePage() 
 	{
-		return PageFactory.initElements(getWebDriver(), GoogleHomePageObjects.class);
+		return PageFactory.initElements(getWebDriver(), GooglePageObjects.class);
 	}
 
 	public GMailPageObjects gmailPage() 
@@ -101,9 +100,9 @@ public class PageFactoryInitializer extends BaseMethod
 		return PageFactory.initElements(getWebDriver(), Country.class);
 	}
 	
-	public FirstnameLastname firstnameLastname() 
+	public FirstnameLastnameJobTitle firstnameLastnameJobTitle() 
 	{
-		return PageFactory.initElements(getWebDriver(), FirstnameLastname.class);
+		return PageFactory.initElements(getWebDriver(), FirstnameLastnameJobTitle.class);
 	}
 	
 	public JobTitle jobTitle() 

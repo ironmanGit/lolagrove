@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
@@ -25,6 +26,9 @@ import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
  */
 public class WebDriverFactory extends BrowserFactory {
 	public static ThreadLocal<WebDriver> wd = new ThreadLocal<WebDriver>();
+	public static ThreadLocal<WebDriver> ed = new ThreadLocal<WebDriver>();
+	public static ThreadLocal<WebDriver> ld = new ThreadLocal<WebDriver>();
+	public static ThreadLocal<WebDriver> zi = new ThreadLocal<WebDriver>();
 	public static String browser;
 	public static String url;
 
@@ -46,6 +50,57 @@ public class WebDriverFactory extends BrowserFactory {
 		return wd.get();
 	}
 
+	public void endoleDriver() throws Exception
+	{
+		new WebDriverFactory();
+		WebDriver endoleDriver = WebDriverFactory.createDriver();
+		setEndoleWebDriver(endoleDriver);
+		endoleDriver.navigate().to("https://www.endole.co.uk/");
+	}
+	
+	public void setEndoleWebDriver(WebDriver driver) {
+		ed.set(driver);
+	}
+
+	public static WebDriver getEndoleWebDriver() {
+		return ed.get();
+	}
+	
+	public void zoomInfoDriver() throws Exception
+	{
+		new WebDriverFactory();
+		WebDriver zoomInfoDriver = WebDriverFactory.createDriver();
+		setZoomInfoWebDriver(zoomInfoDriver);
+		zoomInfoDriver.navigate().to("https://www.zoominfo.com/");
+	}
+	
+	public void setZoomInfoWebDriver(WebDriver driver) {
+		zi.set(driver);
+	}
+
+	public static WebDriver getZoomInfoWebDriver() {
+		return zi.get();
+	}
+	
+	public void linkedInDriver() throws Exception
+	{
+		new WebDriverFactory();
+		WebDriver linkedInDriver = WebDriverFactory.createDriver();
+		setzLinkedInWebDriver(linkedInDriver);
+		linkedInDriver.navigate().to("https://www.linkedin.com/login?");
+		linkedInDriver.findElement(By.cssSelector("input[id='username']")).sendKeys("leadscaleautomation@gmail.com");
+		linkedInDriver.findElement(By.cssSelector("input[id='password']")).sendKeys("Merit@1234");
+		linkedInDriver.findElement(By.cssSelector("div>button")).click();
+	}
+	
+	public void setzLinkedInWebDriver(WebDriver driver) {
+		ld.set(driver);
+	}
+
+	public static WebDriver getLinkedInWebDriver() {
+		return ld.get();
+	}
+	
 	public static void saveFullPageScreenshot(String name) throws IOException {
 		Screenshot screenshot = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000))
 				.takeScreenshot(getWebDriver());
@@ -65,5 +120,7 @@ public class WebDriverFactory extends BrowserFactory {
 	public void afterClass() throws Exception {
 		Thread.sleep(2000);
 		getWebDriver().quit();
+		getEndoleWebDriver().quit();
+		getLinkedInWebDriver().quit();
 	}
 }

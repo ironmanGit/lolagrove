@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
+
 import javax.imageio.ImageIO;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -319,6 +321,26 @@ public class BaseMethod extends WebDriverFactory {
 		}
 	}
 
+	/* Focus to default browser using JavaScript Executor */
+	public void switchToDefaultBrowser() throws Exception {
+		((JavascriptExecutor) getWebDriver()).executeScript("window.focus();");
+	}
+	
+	/* Focus to endole browser using JavaScript Executor */
+	public void switchToEndoleBrowser() throws Exception {
+		((JavascriptExecutor) getEndoleWebDriver()).executeScript("window.focus();");
+	}
+	
+	/* Focus to linkedin browser using JavaScript Executor */
+	public void switchToLinkedInBrowser() throws Exception {
+		((JavascriptExecutor) getLinkedInWebDriver()).executeScript("window.focus();");
+	}
+	
+	/* Focus to linkedin browser using JavaScript Executor */
+	public void switchToZoomInfoBrowser() throws Exception {
+		((JavascriptExecutor) getZoomInfoWebDriver()).executeScript("window.focus();");
+	}
+	
 	/* Return web element using dynamic xpath */
 	public WebElement getXpath(String xpath, String dynamicValue) throws Exception {
 		String actualXpath = String.format(xpath, dynamicValue);
@@ -340,12 +362,37 @@ public class BaseMethod extends WebDriverFactory {
 		click(element);
 	}
 
+	/* Click on google search result1 */
+	public String getSearchResult1() throws Exception {
+		WebElement element = getWebDriver().findElement(By.cssSelector("h1+div>div>h2+div div a"));
+		String url = element.getAttribute("href");
+		return url;
+	}
+	
 	/* return current url */
 	public String getCurrentUrl() throws Exception {
 		String url = getWebDriver().getCurrentUrl();
 		return url;
 	}
+	
+	/* return linked in current url */
+	public String getLinkedInCurrentUrl() throws Exception {
+		String url = getLinkedInWebDriver().getCurrentUrl();
+		return url;
+	}
 
+	/* return endole current url */
+	public String getEndoleCurrentUrl() throws Exception {
+		String url = getEndoleWebDriver().getCurrentUrl();
+		return url;
+	}
+	
+	/* return zoom info current url */
+	public String getZoomInfoCurrentUrl() throws Exception {
+		String url = getZoomInfoWebDriver().getCurrentUrl();
+		return url;
+	}
+	
 	/* To Refresh Current Tab */
 	public void refreshPage() {
 		getWebDriver().navigate().refresh();
@@ -357,6 +404,17 @@ public class BaseMethod extends WebDriverFactory {
 		String value = js.executeScript("return document.getElementsByName('"+fieldName+"')[0]['value']").toString();
 		return value;
 	}
+	
+	/* email validator*/
+	public static boolean isValidEmail(String email) 
+    { 
+        String emailRegex = "^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$"; 
+                              
+        Pattern pat = Pattern.compile(emailRegex); 
+        if (email == null) 
+            return false; 
+        return pat.matcher(email).matches(); 
+    } 
 	
 	/* get company size as per lolagrove */
 	public String roundOffCompanySize(String value) throws Exception {
@@ -381,23 +439,29 @@ public class BaseMethod extends WebDriverFactory {
 	}
 
 	/* get company turnover as per lolagrove */
-	public String roundOffTurnover(String value) throws Exception {
+	public String roundOffTurnover(String value, String mORb) throws Exception {
 		int turnOver = Integer.parseInt(value);
 		String result = null;
-		if (turnOver < 5) {
-			result = "$100k - $4.9m[£80k - £3.9m]";
-		} else if ((turnOver >= 5) && (turnOver < 25)) {
-			result = "$5m - $25m[£4m - £20m]";
-		} else if ((turnOver >= 25) && (turnOver < 800)) {
-			result = "$25.1m - $1b[£20m - £800m]";
-		} else if ((turnOver >= 800) && (turnOver < 4000)) {
-			result = "$1b - $5b[£800m - £4b]";
-		} else if ((turnOver >= 4000) && (turnOver < 8000)) {
-			result = "$5b - $10b[£4b - £8b]";
-		} else if ((turnOver > 8000)) {
-			result = "$10b+[£8b+]";
+		if(mORb.contains("m")) {
+			if (turnOver < 5) {
+				result = "$100k - $4.9m[£80k - £3.9m]";
+			} else if ((turnOver >= 5) && (turnOver < 25)) {
+				result = "$5m - $25m[£4m - £20m]";
+			} else if ((turnOver >= 25) && (turnOver < 800)) {
+				result = "$25.1m - $1b[£20m - £800m]";
+			}
+		} else if (mORb.contains("b")) {
+			if ((turnOver >= 1) && (turnOver < 5)) {
+				result = "$1b - $5b[£800m - £4b]";
+			} else if ((turnOver >= 5) && (turnOver < 10)) {
+				result = "$5b - $10b[£4b - £8b]";
+			} else if ((turnOver >= 10)) {
+				result = "$10b+[£8b+]";
+			} else {
+				result = "$25.1m - $1b[£20m - £800m]";
+			}
 		} else {
-			result = "$25.1m - $1b[£20m - £800m]";
+			result = "$100k - $4.9m[£80k - £3.9m]";
 		}
 		return result;
 	}

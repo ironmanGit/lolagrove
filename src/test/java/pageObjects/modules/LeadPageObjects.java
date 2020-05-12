@@ -451,6 +451,10 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	}
 
 	public LeadPageObjects clickEditLead(String leadId) throws Exception {
+		switchToDefaultBrowser();
+		if (closeBtn.isDisplayed()) {
+			click(closeBtn);
+		}
 		WebElement editLead = getXpath("//td/span[contains(text(),'%s')]/../preceding-sibling::td/i", leadId);
 		ExplicitWaiting.explicitWaitVisibilityOfElement(editLead, 15);
 		try {
@@ -1910,18 +1914,24 @@ public class LeadPageObjects extends PageFactoryInitializer {
 			selectByVisibleText(jobTitleDropdown, "Linkedin Company Search");
 			logger.info("Linkedin Company Search");
 			switchToNewTab();
-			clickSearchResult1();
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for jobTitleDropdown is set as Linkedin Company Search");
+			// clickSearchResult1();
+			String url = getSearchResult1();
+			switchToLinkedInBrowser();
+			getLinkedInWebDriver().navigate().to(url);
+			ExtentTestManager.getTest().log(LogStatus.PASS,
+					"Value for jobTitleDropdown is set as Linkedin Company Search");
 		} catch (Exception e) {
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value Linkedin Company Search from jobTitleDropdown " + e);
+			ExtentTestManager.getTest().log(LogStatus.FAIL,
+					"Unable to select value Linkedin Company Search from jobTitleDropdown " + e);
 		}
 		return linkedInPage();
 	}
-	
-	public LeadPageObjects selectvalueJobFunctionDropdown(List<String> value) throws Exception {
+
+
+	public LeadPageObjects selectvalueJobFunctionDropdown(String value) throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(jobFunctionDropdown, 15);
-			selectByVisibleText(jobFunctionDropdown, value.get(0));
+			selectByVisibleText(jobFunctionDropdown, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from jobFunctionDropdown is " + value);
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from jobFunctionDropdown " + e);
@@ -1947,28 +1957,34 @@ public class LeadPageObjects extends PageFactoryInitializer {
 			selectByVisibleText(companyToolsDropdown, "Linkedin");
 			logger.info("Linkedin");
 			switchToNewTab();
-			clickSearchResult1();
+			// clickSearchResult1();
+			String url = getSearchResult1();
+			switchToLinkedInBrowser();
+			getLinkedInWebDriver().navigate().to(url);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companyToolsDropdown is Linkedin");
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from companyToolsDropdown " + e);
 		}
 		return linkedInPage();
 	}
-	
+
 	public ZoomInfoPageObjects selectZoomInfovalueCompanyToolsDropdown() throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
 			selectByVisibleText(companyToolsDropdown, "Zoominfo");
 			logger.info("Zoominfo");
 			switchToNewTab();
-			clickSearchResult1();
+			// clickSearchResult1();
+			String url = getSearchResult1();
+			switchToZoomInfoBrowser();
+			getZoomInfoWebDriver().navigate().to(url);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companyToolsDropdown is Zoominfo");
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from companyToolsDropdown " + e);
 		}
 		return zoomInfoPage();
 	}
-	
+
 	public EndolePageObjects selectGlassDoorvalueCompanyToolsDropdown() throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
@@ -1982,7 +1998,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		}
 		return endolePage();
 	}
-	
+
 	public EndolePageObjects selectGooglevalueAndUpdateEndoleCompanyToolsDropdown(String searchValue) throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
@@ -1990,14 +2006,18 @@ public class LeadPageObjects extends PageFactoryInitializer {
 			logger.info("Google (Generic)");
 			switchToNewTab();
 			updateSearchValueInGoogleAndSearch(searchValue);
-			clickSearchResult1();
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companyToolsDropdown is Google (Generic)");
+			// clickSearchResult1();
+			String url = getSearchResult1();
+			switchToEndoleBrowser();
+			getEndoleWebDriver().navigate().to(url);
+			ExtentTestManager.getTest().log(LogStatus.PASS,
+					"Selected value from companyToolsDropdown is Google (Generic)");
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from companyToolsDropdown " + e);
 		}
 		return endolePage();
 	}
-	
+
 	public LeadPageObjects selectvalueIndustryDropdown(String value) throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(industryDropdown, 15);
@@ -2066,31 +2086,52 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
+	public LeadPageObjects updateManuallyVerify() throws Exception {
+		WebElement[] elements = {emailEvidence, telephone, phoneEvidence, telephone2, phoneEvidence2,
+				address1, address2, towncity, county, postcode, country, addressEvidence, firstName, lastName,
+				linkedinIdUrl, jobTitle, jobTitleEvidence, jobFunction, companyName, industry, companyEvidence,
+				companySize, companySizeEvidence, turnover, turnoverEvidence };
+		String[] elementName = {"email_evidence", "telephone", "phone_evidence", "telephone2", "phone2_evidence",
+				"address1", "address2", "towncity", "county", "postcode", "country", "address_evidence", "firstname", "lastname",
+				"linkedin_id_url", "jobtitle", "jobtitle_evidence", "job_function", "companyname", "industry", "company_evidence",
+				"company_size", "companysize_evidence", "turnover", "turnover_evidence"};
+
+		for (int i = 0; i < elements.length; i++) {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(elements[i], 15);
+			String value = getTextUsingScript(elementName[i]);
+			if (value == "") {
+				sendKeys(elements[i], "manually validate this field");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "manually validate " + elementName[i] + "field");
+			}
+		}
+		return this;
+	}
+
 	public LeadPageObjects placementCheck() throws Exception {
 		placementReadOnly().placementCheck();
 		return this;
 	}
-	
+
 	public LeadPageObjects companySizeCheck() throws Exception {
 		companySize().companySizeCheck();
 		return this;
 	}
-	
+
 	public LeadPageObjects companyTurnoverCheck() throws Exception {
 		companyTurnover().companyTurnoverCheck();
 		return this;
 	}
-	
+
 	public LeadPageObjects countryCheck() throws Exception {
 		country().countryCheck();
 		return this;
 	}
-	
-	public LeadPageObjects firstnameLastnameCheck() throws Exception {
-		firstnameLastname().firstnameLastnameCheck();
+
+	public LeadPageObjects firstnameLastnameJobTitleCheck() throws Exception {
+		firstnameLastnameJobTitle().firstnameLastnameJobTitleCheck();
 		return this;
 	}
-	
+
 	public LeadPageObjects jobTitleCheck() throws Exception {
 		jobTitle().jobTitleCheck();
 		return this;

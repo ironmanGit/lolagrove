@@ -20,7 +20,7 @@ public class Country extends LeadPageObjects {
 			if (countryOpenNoteValue.contains(leadCountryLeadOnly)) {
 				ExtentTestManager.getTest().log(LogStatus.PASS,
 						"Country in open notes matches country read only field");
-				setvalueCountry(leadCountryLeadOnly);
+				selectvalueCountryDropdown(leadCountryLeadOnly);
 				ExtentTestManager.getTest().log(LogStatus.PASS,
 						"Country value in lead page is updated as per open notes");
 			} else {
