@@ -40,7 +40,9 @@ public class BrowserFactory extends InitMethod
 				System.setProperty("webdriver.chrome.driver", "src/main/resources/Drivers/chromedriver");
 				System.setProperty("webdriver.chrome.silentOutput","true");
 			}
-			driver = new ChromeDriver();
+			ChromeOptions chromeOptions1 = new ChromeOptions();
+			chromeOptions1.addArguments("--incognito");  
+			driver = new ChromeDriver(chromeOptions1);
 			break;
 
 		case "chrome_headless":
@@ -51,10 +53,10 @@ public class BrowserFactory extends InitMethod
 				System.setProperty("webdriver.chrome.driver", "src/main/resources/Drivers/chromedriver");
 				System.setProperty("webdriver.chrome.silentOutput","true");
 			}
-			ChromeOptions chromeOptions = new ChromeOptions();
-			chromeOptions.addArguments("--headless");  
-			chromeOptions.addArguments("--disable-gpu");  
-			driver = new ChromeDriver(chromeOptions);
+			ChromeOptions chromeOptions2 = new ChromeOptions();
+			chromeOptions2.addArguments("--headless");  
+			chromeOptions2.addArguments("--disable-gpu");  
+			driver = new ChromeDriver(chromeOptions2);
 			break;
 
 		case  "firefox":
