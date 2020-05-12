@@ -17,7 +17,7 @@ public class CompanyTurnover extends LeadPageObjects {
 		ExtentTestManager.getTest().log(LogStatus.INFO, "company size check in endole");
 		selectGooglevalueAndUpdateEndoleCompanyToolsDropdown(" endole");
 		String endoleCompanyTurnOver = endolePage().getTurnoverValue();
-		String endoleUrl = getCurrentUrl();
+		String endoleUrl = getEndoleCurrentUrl();
 		if (endoleCompanyTurnOver != null) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Company turnover in endole is " + endoleCompanyTurnOver);
 			googlePage().closeGooglePage();

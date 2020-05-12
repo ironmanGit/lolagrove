@@ -19,7 +19,7 @@ public class CompanySize extends LeadPageObjects {
 			logger.info("Company size value is:" + companySizeOpenNoteValue);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Company size in open notes is 'TAL' so no check needed");
 			selectLinkedInvalueCompanyToolsDropdown();
-			String linkedInUrl = getCurrentUrl();
+			String linkedInUrl = getLinkedInCurrentUrl();
 			googlePage().closeGooglePage();
 			setvalueCompanySizeEvidence(linkedInUrl+"/about");
 			ExtentTestManager.getTest().log(LogStatus.INFO,
@@ -31,7 +31,7 @@ public class CompanySize extends LeadPageObjects {
 					ExtentTestManager.getTest().log(LogStatus.INFO, "company size check in linkedin");
 					selectLinkedInvalueCompanyToolsDropdown();
 					String linkedInCompanySize = linkedInPage().getCompanySizeValue();
-					String linkedInUrl = getCurrentUrl();
+					String linkedInUrl = getLinkedInCurrentUrl();
 					if (linkedInCompanySize != null) {
 						ExtentTestManager.getTest().log(LogStatus.PASS,
 								"Company size in linkedin is matching open notes values");
@@ -53,7 +53,7 @@ public class CompanySize extends LeadPageObjects {
 					ExtentTestManager.getTest().log(LogStatus.INFO, "company size check in zoom info");
 					selectZoomInfovalueCompanyToolsDropdown();
 					String zoomInfoCompanySize = zoomInfoPage().getEmployeesValue();
-					String zoomInfoUrl = getCurrentUrl();
+					String zoomInfoUrl = getZoomInfoCurrentUrl();
 					if (zoomInfoCompanySize != null) {
 						ExtentTestManager.getTest().log(LogStatus.PASS,
 								"Company size in zoom info is matching open notes values");

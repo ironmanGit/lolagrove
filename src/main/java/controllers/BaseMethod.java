@@ -364,7 +364,7 @@ public class BaseMethod extends WebDriverFactory {
 
 	/* Click on google search result1 */
 	public String getSearchResult1() throws Exception {
-		WebElement element = getWebDriver().findElement(By.cssSelector("ol li>div>a"));
+		WebElement element = getWebDriver().findElement(By.cssSelector("h1+div>div>h2+div div a"));
 		String url = element.getAttribute("href");
 		return url;
 	}
@@ -374,7 +374,25 @@ public class BaseMethod extends WebDriverFactory {
 		String url = getWebDriver().getCurrentUrl();
 		return url;
 	}
+	
+	/* return linked in current url */
+	public String getLinkedInCurrentUrl() throws Exception {
+		String url = getLinkedInWebDriver().getCurrentUrl();
+		return url;
+	}
 
+	/* return endole current url */
+	public String getEndoleCurrentUrl() throws Exception {
+		String url = getEndoleWebDriver().getCurrentUrl();
+		return url;
+	}
+	
+	/* return zoom info current url */
+	public String getZoomInfoCurrentUrl() throws Exception {
+		String url = getZoomInfoWebDriver().getCurrentUrl();
+		return url;
+	}
+	
 	/* To Refresh Current Tab */
 	public void refreshPage() {
 		getWebDriver().navigate().refresh();

@@ -50,7 +50,7 @@ public class FirstnameLastnameJobTitle extends LeadPageObjects {
 				ExtentTestManager.getTest().log(LogStatus.INFO,
 						"Company in lead page does not matched with linkedin company name");
 			}
-			String linkedInUrl = getCurrentUrl();
+			String linkedInUrl = getLinkedInCurrentUrl();
 			googlePage().closeGooglePage();
 			setvalueLinkedinIdUrl(linkedInUrl);
 			ExtentTestManager.getTest().log(LogStatus.INFO, "Linkedin url evidence is updated in lead page");
