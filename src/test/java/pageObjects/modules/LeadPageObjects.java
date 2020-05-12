@@ -2075,7 +2075,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
-	public LeadPageObjects manuallyVerify() throws Exception {
+	public LeadPageObjects updateManuallyVerify() throws Exception {
 		WebElement[] elements = {emailEvidence, telephone, phoneEvidence, telephone2, phoneEvidence2,
 				address1, address2, towncity, county, postcode, country, addressEvidence, firstName, lastName,
 				linkedinIdUrl, jobTitle, jobTitleEvidence, jobFunction, companyName, industry, companyEvidence,
