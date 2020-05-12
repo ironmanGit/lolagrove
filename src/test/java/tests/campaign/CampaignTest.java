@@ -29,15 +29,15 @@ public class CampaignTest extends PageFactoryInitializer {
 		.navigateToLeadsPage()
 		.clickOpenNotesLink()
 		.getAllFieldsFromOpenNotes()
-		.closeOpenNotesTab();
-//		.setTestDataCheck()
-//		leadPage()
-//		.createCampaignLeadsFile();
-//		
+		.closeOpenNotesTab()
+		.setTestDataCheck();
+		leadPage()
+		.createCampaignLeadsFile();
+		
 	}
 
-	@Test(priority = 1, description = "Get open records data")
-	public void getOpenNotesRecord() throws Exception {
+//	@Test(priority = 1, description = "Get open records data")
+//	public void getOpenNotesRecord() throws Exception {
 //		getCountry = campaignTestDataProcess().getLeadsCountry();
 //		getCompanySize = campaignTestDataProcess().getLeadsCompanySize();
 //		getIndustrialVertical = campaignTestDataProcess().getLeadsIndustrialVertical();
@@ -52,12 +52,12 @@ public class CampaignTest extends PageFactoryInitializer {
 //		logger.info("custom Regions data : " + customRegions);
 //		List<String> countryMapping = CampaignTestDataProcess.getCountryMapping("NORDIC", "countryCode1");
 //		logger.info("country Mapping data : " + countryMapping);
-		String DisplayJobTile = leadPage().getvalueJobTitle();
-		List<String> JobRole = CampaignTestDataProcess.getJobRoleInfo("Head of Information Systems and Strategy");
-		logger.info("Job Role:" + JobRole + "for the Title:");
+//		String DisplayJobTile = leadPage().getvalueJobTitle();
+//		String[] JobRole = CampaignTestDataProcess.getJobRoleInfo("Head of Information Systems and Strategy");
+//		logger.info("Job Role:" + JobRole + "for the Title:");
 //		List<String> JobFunction = CampaignTestDataProcess.getJobFunctionInfo("Head of Information Systems and Strategy");
 //		logger.info("Job Function:" + JobFunction + "for the Title:");
-	}
+//	}
 
 //	@DataProvider(name = "getLeadsData")
 //	public Iterator<Object[]> getLeadsData() throws Exception {
@@ -87,8 +87,8 @@ public class CampaignTest extends PageFactoryInitializer {
 		.jobLevelCheck();
 
 //		.clickCloseBtn();
-		ExtentTestManager.endTest();
-//	}
+//		ExtentTestManager.endTest();
+	}
 	
 //	@Test()
 //	public void testrunning ()

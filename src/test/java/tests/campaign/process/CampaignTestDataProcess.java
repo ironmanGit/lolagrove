@@ -124,27 +124,56 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 		return result;
 	}
 
-	
 	//Added by Anand
-	public static List<String> getJobRoleInfo(String JobTitle) throws Exception {
+	public static String[] getJobRoleInfo(String JobTitle) throws Exception {
 		String filePath = "./src/test/resources/Test Data/Excel Files/JobRoleInfo.csv";
-		String JobRole = getJobRoleInfo(JobTitle, filePath);
-		List<String> listOfJobRole = Arrays.asList(JobRole);
-		return listOfJobRole;
+		String[] JobRole = getJobRoleInfo(JobTitle, filePath);
+		return JobRole;
 	}
 
 	//Added by Anand
-	public static List<String> getJobFunctionInfo(String JobTitle) throws Exception {
+	public static String[] getJobFunctionInfo(String JobTitle) throws Exception {
 		String filePath = "./src/test/resources/Test Data/Excel Files/JobFunctionInfo.csv";
-		String JobFunction = getJobFunctionInfo(JobTitle, filePath);
-		List<String> listOfJobFunction = Arrays.asList(JobFunction);
-		return listOfJobFunction;
+		String[] JobFunction = getJobFunctionInfo(JobTitle, filePath);
+//		List<String> listOfJobFunction = Arrays.asList(JobFunction);
+		return JobFunction;
 	}
 	
 	//Added by Anand
-	public static String getJobRoleInfo(String JobTitle, String FilePath) throws Exception {
-		String result = null;
-
+	public static String[] getIndustries() throws Exception {
+		String filePath = "./src/test/resources/Test Data/Excel Files/IndustryVertical.csv";
+		String[] Industries = getIndustries(filePath);
+		return Industries;
+	}
+	
+	//Added by Anand
+	@SuppressWarnings("null")
+	public static String[] getIndustries(String FilePath) throws Exception {
+		String[] acceptedIndustries = null;
+		int counter=0;
+		List<String> lines = ExcelUtils.readFileToLines(FilePath);
+		for (String line : lines) {
+			String[] columns = line.split(",");
+			String IndustryName = columns[0];
+			String IndustryStatus = columns[1];
+			System.out.println(IndustryName);
+			System.out.println(IndustryStatus);
+			if (IndustryStatus.contains("Yes")) {
+				IndustryName = IndustryName.toString();
+				acceptedIndustries[counter] = IndustryName;
+				counter++;
+				System.out.println(acceptedIndustries);
+			}
+		}
+		return acceptedIndustries;
+	}
+	
+	//Added by Anand
+	@SuppressWarnings("null")
+	public static String[] getJobRoleInfo(String JobTitle, String FilePath) throws Exception {
+		//String result = null;
+		String[] matchingRoles = null;
+		int counter=0;
 		List<String> lines = ExcelUtils.readFileToLines(FilePath);
 		for (String line : lines) {
 			String[] columns = line.split(",");
@@ -154,24 +183,25 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 			System.out.println(JTitle);
 			if (JobTitle.contains(JTitle)) {
 				JobRoleValue = JobRoleValue.toString();
-				result = JobRoleValue;
-//				result = result.replace("|", ",");
+				matchingRoles[counter] = JobRoleValue;
+				counter++;
 				System.out.println(JobRoleValue);
-				break;
+				//break;
 			}
 		}
-
 		if (result == null) {
 			throw new Exception("Error : Cannot find Job Tile: " + JobTitle + " from the CSV file for Job Function Field" + FilePath);
 		}
-
-		return result;
+		return matchingRoles;
 	}
 	
 	//Added by Anand
-	public static String getJobFunctionInfo(String JobTitle, String FilePath) throws Exception {
-		String result = null;
-
+	@SuppressWarnings("null")
+	public static String[] getJobFunctionInfo(String JobTitle, String FilePath) throws Exception {
+//		String result = null;
+		String[] matchingFunctions = null;
+		int counter=0;
+		
 		List<String> lines = ExcelUtils.readFileToLines(FilePath);
 		for (String line : lines) {
 			String[] columns = line.split(",");
@@ -181,10 +211,10 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 			System.out.println(JTitle);
 			if (JobTitle.contains(JTitle)) {
 				JobFunctionValue = JobFunctionValue.toString();
-				result = JobFunctionValue;
-//				result = result.replace("|", ",");
+				matchingFunctions[counter] = JobFunctionValue;
+				counter++;
 				System.out.println(JobFunctionValue);
-				break;
+//				break;
 			}
 		}
 
@@ -192,7 +222,7 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 			throw new Exception("Error : Cannot find Job Tile: " + JobTitle + " from the CSV file for Job Function Field" + FilePath);
 		}
 
-		return result;
+		return matchingFunctions;
 	}
 	
 	public static List<String> getCustomRegions(String region) throws Exception {

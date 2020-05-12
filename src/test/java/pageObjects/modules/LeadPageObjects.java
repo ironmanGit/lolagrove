@@ -8,6 +8,8 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
+
 import pageObjects.initializePageObjects.PageFactoryInitializer;
 import tests.campaign.leads.PlacementReadOnly;
 import tests.campaign.process.CampaignLeadsDataRecord;
@@ -2107,14 +2109,42 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	}
 	
 	//added by Anand
-	public LeadPageObjects selectvalueJobRoleDropdown(List<String> value) throws Exception {
+	public LeadPageObjects selectvalueJobRoleDropdown(String string) throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(jobRoleDropdown, 15);
-			selectByVisibleText(jobRoleDropdown, value.get(0));
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from jobRoleDropdown is " + value);
+			selectByVisibleText(jobRoleDropdown, string);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from jobRoleDropdown is " + string);
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from jobRoleDropdown " + e);
 		}
 		return this;
+	}
+	
+	//added by Anand
+	public List<WebElement> getvaluesJobRoleDropdown() throws Exception {
+		List<WebElement> options = null;
+		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(jobRoleDropdown, 15);
+			Select select = new Select(jobRoleDropdown);
+			options = select.getOptions();
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Job Role Dropdown Values are " + options);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Unable to get values from jobRoleDropdown " + e);
+		}
+		return options;
+	}
+	
+	//added by Anand
+	public List<WebElement> getvaluesJobFunctionDropdown() throws Exception {
+		List<WebElement> options = null;
+		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(jobFunctionDropdown, 15);
+			Select select = new Select(jobFunctionDropdown);
+			options = select.getOptions();
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Job Function Dropdown Values are " + options);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Unable to get values from jobFunctionDropdown " + e);
+		}
+		return options;
 	}
 }

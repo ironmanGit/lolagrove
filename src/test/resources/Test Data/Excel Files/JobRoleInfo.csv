@@ -1,12 +1,17 @@
 Role,Title
-C-suite,Chief (any job title with Chief in it)
+C-suite,Chief
 C-suite,Vice President
 C-suite,CXO
 C-suite,Owner
-Manager,Any Job Title which has Manager in it
+C-Level Executive,Chief
+C-Level Executive,Vice President
+C-Level Executive,CXO
+C-Level Executive,Owner
+Manager,Manager
 Manager,Architect
-Manager,Lead/Leader
-Manager,Advisor (only for HR job function)
+Manager,Leader
+Manager,Lead
+Manager,Advisor
 Manager,Specialist
 Director,Head
 Director,Managing Director
@@ -34,13 +39,14 @@ Board Level,CEO
 Board Level,Company Director
 Board Level,MD
 Board Level,Company Vice President
-Management,Manager+
+Management,Manager
 Influencer,Analyst
-Influencer,Team Lead/Team Leader
+Influencer,Team Leader
+Influencer,Team Lead
 Influencer,Consultant
 Influencer,Engineer
 Influencer,Agent
-Influencer,Assocaite
+Influencer,Associate
 Influencer,Technician
 Influencer,Developer
 Influencer,Professor
