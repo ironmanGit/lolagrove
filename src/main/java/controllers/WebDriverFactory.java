@@ -120,5 +120,7 @@ public class WebDriverFactory extends BrowserFactory {
 	public void afterClass() throws Exception {
 		Thread.sleep(2000);
 		getWebDriver().quit();
+		getEndoleWebDriver().quit();
+		getLinkedInWebDriver().quit();
 	}
 }
