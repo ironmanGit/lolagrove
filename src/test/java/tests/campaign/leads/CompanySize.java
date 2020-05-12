@@ -39,7 +39,7 @@ public class CompanySize extends LeadPageObjects {
 						selectvalueCompanySizeDropDown(linkedInCompanySize);
 						ExtentTestManager.getTest().log(LogStatus.PASS,
 								"Company size in lead page is updated as per evidence from linkedin");
-						setvalueCompanySizeEvidence(linkedInUrl+"/about");
+						setvalueCompanySizeEvidence(linkedInUrl+"about");
 						ExtentTestManager.getTest().log(LogStatus.INFO,
 								"Company size evidence is updated in lead page");
 					} else {
