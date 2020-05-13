@@ -144,6 +144,12 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	@FindBy(css = "select#ddlAdobeJobFunction")
 	private WebElement jobFunctionDropdown;
 
+	@FindBy(css = "input[name='input[name='job_role']']")
+	private WebElement jobRole;
+
+	@FindBy(css = "select#ddlGenericLevel")
+	private WebElement jobRoleDropdown;
+
 	@FindBy(css = "input[name='companyname']")
 	private WebElement companyName;
 
@@ -1345,6 +1351,32 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
+	public LeadPageObjects setvalueJobRole(String value) throws Exception {
+		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(jobRole, 15);
+			clear(jobRole);
+			sendKeys(jobRole, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for jobRole is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for jobRole " + e);
+		}
+		return this;
+	}
+
+	public String getvalueJobRole() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(jobRole, 15);
+		String value = getTextUsingScript("jobRole");
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "jobRole value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "jobRole value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from jobFunction " + e);
+		}
+		return value;
+	}
+	
 	public LeadPageObjects setvalueCompanyName(String value) throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(companyName, 15);
@@ -1928,6 +1960,17 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
+	public LeadPageObjects selectvalueJobRoleDropdown(String value) throws Exception {
+		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(jobRoleDropdown, 15);
+			selectByVisibleText(jobRoleDropdown, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from jobRoleDropdown is " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from jobRoleDropdown " + e);
+		}
+		return this;
+	}
+	
 	public LeadPageObjects selectvalueCompanyToolsDropdown(String value) throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
@@ -2076,34 +2119,32 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	}
 
 	public LeadPageObjects updateManuallyVerify() throws Exception {
-		WebElement[] textElements = {emailEvidence, telephone, phoneEvidence, telephone2, phoneEvidence2,
-				address1, address2, towncity, county, postcode, country, addressEvidence, firstName, lastName,
-				linkedinIdUrl, jobTitle, jobTitleEvidence, companyName, industry, companyEvidence,
-				companySize, companySizeEvidence, turnover, turnoverEvidence };
-		String[] elementName = {"email_evidence", "telephone", "phone_evidence", "telephone2", "phone2_evidence",
-				"address1", "address2", "towncity", "county", "postcode", "country", "address_evidence", "firstname", "lastname",
-				"linkedin_id_url", "jobtitle", "jobtitle_evidence", "companyname", "industry", "company_evidence",
-				"company_size", "companysize_evidence", "turnover", "turnover_evidence"};
-		
-		
-		WebElement[] dropDownElements = {jobFunctionDropdown, companySizeDropdown, turnoverDropdown, industryDropdown};
-		
+		WebElement[] textElements = { emailEvidence, telephone, phoneEvidence, telephone2, phoneEvidence2, address1,
+				address2, towncity, county, postcode, country, addressEvidence, firstName, lastName, linkedinIdUrl,
+				jobTitle, jobTitleEvidence, companyName, industry, companyEvidence, companySize, companySizeEvidence,
+				turnover, turnoverEvidence };
+		String[] elementName = { "email_evidence", "telephone", "phone_evidence", "telephone2", "phone2_evidence",
+				"address1", "address2", "towncity", "county", "postcode", "country", "address_evidence", "firstname",
+				"lastname", "linkedin_id_url", "jobtitle", "jobtitle_evidence", "companyname", "industry",
+				"company_evidence", "company_size", "companysize_evidence", "turnover", "turnover_evidence" };
+
+		WebElement[] dropDownElements = { jobFunctionDropdown, companySizeDropdown, turnoverDropdown,
+				industryDropdown };
+
 		for (int i = 0; i < textElements.length; i++) {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(textElements[i], 15);
 			String value = getTextUsingScript(elementName[i]);
 			if (value.equals("")) {
-				if(elementName[i].equals("linkedin_id_url")) {
+				if (elementName[i].equals("linkedin_id_url")) {
 					click(linkedinIdUrlNoEvidenceFoundBtn);
 					ExtentTestManager.getTest().log(LogStatus.INFO, "manually validate linkedin_id_url field");
 				} else {
-				sendKeys(textElements[i], "manually validate this field");
-				ExtentTestManager.getTest().log(LogStatus.INFO, "manually validate " + elementName[i] + "field");
+					sendKeys(textElements[i], "manually validate this field");
+					ExtentTestManager.getTest().log(LogStatus.INFO, "manually validate " + elementName[i] + "field");
 				}
 			}
 		}
-		
-		
-		
+
 		return this;
 	}
 
