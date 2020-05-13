@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import utils.ExplicitWaiting;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -746,7 +747,16 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(saveBtn, 15);
 			click(saveBtn);
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked save button");
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Clicked save button");
+			if (isAlertPresent()) {
+				Alert alert = getWebDriver().switchTo().alert();
+				System.out.println(alert.getText());
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Alert popped up" + alert.getText());
+				alert.accept();
+				clickCloseBtn();
+			} else {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Saved the Lead");
+			}
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click save button " + e);
 		}
@@ -1376,7 +1386,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		}
 		return value;
 	}
-	
+
 	public LeadPageObjects setvalueCompanyName(String value) throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(companyName, 15);
@@ -1970,7 +1980,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		}
 		return this;
 	}
-	
+
 	public LeadPageObjects selectvalueCompanyToolsDropdown(String value) throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
@@ -2123,28 +2133,43 @@ public class LeadPageObjects extends PageFactoryInitializer {
 				address2, towncity, county, postcode, country, addressEvidence, firstName, lastName, linkedinIdUrl,
 				jobTitle, jobTitleEvidence, companyName, industry, companyEvidence, companySize, companySizeEvidence,
 				turnover, turnoverEvidence };
-		String[] elementName = { "email_evidence", "telephone", "phone_evidence", "telephone2", "phone2_evidence",
+		String[] textElementName = { "email_evidence", "telephone", "phone_evidence", "telephone2", "phone2_evidence",
 				"address1", "address2", "towncity", "county", "postcode", "country", "address_evidence", "firstname",
 				"lastname", "linkedin_id_url", "jobtitle", "jobtitle_evidence", "companyname", "industry",
 				"company_evidence", "company_size", "companysize_evidence", "turnover", "turnover_evidence" };
 
-		WebElement[] dropDownElements = { jobFunctionDropdown, companySizeDropdown, turnoverDropdown,
+		WebElement[] dropDownElements = { jobFunctionDropdown, jobRoleDropdown, companySizeDropdown, turnoverDropdown,
 				industryDropdown };
+
+		String[] dropdownElementId = { "ddlAdobeJobFunction", "ddlGenericLevel", "cmp_size_ddn", "ddnTurnover",
+				"ddnIndustry" };
 
 		for (int i = 0; i < textElements.length; i++) {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(textElements[i], 15);
-			String value = getTextUsingScript(elementName[i]);
+			String value = getTextUsingScript(textElementName[i]);
 			if (value.equals("")) {
-				if (elementName[i].equals("linkedin_id_url")) {
+				if (textElementName[i].equals("linkedin_id_url")) {
 					click(linkedinIdUrlNoEvidenceFoundBtn);
+					handleAlert();
 					ExtentTestManager.getTest().log(LogStatus.INFO, "manually validate linkedin_id_url field");
 				} else {
 					sendKeys(textElements[i], "manually validate this field");
-					ExtentTestManager.getTest().log(LogStatus.INFO, "manually validate " + elementName[i] + "field");
+					handleAlert();
+					ExtentTestManager.getTest().log(LogStatus.INFO,
+							"manually validate " + textElementName[i] + "field");
 				}
 			}
 		}
 
+		for (int i = 0; i < dropDownElements.length; i++) {
+			if (isFieldDisplayed(dropDownElements[i])) {
+				String value = getTextUsingIdScript(dropdownElementId[i]);
+				if (value.contains("-")) {
+					selectByIndex(dropDownElements[i], 0);
+					handleAlert();
+				}
+			}
+		}
 		return this;
 	}
 

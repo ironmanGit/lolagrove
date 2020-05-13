@@ -18,8 +18,11 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 import javax.imageio.ImageIO;
+
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
@@ -325,22 +328,22 @@ public class BaseMethod extends WebDriverFactory {
 	public void switchToDefaultBrowser() throws Exception {
 		((JavascriptExecutor) getWebDriver()).executeScript("window.focus();");
 	}
-	
+
 	/* Focus to endole browser using JavaScript Executor */
 	public void switchToEndoleBrowser() throws Exception {
 		((JavascriptExecutor) getEndoleWebDriver()).executeScript("window.focus();");
 	}
-	
+
 	/* Focus to linkedin browser using JavaScript Executor */
 	public void switchToLinkedInBrowser() throws Exception {
 		((JavascriptExecutor) getLinkedInWebDriver()).executeScript("window.focus();");
 	}
-	
+
 	/* Focus to linkedin browser using JavaScript Executor */
 	public void switchToZoomInfoBrowser() throws Exception {
 		((JavascriptExecutor) getZoomInfoWebDriver()).executeScript("window.focus();");
 	}
-	
+
 	/* Return web element using dynamic xpath */
 	public WebElement getXpath(String xpath, String dynamicValue) throws Exception {
 		String actualXpath = String.format(xpath, dynamicValue);
@@ -355,7 +358,7 @@ public class BaseMethod extends WebDriverFactory {
 		WebElement searchButton = getWebDriver().findElement(By.cssSelector("button[type='submit']"));
 		click(searchButton);
 	}
-	
+
 	/* Click on google search result1 */
 	public void clickSearchResult1() throws Exception {
 		WebElement element = getWebDriver().findElement(By.cssSelector("a>h3"));
@@ -368,13 +371,13 @@ public class BaseMethod extends WebDriverFactory {
 		String url = element.getAttribute("href");
 		return url;
 	}
-	
+
 	/* return current url */
 	public String getCurrentUrl() throws Exception {
 		String url = getWebDriver().getCurrentUrl();
 		return url;
 	}
-	
+
 	/* return linked in current url */
 	public String getLinkedInCurrentUrl() throws Exception {
 		String url = getLinkedInWebDriver().getCurrentUrl();
@@ -386,35 +389,73 @@ public class BaseMethod extends WebDriverFactory {
 		String url = getEndoleWebDriver().getCurrentUrl();
 		return url;
 	}
-	
+
 	/* return zoom info current url */
 	public String getZoomInfoCurrentUrl() throws Exception {
 		String url = getZoomInfoWebDriver().getCurrentUrl();
 		return url;
 	}
-	
+
 	/* To Refresh Current Tab */
 	public void refreshPage() {
 		getWebDriver().navigate().refresh();
 	}
-	
+
 	/* get innner text using js */
 	public String getTextUsingScript(String fieldName) throws Exception {
-		JavascriptExecutor js = (JavascriptExecutor) getWebDriver();  
-		String value = js.executeScript("return document.getElementsByName('"+fieldName+"')[0]['value']").toString();
+		JavascriptExecutor js = (JavascriptExecutor) getWebDriver();
+		String value = js.executeScript("return document.getElementsByName('" + fieldName + "')[0]['value']")
+				.toString();
+		return value;
+	}
+
+	/* get innner text using idjs */
+	public String getTextUsingIdScript(String fieldName) throws Exception {
+		JavascriptExecutor js = (JavascriptExecutor) getWebDriver();
+		String value = js.executeScript("return document.getElementById('" + fieldName + "')[0]['value']")
+				.toString();
 		return value;
 	}
 	
-	/* email validator*/
-	public static boolean isValidEmail(String email) 
-    { 
-        String emailRegex = "^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$"; 
-                              
-        Pattern pat = Pattern.compile(emailRegex); 
-        if (email == null) 
-            return false; 
-        return pat.matcher(email).matches(); 
-    } 
+	/* web element is displayed return boolean value */
+	public boolean isFieldDisplayed(WebElement element) throws Exception {
+		boolean isFieldDisplayed = element.isDisplayed();
+		return isFieldDisplayed;
+	}
+
+	/* email validator */
+	public static boolean isValidEmail(String email) {
+		String emailRegex = "^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+
+		Pattern pat = Pattern.compile(emailRegex);
+		if (email == null)
+			return false;
+		return pat.matcher(email).matches();
+	}
+
+	/**
+	 * 
+	 * @return True if JavaScript Alert is present on the page otherwise false
+	 */
+	public boolean isAlertPresent(){
+	 try{
+	  getWebDriver().switchTo().alert();
+	  return true;
+	 }catch(NoAlertPresentException ex){
+	  return false;
+	 }
+	}
+	
+	/**
+	 * If Java script Alert is present on the page cancels it. 
+	 */
+	public void handleAlert(){
+	 if(isAlertPresent()){
+	  Alert alert = getWebDriver().switchTo().alert();
+	  System.out.println(alert.getText());
+	  alert.accept();
+	 }
+	}
 	
 	/* get company size as per lolagrove */
 	public String roundOffCompanySize(String value) throws Exception {
@@ -442,7 +483,7 @@ public class BaseMethod extends WebDriverFactory {
 	public String roundOffTurnover(String value, String mORb) throws Exception {
 		int turnOver = Integer.parseInt(value);
 		String result = null;
-		if(mORb.contains("m")) {
+		if (mORb.contains("m")) {
 			if (turnOver < 5) {
 				result = "$100k - $4.9m[£80k - £3.9m]";
 			} else if ((turnOver >= 5) && (turnOver < 25)) {
@@ -465,7 +506,7 @@ public class BaseMethod extends WebDriverFactory {
 		}
 		return result;
 	}
-	
+
 	public void switchToNewTab() {
 		boolean closeFlag = false;
 		switchToOtherHandle(getWebDriver(), closeFlag);
@@ -495,15 +536,15 @@ public class BaseMethod extends WebDriverFactory {
 		}
 		return webDriver;
 	}
-	
+
 	public void switchToWindowWithMatchingTitle(String ExpectedTitle) {
 		switchToOtherHandles(getWebDriver(), false, ExpectedTitle);
 	}
-	
+
 	public void closeToWindowWithMatchingTitle(String ExpectedTitle) {
 		switchToOtherHandles(getWebDriver(), true, ExpectedTitle);
 	}
-	
+
 	public boolean switchToOtherHandles(org.openqa.selenium.WebDriver webDriver, boolean closeFlag,
 			String ExpectedTitle) {
 		boolean found = false;
@@ -524,5 +565,5 @@ public class BaseMethod extends WebDriverFactory {
 		}
 		return found;
 	}
-	
+
 }
