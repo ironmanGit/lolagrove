@@ -79,7 +79,7 @@ public class CampaignTest extends PageFactoryInitializer {
 		.placementCheck()
 		.countryCheck()
 		.companySizeCheck()
-		.companyTurnoverCheck()
+		//.companyTurnoverCheck()
 		//.firstnameLastnameJobTitleCheck()
 		.updateManuallyVerify()
 		.clickSaveBtn();
