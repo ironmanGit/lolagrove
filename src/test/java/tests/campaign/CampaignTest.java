@@ -31,18 +31,18 @@ public class CampaignTest extends PageFactoryInitializer {
 		.getAllFieldsFromOpenNotes()
 		.closeOpenNotesTab()
 		.setTestDataCheck();
-		leadPage()
-		.createCampaignLeadsFile();
+//		leadPage()
+//		.createCampaignLeadsFile();
 
 	}
 
 
-	@Test(priority = 2, description = "Launch endole and linkedin browsers")
-	public void lauchSearchBrowsers() throws Exception {
-		ExtentTestManager.startTest("Launch endole and linkedin browsers", "Launch endole and linkedin browsers");
-		endoleDriver();
-		linkedInDriver();
-	}
+//	@Test(priority = 2, description = "Launch endole and linkedin browsers")
+//	public void lauchSearchBrowsers() throws Exception {
+//		ExtentTestManager.startTest("Launch endole and linkedin browsers", "Launch endole and linkedin browsers");
+//		endoleDriver();
+//		linkedInDriver();
+//	}
 	
 	@Test(priority = 3, description = "Get open records data")
 	public void getOpenNotesRecord() throws Exception {
@@ -69,13 +69,14 @@ public class CampaignTest extends PageFactoryInitializer {
 		leadPage()
 		.clickLeadsFromFile(leadsLine)
 
-		.placementCheck()
-		.countryCheck()
-		.companySizeCheck()
-		.companyTurnoverCheck()
+//		.placementCheck()
+//		.countryCheck()
+//		.companySizeCheck()
+//		.companyTurnoverCheck()
 		//.firstnameLastnameJobTitleCheck()
-		.updateManuallyVerify()
-		.clickSaveBtn();
+		.jobFunctionCheck();
+//		.updateManuallyVerify()
+//		.clickSaveBtn();
 		//.clickCloseBtn();
 		ExtentTestManager.endTest();
 	

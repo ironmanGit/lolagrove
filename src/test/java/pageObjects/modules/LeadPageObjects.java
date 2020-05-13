@@ -2150,6 +2150,12 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	}
 	
 	//added by Anand
+	public LeadPageObjects jobFunctionCheck() throws Exception {
+		jobFunction().jobFunctionCheck();
+		return this;
+	}
+	
+	//added by Anand
 	public LeadPageObjects selectvalueJobRoleDropdown(String string) throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(jobRoleDropdown, 15);
