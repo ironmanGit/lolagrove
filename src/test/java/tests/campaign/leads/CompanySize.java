@@ -21,7 +21,7 @@ public class CompanySize extends LeadPageObjects {
 			selectLinkedInvalueCompanyToolsDropdown();
 			String linkedInUrl = getLinkedInCurrentUrl();
 			googlePage().closeGooglePage();
-			setvalueCompanySizeEvidence(linkedInUrl+"/about");
+			setvalueCompanySizeEvidence(linkedInUrl+"about");
 			ExtentTestManager.getTest().log(LogStatus.INFO,
 					"Company size evidence is updated in lead page");
 		} else {

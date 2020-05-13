@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import utils.ExplicitWaiting;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -145,15 +146,13 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	@FindBy(css = "select#ddlAdobeJobFunction")
 	private WebElement jobFunctionDropdown;
-	
-	//Added by Anand
+
 	@FindBy(css = "input[name='input[name='job_role']']")
 	private WebElement jobRole;
-	
-	//Added by Anand			
+
 	@FindBy(css = "select#ddlGenericLevel")
 	private WebElement jobRoleDropdown;
-	
+
 	@FindBy(css = "input[name='companyname']")
 	private WebElement companyName;
 
@@ -194,7 +193,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	private WebElement companySize;
 
 	@FindBy(css = "select#cmp_size_ddn")
-	private WebElement companySizeDropDown;
+	private WebElement companySizeDropdown;
 
 	@FindBy(css = "input[name='companysize_evidence']")
 	private WebElement companySizeEvidence;
@@ -750,7 +749,16 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(saveBtn, 15);
 			click(saveBtn);
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked save button");
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Clicked save button");
+			if (isAlertPresent()) {
+				Alert alert = getWebDriver().switchTo().alert();
+				System.out.println(alert.getText());
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Alert popped up" + alert.getText());
+				alert.accept();
+				clickCloseBtn();
+			} else {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Saved the Lead");
+			}
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click save button " + e);
 		}
@@ -1355,6 +1363,32 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
+	public LeadPageObjects setvalueJobRole(String value) throws Exception {
+		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(jobRole, 15);
+			clear(jobRole);
+			sendKeys(jobRole, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for jobRole is set as " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for jobRole " + e);
+		}
+		return this;
+	}
+
+	public String getvalueJobRole() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(jobRole, 15);
+		String value = getTextUsingScript("jobRole");
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "jobRole value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "jobRole value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from jobFunction " + e);
+		}
+		return value;
+	}
+
 	public LeadPageObjects setvalueCompanyName(String value) throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(companyName, 15);
@@ -1939,6 +1973,17 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
+	public LeadPageObjects selectvalueJobRoleDropdown(String value) throws Exception {
+		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(jobRoleDropdown, 15);
+			selectByVisibleText(jobRoleDropdown, value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from jobRoleDropdown is " + value);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from jobRoleDropdown " + e);
+		}
+		return this;
+	}
+
 	public LeadPageObjects selectvalueCompanyToolsDropdown(String value) throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
@@ -2031,8 +2076,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public LeadPageObjects selectvalueCompanySizeDropDown(String value) throws Exception {
 		try {
-			ExplicitWaiting.explicitWaitVisibilityOfElement(companySizeDropDown, 15);
-			selectByVisibleText(companySizeDropDown, value);
+			ExplicitWaiting.explicitWaitVisibilityOfElement(companySizeDropdown, 15);
+			selectByVisibleText(companySizeDropdown, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companySizeDropDown is " + value);
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from companySizeDropDown " + e);
@@ -2087,21 +2132,45 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	}
 
 	public LeadPageObjects updateManuallyVerify() throws Exception {
-		WebElement[] elements = {emailEvidence, telephone, phoneEvidence, telephone2, phoneEvidence2,
-				address1, address2, towncity, county, postcode, country, addressEvidence, firstName, lastName,
-				linkedinIdUrl, jobTitle, jobTitleEvidence, jobFunction, companyName, industry, companyEvidence,
-				companySize, companySizeEvidence, turnover, turnoverEvidence };
-		String[] elementName = {"email_evidence", "telephone", "phone_evidence", "telephone2", "phone2_evidence",
-				"address1", "address2", "towncity", "county", "postcode", "country", "address_evidence", "firstname", "lastname",
-				"linkedin_id_url", "jobtitle", "jobtitle_evidence", "job_function", "companyname", "industry", "company_evidence",
-				"company_size", "companysize_evidence", "turnover", "turnover_evidence"};
+		WebElement[] textElements = { emailEvidence, telephone, phoneEvidence, telephone2, phoneEvidence2, address1,
+				address2, towncity, county, postcode, country, addressEvidence, firstName, lastName, linkedinIdUrl,
+				jobTitle, jobTitleEvidence, companyName, industry, companyEvidence, companySize, companySizeEvidence,
+				turnover, turnoverEvidence };
+		String[] textElementName = { "email_evidence", "telephone", "phone_evidence", "telephone2", "phone2_evidence",
+				"address1", "address2", "towncity", "county", "postcode", "country", "address_evidence", "firstname",
+				"lastname", "linkedin_id_url", "jobtitle", "jobtitle_evidence", "companyname", "industry",
+				"company_evidence", "company_size", "companysize_evidence", "turnover", "turnover_evidence" };
 
-		for (int i = 0; i < elements.length; i++) {
-			ExplicitWaiting.explicitWaitVisibilityOfElement(elements[i], 15);
-			String value = getTextUsingScript(elementName[i]);
-			if (value == "") {
-				sendKeys(elements[i], "manually validate this field");
-				ExtentTestManager.getTest().log(LogStatus.INFO, "manually validate " + elementName[i] + "field");
+		WebElement[] dropDownElements = { jobFunctionDropdown, jobRoleDropdown, companySizeDropdown, turnoverDropdown,
+				industryDropdown };
+
+		String[] dropdownElementId = { "ddlAdobeJobFunction", "ddlGenericLevel", "cmp_size_ddn", "ddnTurnover",
+				"ddnIndustry" };
+
+		for (int i = 0; i < textElements.length; i++) {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(textElements[i], 15);
+			String value = getTextUsingScript(textElementName[i]);
+			if (value.equals("")) {
+				if (textElementName[i].equals("linkedin_id_url")) {
+					click(linkedinIdUrlNoEvidenceFoundBtn);
+					handleAlert();
+					ExtentTestManager.getTest().log(LogStatus.INFO, "manually validate linkedin_id_url field");
+				} else {
+					sendKeys(textElements[i], "manually validate this field");
+					handleAlert();
+					ExtentTestManager.getTest().log(LogStatus.INFO,
+							"manually validate " + textElementName[i] + "field");
+				}
+			}
+		}
+
+		for (int i = 0; i < dropDownElements.length; i++) {
+			if (isFieldDisplayed(dropDownElements[i])) {
+				String value = getTextUsingIdScript(dropdownElementId[i]);
+				if (value.contains("-")) {
+					selectByIndex(dropDownElements[i], 0);
+					handleAlert();
+				}
 			}
 		}
 		return this;
@@ -2152,18 +2221,6 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	//added by Anand
 	public LeadPageObjects jobFunctionCheck() throws Exception {
 		jobFunction().jobFunctionCheck();
-		return this;
-	}
-	
-	//added by Anand
-	public LeadPageObjects selectvalueJobRoleDropdown(String string) throws Exception {
-		try {
-			ExplicitWaiting.explicitWaitVisibilityOfElement(jobRoleDropdown, 15);
-			selectByVisibleText(jobRoleDropdown, string);
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from jobRoleDropdown is " + string);
-		} catch (Exception e) {
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from jobRoleDropdown " + e);
-		}
 		return this;
 	}
 	
