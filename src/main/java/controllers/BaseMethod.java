@@ -423,6 +423,21 @@ public class BaseMethod extends WebDriverFactory {
 		return isFieldDisplayed;
 	}
 
+	/* web element is visible return boolean value */
+	public boolean isFieldExist(WebElement element) throws Exception {
+		boolean isExist;
+		try {
+			if(element.isDisplayed()) { 
+				isExist = true;
+			} else {
+				isExist = false;
+			}
+		} catch(Exception e) {
+			isExist = false;
+		}
+		return isExist;
+	}
+	
 	/* email validator */
 	public static boolean isValidEmail(String email) {
 		String emailRegex = "^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";

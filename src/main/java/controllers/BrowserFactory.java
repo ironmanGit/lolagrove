@@ -103,7 +103,7 @@ public class BrowserFactory extends InitMethod
 		{
 			setMaxPageLoadTime(MaxPageLoadTime);
 		}
-		driver.get(WebsiteURL);
+		
 		if(!Browser.toLowerCase().contains("unit") || !Browser.toLowerCase().contains("ghost") || !Browser.toLowerCase().contains("phantom"))
 		{
 			driver.manage().window().maximize();

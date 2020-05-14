@@ -751,9 +751,11 @@ public class LeadPageObjects extends PageFactoryInitializer {
 			if (isAlertPresent()) {
 				Alert alert = getWebDriver().switchTo().alert();
 				System.out.println(alert.getText());
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Alert popped up" + alert.getText());
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Alert popped up" + alert.getText());
 				alert.accept();
-				clickCloseBtn();
+				if (closeBtn.isDisplayed()) {
+					click(closeBtn);
+				}
 			} else {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Saved the Lead");
 			}
@@ -2138,10 +2140,10 @@ public class LeadPageObjects extends PageFactoryInitializer {
 				"lastname", "linkedin_id_url", "jobtitle", "jobtitle_evidence", "companyname", "industry",
 				"company_evidence", "company_size", "companysize_evidence", "turnover", "turnover_evidence" };
 
-		WebElement[] dropDownElements = { jobFunctionDropdown, jobRoleDropdown, companySizeDropdown, turnoverDropdown,
+		WebElement[] dropDownElements = { jobFunctionDropdown, companySizeDropdown, turnoverDropdown,
 				industryDropdown };
 
-		String[] dropdownElementId = { "ddlAdobeJobFunction", "ddlGenericLevel", "cmp_size_ddn", "ddnTurnover",
+		String[] dropdownElementId = { "ddlAdobeJobFunction", "cmp_size_ddn", "ddnTurnover",
 				"ddnIndustry" };
 
 		for (int i = 0; i < textElements.length; i++) {
@@ -2162,13 +2164,19 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		}
 
 		for (int i = 0; i < dropDownElements.length; i++) {
-			if (isFieldDisplayed(dropDownElements[i])) {
-				String value = getTextUsingIdScript(dropdownElementId[i]);
-				if (value.contains("-")) {
-					selectByIndex(dropDownElements[i], 0);
-					handleAlert();
-				}
-			}
+			String value = getTextUsingIdScript(dropdownElementId[i]);
+			selectByIndex(dropDownElements[i], 0);
+			handleAlert();
+			selectByIndex(dropDownElements[i], 1);
+			handleAlert();
+//			if (isFieldExist(dropDownElements[i])) {
+//				
+////				if (value.contains("-")) {
+////					
+////				}
+////			} else {
+////				
+//			}
 		}
 		return this;
 	}

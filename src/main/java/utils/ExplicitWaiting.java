@@ -7,6 +7,7 @@ package utils;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -58,6 +59,11 @@ public class ExplicitWaiting extends BaseMethod
 		elementToBeVisible.until(ExpectedConditions.visibilityOf(element));
 	}
 	
+	/** To Wait Until Element to be Visible */
+	public static void explicitWaitVisibilityOfElementEndole(WebElement element, int time) throws Exception{
+		WebDriverWait elementToBeVisible = new WebDriverWait(getEndoleWebDriver(), time);
+		elementToBeVisible.until(ExpectedConditions.visibilityOf(element));
+	}
 	
 	/** To Wait Until Element is Selected */
 	public static void explicitWaitSelectionStateToBe(WebElement element, int time, boolean selected) throws Exception{
