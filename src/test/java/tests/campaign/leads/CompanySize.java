@@ -19,11 +19,27 @@ public class CompanySize extends LeadPageObjects {
 			logger.info("Company size value is:" + companySizeOpenNoteValue);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Company size in open notes is 'TAL' so no check needed");
 			selectLinkedInvalueCompanyToolsDropdown();
+			String linkedInCompanySize = linkedInPage().getCompanySizeValue();
 			String linkedInUrl = getLinkedInCurrentUrl();
-			googlePage().closeGooglePage();
-			setvalueCompanySizeEvidence(linkedInUrl+"about");
-			ExtentTestManager.getTest().log(LogStatus.INFO,
-					"Company size evidence is updated in lead page");
+			if (linkedInCompanySize != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS,
+						"Company size in linkedin is matching open notes values");
+				googlePage().closeGooglePage();
+				selectvalueCompanySizeDropDown(linkedInCompanySize);
+				ExtentTestManager.getTest().log(LogStatus.PASS,
+						"Company size in lead page is updated as per evidence from linkedin");
+				setvalueCompanySizeEvidence(linkedInUrl+"about");
+				ExtentTestManager.getTest().log(LogStatus.INFO,
+						"Company size evidence is updated in lead page");
+			} else {
+				googlePage().closeGooglePage();
+				setvalueCompanySizeEvidence(linkedInUrl+"about");
+				ExtentTestManager.getTest().log(LogStatus.INFO,
+						"Company size is not updated in lead page");
+				ExtentTestManager.getTest().log(LogStatus.INFO,
+						"Company size evidence is updated in lead page");
+			}
+		
 		} else {
 			logger.info("Company size value is:" + companySizeOpenNoteValue);
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Company size check in placement is successfully done");
