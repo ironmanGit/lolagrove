@@ -17,20 +17,22 @@ public class JobFunction extends LeadPageObjects {
 	
 	public LeadPageObjects jobFunctionCheck() throws Exception {
 	Boolean isSelected = false;
-//	String jobTitleFromLead =  "Head of Information Systems and Strategy";
+	String jobFunctionValue = null;
 	String jobTitleFromLead =  getvalueJobTitle();
-	String[] JobFunction = CampaignTestDataProcess.getJobFunctionInfo(jobTitleFromLead);
- 
-	List<WebElement> options = getvaluesJobRoleDropdown();
+	List<String> JobFunction = CampaignTestDataProcess.getJobFunctionInfo(jobTitleFromLead);
+	
+	List<WebElement> options = getvaluesJobFunctionDropdown();
+//	System.out.println("Dropdown values are "+ options);
 	for(WebElement item:options) { 
-		System.out.println(JobFunction);
-		System.out.println("Dropdown values are "+ item.getText());
+//		System.out.println(JobFunction);
+//		System.out.println("Dropdown value is "+ item.getText());
 		
-		for (int i=0; i<JobFunction.length; i++) {
-			if (item.getText().contains(JobFunction[i])) {
+		for (int i=0; i<JobFunction.size(); i++) {
+			if (item.getText().contains(JobFunction.get(i))) {
 				isSelected = true;
-				selectvalueJobRoleDropdown(item.getText());
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Job Function Dropdown Value: "+item.getText()+" is selected for the Job Function: "+JobFunction);
+				jobFunctionValue = JobFunction.get(i);
+				selectvalueJobFunctionDropdown(item.getText());
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Job Function Dropdown Value: "+item.getText()+" is selected for the Job Function: "+JobFunction.get(i));
 				break;
 			}
 		}
@@ -39,10 +41,9 @@ public class JobFunction extends LeadPageObjects {
 		}	
 	}
 	if (!isSelected) {
-		ExtentTestManager.getTest().log(LogStatus.FAIL, "Job Function: "+JobFunction+" not listed in the dropdown");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "Job Function: "+jobFunctionValue+" not listed in the dropdown");
 	}		
 	
 	return leadPage();
 	}
-	
 }

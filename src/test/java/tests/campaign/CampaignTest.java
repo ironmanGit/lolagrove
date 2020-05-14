@@ -9,6 +9,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import pageObjects.initializePageObjects.PageFactoryInitializer;
 import tests.campaign.process.CampaignTestDataProcess;
+import utils.ExcelUtils;
 import utils.ExtentReports.ExtentTestManager;
 
 public class CampaignTest extends PageFactoryInitializer {
@@ -61,7 +62,19 @@ public class CampaignTest extends PageFactoryInitializer {
 		List<String> countryMapping = CampaignTestDataProcess.getCountryMapping("NORDIC", "countryCode1");
 		logger.info("country Mapping data : " + countryMapping);
 	}
-
+	
+	@DataProvider(name = "getLeadsData")
+	public Iterator<Object[]> getLeadsData() throws Exception {
+		List<Object[]> dataList = new ArrayList<Object[]>();
+		leadPage().readCampaignLeadsFile();
+		List<String> campaignLeadsLine = campaignTestDataProcess().getcampaignDataLines();
+		for (String Leadsline : campaignLeadsLine) {
+			dataList.add(new Object[] { Leadsline });
+		}
+		return dataList.iterator();
+	}
+	
+	
 	@Test(dataProvider = "getLeadsData", priority = 3, description = "Lead Testing")
 	public void leadsCheck(String leadsLine) throws Exception {
 		String leadId = leadsLine.substring(leadsLine.length() - 9);
@@ -83,4 +96,9 @@ public class CampaignTest extends PageFactoryInitializer {
 }
 
 }
+
+
+
+
+
 

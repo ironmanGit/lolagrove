@@ -17,9 +17,9 @@ public class JobLevel extends LeadPageObjects {
 	
 	public LeadPageObjects jobLevelCheck() throws Exception {
 	Boolean isSelected = false;
-//	String jobTitleFromLead =  "Head of Information Systems and Strategy";
 	String jobTitleFromLead =  getvalueJobTitle();
-	String[] JobRole = CampaignTestDataProcess.getJobRoleInfo(jobTitleFromLead);
+	String jobRoleValue = null;
+	List<String> JobRole = CampaignTestDataProcess.getJobRoleInfo(jobTitleFromLead);
  
 	boolean IsJobRoleExist = isJobRoleFieldExist();
 	if (IsJobRoleExist) {
@@ -29,11 +29,12 @@ public class JobLevel extends LeadPageObjects {
 			System.out.println(JobRole);
 			System.out.println("Dropdown values are "+ item.getText());
 			
-			for (int i=0; i<JobRole.length; i++) {
-				if (item.getText().contains(JobRole[i])) {
+			for (int i=0; i<JobRole.size(); i++) {
+				if (item.getText().contains(JobRole.get(i))) {
+					jobRoleValue = JobRole.get(i);
 					isSelected = true;
 					selectvalueJobRoleDropdown(item.getText());
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Job Role Dropdown Value: "+item.getText()+" is selected for the Job Role: "+JobRole);
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Job Role Dropdown Value: "+item.getText()+" is selected for the Job Role: "+JobRole.get(i));
 					break;
 				}
 			}
@@ -42,7 +43,7 @@ public class JobLevel extends LeadPageObjects {
 			}		
 		}
 		if (!isSelected) {
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Job Role: "+JobRole+" not listed in the dropdown");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Job Role: "+jobRoleValue+" not listed in the dropdown");
 		}
 	} else {
 			ExtentTestManager.getTest().log(LogStatus.INFO, "Job Role Field doesnt Exists in lead page");
