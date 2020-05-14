@@ -15,28 +15,28 @@ import utils.ExtentReports.ExtentTestManager;
 
 public class Industry extends LeadPageObjects {
 	
-	public LeadPageObjects getAcceptableIndustries() throws Exception {
-	String[] Industries = CampaignTestDataProcess.getIndustries();
- 
-	List<WebElement> options = getvaluesJobRoleDropdown();
-	for(WebElement item:options) { 
-		System.out.println(JobFunction);
-		System.out.println("Dropdown values are "+ item.getText());
-		
-		for (int i=0; i<JobFunction.length; i++) {
-			if (item.getText().contains(JobFunction[i])) {
-				isSelected = true;
-				selectvalueJobRoleDropdown(item.getText());
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Job Function Dropdown Value: "+item.getText()+" is selected for the Job Function: "+JobFunction);
-			}
-		}
-			
-		if (!isSelected) {
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Job Function: "+JobFunction+" not listed in the dropdown");
-		}		
-     }
-	
-	return leadPage();
-	}
+//	public LeadPageObjects getAcceptableIndustries() throws Exception {
+//	String[] Industries = CampaignTestDataProcess.getIndustries();
+// 
+//	List<WebElement> options = getvaluesJobRoleDropdown();
+//	for(WebElement item:options) { 
+//		System.out.println(JobFunction);
+//		System.out.println("Dropdown values are "+ item.getText());
+//		
+//		for (int i=0; i<JobFunction.length; i++) {
+//			if (item.getText().contains(JobFunction[i])) {
+//				isSelected = true;
+//				selectvalueJobRoleDropdown(item.getText());
+//				ExtentTestManager.getTest().log(LogStatus.PASS, "Job Function Dropdown Value: "+item.getText()+" is selected for the Job Function: "+JobFunction);
+//			}
+//		}
+//			
+//		if (!isSelected) {
+//			ExtentTestManager.getTest().log(LogStatus.FAIL, "Job Function: "+JobFunction+" not listed in the dropdown");
+//		}		
+//     }
+//	
+//	return leadPage();
+//	}
 	
 }
