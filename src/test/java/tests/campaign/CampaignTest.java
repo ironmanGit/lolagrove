@@ -76,11 +76,11 @@ public class CampaignTest extends PageFactoryInitializer {
 		ExtentTestManager.startTest("Lead Id--> " + leadId, "Lead Testing");
 		leadPage()
 		.clickLeadsFromFile(leadsLine)
-		.placementCheck()
+		//.placementCheck()
 		.countryCheck()
 		.companySizeCheck()
-		.companyTurnoverCheck()
-		.firstnameLastnameJobTitleCheck()
+		//.companyTurnoverCheck()
+		//.firstnameLastnameJobTitleCheck()
 		.updateManuallyVerify()
 		.clickSaveBtn();
 		//.clickCloseBtn();

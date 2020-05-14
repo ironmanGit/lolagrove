@@ -2186,7 +2186,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	}
 
 	public LeadPageObjects companySizeCheck() throws Exception {
-		companySize().companySizeCheck2();
+		companySize().companySizeCheck();
 		return this;
 	}
 
