@@ -2002,8 +2002,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 			logger.info("Linkedin");
 			switchToNewTab();
 			// clickSearchResult1();
-			String url = getSearchResult1() + "about";
-			switchToLinkedInBrowser();
+			String url = getSearchResult1() + "/about";
 			getLinkedInWebDriver().navigate().to(url);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companyToolsDropdown is Linkedin");
 		} catch (Exception e) {
@@ -2187,7 +2186,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	}
 
 	public LeadPageObjects companySizeCheck() throws Exception {
-		companySize().companySizeCheck();
+		companySize().companySizeCheck2();
 		return this;
 	}
 

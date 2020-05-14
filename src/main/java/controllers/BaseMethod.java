@@ -331,17 +331,29 @@ public class BaseMethod extends WebDriverFactory {
 
 	/* Focus to endole browser using JavaScript Executor */
 	public void switchToEndoleBrowser() throws Exception {
-		((JavascriptExecutor) getEndoleWebDriver()).executeScript("window.focus();");
+		try {
+			((JavascriptExecutor) getEndoleWebDriver()).executeScript("window.focus();");
+			} catch (Exception e) {
+				System.out.println("Unable to switch to linkedin browser" + e);
+			}
 	}
 
 	/* Focus to linkedin browser using JavaScript Executor */
 	public void switchToLinkedInBrowser() throws Exception {
+		try {
 		((JavascriptExecutor) getLinkedInWebDriver()).executeScript("window.focus();");
+		} catch (Exception e) {
+			System.out.println("Unable to switch to linkedin browser" + e);
+		}
 	}
 
 	/* Focus to linkedin browser using JavaScript Executor */
 	public void switchToZoomInfoBrowser() throws Exception {
-		((JavascriptExecutor) getZoomInfoWebDriver()).executeScript("window.focus();");
+		try {
+			((JavascriptExecutor) getZoomInfoWebDriver()).executeScript("window.focus();");
+			} catch (Exception e) {
+				System.out.println("Unable to switch to linkedin browser" + e);
+			}
 	}
 
 	/* Return web element using dynamic xpath */
@@ -526,7 +538,11 @@ public class BaseMethod extends WebDriverFactory {
 		boolean closeFlag = false;
 		switchToOtherHandle(getWebDriver(), closeFlag);
 	}
-
+	public void switchToLinkedInTab() {
+		boolean closeFlag = false;
+		switchToOtherHandle(getLinkedInWebDriver(), closeFlag);
+	}
+	
 	public void closeTab() {
 		boolean closeFlag = true;
 		switchToOtherHandle(getWebDriver(), closeFlag);

@@ -65,6 +65,12 @@ public class ExplicitWaiting extends BaseMethod
 		elementToBeVisible.until(ExpectedConditions.visibilityOf(element));
 	}
 	
+	/** To Wait Until Element to be Visible */
+	public static void explicitWaitVisibilityOfElementLinkedIn(WebElement element, int time) throws Exception{
+		WebDriverWait elementToBeVisible = new WebDriverWait(getLinkedInWebDriver(), time);
+		elementToBeVisible.until(ExpectedConditions.visibilityOf(element));
+	}
+	
 	/** To Wait Until Element is Selected */
 	public static void explicitWaitSelectionStateToBe(WebElement element, int time, boolean selected) throws Exception{
 		WebDriverWait elementIsSelected = new WebDriverWait(getWebDriver(), time);
