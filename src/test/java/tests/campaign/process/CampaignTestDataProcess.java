@@ -133,6 +133,91 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 		return result;
 	}
 
+	//Added by Anand
+	public static List<String> getJobRoleInfo(String JobTitle) throws Exception {
+		String filePath = "./src/test/resources/Test Data/Excel Files/JobRoleInfo.csv";
+		List<String> JobRole = getJobRoleInfo(JobTitle, filePath);
+		return JobRole;
+	}
+
+	//Added by Anand
+	public static List<String> getJobFunctionInfo(String JobTitle) throws Exception {
+		String filePath = "./src/test/resources/Test Data/Excel Files/JobFunctionInfo.csv";
+		List<String> JobFunction = getJobFunctionInfo(JobTitle, filePath);
+		return JobFunction;
+	}
+	
+	//Added by Anand
+	public static String[] getIndustries() throws Exception {
+		String filePath = "./src/test/resources/Test Data/Excel Files/IndustryVertical.csv";
+		String[] Industries = getIndustries(filePath);
+		return Industries;
+	}
+	
+	//Added by Anand
+	@SuppressWarnings("null")
+	public static String[] getIndustries(String FilePath) throws Exception {
+		String[] acceptedIndustries = null;
+		int counter=0;
+		List<String> lines = ExcelUtils.readFileToLines(FilePath);
+		for (String line : lines) {
+			String[] columns = line.split(",");
+			String IndustryName = columns[0];
+			String IndustryStatus = columns[1];
+			System.out.println(IndustryName);
+			System.out.println(IndustryStatus);
+			if (IndustryStatus.contains("Yes")) {
+				IndustryName = IndustryName.toString();
+				acceptedIndustries[counter] = IndustryName;
+				counter++;
+				System.out.println(acceptedIndustries);
+			}
+		}
+		return acceptedIndustries;
+	}
+	
+	//Added by Anand
+	public static List<String> getJobRoleInfo(String JobTitle, String FilePath) throws Exception {
+		List<String> matchingRoles = new ArrayList<String>();
+		List<String> lines = ExcelUtils.readFileToLines(FilePath);
+		for (String line : lines) {
+			String[] columns = line.split(",");
+			String JTitle = columns[1];
+			String JobRoleValue = columns[0];
+			if (JobTitle.contains(JTitle)) {
+				JobRoleValue = JobRoleValue.toString();
+				matchingRoles.add(JobRoleValue);
+				System.out.println(JobRoleValue);
+			}
+		}
+//		if (result == null) {
+//			throw new Exception("Error : Cannot find Job Tile: " + JobTitle + " from the CSV file for Job Function Field" + FilePath);
+//		}
+		return matchingRoles;
+	}
+	
+	//Added by Anand
+	public static List<String> getJobFunctionInfo(String JobTitle, String FilePath) throws Exception {
+		List<String> matchingFunctions = new ArrayList<String>();
+		List<String> lines = ExcelUtils.readFileToLines(FilePath);
+		for (String line : lines) {
+			String[] columns = line.split(",");
+			String JTitle = columns[1];
+			String JobFunctionValue = columns[0];
+			if (JobTitle.contains(JTitle)) {
+				JobFunctionValue = JobFunctionValue.toString();
+				matchingFunctions.add(JobFunctionValue);
+				System.out.println(JobFunctionValue);
+			}
+		}
+
+//		if (result == null) {
+//			throw new Exception("Error : Cannot find Job Tile: " + JobTitle + " from the CSV file for Job Function Field" + FilePath);
+//		}
+
+		return matchingFunctions;
+	}
+	
 	public static List<String> getCustomRegions(String region) throws Exception {
 		String filePath = "./src/test/resources/Test Data/Excel Files/CustomRegionsMapping.csv";
 		String customRegions = getCustomRegions(region, filePath);
