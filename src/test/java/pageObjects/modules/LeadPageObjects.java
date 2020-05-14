@@ -2002,7 +2002,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 			logger.info("Linkedin");
 			switchToNewTab();
 			// clickSearchResult1();
-			String url = getSearchResult1();
+			String url = getSearchResult1() + "about";
 			switchToLinkedInBrowser();
 			getLinkedInWebDriver().navigate().to(url);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companyToolsDropdown is Linkedin");

@@ -14,6 +14,13 @@ public class Country extends LeadPageObjects {
 
 	public LeadPageObjects countryCheck() throws Exception {
 		String countryOpenNoteValue = campaignTestDataProcess().getLeadsCountry();
+		if (countryOpenNoteValue.contains("Nordics")) {
+			countryOpenNoteValue = countryOpenNoteValue.concat(",Denmark, Finland, Iceland, Norway, Sweden");
+		}
+		
+		if (countryOpenNoteValue.contains("Benelux")) {
+			countryOpenNoteValue = countryOpenNoteValue.concat(",Belgium, Netherlands, Luxembourg");
+		}
 		String leadCountryLeadOnly = getvalueCountryReadOly();
 		logger.info("Country read only value from lead:" + leadCountryLeadOnly);
 		try {
@@ -30,7 +37,8 @@ public class Country extends LeadPageObjects {
 			}
 
 		} catch (Exception e) {
-			setvalueRejectionReason("country value in open notes does not match with country in lead");
+			selectvalueRejectionReasonDropdown("non-spec country (placement mismatch)");
+			setvalueRejectionReasonEvidence("country value in open notes does not match with country in lead");
 			ExtentTestManager.getTest().log(LogStatus.FAIL,
 					"Country value in open notes does not match with country in lead" + e);
 		}

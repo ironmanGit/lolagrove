@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import utils.ExcelUtils;
+import utils.ExplicitWaiting;
 import utils.ExtentReports.ExtentTestManager;
 import com.relevantcodes.extentreports.LogStatus;
 import pageObjects.initializePageObjects.PageFactoryInitializer;
@@ -62,6 +63,7 @@ public class LandingPageObjects extends PageFactoryInitializer {
 		char campaignChar = campaignText.charAt(0);
 		String campaignFirstText = Character.toString(campaignChar);
 		WebElement target = findCampaignFirstLetter(campaignFirstText);
+		ExplicitWaiting.explicitWaitVisibilityOfElement(target, 15);
 		click(target);
 		return this;
 	}

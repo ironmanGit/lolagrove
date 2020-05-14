@@ -26,7 +26,8 @@ public class PlacementReadOnly extends LeadPageObjects {
 			}
 
 		} catch (Exception e) {
-			setvalueRejectionReason("placement check does not match as per open notes");
+			selectvalueRejectionReasonDropdown("non-spec lead type (placement mismatch)");
+			setvalueRejectionReasonEvidence("placement check does not match as per open notes");
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Placement check failed" + e);
 		}
 		return leadPage();
