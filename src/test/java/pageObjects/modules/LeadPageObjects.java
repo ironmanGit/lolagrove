@@ -2001,7 +2001,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public LinkedInPageObjects selectLinkedInvalueCompanyToolsDropdown() throws Exception {
 		try {
-			ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
+			//ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
 			selectByVisibleText(companyToolsDropdown, "Linkedin");
 			logger.info("Linkedin");
 			switchToNewTab();
@@ -2217,7 +2217,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	
 	//added by Anand
 	public boolean isJobRoleFieldExist() throws Exception{
-		boolean isJobRoleFieldExist = isFieldExist(jobRole);	
+		boolean isJobRoleFieldExist = isFieldExist(jobRole);		
 		return isJobRoleFieldExist;
 	}
 		
