@@ -58,19 +58,7 @@ public class ExplicitWaiting extends BaseMethod
 		WebDriverWait elementToBeVisible = new WebDriverWait(getWebDriver(), time);
 		elementToBeVisible.until(ExpectedConditions.visibilityOf(element));
 	}
-	
-	/** To Wait Until Element to be Visible */
-	public static void explicitWaitVisibilityOfElementEndole(WebElement element, int time) throws Exception{
-		WebDriverWait elementToBeVisible = new WebDriverWait(getEndoleWebDriver(), time);
-		elementToBeVisible.until(ExpectedConditions.visibilityOf(element));
-	}
-	
-	/** To Wait Until Element to be Visible */
-	public static void explicitWaitVisibilityOfElementLinkedIn(WebElement element, int time) throws Exception{
-		WebDriverWait elementToBeVisible = new WebDriverWait(getLinkedInWebDriver(), time);
-		elementToBeVisible.until(ExpectedConditions.visibilityOf(element));
-	}
-	
+		
 	/** To Wait Until Element is Selected */
 	public static void explicitWaitSelectionStateToBe(WebElement element, int time, boolean selected) throws Exception{
 		WebDriverWait elementIsSelected = new WebDriverWait(getWebDriver(), time);

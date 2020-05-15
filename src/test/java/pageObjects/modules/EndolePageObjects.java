@@ -25,7 +25,7 @@ public class EndolePageObjects extends PageFactoryInitializer {
 	private WebElement turnOverValue;
 
 	public String getTurnoverValue() throws Exception {
-		ExplicitWaiting.explicitWaitVisibilityOfElementEndole(turnOverValue, 15);
+		ExplicitWaiting.explicitWaitVisibilityOfElement(turnOverValue, 15);
 		String turnover = getText(turnOverValue);
 		String mORb = turnover.replaceAll("\\.?[0-9]|£|$","").toLowerCase();
 		String value = turnover.replaceAll("([a-z]|[A_Z]|£|$)", "");

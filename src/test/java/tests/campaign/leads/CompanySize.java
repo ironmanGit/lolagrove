@@ -88,7 +88,8 @@ public class CompanySize extends LeadPageObjects {
 					}
 				} 
 				if (!isMatchFound) {
-					setvalueRejectionReason("company size check does not match in linked in and zoom info");
+					selectvalueRejectionReasonDropdown("non-spec company size (placement mismatch)");
+					setvalueRejectionReasonEvidence("company size check does not match in linked in and zoom info");
 					ExtentTestManager.getTest().log(LogStatus.FAIL,
 							"company size check does not match in linked in and zoom info");
 				}
@@ -97,11 +98,9 @@ public class CompanySize extends LeadPageObjects {
 	}
 	
 	public LeadPageObjects companySizeCheck2() throws Exception {
-		
    		selectLinkedInvalueCompanyToolsDropdown();
 		String linkedInCompanySize = linkedInPage().getCompanySizeValue();
 		String linkedInUrl = getLinkedInCurrentUrl();
-		
 		return leadPage();
 	}
 }

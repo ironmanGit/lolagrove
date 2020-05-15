@@ -22,25 +22,25 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 
 	private Logger logger = Logger.getLogger(LeadPageObjects.class.getName());
 
-	@FindBy(xpath = "//dt[contains(text(), 'Website')]/following-sibling::dd[1]")
+	@FindBy(xpath = "//dt[text()='Website']/following-sibling::dd[1]/a")
 	private WebElement websiteValue;
 
-	@FindBy(xpath = "//dt[contains(text(), 'Industries')]/following-sibling::dd[1]")
+	@FindBy(xpath = "//dt[text()='Industries']/following-sibling::dd[1]")
 	private WebElement industriesValue;
 
-	@FindBy(xpath = "//dt[contains(text(), 'Company size')]/following-sibling::dd[1]")
+	@FindBy(xpath = "//dt[text()='Company size']/following-sibling::dd[1]")
 	private WebElement companySizeValue;
 
-	@FindBy(xpath = "//dt[contains(text(), 'Headquarters')]/following-sibling::dd[1]")
+	@FindBy(xpath = "//dt[text()='Headquarters']/following-sibling::dd[1]")
 	private WebElement headquartersValue;
 
-	@FindBy(xpath = "//dt[contains(text(), 'Type')]/following-sibling::dd[1]")
+	@FindBy(xpath = "//dt[text()='Type']/following-sibling::dd[1]")
 	private WebElement typeValue;
 
-	@FindBy(xpath = "//dt[contains(text(), 'Founded')]/following-sibling::dd[1]")
+	@FindBy(xpath = "//dt[text()='Founded']/following-sibling::dd[1]")
 	private WebElement foundedValue;
 
-	@FindBy(xpath = "//dt[contains(text(), 'Specialties')]/following-sibling::dd[1]")
+	@FindBy(xpath = "//dt[text()='Specialties']/following-sibling::dd[1]")
 	private WebElement specialtiesValue;
 
 	@FindBy(css = "div h1.top-card-layout__title")
@@ -53,7 +53,7 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	private WebElement jobCompany;
 	
 	public String getWebsiteValue() throws Exception {
-		//ExplicitWaiting.explicitWaitVisibilityOfElement(websiteValue, 15);
+	ExplicitWaiting.explicitWaitVisibilityOfElement(websiteValue, 15);
 		String value = getText(websiteValue);
 		try {
 			if (value != null) {
@@ -81,10 +81,8 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	}
 
 	public String getCompanySizeValue() throws Exception {
-		//ExplicitWaiting.explicitWaitVisibilityOfElementLinkedIn(companySizeValue, 15);
-		WebElement companySizeValue1 = getLinkedInWebDriver().findElement(By.xpath("//dt[contains(text(), 'Company size')]/following-sibling::dd[1]"));
-		String value = getText(companySizeValue1).replaceAll("[a-z]| ", "");
-		//String value = getText(companySizeValue);
+		ExplicitWaiting.explicitWaitVisibilityOfElement(companySizeValue, 15);
+		String value = getText(companySizeValue).replaceAll("[a-z]| ", "");
 		value = value.replaceAll(".+(?<=-)", "");
 		value = value.replaceAll("([,|+])", "");
 		value = roundOffCompanySize(value);
@@ -100,7 +98,7 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	}
 
 	public String getHeadquartersValue() throws Exception {
-		//ExplicitWaiting.explicitWaitVisibilityOfElement(headquartersValue, 15);
+		ExplicitWaiting.explicitWaitVisibilityOfElement(headquartersValue, 15);
 		String value = getText(headquartersValue);
 		try {
 			if (value != null) {
@@ -114,7 +112,7 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	}
 
 	public String getTypeValue() throws Exception {
-		//ExplicitWaiting.explicitWaitVisibilityOfElement(typeValue, 15);
+		ExplicitWaiting.explicitWaitVisibilityOfElement(typeValue, 15);
 		String value = getText(typeValue);
 		try {
 			if (value != null) {
@@ -128,7 +126,7 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	}
 
 	public String getFoundedValue() throws Exception {
-		//ExplicitWaiting.explicitWaitVisibilityOfElement(foundedValue, 15);
+		ExplicitWaiting.explicitWaitVisibilityOfElement(foundedValue, 15);
 		String value = getText(foundedValue);
 		try {
 			if (value != null) {
@@ -142,7 +140,7 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	}
 
 	public String getSpecialtiesValue() throws Exception {
-		//ExplicitWaiting.explicitWaitVisibilityOfElement(specialtiesValue, 15);
+		ExplicitWaiting.explicitWaitVisibilityOfElement(specialtiesValue, 15);
 		String value = getText(specialtiesValue);
 		try {
 			if (value != null) {
@@ -166,7 +164,7 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	}
 	
 	public String getFullNameValue() throws Exception {
-		//ExplicitWaiting.explicitWaitVisibilityOfElement(fullName, 15);
+		ExplicitWaiting.explicitWaitVisibilityOfElement(fullName, 15);
 		String value = getText(fullName);
 		try {
 			if (value != null) {
@@ -180,7 +178,7 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	}
 	
 	public String getJobTitleValue() throws Exception {
-		//ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitle, 15);
+		ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitle, 15);
 		String value = getText(jobTitle);
 		value = value.replaceAll("(?= at).+", "");
 		try {
@@ -195,7 +193,7 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	}
 	
 	public String getCompanyValue() throws Exception {
-		//ExplicitWaiting.explicitWaitVisibilityOfElement(jobCompany, 15);
+		ExplicitWaiting.explicitWaitVisibilityOfElement(jobCompany, 15);
 		String value = getText(jobCompany);
 		try {
 			if (value != null) {

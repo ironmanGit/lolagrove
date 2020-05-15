@@ -21,7 +21,8 @@ public class PlacementReadOnly extends LeadPageObjects {
 			if (placement.contains(leadType)) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Placement check is successfully done");
 			} else {
-				setvalueRejectionReason("placement check does not match as per open notes");
+				selectvalueRejectionReasonDropdown("non-spec lead type (placement mismatch)");
+				setvalueRejectionReasonEvidence("placement check does not match as per open notes");
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "Placement check failed");
 			}
 
