@@ -1966,6 +1966,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	public LeadPageObjects selectvalueJobFunctionDropdown(String value) throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(jobFunctionDropdown, 15);
+			selectByIndex(jobFunctionDropdown, 0);
+			handleAlert();
 			selectByVisibleText(jobFunctionDropdown, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from jobFunctionDropdown is " + value);
 		} catch (Exception e) {
@@ -2077,6 +2079,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	public LeadPageObjects selectvalueCompanySizeDropDown(String value) throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(companySizeDropdown, 15);
+			selectByIndex(companySizeDropdown, 0);
+			handleAlert();
 			selectByVisibleText(companySizeDropdown, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companySizeDropDown is " + value);
 		} catch (Exception e) {
@@ -2141,11 +2145,10 @@ public class LeadPageObjects extends PageFactoryInitializer {
 				"lastname", "linkedin_id_url", "jobtitle", "jobtitle_evidence", "companyname", "industry",
 				"company_evidence", "company_size", "companysize_evidence", "turnover", "turnover_evidence" };
 
-		WebElement[] dropDownElements = { jobFunctionDropdown, companySizeDropdown, turnoverDropdown,
+		WebElement[] dropDownElements = {turnoverDropdown,
 				industryDropdown };
 
-		String[] dropdownElementId = { "ddlAdobeJobFunction", "cmp_size_ddn", "ddnTurnover",
-				"ddnIndustry" };
+		String[] dropdownElementId = { "ddnTurnover", "ddnIndustry" };
 
 		for (int i = 0; i < textElements.length; i++) {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(textElements[i], 15);
@@ -2214,7 +2217,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	
 	//added by Anand
 	public boolean isJobRoleFieldExist() throws Exception{
-		boolean isJobRoleFieldExist = jobRole.isDisplayed();		
+		boolean isJobRoleFieldExist = isFieldExist(jobRole);	
 		return isJobRoleFieldExist;
 	}
 		

@@ -488,21 +488,34 @@ public class BaseMethod extends WebDriverFactory {
 	public String roundOffCompanySize(String value) throws Exception {
 		int size = Integer.parseInt(value);
 		String result = null;
-		if (size < 50) {
-			result = "1-49";
-		} else if ((size >= 50) && (size <= 250)) {
-			result = "50-250";
-		} else if ((size >= 251) && (size <= 500)) {
-			result = "251-500";
-		} else if ((size >= 501) && (size <= 1000)) {
-			result = "501-1000";
-		} else if ((size >= 1001) && (size <= 5000)) {
-			result = "1001-5000";
-		} else if ((size >= 5001) && (size <= 10000)) {
-			result = "5001-10000";
+		if (size < 10) {
+			result = "1-9";
+		} else if ((size >= 10) && (size <= 99)) {
+			result = "10-99";
+		} else if ((size >= 100) && (size <= 499)) {
+			result = "100-499";
+		} else if ((size >= 500) && (size <= 999)) {
+			result = "500-999";
+		} else if ((size >= 1000) && (size <= 4999)) {
+			result = "1000-4999";
 		} else {
-			result = "10000+";
+			result = "5000+";
 		}
+//		if (size < 50) {
+//			result = "1-49";
+//		} else if ((size >= 50) && (size <= 250)) {
+//			result = "50-250";
+//		} else if ((size >= 251) && (size <= 500)) {
+//			result = "251-500";
+//		} else if ((size >= 501) && (size <= 1000)) {
+//			result = "501-1000";
+//		} else if ((size >= 1001) && (size <= 5000)) {
+//			result = "1001-5000";
+//		} else if ((size >= 5001) && (size <= 10000)) {
+//			result = "5001-10000";
+//		} else {
+//			result = "10000+";
+//		}
 		return result;
 	}
 

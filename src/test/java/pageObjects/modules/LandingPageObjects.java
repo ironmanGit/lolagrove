@@ -64,7 +64,7 @@ public class LandingPageObjects extends PageFactoryInitializer {
 		String campaignFirstText = Character.toString(campaignChar);
 		WebElement target = findCampaignFirstLetter(campaignFirstText);
 		ExplicitWaiting.explicitWaitVisibilityOfElement(target, 15);
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		click(target);
 		return this;
 	}
