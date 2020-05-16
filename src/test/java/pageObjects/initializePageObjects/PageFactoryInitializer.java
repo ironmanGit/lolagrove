@@ -19,6 +19,7 @@ import tests.campaign.leads.CompanyTurnover;
 import tests.campaign.leads.Country;
 import tests.campaign.leads.Email;
 import tests.campaign.leads.FirstnameLastnameJobTitle;
+import tests.campaign.leads.Industry;
 import tests.campaign.leads.JobFunction;
 import tests.campaign.leads.JobLevel;
 import tests.campaign.leads.JobTitle;
@@ -116,14 +117,18 @@ public class PageFactoryInitializer extends BaseMethod
 	public JobLevel jobLevel() 
 	{
 		return PageFactory.initElements(getWebDriver(), JobLevel.class);
-
 	}
 	
 	//Added by Anand
 	public JobFunction jobFunction() 
 	{
 		return PageFactory.initElements(getWebDriver(), JobFunction.class);
-
+	}
+	
+	//Added by Anand
+	public Industry industry() 
+	{
+		return PageFactory.initElements(getWebDriver(), Industry.class);
 	}
 	
 	public Email email() 

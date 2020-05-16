@@ -24,8 +24,8 @@ public class JobFunction extends LeadPageObjects {
 	List<WebElement> options = getvaluesJobFunctionDropdown();
 //	System.out.println("Dropdown values are "+ options);
 	for(WebElement item:options) { 
-//		System.out.println(JobFunction);
-//		System.out.println("Dropdown value is "+ item.getText());
+		System.out.println(JobFunction);
+		System.out.println("Dropdown value is "+ item.getText());
 		
 		for (int i=0; i<JobFunction.size(); i++) {
 			if (item.getText().contains(JobFunction.get(i))) {

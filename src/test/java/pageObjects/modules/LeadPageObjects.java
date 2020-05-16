@@ -2224,6 +2224,12 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	}
 	
 	//added by Anand
+	public LeadPageObjects industryCheck() throws Exception {
+		industry().industryCheck();
+		return this;
+	}
+	
+	//added by Anand
 	public List<WebElement> getvaluesJobRoleDropdown() throws Exception {
 		List<WebElement> options = null;
 		try {
@@ -2247,6 +2253,20 @@ public class LeadPageObjects extends PageFactoryInitializer {
 			ExtentTestManager.getTest().log(LogStatus.INFO, "Job Function Dropdown Values are " + options);
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.INFO, "Unable to get values from jobFunctionDropdown " + e);
+		}
+		return options;
+	}
+	
+	//added by Anand
+	public List<WebElement> getvaluesIndustryDropdown() throws Exception {
+		List<WebElement> options = null;
+		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(industryDropdown, 15);
+			Select select = new Select(industryDropdown);
+			options = select.getOptions();
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Industry Dropdown Values are " + options);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Unable to get values from industryDropdown " + e);
 		}
 		return options;
 	}

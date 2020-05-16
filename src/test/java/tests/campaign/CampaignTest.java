@@ -32,6 +32,7 @@ public class CampaignTest extends PageFactoryInitializer {
 		.getAllFieldsFromOpenNotes()
 		.closeOpenNotesTab()
 		.setTestDataCheck();
+		
 //		leadPage()
 //		.createCampaignLeadsFile();
 
@@ -49,7 +50,7 @@ public class CampaignTest extends PageFactoryInitializer {
 	public void getOpenNotesRecord() throws Exception {
 		getCountry = campaignTestDataProcess().getLeadsCountry();
 		getCompanySize = campaignTestDataProcess().getLeadsCompanySize();
-		getIndustrialVertical = campaignTestDataProcess().getLeadsIndustrialVertical();
+		List<String> getIndustrialVertical = campaignTestDataProcess().getLeadsIndustrialVertical();
 		getJobFunction = campaignTestDataProcess().getLeadsJobFunction();
 		getJobTitle = campaignTestDataProcess().getLeadsJobTitle();
 		logger.info("Country details : " + getCountry);
@@ -74,6 +75,13 @@ public class CampaignTest extends PageFactoryInitializer {
 		return dataList.iterator();
 	}
 	
+//	@DataProvider(name = "getIndustryVeritical")
+//	public List<String> getIndustryVeritical() throws Exception {
+////		getIndustrialVertical = CampaignTestDataProcess.getIndustries();
+//		
+////		return ;
+//	}
+//	
 	
 	@Test(dataProvider = "getLeadsData", priority = 3, description = "Lead Testing")
 	public void leadsCheck(String leadsLine) throws Exception {
@@ -87,7 +95,9 @@ public class CampaignTest extends PageFactoryInitializer {
 //		.companySizeCheck()
 //		.companyTurnoverCheck()
 		//.firstnameLastnameJobTitleCheck()
-		.jobFunctionCheck();
+//		.jobFunctionCheck();
+		.industryCheck();
+//		.jobLevelCheck();
 //		.updateManuallyVerify()
 //		.clickSaveBtn();
 		//.clickCloseBtn();

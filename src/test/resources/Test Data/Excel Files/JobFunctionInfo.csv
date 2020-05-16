@@ -1,10 +1,13 @@
 Job Function,Field
+Senior Director/Director,Head
+Senior Director/Director,Partner
 Senior Director/Director,Director
 Senior Manager/Manager,Manager
 SVP/VP,VP
 SVP/VP,SVP
 SVP/VP,President
 CXO/EVP,Chief
+CXO/EVP,CTO
 Finance,Account
 Finance,Accountant
 Finance,Accounting
@@ -23,7 +26,6 @@ Finance,Bookkeepers
 Finance,Bookkeeping
 Finance,Budget
 Finance,Budgeting
-Finance,Business
 Finance,Buyer
 Finance,Capital
 Finance,Capital assets
@@ -73,7 +75,6 @@ Finance,Underwriting
 Finance,Wealth
 IT,Applications
 IT,Application
-IT,BI
 IT,CIO
 IT,CISO
 IT,Cloud
@@ -100,7 +101,8 @@ IT,Information security
 IT,Information Systems
 IT,Information Technology
 IT,Infotech
-IT,Infrastructure/Data center
+IT,Data center
+IT,Infrastructure
 IT,IT
 IT,ITIS
 IT,Network
