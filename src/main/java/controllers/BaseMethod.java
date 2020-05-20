@@ -26,6 +26,12 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
+
+import com.relevantcodes.extentreports.LogStatus;
+
+import utils.ExplicitWaiting;
+import utils.ExtentReports.ExtentTestManager;
+
 import org.openqa.selenium.JavascriptExecutor;
 
 /**
@@ -333,15 +339,15 @@ public class BaseMethod extends WebDriverFactory {
 	public void switchToEndoleBrowser() throws Exception {
 		try {
 			((JavascriptExecutor) getEndoleWebDriver()).executeScript("window.focus();");
-			} catch (Exception e) {
-				System.out.println("Unable to switch to linkedin browser" + e);
-			}
+		} catch (Exception e) {
+			System.out.println("Unable to switch to linkedin browser" + e);
+		}
 	}
 
 	/* Focus to linkedin browser using JavaScript Executor */
 	public void switchToLinkedInBrowser() throws Exception {
 		try {
-		((JavascriptExecutor) getLinkedInWebDriver()).executeScript("window.focus();");
+			((JavascriptExecutor) getLinkedInWebDriver()).executeScript("window.focus();");
 		} catch (Exception e) {
 			System.out.println("Unable to switch to linkedin browser" + e);
 		}
@@ -351,9 +357,9 @@ public class BaseMethod extends WebDriverFactory {
 	public void switchToZoomInfoBrowser() throws Exception {
 		try {
 			((JavascriptExecutor) getZoomInfoWebDriver()).executeScript("window.focus();");
-			} catch (Exception e) {
-				System.out.println("Unable to switch to linkedin browser" + e);
-			}
+		} catch (Exception e) {
+			System.out.println("Unable to switch to linkedin browser" + e);
+		}
 	}
 
 	/* Return web element using dynamic xpath */
@@ -424,11 +430,10 @@ public class BaseMethod extends WebDriverFactory {
 	/* get innner text using idjs */
 	public String getTextUsingIdScript(String fieldName) throws Exception {
 		JavascriptExecutor js = (JavascriptExecutor) getWebDriver();
-		String value = js.executeScript("return document.getElementById('" + fieldName + "')[0]['value']")
-				.toString();
+		String value = js.executeScript("return document.getElementById('" + fieldName + "')[0]['value']").toString();
 		return value;
 	}
-	
+
 	/* web element is displayed return boolean value */
 	public boolean isFieldDisplayed(WebElement element) throws Exception {
 		boolean isFieldDisplayed = element.isDisplayed();
@@ -439,17 +444,37 @@ public class BaseMethod extends WebDriverFactory {
 	public boolean isFieldExist(WebElement element) throws Exception {
 		boolean isExist;
 		try {
-			if(element.isDisplayed()) { 
+			if (element.isDisplayed()) {
 				isExist = true;
 			} else {
 				isExist = false;
 			}
-		} catch(Exception e) {
+		} catch (Exception e) {
 			isExist = false;
 		}
 		return isExist;
 	}
-	
+
+	/* get values from drop down */
+	public List<WebElement> getvaluesFromDropdown(WebElement element) throws Exception {
+		List<WebElement> options = null;
+		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(element, 15);
+			Select select = new Select(element);
+			options = select.getOptions();
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Unable to get values from dropdown " + e);
+		}
+		return options;
+	}
+
+	/* get first value from drop down */
+	public String getFirstvalueFromDropdown(WebElement element) throws Exception {
+		List<WebElement> options = getvaluesFromDropdown(element);
+		String value = options.get(1).getText();
+		return value;
+	}
+
 	/* email validator */
 	public static boolean isValidEmail(String email) {
 		String emailRegex = "^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
@@ -464,57 +489,66 @@ public class BaseMethod extends WebDriverFactory {
 	 * 
 	 * @return True if JavaScript Alert is present on the page otherwise false
 	 */
-	public boolean isAlertPresent(){
-	 try{
-	  getWebDriver().switchTo().alert();
-	  return true;
-	 }catch(NoAlertPresentException ex){
-	  return false;
-	 }
+	public boolean isAlertPresent() {
+		try {
+			getWebDriver().switchTo().alert();
+			return true;
+		} catch (NoAlertPresentException ex) {
+			return false;
+		}
 	}
-	
+
 	/**
-	 * If Java script Alert is present on the page cancels it. 
+	 * If Java script Alert is present on the page cancels it.
 	 */
-	public void handleAlert(){
-	 if(isAlertPresent()){
-	  Alert alert = getWebDriver().switchTo().alert();
-	  System.out.println(alert.getText());
-	  alert.accept();
-	 }
+	public void handleAlert() {
+		if (isAlertPresent()) {
+			Alert alert = getWebDriver().switchTo().alert();
+			System.out.println(alert.getText());
+			alert.accept();
+		}
 	}
-	
+
 	/* get company size as per lolagrove */
-	public String roundOffCompanySize(String value) throws Exception {
+	public String roundOffCompanySize(String type, String value) throws Exception {
 		int size = Integer.parseInt(value);
 		String result = null;
-//		if (size < 10) {
-//			result = "1-9";
-//		} else if ((size >= 11) && (size <= 100)) {
-//			result = "10-99";
-//		} else if ((size >= 101) && (size <= 500)) {
-//			result = "100-499";
-//		} else if ((size >= 501) && (size <= 1000)) {
-//			result = "500-999";
-//		} else if ((size >= 1001) && (size <= 5000)) {
-//			result = "1000-4999";
-//		} else {
-//			result = "5000+";
-//		}
-		if (size < 50) {
-			result = "1-49";
-		} else if ((size >= 50) && (size <= 250)) {
-			result = "50-250";
-		} else if ((size >= 251) && (size <= 500)) {
-			result = "251-500";
-		} else if ((size >= 501) && (size <= 1000)) {
-			result = "501-1000";
-		} else if ((size >= 1001) && (size <= 5000)) {
-			result = "1001-5000";
-		} else if ((size >= 5001) && (size <= 10000)) {
-			result = "5001-10000";
-		} else {
-			result = "10000+";
+
+		switch (type) {
+		case "1-9":
+			if (size < 10) {
+				result = "1-9";
+			} else if ((size >= 11) && (size <= 100)) {
+				result = "10-99";
+			} else if ((size >= 101) && (size <= 500)) {
+				result = "100-499";
+			} else if ((size >= 501) && (size <= 1000)) {
+				result = "500-999";
+			} else if ((size >= 1001) && (size <= 5000)) {
+				result = "1000-4999";
+			} else {
+				result = "5000+";
+			}
+			break;
+		case "1-49":
+			if (size < 50) {
+				result = "1-49";
+			} else if ((size >= 50) && (size <= 250)) {
+				result = "50-250";
+			} else if ((size >= 251) && (size <= 500)) {
+				result = "251-500";
+			} else if ((size >= 501) && (size <= 1000)) {
+				result = "501-1000";
+			} else if ((size >= 1001) && (size <= 5000)) {
+				result = "1001-5000";
+			} else if ((size >= 5001) && (size <= 10000)) {
+				result = "5001-10000";
+			} else {
+				result = "10000+";
+			}
+			break;
+		default:
+			break;
 		}
 		return result;
 	}
@@ -551,11 +585,12 @@ public class BaseMethod extends WebDriverFactory {
 		boolean closeFlag = false;
 		switchToOtherHandle(getWebDriver(), closeFlag);
 	}
+
 	public void switchToLinkedInTab() {
 		boolean closeFlag = false;
 		switchToOtherHandle(getLinkedInWebDriver(), closeFlag);
 	}
-	
+
 	public void closeTab() {
 		boolean closeFlag = true;
 		switchToOtherHandle(getWebDriver(), closeFlag);

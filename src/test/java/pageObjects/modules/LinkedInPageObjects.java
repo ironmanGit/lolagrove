@@ -83,7 +83,7 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public String getCompanySizeValue() throws Exception {
+	public String getCompanySizeValue(String type) throws Exception {
 		String value = null;
 		if(isFieldExist(orgNonEligible)) {
 			ExtentTestManager.getTest().log(LogStatus.INFO, "org search in linkedin reached unclaimed page");
@@ -92,7 +92,7 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 			value = getText(companySizeValue).replaceAll("[a-z]| ", "");
 			value = value.replaceAll(".+(?<=-)", "");
 			value = value.replaceAll("([,|+])", "");
-			value = roundOffCompanySize(value);
+			value = roundOffCompanySize(type, value);
 			try {
 				if (value != null) {
 					ExtentTestManager.getTest().log(LogStatus.PASS, "companySize value is " + value);

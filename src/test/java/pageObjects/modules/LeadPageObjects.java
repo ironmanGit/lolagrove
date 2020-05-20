@@ -430,6 +430,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		leadId = leadId.substring(leadId.length() - 9);
 		logger.info(leadId);
 		clickEditLead(leadId);
+		String companySizeDropdownType = getFirstvalueFromDropdown(companySizeDropdown);
+		campaignTestDataProcess().setCompanySizeDropdownType(companySizeDropdownType);
 		return this;
 	}
 

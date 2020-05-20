@@ -19,7 +19,8 @@ public class CompanySize extends LeadPageObjects {
 			logger.info("Company size value is:" + companySizeOpenNoteValue);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Company size in open notes is 'TAL' so no check needed");
 			selectLinkedInvalueCompanyToolsDropdown();
-			String linkedInCompanySize = linkedInPage().getCompanySizeValue();
+			String companySizeDropdownType = campaignTestDataProcess().getCompanySizeDropdownType();
+			String linkedInCompanySize = linkedInPage().getCompanySizeValue(companySizeDropdownType);
 			if (linkedInCompanySize==null) {
 				selectLinkedInvalueCompanyToolsDropdown();
 			}
@@ -49,7 +50,8 @@ public class CompanySize extends LeadPageObjects {
 				if (isLinkedIn) {
 					ExtentTestManager.getTest().log(LogStatus.INFO, "company size check in linkedin");
 					selectLinkedInvalueCompanyToolsDropdown();
-					String linkedInCompanySize = linkedInPage().getCompanySizeValue();
+					String companySizeDropdownType = campaignTestDataProcess().getCompanySizeDropdownType();
+					String linkedInCompanySize = linkedInPage().getCompanySizeValue(companySizeDropdownType);
 					String linkedInUrl = getLinkedInCurrentUrl();
 					if (linkedInCompanySize != null) {
 						ExtentTestManager.getTest().log(LogStatus.PASS,
@@ -102,7 +104,8 @@ public class CompanySize extends LeadPageObjects {
 	
 	public LeadPageObjects companySizeCheck2() throws Exception {
    		selectLinkedInvalueCompanyToolsDropdown();
-		String linkedInCompanySize = linkedInPage().getCompanySizeValue();
+   		String companySizeDropdownType = campaignTestDataProcess().getCompanySizeDropdownType();
+		String linkedInCompanySize = linkedInPage().getCompanySizeValue(companySizeDropdownType);
 		String linkedInUrl = getLinkedInCurrentUrl();
 		return leadPage();
 	}
