@@ -5,11 +5,16 @@ Senior Director/Director,Director
 Senior Manager/Manager,Manager
 Senior Manager/Manager,Solution Architect
 Senior Manager/Manager,Scrum Master
+Senior Manager/Manager,Lead
 SVP/VP,VP
 SVP/VP,SVP
 SVP/VP,President
 CXO/EVP,Chief
 CXO/EVP,CTO
+CXO/EVP,CIO
+CXO/EVP,CFO
+CXO/EVP,COO
+CXO/EVP,CEO
 Finance,Account
 Finance,Accountant
 Finance,Accounting
