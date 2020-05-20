@@ -219,11 +219,6 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 				System.out.println(JobFunctionValue);
 			}
 		}
-
-//		if (result == null) {
-//			throw new Exception("Error : Cannot find Job Tile: " + JobTitle + " from the CSV file for Job Function Field" + FilePath);
-//		}
-
 		return matchingFunctions;
 	}
 	
@@ -234,37 +229,22 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 		return listOfCusRegions;
 	}
 
-	public static String getCountryMapping(String country, String countryCode, String FilePath) throws Exception {
-		String result = null;
-		List<String> lines = ExcelUtils.readFileToLines(FilePath);
+	public static List<String> getCountryMapping(String country) throws Exception {
+		String filePath = "./src/test/resources/Test Data/Excel Files/CountryCodeMapping.csv";
+		List<String> result = new ArrayList<String>();
+		List<String> lines = ExcelUtils.readFileToLines(filePath);
 		for (String line : lines) {
 			String[] columns = line.split(",");
 			String countryName = columns[0];
 			String countryCodeOne = columns[1];
 			String countryCodeTwo = columns[2];
 			if (countryName.contains(country)) {
-				if (countryCode.equals("countryCode1")) {
-					result = countryCodeOne;
-					break;
-				} else {
-					result = countryCodeTwo;
+					result.add(countryCodeOne);
+					result.add(countryCodeTwo);
 					break;
 				}
 			}
-		}
-
-		if (result == null) {
-			throw new Exception("Error : Cannot find country code for " + country + " from file " + FilePath);
-		}
-
+		logger.info("Country codes "+" "+result.get(0)+" "+result.get(1));
 		return result;
-	}
-
-	public static List<String> getCountryMapping(String country, String countryCode) throws Exception {
-		String filePath = "./src/test/resources/Test Data/Excel Files/CountryCodeMapping.csv";
-		String countryMap = getCountryMapping(country, countryCode, filePath);
-		List<String> listOfCountryMapping = Arrays.asList(countryMap);
-		return listOfCountryMapping;
-	}
-	
+	}	
 }

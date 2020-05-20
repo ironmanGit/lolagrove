@@ -1,11 +1,14 @@
 package tests.campaign.leads;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 
 import com.relevantcodes.extentreports.LogStatus;
 
 import pageObjects.modules.LeadPageObjects;
+import tests.campaign.process.CampaignTestDataProcess;
 import utils.ExtentReports.ExtentTestManager;
 
 public class PlacementReadOnly extends LeadPageObjects {
@@ -31,7 +34,9 @@ public class PlacementReadOnly extends LeadPageObjects {
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "Placement check failed");
 				}
 			}
-			if (placement.contains("US")) {
+			List<String> countryCode = CampaignTestDataProcess.getCountryMapping(leadCountryLeadOnly);
+			
+			if (placement.contains(countryCode.get(0))|| placement.contains(countryCode.get(1))) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Placement check for country code is successfully done");
 			} else {
 				selectvalueRejectionReasonDropdown("non-spec lead type (placement mismatch)");
