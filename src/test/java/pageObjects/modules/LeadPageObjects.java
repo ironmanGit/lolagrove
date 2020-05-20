@@ -143,13 +143,13 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	@FindBy(css = "input[name='job_function']")
 	private WebElement jobFunction;
 
-	@FindBy(css = "select#ddlAdobeJobFunction")
+	@FindBy(css = "input[name='job_function'] + div>select")
 	private WebElement jobFunctionDropdown;
 
-	@FindBy(css = "input[name='input[name='job_role']']")
+	@FindBy(css = "input[name='job_role']")
 	private WebElement jobRole;
 
-	@FindBy(css = "select#ddlGenericLevel")
+	@FindBy(css = "input[name='job_role'] + div>select")
 	private WebElement jobRoleDropdown;
 
 	@FindBy(css = "input[name='companyname']")
@@ -2006,7 +2006,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 			logger.info("Linkedin");
 			switchToNewTab();
 			// clickSearchResult1();
-			String url = getSearchResult1() + "/about";
+			String url = getSearchResult1().replaceAll("/$", "");
+			url = url + "/about";
 			getLinkedInWebDriver().navigate().to(url);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companyToolsDropdown is Linkedin");
 		} catch (Exception e) {

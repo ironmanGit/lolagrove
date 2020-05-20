@@ -20,6 +20,9 @@ public class CompanySize extends LeadPageObjects {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Company size in open notes is 'TAL' so no check needed");
 			selectLinkedInvalueCompanyToolsDropdown();
 			String linkedInCompanySize = linkedInPage().getCompanySizeValue();
+			if (linkedInCompanySize==null) {
+				selectLinkedInvalueCompanyToolsDropdown();
+			}
 			String linkedInUrl = getLinkedInCurrentUrl();
 			if (linkedInCompanySize != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS,

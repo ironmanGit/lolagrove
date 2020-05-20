@@ -16,16 +16,28 @@ public class PlacementReadOnly extends LeadPageObjects {
 		try {
 			String placement = getvaluePlacementReadOly();
 			String leadType = getvalueLeadTypeReadOly();
+			String leadCountryLeadOnly = getvalueCountryReadOly();
 			logger.info("Placement value is:" + placement);
 			logger.info("Lead type value is:" + leadType);
-			if (placement.contains(leadType)) {
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Placement check is successfully done");
+			logger.info("Lead type value is:" + leadCountryLeadOnly);
+			if(leadType.equals("undefined")) {
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Lead type value is undefined");
+			} else {
+				if (placement.contains(leadType)) {
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Placement check for leas type is successfully done");
+				} else {
+					selectvalueRejectionReasonDropdown("non-spec lead type (placement mismatch)");
+					setvalueRejectionReasonEvidence("placement check does not match as per open notes");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Placement check failed");
+				}
+			}
+			if (placement.contains("US")) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Placement check for country code is successfully done");
 			} else {
 				selectvalueRejectionReasonDropdown("non-spec lead type (placement mismatch)");
 				setvalueRejectionReasonEvidence("placement check does not match as per open notes");
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "Placement check failed");
 			}
-
 		} catch (Exception e) {
 			selectvalueRejectionReasonDropdown("non-spec lead type (placement mismatch)");
 			setvalueRejectionReasonEvidence("placement check does not match as per open notes");

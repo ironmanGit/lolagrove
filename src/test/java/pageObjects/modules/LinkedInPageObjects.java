@@ -52,6 +52,9 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	@FindBy(css = "div[data-section='currentPositionsDetails'] a span.top-card-link__description")
 	private WebElement jobCompany;
 	
+	@FindBy(css = "div+ p a[data-control-name='organization_non_eligible_learn_more_link']")
+	private WebElement orgNonEligible;
+	
 	public String getWebsiteValue() throws Exception {
 	ExplicitWaiting.explicitWaitVisibilityOfElement(websiteValue, 15);
 		String value = getText(websiteValue);
@@ -81,18 +84,23 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	}
 
 	public String getCompanySizeValue() throws Exception {
-		ExplicitWaiting.explicitWaitVisibilityOfElement(companySizeValue, 15);
-		String value = getText(companySizeValue).replaceAll("[a-z]| ", "");
-		value = value.replaceAll(".+(?<=-)", "");
-		value = value.replaceAll("([,|+])", "");
-		value = roundOffCompanySize(value);
-		try {
-			if (value != null) {
-				ExtentTestManager.getTest().log(LogStatus.PASS, "companySize value is " + value);
-			} else
-				ExtentTestManager.getTest().log(LogStatus.INFO, "companySize value is null");
-		} catch (Exception e) {
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from companySize " + e);
+		String value = null;
+		if(isFieldExist(orgNonEligible)) {
+			ExtentTestManager.getTest().log(LogStatus.INFO, "org search in linkedin reached unclaimed page");
+		} else {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(companySizeValue, 15);
+			value = getText(companySizeValue).replaceAll("[a-z]| ", "");
+			value = value.replaceAll(".+(?<=-)", "");
+			value = value.replaceAll("([,|+])", "");
+			value = roundOffCompanySize(value);
+			try {
+				if (value != null) {
+					ExtentTestManager.getTest().log(LogStatus.PASS, "companySize value is " + value);
+				} else
+					ExtentTestManager.getTest().log(LogStatus.INFO, "companySize value is null");
+			} catch (Exception e) {
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from companySize " + e);
+			}
 		}
 		return value;
 	}
