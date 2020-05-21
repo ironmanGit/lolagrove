@@ -335,33 +335,6 @@ public class BaseMethod extends WebDriverFactory {
 		((JavascriptExecutor) getWebDriver()).executeScript("window.focus();");
 	}
 
-	/* Focus to endole browser using JavaScript Executor */
-	public void switchToEndoleBrowser() throws Exception {
-		try {
-			((JavascriptExecutor) getEndoleWebDriver()).executeScript("window.focus();");
-		} catch (Exception e) {
-			System.out.println("Unable to switch to linkedin browser" + e);
-		}
-	}
-
-	/* Focus to linkedin browser using JavaScript Executor */
-	public void switchToLinkedInBrowser() throws Exception {
-		try {
-			((JavascriptExecutor) getLinkedInWebDriver()).executeScript("window.focus();");
-		} catch (Exception e) {
-			System.out.println("Unable to switch to linkedin browser" + e);
-		}
-	}
-
-	/* Focus to linkedin browser using JavaScript Executor */
-	public void switchToZoomInfoBrowser() throws Exception {
-		try {
-			((JavascriptExecutor) getZoomInfoWebDriver()).executeScript("window.focus();");
-		} catch (Exception e) {
-			System.out.println("Unable to switch to linkedin browser" + e);
-		}
-	}
-
 	/* Return web element using dynamic xpath */
 	public WebElement getXpath(String xpath, String dynamicValue) throws Exception {
 		String actualXpath = String.format(xpath, dynamicValue);

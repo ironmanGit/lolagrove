@@ -43,7 +43,7 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	@FindBy(xpath = "//dt[text()='Specialties']/following-sibling::dd[1]")
 	private WebElement specialtiesValue;
 
-	@FindBy(css = "div h1.top-card-layout__title")
+	@FindBy(css = "section.pv-top-card div.display-flex+div div>ul")
 	private WebElement fullName;
 	
 	@FindBy(css = "div h2.top-card-layout__headline")
@@ -70,7 +70,7 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	}
 
 	public String getIndustriesValue() throws Exception {
-		//ExplicitWaiting.explicitWaitVisibilityOfElement(industriesValue, 15);
+		ExplicitWaiting.explicitWaitVisibilityOfElement(industriesValue, 15);
 		String value = getText(industriesValue);
 		try {
 			if (value != null) {

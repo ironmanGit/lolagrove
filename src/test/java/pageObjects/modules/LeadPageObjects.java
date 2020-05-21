@@ -1947,13 +1947,12 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public LinkedInPageObjects selectLinkedInCompanySerachInJobTitleDropdown() throws Exception {
 		try {
-			ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitleDropdown, 15);
+			//ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitleDropdown, 15);
 			selectByVisibleText(jobTitleDropdown, "Linkedin Company Search");
 			logger.info("Linkedin Company Search");
 			switchToNewTab();
 			// clickSearchResult1();
 			String url = getSearchResult1();
-			switchToLinkedInBrowser();
 			getLinkedInWebDriver().navigate().to(url);
 			ExtentTestManager.getTest().log(LogStatus.PASS,
 					"Value for jobTitleDropdown is set as Linkedin Company Search");
@@ -2026,7 +2025,6 @@ public class LeadPageObjects extends PageFactoryInitializer {
 			switchToNewTab();
 			// clickSearchResult1();
 			String url = getSearchResult1();
-			switchToZoomInfoBrowser();
 			getZoomInfoWebDriver().navigate().to(url);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companyToolsDropdown is Zoominfo");
 		} catch (Exception e) {
@@ -2058,7 +2056,6 @@ public class LeadPageObjects extends PageFactoryInitializer {
 			updateSearchValueInGoogleAndSearch(searchValue);
 			// clickSearchResult1();
 			String url = getSearchResult1();
-			switchToEndoleBrowser();
 			getEndoleWebDriver().navigate().to(url);
 			ExtentTestManager.getTest().log(LogStatus.PASS,
 					"Selected value from companyToolsDropdown is Google (Generic)");
