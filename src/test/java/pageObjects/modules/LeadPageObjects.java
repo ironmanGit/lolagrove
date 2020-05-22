@@ -1926,6 +1926,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	public LeadPageObjects selectvalueCountryDropdown(String value) throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(countryDropdown, 15);
+			selectByIndex(countryDropdown, 0);
+			handleAlert();
 			selectByVisibleText(countryDropdown, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from countryDropdown is " + value);
 		} catch (Exception e) {
@@ -2155,6 +2157,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 			String value = getTextUsingScript(textElementName[i]);
 			if (value.equals("")) {
 				if (textElementName[i].equals("linkedin_id_url")) {
+					ExplicitWaiting.explicitWaitVisibilityOfElement(linkedinIdUrlNoEvidenceFoundBtn, 15);
 					click(linkedinIdUrlNoEvidenceFoundBtn);
 					handleAlert();
 					ExtentTestManager.getTest().log(LogStatus.INFO, "manually validate linkedin_id_url field");

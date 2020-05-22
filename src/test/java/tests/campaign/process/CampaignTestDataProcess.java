@@ -233,6 +233,9 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 		String filePath = "./src/test/resources/Test Data/Excel Files/CountryCodeMapping.csv";
 		List<String> result = new ArrayList<String>();
 		List<String> lines = ExcelUtils.readFileToLines(filePath);
+		if (country.equals("USA")) {
+			country = "United States of America";
+		}
 		for (String line : lines) {
 			String[] columns = line.split(",");
 			String countryName = columns[0];
