@@ -749,6 +749,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	public LeadPageObjects clickSaveBtn() throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(saveBtn, 15);
+			scrollDown();
 			click(saveBtn);
 			ExtentTestManager.getTest().log(LogStatus.INFO, "Clicked save button");
 			if (isAlertPresent()) {
@@ -2158,6 +2159,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 			if (value.equals("")) {
 				if (textElementName[i].equals("linkedin_id_url")) {
 					ExplicitWaiting.explicitWaitVisibilityOfElement(linkedinIdUrlNoEvidenceFoundBtn, 15);
+					click(linkedinIdUrlNoEvidenceFoundBtn);
+					handleAlert();
 					click(linkedinIdUrlNoEvidenceFoundBtn);
 					handleAlert();
 					ExtentTestManager.getTest().log(LogStatus.INFO, "manually validate linkedin_id_url field");
