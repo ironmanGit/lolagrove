@@ -749,6 +749,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	public LeadPageObjects clickSaveBtn() throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(saveBtn, 15);
+			scrollDown();
 			click(saveBtn);
 			ExtentTestManager.getTest().log(LogStatus.INFO, "Clicked save button");
 			if (isAlertPresent()) {
@@ -1926,6 +1927,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	public LeadPageObjects selectvalueCountryDropdown(String value) throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(countryDropdown, 15);
+			selectByIndex(countryDropdown, 0);
+			handleAlert();
 			selectByVisibleText(countryDropdown, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from countryDropdown is " + value);
 		} catch (Exception e) {
@@ -1947,13 +1950,12 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public LinkedInPageObjects selectLinkedInCompanySerachInJobTitleDropdown() throws Exception {
 		try {
-			ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitleDropdown, 15);
+			//ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitleDropdown, 15);
 			selectByVisibleText(jobTitleDropdown, "Linkedin Company Search");
 			logger.info("Linkedin Company Search");
 			switchToNewTab();
 			// clickSearchResult1();
 			String url = getSearchResult1();
-			switchToLinkedInBrowser();
 			getLinkedInWebDriver().navigate().to(url);
 			ExtentTestManager.getTest().log(LogStatus.PASS,
 					"Value for jobTitleDropdown is set as Linkedin Company Search");
@@ -2026,7 +2028,6 @@ public class LeadPageObjects extends PageFactoryInitializer {
 			switchToNewTab();
 			// clickSearchResult1();
 			String url = getSearchResult1();
-			switchToZoomInfoBrowser();
 			getZoomInfoWebDriver().navigate().to(url);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companyToolsDropdown is Zoominfo");
 		} catch (Exception e) {
@@ -2058,7 +2059,6 @@ public class LeadPageObjects extends PageFactoryInitializer {
 			updateSearchValueInGoogleAndSearch(searchValue);
 			// clickSearchResult1();
 			String url = getSearchResult1();
-			switchToEndoleBrowser();
 			getEndoleWebDriver().navigate().to(url);
 			ExtentTestManager.getTest().log(LogStatus.PASS,
 					"Selected value from companyToolsDropdown is Google (Generic)");
@@ -2158,6 +2158,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 			String value = getTextUsingScript(textElementName[i]);
 			if (value.equals("")) {
 				if (textElementName[i].equals("linkedin_id_url")) {
+					ExplicitWaiting.explicitWaitVisibilityOfElement(linkedinIdUrlNoEvidenceFoundBtn, 15);
+					click(linkedinIdUrlNoEvidenceFoundBtn);
+					handleAlert();
 					click(linkedinIdUrlNoEvidenceFoundBtn);
 					handleAlert();
 					ExtentTestManager.getTest().log(LogStatus.INFO, "manually validate linkedin_id_url field");
