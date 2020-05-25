@@ -143,13 +143,13 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	@FindBy(css = "input[name='job_function']")
 	private WebElement jobFunction;
 
-	@FindBy(css = "select#ddlAdobeJobFunction")
+	@FindBy(css = "input[name='job_function'] + div>select")
 	private WebElement jobFunctionDropdown;
 
-	@FindBy(css = "input[name='input[name='job_role']']")
+	@FindBy(css = "input[name='job_role']")
 	private WebElement jobRole;
 
-	@FindBy(css = "select#ddlGenericLevel")
+	@FindBy(css = "input[name='job_role'] + div>select")
 	private WebElement jobRoleDropdown;
 
 	@FindBy(css = "input[name='companyname']")
@@ -430,6 +430,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		leadId = leadId.substring(leadId.length() - 9);
 		logger.info(leadId);
 		clickEditLead(leadId);
+		String companySizeDropdownType = getFirstvalueFromDropdown(companySizeDropdown);
+		campaignTestDataProcess().setCompanySizeDropdownType(companySizeDropdownType);
 		return this;
 	}
 
@@ -747,14 +749,17 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	public LeadPageObjects clickSaveBtn() throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(saveBtn, 15);
+			scrollDown();
 			click(saveBtn);
 			ExtentTestManager.getTest().log(LogStatus.INFO, "Clicked save button");
 			if (isAlertPresent()) {
 				Alert alert = getWebDriver().switchTo().alert();
 				System.out.println(alert.getText());
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Alert popped up" + alert.getText());
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Alert popped up" + alert.getText());
 				alert.accept();
-				clickCloseBtn();
+				if (closeBtn.isDisplayed()) {
+					click(closeBtn);
+				}
 			} else {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Saved the Lead");
 			}
@@ -1922,6 +1927,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	public LeadPageObjects selectvalueCountryDropdown(String value) throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(countryDropdown, 15);
+			selectByIndex(countryDropdown, 0);
+			handleAlert();
 			selectByVisibleText(countryDropdown, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from countryDropdown is " + value);
 		} catch (Exception e) {
@@ -1943,13 +1950,12 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public LinkedInPageObjects selectLinkedInCompanySerachInJobTitleDropdown() throws Exception {
 		try {
-			ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitleDropdown, 15);
+			//ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitleDropdown, 15);
 			selectByVisibleText(jobTitleDropdown, "Linkedin Company Search");
 			logger.info("Linkedin Company Search");
 			switchToNewTab();
 			// clickSearchResult1();
 			String url = getSearchResult1();
-			switchToLinkedInBrowser();
 			getLinkedInWebDriver().navigate().to(url);
 			ExtentTestManager.getTest().log(LogStatus.PASS,
 					"Value for jobTitleDropdown is set as Linkedin Company Search");
@@ -1964,6 +1970,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	public LeadPageObjects selectvalueJobFunctionDropdown(String value) throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(jobFunctionDropdown, 15);
+			selectByIndex(jobFunctionDropdown, 0);
+			handleAlert();
 			selectByVisibleText(jobFunctionDropdown, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from jobFunctionDropdown is " + value);
 		} catch (Exception e) {
@@ -1997,13 +2005,13 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public LinkedInPageObjects selectLinkedInvalueCompanyToolsDropdown() throws Exception {
 		try {
-			ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
+			//ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
 			selectByVisibleText(companyToolsDropdown, "Linkedin");
 			logger.info("Linkedin");
 			switchToNewTab();
 			// clickSearchResult1();
-			String url = getSearchResult1();
-			switchToLinkedInBrowser();
+			String url = getSearchResult1().replaceAll("/$", "");
+			url = url + "/about";
 			getLinkedInWebDriver().navigate().to(url);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companyToolsDropdown is Linkedin");
 		} catch (Exception e) {
@@ -2020,7 +2028,6 @@ public class LeadPageObjects extends PageFactoryInitializer {
 			switchToNewTab();
 			// clickSearchResult1();
 			String url = getSearchResult1();
-			switchToZoomInfoBrowser();
 			getZoomInfoWebDriver().navigate().to(url);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companyToolsDropdown is Zoominfo");
 		} catch (Exception e) {
@@ -2052,7 +2059,6 @@ public class LeadPageObjects extends PageFactoryInitializer {
 			updateSearchValueInGoogleAndSearch(searchValue);
 			// clickSearchResult1();
 			String url = getSearchResult1();
-			switchToEndoleBrowser();
 			getEndoleWebDriver().navigate().to(url);
 			ExtentTestManager.getTest().log(LogStatus.PASS,
 					"Selected value from companyToolsDropdown is Google (Generic)");
@@ -2076,6 +2082,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	public LeadPageObjects selectvalueCompanySizeDropDown(String value) throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(companySizeDropdown, 15);
+			selectByIndex(companySizeDropdown, 0);
+			handleAlert();
 			selectByVisibleText(companySizeDropdown, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companySizeDropDown is " + value);
 		} catch (Exception e) {
@@ -2140,17 +2148,19 @@ public class LeadPageObjects extends PageFactoryInitializer {
 				"lastname", "linkedin_id_url", "jobtitle", "jobtitle_evidence", "companyname", "industry",
 				"company_evidence", "company_size", "companysize_evidence", "turnover", "turnover_evidence" };
 
-		WebElement[] dropDownElements = { jobFunctionDropdown, jobRoleDropdown, companySizeDropdown, turnoverDropdown,
+		WebElement[] dropDownElements = {turnoverDropdown,
 				industryDropdown };
 
-		String[] dropdownElementId = { "ddlAdobeJobFunction", "ddlGenericLevel", "cmp_size_ddn", "ddnTurnover",
-				"ddnIndustry" };
+		String[] dropdownElementId = { "ddnTurnover", "ddnIndustry" };
 
 		for (int i = 0; i < textElements.length; i++) {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(textElements[i], 15);
 			String value = getTextUsingScript(textElementName[i]);
 			if (value.equals("")) {
 				if (textElementName[i].equals("linkedin_id_url")) {
+					ExplicitWaiting.explicitWaitVisibilityOfElement(linkedinIdUrlNoEvidenceFoundBtn, 15);
+					click(linkedinIdUrlNoEvidenceFoundBtn);
+					handleAlert();
 					click(linkedinIdUrlNoEvidenceFoundBtn);
 					handleAlert();
 					ExtentTestManager.getTest().log(LogStatus.INFO, "manually validate linkedin_id_url field");
@@ -2164,13 +2174,19 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		}
 
 		for (int i = 0; i < dropDownElements.length; i++) {
-			if (isFieldDisplayed(dropDownElements[i])) {
-				String value = getTextUsingIdScript(dropdownElementId[i]);
-				if (value.contains("-")) {
-					selectByIndex(dropDownElements[i], 0);
-					handleAlert();
-				}
-			}
+			String value = getTextUsingIdScript(dropdownElementId[i]);
+			selectByIndex(dropDownElements[i], 0);
+			handleAlert();
+			selectByIndex(dropDownElements[i], 1);
+			handleAlert();
+//			if (isFieldExist(dropDownElements[i])) {
+//				
+////				if (value.contains("-")) {
+////					
+////				}
+////			} else {
+////				
+//			}
 		}
 		return this;
 	}
@@ -2207,7 +2223,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	
 	//added by Anand
 	public boolean isJobRoleFieldExist() throws Exception{
-		boolean isJobRoleFieldExist = jobRole.isDisplayed();		
+		boolean isJobRoleFieldExist = isFieldExist(jobRole);		
 		return isJobRoleFieldExist;
 	}
 		

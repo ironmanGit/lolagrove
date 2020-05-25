@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import utils.ExcelUtils;
+import utils.ExplicitWaiting;
 import utils.ExtentReports.ExtentTestManager;
 import com.relevantcodes.extentreports.LogStatus;
 import pageObjects.initializePageObjects.PageFactoryInitializer;
@@ -47,6 +48,7 @@ public class LandingPageObjects extends PageFactoryInitializer {
 		String campaignTab = null;
 		try{
 			campaignTab = landingPageName.getText();
+			logger.info("Campaign tab is asserted as " + campaignTab);
 			Assert.assertEquals(campaignTab, "Campaigns", "Expected Page is 'Campaign' But actual page is " + campaignTab);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Navigated to campaign page");
 		}
@@ -58,10 +60,14 @@ public class LandingPageObjects extends PageFactoryInitializer {
 
 	public LandingPageObjects selectCampaign() throws Exception {
 		String campaignText = appConfig.getCampaign();
+		logger.info("Campaign name "+ campaignText);
 		ExtentTestManager.getTest().log(LogStatus.INFO, "Selected campaign is : "+campaignText);
 		char campaignChar = campaignText.charAt(0);
 		String campaignFirstText = Character.toString(campaignChar);
+		logger.info("Campaign character "+ campaignFirstText);
 		WebElement target = findCampaignFirstLetter(campaignFirstText);
+		ExplicitWaiting.explicitWaitVisibilityOfElement(target, 15);
+		Thread.sleep(5000);
 		click(target);
 		return this;
 	}
@@ -70,6 +76,7 @@ public class LandingPageObjects extends PageFactoryInitializer {
 		String campaignText = appConfig.getCampaign();
 		WebElement campaignTarget = findCampaignLink(campaignText);
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(campaignTarget, 15);
 			click(campaignTarget);	
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Successfuly "+campaignText+" selected");
 		}catch(Exception e){

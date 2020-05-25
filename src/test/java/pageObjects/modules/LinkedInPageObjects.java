@@ -4,6 +4,7 @@
 package pageObjects.modules;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
@@ -21,28 +22,28 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 
 	private Logger logger = Logger.getLogger(LeadPageObjects.class.getName());
 
-	@FindBy(xpath = "//dt[contains(text(), 'Website')]/following-sibling::dd")
+	@FindBy(xpath = "//dt[text()='Website']/following-sibling::dd[1]/a")
 	private WebElement websiteValue;
 
-	@FindBy(xpath = "//dt[contains(text(), 'Industries')]/following-sibling::dd")
+	@FindBy(xpath = "//dt[text()='Industries']/following-sibling::dd[1]")
 	private WebElement industriesValue;
 
-	@FindBy(xpath = "//dt[contains(text(), 'Company size')]/following-sibling::dd")
+	@FindBy(xpath = "//dt[text()='Company size']/following-sibling::dd[1]")
 	private WebElement companySizeValue;
 
-	@FindBy(xpath = "//dt[contains(text(), 'Headquarters')]/following-sibling::dd")
+	@FindBy(xpath = "//dt[text()='Headquarters']/following-sibling::dd[1]")
 	private WebElement headquartersValue;
 
-	@FindBy(xpath = "//dt[contains(text(), 'Type')]/following-sibling::dd")
+	@FindBy(xpath = "//dt[text()='Type']/following-sibling::dd[1]")
 	private WebElement typeValue;
 
-	@FindBy(xpath = "//dt[contains(text(), 'Founded')]/following-sibling::dd")
+	@FindBy(xpath = "//dt[text()='Founded']/following-sibling::dd[1]")
 	private WebElement foundedValue;
 
-	@FindBy(xpath = "//dt[contains(text(), 'Specialties')]/following-sibling::dd")
+	@FindBy(xpath = "//dt[text()='Specialties']/following-sibling::dd[1]")
 	private WebElement specialtiesValue;
 
-	@FindBy(css = "div h1.top-card-layout__title")
+	@FindBy(css = "section.pv-top-card div.display-flex+div div>ul")
 	private WebElement fullName;
 	
 	@FindBy(css = "div h2.top-card-layout__headline")
@@ -51,8 +52,11 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	@FindBy(css = "div[data-section='currentPositionsDetails'] a span.top-card-link__description")
 	private WebElement jobCompany;
 	
+	@FindBy(css = "div+ p a[data-control-name='organization_non_eligible_learn_more_link']")
+	private WebElement orgNonEligible;
+	
 	public String getWebsiteValue() throws Exception {
-		ExplicitWaiting.explicitWaitVisibilityOfElement(websiteValue, 15);
+	ExplicitWaiting.explicitWaitVisibilityOfElement(websiteValue, 15);
 		String value = getText(websiteValue);
 		try {
 			if (value != null) {
@@ -79,19 +83,24 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public String getCompanySizeValue() throws Exception {
-		ExplicitWaiting.explicitWaitVisibilityOfElement(companySizeValue, 15);
-		String value = getText(companySizeValue).replaceAll("[a-z]| ", "");
-		value = value.replaceAll(".+(?<=-)", "");
-		value = value.replaceAll("([,|+])", "");
-		value = roundOffCompanySize(value);
-		try {
-			if (value != null) {
-				ExtentTestManager.getTest().log(LogStatus.PASS, "companySize value is " + value);
-			} else
-				ExtentTestManager.getTest().log(LogStatus.INFO, "companySize value is null");
-		} catch (Exception e) {
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from companySize " + e);
+	public String getCompanySizeValue(String type) throws Exception {
+		String value = null;
+		if(isFieldExist(orgNonEligible)) {
+			ExtentTestManager.getTest().log(LogStatus.INFO, "org search in linkedin reached unclaimed page");
+		} else {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(companySizeValue, 15);
+			value = getText(companySizeValue).replaceAll("[a-z]| ", "");
+			value = value.replaceAll(".+(?<=-)", "");
+			value = value.replaceAll("([,|+])", "");
+			value = roundOffCompanySize(type, value);
+			try {
+				if (value != null) {
+					ExtentTestManager.getTest().log(LogStatus.PASS, "companySize value is " + value);
+				} else
+					ExtentTestManager.getTest().log(LogStatus.INFO, "companySize value is null");
+			} catch (Exception e) {
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from companySize " + e);
+			}
 		}
 		return value;
 	}

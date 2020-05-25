@@ -17,11 +17,12 @@ import utils.ExtentReports.ExtentTestManager;
 
 public class Industry extends LeadPageObjects {
 	
+
 	public void setIndustyToggle() throws Exception {
 		List<String> AcceptedIndustries = CampaignTestDataProcess.getIndustryVertical();
 		campaignTestDataProcess().setLeadsIndustrialVertical(AcceptedIndustries);
 	}
-	
+
 	public LeadPageObjects industryCheck() throws Exception {
 		Boolean isSelected = false;
 		Boolean industryStatus = false;

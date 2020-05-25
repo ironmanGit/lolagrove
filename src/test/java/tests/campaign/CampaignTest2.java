@@ -25,59 +25,36 @@ public class CampaignTest2 extends PageFactoryInitializer {
 		.login()
 		.verifyCampaignTab()
 		.selectCampaign()
-		.navigateToLeadsPage()
-		.clickOpenNotesLink()
-		.getAllFieldsFromOpenNotes()
-		.closeOpenNotesTab()
-		.setTestDataCheck();
-//		 .createCampaignLeadsFile();
-//		 leadPage.readCampaignLeadsFile();
-		ExtentTestManager.endTest();
-		
+		.navigateToLeadsPage();
+		//.clickOpenNotesLink()
+		//.getAllFieldsFromOpenNotes()
+		//.closeOpenNotesTab()
+		//.setTestDataCheck();
+		//leadPage()
+		//.createCampaignLeadsFile();
 	}
 
-	@Test(priority = 2, description = "Get open records data")
-	public void getOpenNotesRecord() throws Exception {
-		getCountry = campaignTestDataProcess().getLeadsCountry();
-		getCompanySize = campaignTestDataProcess().getLeadsCompanySize();
-		getIndustrialVertical = campaignTestDataProcess().getLeadsIndustrialVertical();
-		getJobFunction = campaignTestDataProcess().getLeadsJobFunction();
-		getJobTitle = campaignTestDataProcess().getLeadsJobTitle();
-		logger.info("Country details : " + getCountry);
-		logger.info("Company Size : " + getCompanySize);
-		logger.info("Industrial : " + getIndustrialVertical);
-		logger.info("Job Function: " + getJobFunction);
-		logger.info("Job Title : " + getJobTitle);
-		List<String> customRegions = CampaignTestDataProcess.getCustomRegions("Cus_EMEA");
-		logger.info("custom Regions data : " + customRegions);
-		List<String> countryMapping = CampaignTestDataProcess.getCountryMapping("NORDIC", "countryCode1");
-		logger.info("country Mapping data : " + countryMapping);
+	@Test(priority = 2, description = "Launch endole and linkedin browsers")
+	public void lauchSearchBrowsers() throws Exception {
+		ExtentTestManager.startTest("Launch endole and linkedin browsers", "Launch endole and linkedin browsers");
+		//endoleDriver();
+		linkedInDriver();
 	}
+	
+	
 
-	@DataProvider(name = "getLeadsData")
-	public Iterator<Object[]> getLeadsData() throws Exception {
-		List<Object[]> dataList = new ArrayList<Object[]>();
-		leadPage().readCampaignLeadsFile();
-		List<String> campaignLeadsLine = campaignTestDataProcess().getcampaignDataLines();
-		for (String Leadsline : campaignLeadsLine) {
-			dataList.add(new Object[] { Leadsline });
-		}
-		return dataList.iterator();
-	}
-
-	@Test(dataProvider = "getLeadsData", priority = 3, description = "Lead Testing")
-	public void leadsCheck(String leadsLine) throws Exception {
-		String leadId = leadsLine.substring(leadsLine.length() - 9);
-		ExtentTestManager.startTest("Lead Id--> " + leadId, "Lead Testing");
+	@Test(priority = 3, description = "Lead Testing")
+	public void leadsCheck() throws Exception {
+		//String leadId = leadsLine.substring(leadsLine.length() - 9);
+		//ExtentTestManager.startTest("Lead Id--> " + leadId, "Lead Testing");
 		leadPage()
-		.clickLeadsFromFile(leadsLine)
-		.placementCheck()
-		.countryCheck()
-		.companySizeCheck()
-		.companyTurnoverCheck()
-		.firstnameLastnameCheck()
-		.jobTitleCheck()
-		.clickCloseBtn();
+		.clickLeadsFromFile("483213375")
+		.companySizeCheck();
+//		.companyTurnoverCheck()
+//		.firstnameLastnameJobTitleCheck()
+//		.updateManuallyVerify()
+//		.clickSaveBtn();
+		//.clickCloseBtn();
 		ExtentTestManager.endTest();
 	}
 }

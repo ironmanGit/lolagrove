@@ -20,9 +20,9 @@ public class JobFunction extends LeadPageObjects {
 	String jobFunctionValue = null;
 	String jobTitleFromLead =  getvalueJobTitle();
 	List<String> JobFunction = CampaignTestDataProcess.getJobFunctionInfo(jobTitleFromLead);
+	List<String> openNoteJobFunction = campaignTestDataProcess().getLeadsJobFunction();
 	
 	List<WebElement> options = getvaluesJobFunctionDropdown();
-//	System.out.println("Dropdown values are "+ options);
 	for(WebElement item:options) { 
 		System.out.println(JobFunction);
 		System.out.println("Dropdown value is "+ item.getText());

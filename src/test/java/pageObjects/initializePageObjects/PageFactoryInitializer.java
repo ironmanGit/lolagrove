@@ -70,17 +70,17 @@ public class PageFactoryInitializer extends BaseMethod
 	
 	public LinkedInPageObjects linkedInPage() 
 	{
-		return PageFactory.initElements(getWebDriver(), LinkedInPageObjects.class);
+		return PageFactory.initElements(getLinkedInWebDriver(), LinkedInPageObjects.class);
 	}
 	
 	public ZoomInfoPageObjects zoomInfoPage() 
 	{
-		return PageFactory.initElements(getWebDriver(), ZoomInfoPageObjects.class);
+		return PageFactory.initElements(getZoomInfoWebDriver(), ZoomInfoPageObjects.class);
 	}
 	
 	public EndolePageObjects endolePage() 
 	{
-		return PageFactory.initElements(getWebDriver(), EndolePageObjects.class);
+		return PageFactory.initElements(getEndoleWebDriver(), EndolePageObjects.class);
 	}
 	
 	public PlacementReadOnly placementReadOnly() 

@@ -39,6 +39,7 @@ public class WebDriverFactory extends BrowserFactory {
 		System.out.println("WebsiteURL: " + WebsiteURL);
 		new WebDriverFactory();
 		WebDriver driver = WebDriverFactory.createDriver();
+		driver.get(WebsiteURL);
 		setWebDriver(driver);
 	}
 
