@@ -2157,7 +2157,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		WebElement[] dropDownElements = {turnoverDropdown,
 				industryDropdown };
 
-		String[] dropdownElementId = { "ddnTurnover", "ddnIndustry" };
+		String[] dropdownElementId = {"ddnIndustry"};
 
 		for (int i = 0; i < textElements.length; i++) {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(textElements[i], 15);
