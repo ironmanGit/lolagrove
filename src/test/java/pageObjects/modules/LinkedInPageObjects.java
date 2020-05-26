@@ -46,10 +46,10 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	@FindBy(css = "section.pv-top-card div.display-flex+div div>ul")
 	private WebElement fullName;
 	
-	@FindBy(css = "section#experience-section ul li section div div.pv-entity__role-details h3 span+span")
+	@FindBy(xpath = "//h4/span[contains(text(), 'Present')]/../../../h3")
 	private WebElement jobTitle;
 	
-	@FindBy(css = "section#experience-section ul li section div a div.pv-entity__company-summary-info h3 span+span")
+	@FindBy(css = "ul.pv-top-card--experience-list li>a>span")
 	private WebElement jobCompany;
 	
 	@FindBy(css = "div+ p a[data-control-name='organization_non_eligible_learn_more_link']")

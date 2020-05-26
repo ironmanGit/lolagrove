@@ -432,6 +432,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		clickEditLead(leadId);
 		String companySizeDropdownType = getFirstvalueFromDropdown(companySizeDropdown);
 		campaignTestDataProcess().setCompanySizeDropdownType(companySizeDropdownType);
+		String turnoverDropdownType = getFirstvalueFromDropdown(turnoverDropdown);
+		campaignTestDataProcess().setTurnOverDropdownType(turnoverDropdownType);
 		return this;
 	}
 
@@ -2095,6 +2097,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	public LeadPageObjects selectvalueTurnoverDropdown(String value) throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(turnoverDropdown, 15);
+			selectByIndex(turnoverDropdown, 0);
+			handleAlert();
 			selectByVisibleText(turnoverDropdown, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from turnoverDropdown is " + value);
 		} catch (Exception e) {

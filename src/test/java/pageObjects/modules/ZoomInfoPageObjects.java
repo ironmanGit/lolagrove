@@ -92,13 +92,13 @@ public class ZoomInfoPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 	
-	public String getRevenueValue() throws Exception {
+	public String getRevenueValue(String type) throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(revenueValue, 15);
 		String revenue = getText(revenueValue);
 		String mORb = revenue.replaceAll("[a-z]|[0-9]|\\£|\\$","").toLowerCase();
 		String value = revenue.replaceAll("([a-z]|[A-Z]|\\£|\\$| )", "");
 		value = value.replaceAll("(\\.\\d+)", "");
-		value = roundOffTurnover(value, mORb);
+		value = roundOffTurnover(value, mORb, type);
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "revenue value is " + value);

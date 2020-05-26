@@ -23,6 +23,7 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 	private static List<String> leadsCompanyListDetails = new ArrayList<String>();
 	private static List<String> leadsExclusionCompanyListDetails = new ArrayList<String>();
 	private static String companySizeDropdownType;
+	private static String turnoverDropdownType;
 	private static List<String> leadsCompanyListUrl;
 	private static List<String> leadsCompanyExclusionListUrl;
 
@@ -104,6 +105,14 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 
 	public void setCompanySizeDropdownType(String companySizeDropdownType) {
 		this.companySizeDropdownType = companySizeDropdownType;
+	}
+	
+	public String getTurnOverDropdownType() {
+		return turnoverDropdownType;
+	}
+
+	public void setTurnOverDropdownType(String turnoverDropdownType) {
+		this.turnoverDropdownType = turnoverDropdownType;
 	}
 	
 	public String getLeadsCompanyName() {

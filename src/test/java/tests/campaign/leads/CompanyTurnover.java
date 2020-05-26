@@ -17,7 +17,8 @@ public class CompanyTurnover extends LeadPageObjects {
 		boolean isMatchFound = true;
 		ExtentTestManager.getTest().log(LogStatus.INFO, "company size check in endole");
 		selectGooglevalueAndUpdateEndoleCompanyToolsDropdown(" endole");
-		String endoleCompanyTurnOver = endolePage().getTurnoverValue();
+		String turnOverDropdownType = campaignTestDataProcess().getTurnOverDropdownType();
+		String endoleCompanyTurnOver = endolePage().getTurnoverValue(turnOverDropdownType);
 		String endoleUrl = getEndoleCurrentUrl();
 		if (endoleCompanyTurnOver != null) {
 			if (endoleCompanyTurnOver.equals("Unreported")) {
@@ -43,7 +44,7 @@ public class CompanyTurnover extends LeadPageObjects {
 		if(!isEndole) {
 			ExtentTestManager.getTest().log(LogStatus.INFO, "company revenue check in zoom info");
 			selectZoomInfovalueCompanyToolsDropdown();
-			String zoomInfoRevenue = zoomInfoPage().getRevenueValue();
+			String zoomInfoRevenue = zoomInfoPage().getRevenueValue(turnOverDropdownType);
 			String zoomInfoUrl = getZoomInfoCurrentUrl();
 			if (zoomInfoRevenue != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS,

@@ -24,13 +24,13 @@ public class EndolePageObjects extends PageFactoryInitializer {
 	@FindBy(xpath = "//div[@class='financial-overview']/span[contains(text(),'Turnover ')]/following-sibling::span")
 	private WebElement turnOverValue;
 
-	public String getTurnoverValue() throws Exception {
+	public String getTurnoverValue(String type) throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(turnOverValue, 15);
 		String turnover = getText(turnOverValue);
 		String mORb = turnover.replaceAll("\\.?[0-9]|£|$","").toLowerCase();
 		String value = turnover.replaceAll("([a-z]|[A-Z]|£|$)", "");
 		value = value.replaceAll("(\\.\\d+)", "");
-		value = roundOffTurnover(value, mORb);
+		value = roundOffTurnover(value, mORb, type);
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "turnover value is " + value);
