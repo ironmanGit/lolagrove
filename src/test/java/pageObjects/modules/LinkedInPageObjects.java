@@ -3,6 +3,8 @@
  */
 package pageObjects.modules;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -47,7 +49,10 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	private WebElement fullName;
 	
 	@FindBy(xpath = "//h4/span[contains(text(), 'Present')]/../../../h3")
-	private WebElement jobTitle;
+	private List<WebElement> jobTitle1;
+	
+	@FindBy(xpath = "//h4/span[contains(text(), 'Present')]/../../../h3/span[2]")
+	private List<WebElement> jobTitle2;
 	
 	@FindBy(css = "ul.pv-top-card--experience-list li>a>span")
 	private WebElement jobCompany;
@@ -186,17 +191,37 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	}
 	
 	public String getJobTitleValue() throws Exception {
-		ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitle, 15);
-		String value = getText(jobTitle);
-		value = value.replaceAll("(?= at).+", "");
-		try {
-			if (value != null) {
-				ExtentTestManager.getTest().log(LogStatus.PASS, "job title value is " + value);
-			} else
-				ExtentTestManager.getTest().log(LogStatus.INFO, "job title value is null");
-		} catch (Exception e) {
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from job title " + e);
+		int jobtitle1Size = jobTitle1.size();
+		int jobtitle2Size = jobTitle2.size();
+		String value = null;
+		if (jobtitle1Size>0) {
+			WebElement jobTitle = jobTitle1.get(0);
+			ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitle, 15);
+			 value = getText(jobTitle);
+			value = value.replaceAll("(?= at).+", "");
+			try {
+				if (value != null) {
+					ExtentTestManager.getTest().log(LogStatus.PASS, "job title value is " + value);
+				} else
+					ExtentTestManager.getTest().log(LogStatus.INFO, "job title value is null");
+			} catch (Exception e) {
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from job title " + e);
+			}
+		} else if (jobtitle2Size>0) {
+			WebElement jobTitle = jobTitle2.get(0);
+			ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitle, 15);
+			 value = getText(jobTitle);
+			value = value.replaceAll("(?= at).+", "");
+			try {
+				if (value != null) {
+					ExtentTestManager.getTest().log(LogStatus.PASS, "job title value is " + value);
+				} else
+					ExtentTestManager.getTest().log(LogStatus.INFO, "job title value is null");
+			} catch (Exception e) {
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from job title " + e);
+			}
 		}
+		
 		return value;
 	}
 	
