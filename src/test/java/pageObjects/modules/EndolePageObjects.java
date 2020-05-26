@@ -28,7 +28,7 @@ public class EndolePageObjects extends PageFactoryInitializer {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(turnOverValue, 15);
 		String turnover = getText(turnOverValue);
 		String mORb = turnover.replaceAll("\\.?[0-9]|£|$","").toLowerCase();
-		String value = turnover.replaceAll("([a-z]|[A_Z]|£|$)", "");
+		String value = turnover.replaceAll("([a-z]|[A-Z]|£|$)", "");
 		value = value.replaceAll("(\\.\\d+)", "");
 		value = roundOffTurnover(value, mORb);
 		try {

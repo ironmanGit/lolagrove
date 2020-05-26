@@ -33,6 +33,9 @@ public class ZoomInfoPageObjects extends PageFactoryInitializer {
 	@FindBy(xpath = "//h3[contains(text(), 'Employees')]/following-sibling::div/span")
 	private WebElement employeesValue;
 	
+	@FindBy(xpath = "//h3[contains(text(), 'Revenue')]/following-sibling::div/span")
+	private WebElement revenueValue;
+	
 	public String getHeadquartersValue() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(headquartersValue, 15);
 		String value = getText(headquartersValue);
@@ -85,6 +88,24 @@ public class ZoomInfoPageObjects extends PageFactoryInitializer {
 				ExtentTestManager.getTest().log(LogStatus.INFO, "employees value is null");
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from employees " + e);
+		}
+		return value;
+	}
+	
+	public String getRevenueValue() throws Exception {
+		ExplicitWaiting.explicitWaitVisibilityOfElement(revenueValue, 15);
+		String revenue = getText(revenueValue);
+		String mORb = revenue.replaceAll("[a-z]|[0-9]|\\£|\\$","").toLowerCase();
+		String value = revenue.replaceAll("([a-z]|[A-Z]|\\£|\\$| )", "");
+		value = value.replaceAll("(\\.\\d+)", "");
+		value = roundOffTurnover(value, mORb);
+		try {
+			if (value != null) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "revenue value is " + value);
+			} else
+				ExtentTestManager.getTest().log(LogStatus.INFO, "revenue value is null");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from revenue " + e);
 		}
 		return value;
 	}

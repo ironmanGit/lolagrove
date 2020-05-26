@@ -1,20 +1,3 @@
-country,countryCode1,countryCode2
-NORDIC (Denmark | Finland | Iceland | Sweden | Norway),NORD,NORD
-MEA (Middle East and Africa),See region table below for confirmation,See region table below for confirmation
-SEA (South East Asia),SEA,SEA
-EMEA (Europe| the Middle East and Africa),EMEA,EMEA
-USC (United States | Canada),USC,USC
-ANZ (Australia | New Zealand),ANZ,ANZ
-DACH (Deutschland | Austria | Switzerland),DACH,DACH
-Benelux (Belgium | Netherlands | Luxembourg),BEN,BEN
-UKI (United Kingdom & Ireland),UK-I,UK-I
-SEA & HK (South East Asia & Hong Kong),SEA-HK,SEA-HK
-Hong Kong & Tiawan,HK-TW,HK-TW
-RCIS - Kazakstan | Russia | Uzbekistan (Custom),RCIS,RCIS
-META - UAE |  SA | KW | OM | QA (Custom),META,META
-Italy | Spain (Custom),IT-SP,IT-SP
-Belgium| Netherlands| Norway| Sweden (Custom),BE-NL-NO-SE,BE-NL-NO-SE
-ASEAN (HK| ID| MY| MM| PH| SG| TW| TH| VN),ASEAN,ASEAN
 Afghanistan,AF,AFG
 Aland Islands,AX,ALA
 Albania,AL,ALB
@@ -69,7 +52,7 @@ Congo (Brazzaville),CG,COG
 Congo| (Kinshasa),CD,COD
 Cook Islands,CK,COK
 Costa Rica,CR,CRI
-Côte d'Ivoire,CI,CIV
+Cï¿½te d'Ivoire,CI,CIV
 Croatia,HR,HRV
 Cuba,CU,CUB
 Cyprus,CY,CYP
@@ -195,7 +178,7 @@ Poland,PL,POL
 Portugal,PT,PRT
 Puerto Rico,PR,PRI
 Qatar,QA,QAT
-Réunion,RE,REU
+Rï¿½union,RE,REU
 Romania,RO,ROU
 Russian Federation,RU,RUS
 Rwanda,RW,RWA
@@ -204,7 +187,7 @@ Saint Kitts and Nevis,KN,KNA
 Saint Lucia,LC,LCA
 Saint Pierre and Miquelon,PM,SPM
 Saint Vincent and Grenadines,VC,VCT
-Saint-Barthélemy,BL,BLM
+Saint-Barthï¿½lemy,BL,BLM
 Saint-Martin (French part),MF,MAF
 Samoa,WS,WSM
 San Marino,SM,SMR
@@ -262,3 +245,20 @@ Western Sahara,EH,ESH
 Yemen,YE,YEM
 Zambia,ZM,ZMB
 Zimbabwe,ZW,ZWE
+country,countryCode1,countryCode2
+NORDIC (Denmark |ï¿½Finland | Iceland |ï¿½Sweden |ï¿½Norway),NORD,NORD
+MEA (Middle East and Africa),See region table below for confirmation,See region table below for confirmation
+SEA (South East Asia),SEA,SEA
+EMEA (Europe| the Middle East and Africa),EMEA,EMEA
+USC (United States | Canada),USC,USC
+ANZ (Australia | New Zealand),ANZ,ANZ
+DACH (Deutschland | Austria | Switzerland),DACH,DACH
+Benelux (Belgium | Netherlands | Luxembourg),BEN,BEN
+UKI (United Kingdom & Ireland),UK-I,UK-I
+SEA & HK (South East Asia & Hong Kong),SEA-HK,SEA-HK
+Hong Kong & Tiawan,HK-TW,HK-TW
+RCIS - Kazakstan | Russia | Uzbekistan (Custom),RCIS,RCIS
+META - UAE |  SA | KW | OM | QA (Custom),META,META
+Italy | Spain (Custom),IT-SP,IT-SP
+Belgium| Netherlands| Norway| Sweden (Custom),BE-NL-NO-SE,BE-NL-NO-SE
+ASEAN (HK| ID| MY| MM| PH| SG| TW| TH| VN),ASEAN,ASEAN

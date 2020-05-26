@@ -45,6 +45,7 @@ public class LandingPageObjects extends PageFactoryInitializer {
 	private List<WebElement> getCampaignRows;
 	
 	public LandingPageObjects verifyCampaignTab() throws Exception {
+		Thread.sleep(5000);
 		String campaignTab = null;
 		try{
 			campaignTab = landingPageName.getText();
@@ -229,6 +230,7 @@ public class LandingPageObjects extends PageFactoryInitializer {
 
 	public OpenNotesPageObjects clickOpenNotesLink() {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(openNotesLink, 15);
 			click(openNotesLink);
 			logger.info("Open notes");
 			switchToNewTab();
@@ -241,6 +243,7 @@ public class LandingPageObjects extends PageFactoryInitializer {
 	
 	public LeadPageObjects clickShowDataButton() {
 		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(showDataButton, 15);
 			click(showDataButton);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked 'Show Data' button successfully");
 		} catch (Exception e) {

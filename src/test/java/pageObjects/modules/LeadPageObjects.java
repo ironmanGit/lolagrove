@@ -2022,7 +2022,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public ZoomInfoPageObjects selectZoomInfovalueCompanyToolsDropdown() throws Exception {
 		try {
-			ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
+			//ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
 			selectByVisibleText(companyToolsDropdown, "Zoominfo");
 			logger.info("Zoominfo");
 			switchToNewTab();
@@ -2038,7 +2038,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public EndolePageObjects selectGlassDoorvalueCompanyToolsDropdown() throws Exception {
 		try {
-			ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
+			//ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
 			selectByVisibleText(companyToolsDropdown, "Glassdoor");
 			logger.info("Glassdoor");
 			switchToNewTab();
@@ -2119,6 +2119,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	public LeadPageObjects selectvalueRejectionReasonDropdown(String value) throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(rejectionReasonDropdown, 15);
+			selectByIndex(rejectionReasonDropdown, 0);
+			handleAlert();
 			selectByVisibleText(rejectionReasonDropdown, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from rejectionReasonDropdown is " + value);
 		} catch (Exception e) {

@@ -31,7 +31,7 @@ public class Country extends LeadPageObjects {
 		logger.info("Country read only value from lead:" + leadCountryLeadOnly);
 		
 		try {
-			if (countryOpenNoteValue.contains(leadCountryLeadOnly)) {
+			if (countryOpenNoteValue.contains(leadCountryLeadOnly) || countryOpenNoteValue.contains("ALL")) {
 				ExtentTestManager.getTest().log(LogStatus.PASS,
 						"Country in open notes matches country read only field");
 				if(leadCountryLeadOnly.equals("USA")||leadCountryLeadOnly.equals("US")||leadCountryLeadOnly.equals("America")) {

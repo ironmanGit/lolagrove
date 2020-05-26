@@ -40,7 +40,8 @@ public class CampaignTest extends PageFactoryInitializer {
 		ExtentTestManager.startTest("Launch endole and linkedin browsers", "Launch endole and linkedin browsers");
 		endoleDriver();
 		linkedInDriver();
-	}
+		zoomInfoDriver();
+		}
 	
 	@Test(priority = 3, description = "Get open records data")
 	public void getOpenNotesRecord() throws Exception {
@@ -80,8 +81,8 @@ public class CampaignTest extends PageFactoryInitializer {
 		.placementCheck()
 		.countryCheck()
 		.companySizeCheck()
-		//.companyTurnoverCheck()
-		//.firstnameLastnameJobTitleCheck()
+		.companyTurnoverCheck()
+		.firstnameLastnameJobTitleCheck()
 		.jobFunctionCheck()
 		.updateManuallyVerify()
 		.clickSaveBtn();
