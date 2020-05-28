@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 
 import com.relevantcodes.extentreports.LogStatus;
@@ -17,7 +18,8 @@ import utils.ExtentReports.ExtentTestManager;
 
 public class Industry extends LeadPageObjects {
 	
-
+	private Logger logger = Logger.getLogger(LeadPageObjects.class.getName());
+	
 	public void setIndustyToggle() throws Exception {
 		List<String> AcceptedIndustries = CampaignTestDataProcess.getIndustryVertical();
 		campaignTestDataProcess().setLeadsIndustrialVertical(AcceptedIndustries);
@@ -29,36 +31,41 @@ public class Industry extends LeadPageObjects {
 		Boolean rejectLead = false;
 		String IndusValue = null;
 		
-	//	String IndustryFromSite = LinkedInPageObjects
-		String IndustryFromSite = "Information Technology and Services";
+		String linkedinIndustry = campaignTestDataProcess().getLinkedinIndustry();
+//		String IndustryFromSite = "Information Technology and Services";
 		List<String> AcceptedIndustries = campaignTestDataProcess().getLeadsIndustrialVertical();
-		List<String> mapIndustries = CampaignTestDataProcess.getIndustryInfo(IndustryFromSite);
-		List<String> finalIndustries = new ArrayList<String>();
+		List<String> mapIndustries = CampaignTestDataProcess.getIndustryInfo(linkedinIndustry);
+		List<String> filteredIndustries = new ArrayList<String>();
+		
+		logger.info("Industry Mentioned in LinkedIn: " + linkedinIndustry);
+		logger.info("Industry Accepted as per Open Notes: " + AcceptedIndustries);
+		logger.info("Matched Industry/keyword from Repository: " + mapIndustries);
 		
 		for (int i=0; i<AcceptedIndustries.size(); i++) {
 			for (int j=0; i<mapIndustries.size(); j++) {
 				if (AcceptedIndustries.get(i).contains(mapIndustries.get(j))) {
 					industryStatus = true;
-					finalIndustries.add(mapIndustries.get(j));
+					filteredIndustries.add(mapIndustries.get(j));
 				}
 			}
 		}
 		
-		System.out.println(AcceptedIndustries);
-		System.out.println(mapIndustries);
-		System.out.println(finalIndustries);
+		logger.info("Filtered Industry/keyword: " + filteredIndustries);
 		
 		if (industryStatus) {		
 			List<WebElement> options = getvaluesIndustryDropdown();
 			for(WebElement item:options) { 
-				System.out.println("Dropdown values are "+ item.getText());
+				logger.info("Industry Dropdown values are: " + item.getText());
 				
-				for (int i=0; i<finalIndustries.size(); i++) {
-					if (item.getText().contains(finalIndustries.get(i))) {
-						IndusValue = finalIndustries.get(i);
+				for (int i=0; i<filteredIndustries.size(); i++) {
+					if (item.getText().contains(filteredIndustries.get(i))) {
+						IndusValue = filteredIndustries.get(i);
 						isSelected = true;
 						selectvalueIndustryDropdown(item.getText());
-						ExtentTestManager.getTest().log(LogStatus.PASS, "Industry Dropdown Value: "+item.getText()+" is selected for the Industry: "+finalIndustries.get(i));
+						logger.info("Industry Dropdown Value: "
+								+item.getText()+" is selected for the Industry: "+filteredIndustries.get(i));
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Industry Dropdown Value: "
+								+item.getText()+" is selected for the Industry: "+filteredIndustries.get(i));
 						break;
 					}
 				}
@@ -66,13 +73,19 @@ public class Industry extends LeadPageObjects {
 					break;
 				}					
 				else {
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "Industry Dropdown Value: "+IndusValue+" not listed in the dropdown");
+					logger.info("Industry Dropdown Value: " 
+							+IndusValue+" not listed in the dropdown");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Industry Dropdown Value: "
+							+IndusValue+" not listed in the dropdown");
 				}		
 		    }
 		}
 		else {
 			rejectLead = true;
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Identified Industries: "+mapIndustries+" are not accepted in vertical list: "+AcceptedIndustries+" hence reject the Lead");
+			logger.info("Identified Industries: "+mapIndustries+" are not accepted in vertical list: "
+					+AcceptedIndustries+" hence reject the Lead");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Identified Industries: "
+					+mapIndustries+" are not accepted in vertical list: "+AcceptedIndustries+" hence reject the Lead");
 		}
 		
 	return leadPage();

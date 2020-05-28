@@ -19,6 +19,7 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 	private static String leadsCountry;
 	private static String leadsCompanyName;
 	private static String email;
+	private static String LinkedinIndustry;
 	private static List<String> leadsCompanyListDetails = new ArrayList<String>();
 	private static List<String> leadsIndustrialVertical = new ArrayList<String>();
 	private static String companySizeDropdownType;
@@ -62,7 +63,15 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 	public void setLeadsIndustrialVertical(List<String> leadsIndustrialVertical) {
 		this.leadsIndustrialVertical = leadsIndustrialVertical;
 	}
+	
+	public String getLinkedinIndustry() {
+		return LinkedinIndustry;
+	}
 
+	public void setLinkedinIndustry(String linkedinIndustry) {
+		this.LinkedinIndustry = linkedinIndustry;
+	}
+	
 	public String getLeadsJobFunction() {
 		return leadsJobFunction;
 	}
@@ -168,6 +177,39 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 		String filePath = "./src/test/resources/Test Data/Excel Files/IndustryVertical.csv";
 		List<String> AcceptedIndustries = getIndustryInfo(filePath);
 		return AcceptedIndustries;
+	}
+	
+	//Added by Anand
+	public static List<String> getTelephoneNumber() throws Exception {
+		String filePath = "./src/test/resources/Test Data/Excel Files/TelephoneNumber.csv";
+		List<String> lines = ExcelUtils.readFileToLines(filePath);
+		List<String> telephoneNumber = new ArrayList<String>();
+		for (String line : lines) {
+			String[] columns = line.split(",");
+			telephoneNumber.add(columns[0]);
+			System.out.println(telephoneNumber);
+		}
+		return telephoneNumber;
+	}
+	
+	//Added by Anand
+	public static String getRegionCode(String sendCountryCode) throws Exception {
+		String filePath = "./src/test/resources/Test Data/Excel Files/RegionCode.csv";
+		List<String> lines = ExcelUtils.readFileToLines(filePath);
+		String regionCode = "";
+		for (String line : lines) {
+			String[] columns = line.split(",");
+			String country = columns[0];
+			String countryCode = columns[1];
+			regionCode = columns[2];
+			System.out.println(country);
+			System.out.println(regionCode);
+			if (countryCode.contains(sendCountryCode)) {
+				regionCode = regionCode.toString();
+				break;
+			}
+		}
+		return regionCode;
 	}
 	
 	//Added by Anand
