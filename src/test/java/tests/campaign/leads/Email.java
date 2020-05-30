@@ -57,7 +57,7 @@ public class Email extends LeadPageObjects {
 		} else {
 			setvalueRejectionReason("email format invalid from open notes");
 			ExtentTestManager.getTest().log(LogStatus.FAIL,
-					"email format invalid from open notes need to check manually");
+					"email format invalid from open notes need to check manually ");
 		}
 		
 		return leadPage();
