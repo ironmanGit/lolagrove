@@ -25,24 +25,28 @@ public class EndolePageObjects extends PageFactoryInitializer {
 	private WebElement turnOverValue;
 
 	public String getTurnoverValue(String type) throws Exception {
-		ExplicitWaiting.explicitWaitVisibilityOfElement(turnOverValue, 15);
-		String turnover = getText(turnOverValue);
 		String value = null;
-		if (turnover.contains("Unreported") || turnover == null || turnover.equals(" ") || turnover.equals("") || turnover.equals("No records")) {
-			value = "Unreported";
-			ExtentTestManager.getTest().log(LogStatus.INFO, "turnover value is null or unreported or empty");
-		} else {
-			String mORb = turnover.replaceAll("\\.?[0-9]|£|$", "").toLowerCase();
-			value = turnover.replaceAll("([a-z]|[A-Z]|£|$)", "");
-			value = value.replaceAll("(\\.\\d+)", "");
-			value = roundOffTurnover(value, mORb, type);
-			try {
-				ExtentTestManager.getTest().log(LogStatus.PASS, "turnover value is " + value);
-			} catch (Exception e) {
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from turnover " + e);
+		if (isFieldExist(turnOverValue)) {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(turnOverValue, 15);
+			String turnover = getText(turnOverValue);
+			if (turnover.contains("Unreported") || turnover == null || turnover.equals(" ") || turnover.equals("")
+					|| turnover.equals("No records")) {
+				value = "Unreported";
+				ExtentTestManager.getTest().log(LogStatus.INFO, "turnover value is null or unreported or empty");
+			} else {
+				String mORb = turnover.replaceAll("\\.?[0-9]|£|$", "").toLowerCase();
+				value = turnover.replaceAll("([a-z]|[A-Z]|£|$)", "");
+				value = value.replaceAll("(\\.\\d+)", "");
+				value = roundOffTurnover(value, mORb, type);
+				try {
+					ExtentTestManager.getTest().log(LogStatus.PASS, "turnover value is " + value);
+				} catch (Exception e) {
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from turnover " + e);
+				}
 			}
+		} else {
+			value = null;
 		}
-
 		return value;
 	}
 

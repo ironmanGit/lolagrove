@@ -22,7 +22,7 @@ public class CompanySize extends LeadPageObjects {
 			String companySizeDropdownType = campaignTestDataProcess().getCompanySizeDropdownType();
 			String linkedInCompanySize = linkedInPage().getCompanySizeValue(companySizeDropdownType);
 			if (linkedInCompanySize==null) {
-				selectLinkedInvalueCompanyToolsDropdown();
+				isLinkedIn = false;
 			}
 			String linkedInUrl = getLinkedInCurrentUrl();
 			if (linkedInCompanySize != null) {

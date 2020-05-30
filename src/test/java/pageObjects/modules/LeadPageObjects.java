@@ -1961,7 +1961,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public LinkedInPageObjects selectLinkedInCompanySerachInJobTitleDropdown() throws Exception {
 		try {
-			//ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitleDropdown, 15);
+			// ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitleDropdown, 15);
 			selectByVisibleText(jobTitleDropdown, "Linkedin Company Search");
 			logger.info("Linkedin Company Search");
 			switchToNewTab();
@@ -1976,7 +1976,6 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		}
 		return linkedInPage();
 	}
-
 
 	public LeadPageObjects selectvalueJobFunctionDropdown(String value) throws Exception {
 		try {
@@ -2016,14 +2015,18 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public LinkedInPageObjects selectLinkedInvalueCompanyToolsDropdown() throws Exception {
 		try {
-			//ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
+			// ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
 			selectByVisibleText(companyToolsDropdown, "Linkedin");
 			logger.info("Linkedin");
 			switchToNewTab();
 			// clickSearchResult1();
 			String url = getSearchResult1().replaceAll("/$", "");
 			url = url + "/about";
-			getLinkedInWebDriver().navigate().to(url);
+			if (url.contains("linkedin")) {
+				getLinkedInWebDriver().navigate().to(url);
+			} else {
+				logger.info("invalid url for linkedin search");
+			}
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companyToolsDropdown is Linkedin");
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from companyToolsDropdown " + e);
@@ -2033,13 +2036,17 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public ZoomInfoPageObjects selectZoomInfovalueCompanyToolsDropdown() throws Exception {
 		try {
-			//ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
+			// ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
 			selectByVisibleText(companyToolsDropdown, "Zoominfo");
 			logger.info("Zoominfo");
 			switchToNewTab();
 			// clickSearchResult1();
 			String url = getSearchResult1();
-			getZoomInfoWebDriver().navigate().to(url);
+			if (url.contains("zoominfo")) {
+				getZoomInfoWebDriver().navigate().to(url);
+			} else {
+				logger.info("invalid url for zoominfo search");
+			}
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companyToolsDropdown is Zoominfo");
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from companyToolsDropdown " + e);
@@ -2049,7 +2056,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 	public EndolePageObjects selectGlassDoorvalueCompanyToolsDropdown() throws Exception {
 		try {
-			//ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
+			// ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
 			selectByVisibleText(companyToolsDropdown, "Glassdoor");
 			logger.info("Glassdoor");
 			switchToNewTab();
@@ -2070,7 +2077,11 @@ public class LeadPageObjects extends PageFactoryInitializer {
 			updateSearchValueInGoogleAndSearch(searchValue);
 			// clickSearchResult1();
 			String url = getSearchResult1();
-			getEndoleWebDriver().navigate().to(url);
+			if (url.contains("endole")) {
+				getEndoleWebDriver().navigate().to(url);
+			} else {
+				logger.info("invalid url for endole search");
+			}
 			ExtentTestManager.getTest().log(LogStatus.PASS,
 					"Selected value from companyToolsDropdown is Google (Generic)");
 		} catch (Exception e) {
@@ -2163,9 +2174,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 				"lastname", "linkedin_id_url", "jobtitle", "jobtitle_evidence", "companyname", "industry",
 				"company_evidence", "company_size", "companysize_evidence", "turnover", "turnover_evidence" };
 
-		WebElement[] dropDownElements = {industryDropdown };
+		WebElement[] dropDownElements = { industryDropdown };
 
-		String[] dropdownElementId = {"ddnIndustry"};
+		String[] dropdownElementId = { "ddnIndustry" };
 
 		for (int i = 0; i < textElements.length; i++) {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(textElements[i], 15);
@@ -2234,26 +2245,26 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		jobTitle().jobTitleCheck();
 		return this;
 	}
-	
-	//added by Anand
-	public boolean isJobRoleFieldExist() throws Exception{
-		boolean isJobRoleFieldExist = isFieldExist(jobRole);		
+
+	// added by Anand
+	public boolean isJobRoleFieldExist() throws Exception {
+		boolean isJobRoleFieldExist = isFieldExist(jobRole);
 		return isJobRoleFieldExist;
 	}
-		
-	//added by Anand
+
+	// added by Anand
 	public LeadPageObjects jobLevelCheck() throws Exception {
 		jobLevel().jobLevelCheck();
 		return this;
 	}
-	
-	//added by Anand
+
+	// added by Anand
 	public LeadPageObjects jobFunctionCheck() throws Exception {
 		jobFunction().jobFunctionCheck();
 		return this;
 	}
-	
-	//added by Anand
+
+	// added by Anand
 	public List<WebElement> getvaluesJobRoleDropdown() throws Exception {
 		List<WebElement> options = null;
 		try {
@@ -2266,8 +2277,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		}
 		return options;
 	}
-	
-	//added by Anand
+
+	// added by Anand
 	public List<WebElement> getvaluesJobFunctionDropdown() throws Exception {
 		List<WebElement> options = null;
 		try {

@@ -93,18 +93,22 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 		if(isFieldExist(orgNonEligible)) {
 			ExtentTestManager.getTest().log(LogStatus.INFO, "org search in linkedin reached unclaimed page");
 		} else {
-			ExplicitWaiting.explicitWaitVisibilityOfElement(companySizeValue, 15);
-			value = getText(companySizeValue).replaceAll("[a-z]| ", "");
-			value = value.replaceAll(".+(?<=-)", "");
-			value = value.replaceAll("([,|+])", "");
-			value = roundOffCompanySize(type, value);
-			try {
-				if (value != null) {
-					ExtentTestManager.getTest().log(LogStatus.PASS, "companySize value is " + value);
-				} else
-					ExtentTestManager.getTest().log(LogStatus.INFO, "companySize value is null");
-			} catch (Exception e) {
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from companySize " + e);
+			if(isFieldExist(companySizeValue)) {
+				ExplicitWaiting.explicitWaitVisibilityOfElement(companySizeValue, 15);
+				value = getText(companySizeValue).replaceAll("[a-z]| ", "");
+				value = value.replaceAll(".+(?<=-)", "");
+				value = value.replaceAll("([,|+])", "");
+				value = roundOffCompanySize(type, value);
+				try {
+					if (value != null) {
+						ExtentTestManager.getTest().log(LogStatus.PASS, "companySize value is " + value);
+					} else
+						ExtentTestManager.getTest().log(LogStatus.INFO, "companySize value is null");
+				} catch (Exception e) {
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from companySize " + e);
+				}
+			} else {
+				value = null;
 			}
 		}
 		return value;
