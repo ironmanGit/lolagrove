@@ -38,8 +38,11 @@ public class CampaignTest extends PageFactoryInitializer {
 	@Test(priority = 2, description = "Launch endole and linkedin browsers")
 	public void lauchSearchBrowsers() throws Exception {
 		ExtentTestManager.startTest("Launch endole and linkedin browsers", "Launch endole and linkedin browsers");
+		Thread.sleep(3000);
 		endoleDriver();
+		Thread.sleep(3000);
 		linkedInDriver();
+		Thread.sleep(3000);
 		zoomInfoDriver();
 		}
 	

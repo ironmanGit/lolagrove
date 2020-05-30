@@ -76,6 +76,7 @@ public class CompanySize extends LeadPageObjects {
 					String zoomInfoCompanySize = zoomInfoPage().getEmployeesValue();
 					String zoomInfoUrl = getZoomInfoCurrentUrl();
 					if (zoomInfoCompanySize != null) {
+						isMatchFound = true;
 						ExtentTestManager.getTest().log(LogStatus.PASS,
 								"Company size in zoom info is matching open notes values");
 						googlePage().closeGooglePage();

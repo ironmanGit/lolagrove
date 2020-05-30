@@ -58,7 +58,10 @@ public class FirstnameLastnameJobTitle extends LeadPageObjects {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "job title url evidence is updated in lead page");
 		} catch (Exception e) {
 			googlePage().closeGooglePage();
-			setvalueLinkedinIdUrl("Linkedin URL not found");
+			click(linkedinIdUrlNoEvidenceFoundBtn);
+			handleAlert();
+			click(linkedinIdUrlNoEvidenceFoundBtn);
+			handleAlert();
 			ExtentTestManager.getTest().log(LogStatus.INFO,
 					"Unable to find linkedin url so evidence is not updated in lead page");
 		}

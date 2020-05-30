@@ -18,7 +18,7 @@ import com.relevantcodes.extentreports.LogStatus;
  * @Date Mar 09, 2020
  */
 public class ZoomInfoPageObjects extends PageFactoryInitializer {
-	
+
 	private Logger logger = Logger.getLogger(LeadPageObjects.class.getName());
 
 	@FindBy(xpath = "//h3[contains(text(), 'Headquarters')]/following-sibling::div/span")
@@ -32,10 +32,10 @@ public class ZoomInfoPageObjects extends PageFactoryInitializer {
 
 	@FindBy(xpath = "//h3[contains(text(), 'Employees')]/following-sibling::div/span")
 	private WebElement employeesValue;
-	
+
 	@FindBy(xpath = "//h3[contains(text(), 'Revenue')]/following-sibling::div/span")
 	private WebElement revenueValue;
-	
+
 	public String getHeadquartersValue() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(headquartersValue, 15);
 		String value = getText(headquartersValue);
@@ -49,7 +49,7 @@ public class ZoomInfoPageObjects extends PageFactoryInitializer {
 		}
 		return value;
 	}
-	
+
 	public String getPhoneValue() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(phoneValue, 15);
 		String value = getText(phoneValue);
@@ -63,7 +63,7 @@ public class ZoomInfoPageObjects extends PageFactoryInitializer {
 		}
 		return value;
 	}
-	
+
 	public String getWebsiteValue() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(websiteValue, 15);
 		String value = getText(websiteValue);
@@ -77,7 +77,7 @@ public class ZoomInfoPageObjects extends PageFactoryInitializer {
 		}
 		return value;
 	}
-	
+
 	public String getEmployeesValue() throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(employeesValue, 15);
 		String value = getText(employeesValue);
@@ -91,25 +91,28 @@ public class ZoomInfoPageObjects extends PageFactoryInitializer {
 		}
 		return value;
 	}
-	
+
 	public String getRevenueValue(String type) throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(revenueValue, 15);
 		String revenue = getText(revenueValue);
-		String mORb = revenue.replaceAll("[a-z]|[0-9]|\\£|\\$","").toLowerCase();
-		String value = revenue.replaceAll("([a-z]|[A-Z]|\\£|\\$| )", "");
-		value = value.replaceAll("(\\.\\d+)", "");
-		value = roundOffTurnover(value, mORb, type);
-		try {
-			if (value != null) {
+		String value = null;
+		if (revenue.contains("Unreported") || revenue == null || revenue.equals("")) {
+			value = revenue;
+			ExtentTestManager.getTest().log(LogStatus.INFO, "revenue value is null or unreported or empty");
+		} else {
+			String mORb = revenue.replaceAll("[a-z]|[0-9]|\\£|\\$", "").toLowerCase();
+			value = revenue.replaceAll("([a-z]|[A-Z]|\\£|\\$| )", "");
+			value = value.replaceAll("(\\.\\d+)", "");
+			value = roundOffTurnover(value, mORb, type);
+			try {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "revenue value is " + value);
-			} else
-				ExtentTestManager.getTest().log(LogStatus.INFO, "revenue value is null");
-		} catch (Exception e) {
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from revenue " + e);
+			} catch (Exception e) {
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from revenue " + e);
+			}
 		}
 		return value;
 	}
-	
+
 	public LeadPageObjects closeZoomInfoPage() throws Exception {
 		try {
 			closeTab();

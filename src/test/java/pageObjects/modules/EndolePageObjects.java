@@ -18,7 +18,7 @@ import com.relevantcodes.extentreports.LogStatus;
  * @Date Mar 09, 2020
  */
 public class EndolePageObjects extends PageFactoryInitializer {
-	
+
 	private Logger logger = Logger.getLogger(LeadPageObjects.class.getName());
 
 	@FindBy(xpath = "//div[@class='financial-overview']/span[contains(text(),'Turnover ')]/following-sibling::span")
@@ -27,21 +27,25 @@ public class EndolePageObjects extends PageFactoryInitializer {
 	public String getTurnoverValue(String type) throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(turnOverValue, 15);
 		String turnover = getText(turnOverValue);
-		String mORb = turnover.replaceAll("\\.?[0-9]|£|$","").toLowerCase();
-		String value = turnover.replaceAll("([a-z]|[A-Z]|£|$)", "");
-		value = value.replaceAll("(\\.\\d+)", "");
-		value = roundOffTurnover(value, mORb, type);
-		try {
-			if (value != null) {
+		String value = null;
+		if (turnover.contains("Unreported") || turnover == null || turnover.equals(" ") || turnover.equals("") || turnover.equals("No records")) {
+			value = "Unreported";
+			ExtentTestManager.getTest().log(LogStatus.INFO, "turnover value is null or unreported or empty");
+		} else {
+			String mORb = turnover.replaceAll("\\.?[0-9]|£|$", "").toLowerCase();
+			value = turnover.replaceAll("([a-z]|[A-Z]|£|$)", "");
+			value = value.replaceAll("(\\.\\d+)", "");
+			value = roundOffTurnover(value, mORb, type);
+			try {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "turnover value is " + value);
-			} else
-				ExtentTestManager.getTest().log(LogStatus.INFO, "turnover value is null");
-		} catch (Exception e) {
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from turnover " + e);
+			} catch (Exception e) {
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from turnover " + e);
+			}
 		}
+
 		return value;
 	}
-	
+
 	public LeadPageObjects closeEndolePage() throws Exception {
 		try {
 			closeTab();

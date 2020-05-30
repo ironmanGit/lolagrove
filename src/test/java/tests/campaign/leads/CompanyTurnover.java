@@ -47,13 +47,14 @@ public class CompanyTurnover extends LeadPageObjects {
 			String zoomInfoRevenue = zoomInfoPage().getRevenueValue(turnOverDropdownType);
 			String zoomInfoUrl = getZoomInfoCurrentUrl();
 			if (zoomInfoRevenue != null) {
+				isMatchFound = true;
 				ExtentTestManager.getTest().log(LogStatus.PASS,
 						"Company revenue in zoom info is matching open notes values");
 				googlePage().closeGooglePage();
-				selectvalueCompanySizeDropDown(zoomInfoRevenue);
+				selectvalueTurnoverDropdown(zoomInfoRevenue);
 				ExtentTestManager.getTest().log(LogStatus.PASS,
 						"Company revenue in lead page is updated as per evidence from zoom info");
-				setvalueCompanySizeEvidence(zoomInfoUrl);
+				setvalueTurnoverEvidence(zoomInfoUrl);
 				ExtentTestManager.getTest().log(LogStatus.INFO,
 						"Company revenue evidence is updated in lead page");
 			} else {

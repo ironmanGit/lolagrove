@@ -194,8 +194,8 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 		int jobtitle1Size = jobTitle1.size();
 		int jobtitle2Size = jobTitle2.size();
 		String value = null;
-		if (jobtitle1Size>0) {
-			WebElement jobTitle = jobTitle1.get(0);
+		if (jobtitle2Size>0) {
+			WebElement jobTitle = jobTitle2.get(0);
 			ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitle, 15);
 			 value = getText(jobTitle);
 			value = value.replaceAll("(?= at).+", "");
@@ -207,8 +207,8 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 			} catch (Exception e) {
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from job title " + e);
 			}
-		} else if (jobtitle2Size>0) {
-			WebElement jobTitle = jobTitle2.get(0);
+		} else if (jobtitle1Size>0) {
+			WebElement jobTitle = jobTitle1.get(0);
 			ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitle, 15);
 			 value = getText(jobTitle);
 			value = value.replaceAll("(?= at).+", "");

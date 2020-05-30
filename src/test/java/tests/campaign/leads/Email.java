@@ -14,12 +14,15 @@ public class Email extends LeadPageObjects {
 
 	public LeadPageObjects emailCheck() throws Exception {
 		String emailOpenNoteValue = campaignTestDataProcess().getEmail();
-		
 		if (emailOpenNoteValue.contains("Person@Company")) {
 			String emailFromLeads = getvalueEmail();
+			String emailEvidenceFromLeads = getvalueEmailEvidence();
 			logger.info("Email value in lead page is:" + emailFromLeads);
 			if(isValidEmail(emailFromLeads)) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Email in lead page is in valid format");
+				if(emailEvidenceFromLeads.equals("Email Verified")) {
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Email evidence - Email Verified");
+				}
 			} else {
 				setvalueRejectionReason("email format is invalid");
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "Email in lead page is in invalid format");
@@ -27,18 +30,26 @@ public class Email extends LeadPageObjects {
 			
 		}else if(emailOpenNoteValue.contains("info@Company")) {
 			String emailFromLeads = getvalueEmail();
+			String emailEvidenceFromLeads = getvalueEmailEvidence();
 			logger.info("Email value in lead page is:" + emailFromLeads);
 			if(isValidEmail(emailFromLeads)) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Email in lead page is in valid format");
+				if(emailEvidenceFromLeads.equals("Email Verified")) {
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Email evidence - Email Verified");
+				}
 			} else {
 				setvalueRejectionReason("email format is invalid");
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "Email in lead page is in invalid format");
 			}
 		} else if(emailOpenNoteValue.contains("All")) {
 			String emailFromLeads = getvalueEmail();
+			String emailEvidenceFromLeads = getvalueEmailEvidence();
 			logger.info("Email value in lead page is:" + emailFromLeads);
 			if(isValidEmail(emailFromLeads)) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Email in lead page is in valid format");
+				if(emailEvidenceFromLeads.equals("Email Verified")) {
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Email evidence - Email Verified");
+				}
 			} else {
 				setvalueRejectionReason("email format is invalid");
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "Email in lead page is in invalid format");

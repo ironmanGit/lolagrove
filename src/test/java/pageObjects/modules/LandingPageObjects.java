@@ -26,6 +26,9 @@ public class LandingPageObjects extends PageFactoryInitializer {
 	@FindBy(css = "input[value='Show Data']")
 	private WebElement showDataButton;
 	
+	@FindBy(css = "select#AreaContentHolder_ContentArea_ddlScrubbingDate")
+	private WebElement campaignDateDropdown;
+	
 	@FindBy(css = "div [class='alpha'] a")
 	private List<WebElement> selectCampaign;
 
@@ -84,11 +87,25 @@ public class LandingPageObjects extends PageFactoryInitializer {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Failed to select "+campaignText);
 		}
 		Thread.sleep(3000);
+		selectCampaignDateValue();
+		Thread.sleep(3000);
 		click(showDataButton);
 		Thread.sleep(3000);
 		return this;
 	}
 
+	public LinkedInPageObjects selectCampaignDateValue() throws Exception {
+		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(campaignDateDropdown, 15);
+			selectByValue(campaignDateDropdown, appConfig.getCampaignDate());
+			logger.info("Campaign Date " + appConfig.getCampaignDate());
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Selected value from campaignDateDropdown");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Unable to select value from campaignDateDropdown " + e);
+		}
+		return linkedInPage();
+	}
+	
 	public WebElement findCampaignFirstLetter(String campaignText) {
 		List<WebElement> rows = selectCampaign;
 		WebElement target = null;
@@ -231,6 +248,7 @@ public class LandingPageObjects extends PageFactoryInitializer {
 	public OpenNotesPageObjects clickOpenNotesLink() {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(openNotesLink, 15);
+			Thread.sleep(5000);
 			click(openNotesLink);
 			logger.info("Open notes");
 			switchToNewTab();

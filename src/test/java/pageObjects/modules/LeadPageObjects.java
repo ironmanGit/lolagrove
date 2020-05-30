@@ -120,7 +120,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	private WebElement linkedinIdUrl;
 
 	@FindBy(css = "li#linkedin_id_url-li a.noevidence span")
-	private WebElement linkedinIdUrlNoEvidenceFoundBtn;
+	protected WebElement linkedinIdUrlNoEvidenceFoundBtn;
 
 	@FindBy(css = "input[name='jobtitle']")
 	private WebElement jobTitle;
@@ -429,11 +429,16 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		String leadId = leadsRecord.getLeadsId();
 		leadId = leadId.substring(leadId.length() - 9);
 		logger.info(leadId);
-		clickEditLead(leadId);
-		String companySizeDropdownType = getFirstvalueFromDropdown(companySizeDropdown);
-		campaignTestDataProcess().setCompanySizeDropdownType(companySizeDropdownType);
-		String turnoverDropdownType = getFirstvalueFromDropdown(turnoverDropdown);
-		campaignTestDataProcess().setTurnOverDropdownType(turnoverDropdownType);
+		try {
+			clickEditLead(leadId);
+			String companySizeDropdownType = getFirstvalueFromDropdown(companySizeDropdown);
+			campaignTestDataProcess().setCompanySizeDropdownType(companySizeDropdownType);
+			String turnoverDropdownType = getFirstvalueFromDropdown(turnoverDropdown);
+			campaignTestDataProcess().setTurnOverDropdownType(turnoverDropdownType);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked lead id " + leadId);
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to click lead id " + leadId + e);
+		}
 		return this;
 	}
 
@@ -460,6 +465,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		WebElement editLead = getXpath("//td/span[contains(text(),'%s')]/../preceding-sibling::td/i", leadId);
 		ExplicitWaiting.explicitWaitVisibilityOfElement(editLead, 15);
 		try {
+			Thread.sleep(3000);
+			ExplicitWaiting.explicitWaitVisibilityOfElement(editLead, 15);
 			click(editLead);
 			ExtentTestManager.getTest().log(LogStatus.PASS, leadId + " Clicked lead edit icon");
 		} catch (Exception e) {
@@ -1295,7 +1302,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(jobTitle, 15);
 			clear(jobTitle);
+			Thread.sleep(2000);
 			sendKeys(jobTitle, value);
+			Thread.sleep(2000);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for jobTitle is set as " + value);
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to set value for jobTitle " + e);
@@ -2154,8 +2163,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 				"lastname", "linkedin_id_url", "jobtitle", "jobtitle_evidence", "companyname", "industry",
 				"company_evidence", "company_size", "companysize_evidence", "turnover", "turnover_evidence" };
 
-		WebElement[] dropDownElements = {turnoverDropdown,
-				industryDropdown };
+		WebElement[] dropDownElements = {industryDropdown };
 
 		String[] dropdownElementId = {"ddnIndustry"};
 
