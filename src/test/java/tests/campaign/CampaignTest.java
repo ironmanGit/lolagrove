@@ -88,7 +88,7 @@ public class CampaignTest extends PageFactoryInitializer {
 		.firstnameLastnameJobTitleCheck()
 		.jobFunctionCheck()
 		.jobLevelCheck()
-		.industryCheck()
+		//.industryCheck()
 		.updateManuallyVerify()
 		.clickSaveBtn();
 		//.clickCloseBtn();
