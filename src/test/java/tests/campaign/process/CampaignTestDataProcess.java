@@ -20,6 +20,7 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 	private static String leadsCompanyName;
 	private static String email;
 	private static String LinkedinIndustry;
+	private static String OpenNotesIndustryVertical;
 	private static List<String> leadsCompanyListDetails = new ArrayList<String>();
 	private static List<String> leadsIndustrialVertical = new ArrayList<String>();
 	private static List<String> leadsExclusionCompanyListDetails = new ArrayList<String>();
@@ -58,6 +59,14 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 
 	public void setLeadsCompanySize(String leadsCompanySize) {
 		this.leadsCompanySize = leadsCompanySize;
+	}
+	
+	public String getOpenNotesIndustryVertical() {
+		return OpenNotesIndustryVertical;
+	}
+
+	public void setOpenNotesIndustryVertical(String openNotesIndustryVertical) {
+		this.OpenNotesIndustryVertical = openNotesIndustryVertical;
 	}
 
 	public List<String> getLeadsIndustrialVertical() {
@@ -211,7 +220,7 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 	//Added by Anand
 	public static List<String> getIndustryVertical() throws Exception {
 		String filePath = "./src/test/resources/Test Data/Excel Files/IndustryVertical.csv";
-		List<String> AcceptedIndustries = getIndustryInfo(filePath);
+		List<String> AcceptedIndustries = getIndustryVertical(filePath);
 		return AcceptedIndustries;
 	}
 	

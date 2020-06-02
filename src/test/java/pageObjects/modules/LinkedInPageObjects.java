@@ -27,7 +27,7 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	@FindBy(xpath = "//dt[text()='Website']/following-sibling::dd[1]/a")
 	private WebElement websiteValue;
 
-	@FindBy(xpath = "//dt[text()='Industries']/following-sibling::dd[1]")
+	@FindBy(xpath = "//dt[text()='Industry']/following-sibling::dd[1]")
 	private WebElement industriesValue;
 
 	@FindBy(xpath = "//dt[text()='Company size']/following-sibling::dd[1]")
