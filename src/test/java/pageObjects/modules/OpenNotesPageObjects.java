@@ -99,13 +99,14 @@ public class OpenNotesPageObjects extends PageFactoryInitializer {
 		return industrialVerticalText;
 	}
 
-	public OpenNotesPageObjects getIndustryVerticalFromOpenNotes() {
-		String industrialVertical = getIndustryVertical();
-		campaignTestDataProcess().setLeadsIndustrialVertical(industrialVertical);
-		ExtentTestManager.getTest().log(LogStatus.INFO,
-				"Industry vertical details in Open Notes are : " + industrialVertical);
-		return this;
-	}
+	//this is not required as Industry details mentioned in png file will be converted to csv by Merit
+//	public OpenNotesPageObjects getIndustryVerticalFromOpenNotes() {
+//		String industrialVertical = getIndustryVertical();
+//		campaignTestDataProcess().setLeadsIndustrialVertical(industrialVertical);
+//		ExtentTestManager.getTest().log(LogStatus.INFO,
+//				"Industry vertical details in Open Notes are : " + industrialVertical);
+//		return this;
+//	}
 
 	public OpenNotesPageObjects getJobFunctionFromOpenNotes() {
 		String jobFunctions = getListOfTexts(jobFunction);
@@ -179,7 +180,7 @@ public class OpenNotesPageObjects extends PageFactoryInitializer {
 	public OpenNotesPageObjects getAllFieldsFromOpenNotes() throws InterruptedException {
 		getCountryDetailsFromOpenNotes();
 		getCompanySizeFromOpenNotes();
-		getIndustryVerticalFromOpenNotes();
+//		getIndustryVerticalFromOpenNotes();
 		getJobFunctionFromOpenNotes();
 		getJobTitleFromOpenNotes();
 		getExclusionCompanyListDetailsFromOpenNotes();

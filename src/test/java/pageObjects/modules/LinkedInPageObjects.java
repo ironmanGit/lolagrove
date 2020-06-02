@@ -79,6 +79,7 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 		String value = getText(industriesValue);
 		try {
 			if (value != null) {
+				campaignTestDataProcess().setLinkedinIndustry(value);
 				ExtentTestManager.getTest().log(LogStatus.PASS, "industries value is " + value);
 			} else
 				ExtentTestManager.getTest().log(LogStatus.INFO, "industries value is null");

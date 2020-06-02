@@ -16,6 +16,15 @@ CXO/EVP,CIO
 CXO/EVP,CFO
 CXO/EVP,COO
 CXO/EVP,CEO
+Senior Director/Director,Bereichsleiter
+Senior Director/Director,Abteilungsleiter
+Senior Director/Director,Leiter
+Senior Director/Director,Leiterin
+Senior Director/Director,Sachgebietsleiter
+Senior Manager/Manager,Teamleiter
+Senior Manager/Manager,Gruppenleiter
+Senior Manager/Manager,Serviceleiter
+Senior Manager/Manager,Stabstelle
 Finance,Account
 Finance,Accountant
 Finance,Accounting
@@ -132,6 +141,7 @@ Operations,Operation
 Operations,Operations
 Operations,Operational
 Operations,Service Delivery
+Operations,multi-assets
 Business Owner,CEO
 Business Owner,Owner
 Business Owner,Partner

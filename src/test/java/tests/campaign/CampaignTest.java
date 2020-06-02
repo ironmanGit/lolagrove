@@ -14,7 +14,7 @@ import utils.ExtentReports.ExtentTestManager;
 public class CampaignTest extends PageFactoryInitializer {
 	private Logger logger = Logger.getLogger(CampaignTest.class.getName());
 	private String getCompanySize;
-	private String getIndustrialVertical;
+	private List<String> getIndustrialVertical;
 	private String getJobFunction;
 	private String getJobTitle;
 	private String getCountry;
@@ -87,6 +87,8 @@ public class CampaignTest extends PageFactoryInitializer {
 		.companyTurnoverCheck()
 		.firstnameLastnameJobTitleCheck()
 		.jobFunctionCheck()
+		.jobLevelCheck()
+		.industryCheck()
 		.updateManuallyVerify()
 		.clickSaveBtn();
 		//.clickCloseBtn();

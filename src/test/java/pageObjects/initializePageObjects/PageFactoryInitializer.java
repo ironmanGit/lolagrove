@@ -13,16 +13,19 @@ import pageObjects.modules.LeadPageObjects;
 import pageObjects.modules.LinkedInPageObjects;
 import pageObjects.modules.LoginPageObjects;
 import pageObjects.modules.OpenNotesPageObjects;
+import pageObjects.modules.TelephonePageObjects;
 import pageObjects.modules.ZoomInfoPageObjects;
 import tests.campaign.leads.CompanySize;
 import tests.campaign.leads.CompanyTurnover;
 import tests.campaign.leads.Country;
 import tests.campaign.leads.Email;
 import tests.campaign.leads.FirstnameLastnameJobTitle;
+import tests.campaign.leads.Industry;
 import tests.campaign.leads.JobFunction;
 import tests.campaign.leads.JobLevel;
 import tests.campaign.leads.JobTitle;
 import tests.campaign.leads.PlacementReadOnly;
+import tests.campaign.leads.Telephone;
 import tests.campaign.process.CampaignTestDataProcess;
 
 /**
@@ -116,14 +119,24 @@ public class PageFactoryInitializer extends BaseMethod
 	public JobLevel jobLevel() 
 	{
 		return PageFactory.initElements(getWebDriver(), JobLevel.class);
-
 	}
 	
 	//Added by Anand
 	public JobFunction jobFunction() 
 	{
 		return PageFactory.initElements(getWebDriver(), JobFunction.class);
-
+	}
+	
+	//Added by Anand
+	public Industry industry() 
+	{
+		return PageFactory.initElements(getWebDriver(), Industry.class);
+	}
+	
+	//Added by Anand
+	public TelephonePageObjects telephonePage() 
+	{
+		return PageFactory.initElements(getWebDriver(), TelephonePageObjects.class);
 	}
 	
 	public Email email() 

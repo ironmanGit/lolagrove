@@ -14,13 +14,14 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 	private static List<CampaignDataRecord> campaignLeadsData = new ArrayList<CampaignDataRecord>();
 	private static String leadsPlacment;
 	private static String leadsCompanySize;
-	private static String leadsIndustrialVertical;
 	private static String leadsJobFunction;
 	private static String leadsJobTitle;
 	private static String leadsCountry;
 	private static String leadsCompanyName;
 	private static String email;
+	private static String LinkedinIndustry;
 	private static List<String> leadsCompanyListDetails = new ArrayList<String>();
+	private static List<String> leadsIndustrialVertical = new ArrayList<String>();
 	private static List<String> leadsExclusionCompanyListDetails = new ArrayList<String>();
 	private static String companySizeDropdownType;
 	private static String turnoverDropdownType;
@@ -59,14 +60,22 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 		this.leadsCompanySize = leadsCompanySize;
 	}
 
-	public String getLeadsIndustrialVertical() {
+	public List<String> getLeadsIndustrialVertical() {
 		return leadsIndustrialVertical;
 	}
 
-	public void setLeadsIndustrialVertical(String leadsIndustrialVertical) {
+	public void setLeadsIndustrialVertical(List<String> leadsIndustrialVertical) {
 		this.leadsIndustrialVertical = leadsIndustrialVertical;
 	}
+	
+	public String getLinkedinIndustry() {
+		return LinkedinIndustry;
+	}
 
+	public void setLinkedinIndustry(String linkedinIndustry) {
+		this.LinkedinIndustry = linkedinIndustry;
+	}
+	
 	public String getLeadsJobFunction() {
 		return leadsJobFunction;
 	}
@@ -90,7 +99,7 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 	public void setLeadsCountry(String leadsCountry) {
 		this.leadsCountry = leadsCountry;
 	}
-
+	
 	public String getEmail() {
 		return email;
 	}
@@ -193,32 +202,97 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 	}
 	
 	//Added by Anand
-	public static String[] getIndustries() throws Exception {
-		String filePath = "./src/test/resources/Test Data/Excel Files/IndustryVertical.csv";
-		String[] Industries = getIndustries(filePath);
+	public static List<String> getIndustryInfo(String IndustryFromSite) throws Exception {
+		String filePath = "./src/test/resources/Test Data/Excel Files/IndustryInfo.csv";
+		List<String> Industries = getIndustryInfo(IndustryFromSite, filePath);
 		return Industries;
 	}
 	
 	//Added by Anand
-	@SuppressWarnings("null")
-	public static String[] getIndustries(String FilePath) throws Exception {
-		String[] acceptedIndustries = null;
-		int counter=0;
+	public static List<String> getIndustryVertical() throws Exception {
+		String filePath = "./src/test/resources/Test Data/Excel Files/IndustryVertical.csv";
+		List<String> AcceptedIndustries = getIndustryInfo(filePath);
+		return AcceptedIndustries;
+	}
+	
+	//Added by Anand
+	public static List<String> getTelephoneNumber() throws Exception {
+		String filePath = "./src/test/resources/Test Data/Excel Files/TelephoneNumber.csv";
+		List<String> lines = ExcelUtils.readFileToLines(filePath);
+		List<String> telephoneNumber = new ArrayList<String>();
+		for (String line : lines) {
+			String[] columns = line.split(",");
+			telephoneNumber.add(columns[0]);
+		}
+		return telephoneNumber;
+	}
+	
+	//Added by Anand
+	public static List<String> getCountryforTelephone() throws Exception {
+		String filePath = "./src/test/resources/Test Data/Excel Files/TelephoneNumber.csv";
+		List<String> lines = ExcelUtils.readFileToLines(filePath);
+		List<String> country = new ArrayList<String>();
+		for (String line : lines) {
+			String[] columns = line.split(",");
+			country.add(columns[1]);
+		}
+		return country;
+	}
+	
+	//Added by Anand
+	public static String getRegionCode(String sendCountry) throws Exception {
+		String filePath = "./src/test/resources/Test Data/Excel Files/RegionCode.csv";
+		List<String> lines = ExcelUtils.readFileToLines(filePath);
+		String regionCode = "";
+		for (String line : lines) {
+			String[] columns = line.split(",");
+			String country = columns[0];
+			String countryCode = columns[1];
+			regionCode = columns[2];
+			if (country.contains(sendCountry)) {
+				regionCode = regionCode.toString();
+				break;
+			}
+		}
+		return regionCode;
+	}
+	
+	//Added by Anand
+	public static List<String> getIndustryVertical(String FilePath) throws Exception {
+		List<String> getIndustries = new ArrayList<String>();
 		List<String> lines = ExcelUtils.readFileToLines(FilePath);
 		for (String line : lines) {
 			String[] columns = line.split(",");
-			String IndustryName = columns[0];
-			String IndustryStatus = columns[1];
-			System.out.println(IndustryName);
-			System.out.println(IndustryStatus);
-			if (IndustryStatus.contains("Yes")) {
-				IndustryName = IndustryName.toString();
-				acceptedIndustries[counter] = IndustryName;
-				counter++;
-				System.out.println(acceptedIndustries);
+			String industry = columns[0];
+			String status = columns[1];
+			System.out.println(industry);
+			System.out.println(status);
+			if (status.contains("Yes")) {
+				industry = industry.toString();
+				getIndustries.add(industry);
+				System.out.println(getIndustries);
 			}
 		}
-		return acceptedIndustries;
+		return getIndustries;
+	}
+	
+	//Added by Anand
+	public static List<String> getIndustryInfo(String IndustryFromSite, String FilePath) throws Exception {
+		List<String> mapIndustries = new ArrayList<String>();
+		List<String> lines = ExcelUtils.readFileToLines(FilePath);
+		for (String line : lines) {
+			String[] columns = line.split(",");
+			String FinalIndustry = columns[0];
+			String Industry = columns[1];
+			System.out.println(FinalIndustry);
+			System.out.println(Industry);
+			if (IndustryFromSite.contains(Industry)) {
+				FinalIndustry = FinalIndustry.toString();
+				mapIndustries.add(FinalIndustry);
+				System.out.println(mapIndustries);
+			}
+		}
+		return mapIndustries;
 	}
 	
 	//Added by Anand
