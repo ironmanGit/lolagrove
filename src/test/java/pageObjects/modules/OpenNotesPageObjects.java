@@ -183,12 +183,32 @@ public class OpenNotesPageObjects extends PageFactoryInitializer {
 //		getIndustryVerticalFromOpenNotes();
 		getJobFunctionFromOpenNotes();
 		getJobTitleFromOpenNotes();
-		//getExclusionCompanyListDetailsFromOpenNotes();
-		//getCompanyListDetailsFromOpenNotes();
+		getExclusionCompanyListDetailsFromOpenNotes();
+		getCompanyListDetailsFromOpenNotes();
 		return this;
 	}
 
 	public void getCompanyListDetailsFromOpenNotes() throws InterruptedException {
+		List<String> companyListDetails = new ArrayList<>();
+		List<WebElement> links = companyListsLink;
+		int linkSize = links.size();
+		if (linkSize != 0) {
+			for (int i = 0; i < linkSize; i++) {
+				WebElement row = links.get(i);
+				companyListDetails.add(row.getAttribute("href"));
+			}
+			System.out.println("Full Lists :" + companyListDetails);
+			System.out.println("Total Url: " + companyListDetails.size());
+			campaignTestDataProcess().setLeadsExclusionCompanyListUrl(companyListDetails);
+			ExtentTestManager.getTest().log(LogStatus.INFO,
+					"Company list details in Open Notes : " + companyListDetails);
+		} else {
+			ExtentTestManager.getTest().log(LogStatus.INFO, "No target list companies in open notes");
+		}
+
+	}
+	
+	public void getCompanyListDetailsFromOpenNotes1() throws InterruptedException {
 		List<String> companyListDetails = new ArrayList<>();
 		List<WebElement> links = companyListsLink;
 		int linkSize = links.size();
@@ -219,9 +239,29 @@ public class OpenNotesPageObjects extends PageFactoryInitializer {
 
 	}
 
+	@SuppressWarnings("null")
 	public void getExclusionCompanyListDetailsFromOpenNotes() throws InterruptedException {
+		List<String> companyListDetails = null;
+		List<WebElement> links = companyExclusionListsLink;
+		int linkSize = links.size();
+		if (linkSize != 0) {
+			for (int i = 0; i < linkSize; i++) {
+				WebElement row = links.get(i);
+				companyListDetails.add(row.getAttribute("href"));
+			}
+			System.out.println("Full Lists :" + companyListDetails);
+			System.out.println("Total Url: " + companyListDetails.size());
+			campaignTestDataProcess().setLeadsCompanyListUrl(companyListDetails);
+			ExtentTestManager.getTest().log(LogStatus.INFO,
+					"Exclusion Company list details in Open Notes : " + companyListDetails);
+		} else {
+			ExtentTestManager.getTest().log(LogStatus.INFO, "No exclusion companies in open notes");
+		}
+	}
+	
+	public void getExclusionCompanyListDetailsFromOpenNotes1() throws InterruptedException {
 		List<String> companyListDetails = new ArrayList<>();
-		List<WebElement> links = companyListsLink;
+		List<WebElement> links = companyExclusionListsLink;
 		int linkSize = links.size();
 		if (linkSize != 0) {
 			for (int i = 0; i < linkSize; i++) {

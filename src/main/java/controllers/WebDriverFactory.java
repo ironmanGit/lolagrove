@@ -123,5 +123,6 @@ public class WebDriverFactory extends BrowserFactory {
 		getWebDriver().quit();
 		getEndoleWebDriver().quit();
 		getLinkedInWebDriver().quit();
+		getZoomInfoWebDriver().quit();
 	}
 }

@@ -29,7 +29,7 @@ public class PlacementReadOnly extends LeadPageObjects {
 				if (placement.contains(leadType)) {
 					ExtentTestManager.getTest().log(LogStatus.PASS, "Placement check for leas type is successfully done");
 				} else {
-					selectvalueRejectionReasonDropdown("non-spec lead type (placement mismatch)");
+					selectvalueRejectionReasonDropdown("Non-spec Lead Type (Placement mismatch)");
 					setvalueRejectionReasonEvidence("placement check does not match as per open notes");
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "Placement check failed");
 				}
@@ -39,13 +39,13 @@ public class PlacementReadOnly extends LeadPageObjects {
 			if (placement.contains(countryCode.get(0))|| placement.contains(countryCode.get(1))) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Placement check for country code is successfully done");
 			} else {
-				selectvalueRejectionReasonDropdown("non-spec lead type (placement mismatch)");
-				setvalueRejectionReasonEvidence("placement check does not match as per open notes");
+				selectvalueRejectionReasonDropdown("Non-spec Country (Placement mismatch)");
+				setvalueRejectionReasonEvidence("placement check country code is not available");
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "Placement check failed");
 			}
 		} catch (Exception e) {
-			selectvalueRejectionReasonDropdown("non-spec lead type (placement mismatch)");
-			setvalueRejectionReasonEvidence("placement check does not match as per open notes");
+			selectvalueRejectionReasonDropdown("Non-spec Country (Placement mismatch)");
+			setvalueRejectionReasonEvidence("placement check country code is not available");
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Placement check failed" + e);
 		}
 		return leadPage();

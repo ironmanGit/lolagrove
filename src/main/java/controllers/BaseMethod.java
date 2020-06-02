@@ -527,29 +527,54 @@ public class BaseMethod extends WebDriverFactory {
 	}
 
 	/* get company turnover as per lolagrove */
-	public String roundOffTurnover(String value, String mORb) throws Exception {
+	public String roundOffTurnover(String value, String mORb, String type) throws Exception {
 		int turnOver = Integer.parseInt(value);
 		String result = null;
-		if (mORb.contains("m")) {
-			if (turnOver < 5) {
-				result = "$100k - $4.9m[£80k - £3.9m]";
-			} else if ((turnOver >= 5) && (turnOver < 25)) {
-				result = "$5m - $25m[£4m - £20m]";
-			} else if ((turnOver >= 25) && (turnOver < 800)) {
-				result = "$25.1m - $1b[£20m - £800m]";
-			}
-		} else if (mORb.contains("b")) {
-			if ((turnOver >= 1) && (turnOver < 5)) {
-				result = "$1b - $5b[£800m - £4b]";
-			} else if ((turnOver >= 5) && (turnOver < 10)) {
-				result = "$5b - $10b[£4b - £8b]";
-			} else if ((turnOver >= 10)) {
-				result = "$10b+[£8b+]";
+		switch (type) {
+		case "$100k - $4.9m[£80k - £3.9m]":
+			if (mORb.contains("m")) {
+				if (turnOver < 5) {
+					result = "$100k - $4.9m[£80k - £3.9m]";
+				} else if ((turnOver >= 5) && (turnOver < 25)) {
+					result = "$5m - $25m[£4m - £20m]";
+				} else if ((turnOver >= 25) && (turnOver < 800)) {
+					result = "$25.1m - $1b[£20m - £800m]";
+				}
+			} else if (mORb.contains("b")) {
+				if ((turnOver >= 1) && (turnOver < 5)) {
+					result = "$1b - $5b[£800m - £4b]";
+				} else if ((turnOver >= 5) && (turnOver < 10)) {
+					result = "$5b - $10b[£4b - £8b]";
+				} else if ((turnOver >= 10)) {
+					result = "$10b+[£8b+]";
+				} else {
+					result = "$25.1m - $1b[£20m - £800m]";
+				}
 			} else {
-				result = "$25.1m - $1b[£20m - £800m]";
+				result = "$100k - $4.9m[£80k - £3.9m]";
 			}
-		} else {
-			result = "$100k - $4.9m[£80k - £3.9m]";
+			break;
+		case "Less than $50MM":
+			if (mORb.contains("m")) {
+				if (turnOver < 50) {
+					result = "Less than $50MM";
+				} else if ((turnOver >= 50) && (turnOver <= 100)) {
+					result = "$50MM to $100MM";
+				} else if ((turnOver >= 101) && (turnOver <= 200)) {
+					result = "$101MM to $200MM";
+				} else if ((turnOver >= 201) && (turnOver <= 500)) {
+					result = "$201MM to $500MM";
+				} else if ((turnOver >= 501) && (turnOver < 1000)) {
+					result = "$500MM to $1B";
+				}
+			} else if (mORb.contains("b")) {
+				if ((turnOver >= 1)) {
+					result = "Over $1B";
+				}
+			}
+			break;
+		default:
+			break;
 		}
 		return result;
 	}

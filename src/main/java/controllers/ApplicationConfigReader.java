@@ -36,6 +36,9 @@ public class ApplicationConfigReader
 	@Property(value="Campaign")
 	private String Campaign;
 	
+	@Property(value="CampaignDate")
+	private String CampaignDate;
+	
 	@Property(value="ImplicitlyWait")
 	private int ImplicitlyWait;
 	
@@ -55,6 +58,10 @@ public class ApplicationConfigReader
 		return Campaign;
 	}
 
+	public String getCampaignDate() {
+		return CampaignDate;
+	}
+	
 	public String getWebsiteUrl() {
 		return WebsiteUrl;
 	}

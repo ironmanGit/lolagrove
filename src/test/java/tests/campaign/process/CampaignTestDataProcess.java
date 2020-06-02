@@ -22,7 +22,11 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 	private static String LinkedinIndustry;
 	private static List<String> leadsCompanyListDetails = new ArrayList<String>();
 	private static List<String> leadsIndustrialVertical = new ArrayList<String>();
+	private static List<String> leadsExclusionCompanyListDetails = new ArrayList<String>();
 	private static String companySizeDropdownType;
+	private static String turnoverDropdownType;
+	private static List<String> leadsCompanyListUrl;
+	private static List<String> leadsCompanyExclusionListUrl;
 
 	public List<CampaignDataRecord> getCampaignLeadsData() {
 		return campaignLeadsData;
@@ -112,6 +116,14 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 		this.companySizeDropdownType = companySizeDropdownType;
 	}
 	
+	public String getTurnOverDropdownType() {
+		return turnoverDropdownType;
+	}
+
+	public void setTurnOverDropdownType(String turnoverDropdownType) {
+		this.turnoverDropdownType = turnoverDropdownType;
+	}
+	
 	public String getLeadsCompanyName() {
 		return leadsCompanyName;
 	}
@@ -123,9 +135,33 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 	public List<String> getLeadsCompanyListDetails() {
 		return leadsCompanyListDetails;
 	}
-
+	
+	public List<String> getLeadsCompanyListUrl() {
+		return leadsCompanyListUrl;
+	}
+	
 	public void setLeadsCompanyListDetails(List<String> leadsCompanyList) {
 		this.leadsCompanyListDetails = leadsCompanyList;
+	}
+	
+	public void setLeadsCompanyListUrl(List<String> leadsCompanyList) {
+		this.leadsCompanyListUrl = leadsCompanyList;
+	}
+	
+	public List<String> getLeadsExclusionCompanyListDetails() {
+		return leadsExclusionCompanyListDetails;
+	}
+	
+	public List<String> getLeadsExclusionCompanyListUrl() {
+		return leadsCompanyExclusionListUrl;
+	}
+	
+	public void setLeadsExclusionCompanyListDetails(List<String> leadsExclusionCompanyList) {
+		this.leadsExclusionCompanyListDetails = leadsExclusionCompanyList;
+	}
+	
+	public void setLeadsExclusionCompanyListUrl(List<String> leadsCompanyExclusionListUrl) {
+		this.leadsCompanyExclusionListUrl = leadsCompanyExclusionListUrl;
 	}
 	
 	public static String getCustomRegions(String type, String FilePath) throws Exception {
