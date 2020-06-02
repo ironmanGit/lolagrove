@@ -299,7 +299,7 @@ public class LandingPageObjects extends PageFactoryInitializer {
 		logger.info("country Test data value check is: " + country);
 		String companySize = campaignTestDataProcess().getLeadsCompanySize();
 		logger.info("companySize Test data value check is: " + companySize);
-		String industrial = campaignTestDataProcess().getLeadsIndustrialVertical();
+		List<String> industrial = campaignTestDataProcess().getLeadsIndustrialVertical();
 		logger.info("industrial Test data value check is: " + industrial);
 		String jobFunction = campaignTestDataProcess().getLeadsJobFunction();
 		logger.info("jobFunction Test data value check is: " + jobFunction);

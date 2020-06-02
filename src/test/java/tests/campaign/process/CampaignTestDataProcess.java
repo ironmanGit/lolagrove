@@ -95,7 +95,7 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 	public void setLeadsCountry(String leadsCountry) {
 		this.leadsCountry = leadsCountry;
 	}
-
+	
 	public String getEmail() {
 		return email;
 	}
@@ -187,13 +187,24 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 		for (String line : lines) {
 			String[] columns = line.split(",");
 			telephoneNumber.add(columns[0]);
-			System.out.println(telephoneNumber);
 		}
 		return telephoneNumber;
 	}
 	
 	//Added by Anand
-	public static String getRegionCode(String sendCountryCode) throws Exception {
+	public static List<String> getCountryforTelephone() throws Exception {
+		String filePath = "./src/test/resources/Test Data/Excel Files/TelephoneNumber.csv";
+		List<String> lines = ExcelUtils.readFileToLines(filePath);
+		List<String> country = new ArrayList<String>();
+		for (String line : lines) {
+			String[] columns = line.split(",");
+			country.add(columns[1]);
+		}
+		return country;
+	}
+	
+	//Added by Anand
+	public static String getRegionCode(String sendCountry) throws Exception {
 		String filePath = "./src/test/resources/Test Data/Excel Files/RegionCode.csv";
 		List<String> lines = ExcelUtils.readFileToLines(filePath);
 		String regionCode = "";
@@ -202,9 +213,7 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 			String country = columns[0];
 			String countryCode = columns[1];
 			regionCode = columns[2];
-			System.out.println(country);
-			System.out.println(regionCode);
-			if (countryCode.contains(sendCountryCode)) {
+			if (country.contains(sendCountry)) {
 				regionCode = regionCode.toString();
 				break;
 			}

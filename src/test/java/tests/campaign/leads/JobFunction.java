@@ -1,7 +1,5 @@
 package tests.campaign.leads;
 
-import java.io.File;
-import java.lang.reflect.Method;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -11,7 +9,6 @@ import com.relevantcodes.extentreports.LogStatus;
 
 import pageObjects.modules.LeadPageObjects;
 import tests.campaign.process.CampaignTestDataProcess;
-import utils.ExcelUtils;
 import utils.ExtentReports.ExtentTestManager;
 
 public class JobFunction extends LeadPageObjects {

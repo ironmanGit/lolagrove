@@ -60,7 +60,7 @@ public class CampaignTest extends PageFactoryInitializer {
 		logger.info("Job Title : " + getJobTitle);
 		List<String> customRegions = CampaignTestDataProcess.getCustomRegions("Cus_EMEA");
 		logger.info("custom Regions data : " + customRegions);
-		List<String> countryMapping = CampaignTestDataProcess.getCountryMapping("NORDIC", "countryCode1");
+		List<String> countryMapping = CampaignTestDataProcess.getCountryMapping("NORDIC");
 		logger.info("country Mapping data : " + countryMapping);
 	}
 	
