@@ -520,6 +520,29 @@ public class BaseMethod extends WebDriverFactory {
 				result = "10000+";
 			}
 			break;
+		case "<10":
+			if (size < 10) {
+				result = "<10";
+			} else if ((size >= 10) && (size <= 24)) {
+				result = "10-24";
+			} else if ((size >= 25) && (size <= 49)) {
+				result = "25-49";
+			} else if ((size >= 50) && (size <= 99)) {
+				result = "50-99";
+			} else if ((size >= 100) && (size <= 249)) {
+				result = "100-249";
+			} else if ((size >= 250) && (size <= 499)) {
+				result = "250-499 Employees";
+			} else if ((size >= 500) && (size <= 999)) {
+				result = "500-999";
+			} else if ((size >= 1000) && (size <= 4999)) {
+				result = "1000-4999";
+			} else if ((size >= 5000) && (size <= 9999)) {
+				result = "5000-9999";
+			} else {
+				result = "10,000+";
+			}
+			break;
 		default:
 			break;
 		}
