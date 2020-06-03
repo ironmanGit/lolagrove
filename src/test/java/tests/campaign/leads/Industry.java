@@ -49,7 +49,7 @@ public class Industry extends LeadPageObjects {
 			logger.info("Industry Accepted as per Open Notes: " + AcceptedIndustries);
 					
 			for (int i=0; i<AcceptedIndustries.size(); i++) {
-				for (int j=0; i<mapIndustries.size(); j++) {
+				for (int j=0; j<mapIndustries.size(); j++) {
 					if (AcceptedIndustries.get(i).contains(mapIndustries.get(j))) {
 						industryStatus = true;
 						filteredIndustries.add(mapIndustries.get(j));

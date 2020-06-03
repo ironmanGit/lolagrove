@@ -53,6 +53,7 @@ public class CompanySize extends LeadPageObjects {
 					selectLinkedInvalueCompanyToolsDropdown();
 					String companySizeDropdownType = campaignTestDataProcess().getCompanySizeDropdownType();
 					String linkedInCompanySize = linkedInPage().getCompanySizeValue(companySizeDropdownType);
+					linkedInPage().getIndustriesValue();
 					String linkedInUrl = getLinkedInCurrentUrl();
 					if (linkedInCompanySize != null) {
 						ExtentTestManager.getTest().log(LogStatus.PASS,
@@ -109,6 +110,7 @@ public class CompanySize extends LeadPageObjects {
    		String companySizeDropdownType = campaignTestDataProcess().getCompanySizeDropdownType();
 		String linkedInCompanySize = linkedInPage().getCompanySizeValue(companySizeDropdownType);
 		String linkedInUrl = getLinkedInCurrentUrl();
+		linkedInPage().getIndustriesValue();
 		return leadPage();
 	}
 }

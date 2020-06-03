@@ -25,6 +25,8 @@ Retail,Retail
 Technology Hardware,Hardware
 Technology Software & Services,Technology
 Technology Software & Services,Software
+IT,Technology
+IT,Software
 Telecommunications,Telecommunications
 Telecommunications,Telecom
 Transportation & Warehousing,Warehousing
@@ -32,3 +34,35 @@ Transportation & Warehousing,Transportation
 Transportation & Warehousing,Trucking
 Transportation & Warehousing,Railroad
 Utilities,Utilities
+Utilities,Utilities
+Transportation,Transportation
+Telecommunications,Telecommunications
+Technology,Technology
+Shipping,Shipping
+Retail,Retail
+Recreation,Recreation
+Others,Others
+Not For Profit,Not For Profit
+Media,Media
+Manufacturing,Manufacturing
+Machinery,Machinery
+Insurance,Insurance
+Hospitality,Hospitality
+Healthcare,Healthcare
+Government,Government
+Food & Beverage,Food & Beverage
+Finance,Finance
+Environmental,Environmental
+Entertainment,Entertainment
+Engineering,Engineering
+Energy,Energy
+Electronics,Electronics
+Education,Education
+Consulting,Consulting
+Construction,Construction
+Communications,Communications
+Chemicals,Chemicals
+Biotechnology,Biotechnology
+Banking,Banking
+Apparel,Apparel
+Agriculture,Agriculture
