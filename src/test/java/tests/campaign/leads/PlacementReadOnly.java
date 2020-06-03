@@ -20,6 +20,7 @@ public class PlacementReadOnly extends LeadPageObjects {
 			String placement = getvaluePlacementReadOly();
 			String leadType = getvalueLeadTypeReadOly();
 			String leadCountryLeadOnly = getvalueCountryReadOly();
+			String openNotesCountry = campaignTestDataProcess().getLeadsCountry();
 			logger.info("Placement value is:" + placement);
 			logger.info("Lead type value is:" + leadType);
 			logger.info("Lead type value is:" + leadCountryLeadOnly);
@@ -36,7 +37,7 @@ public class PlacementReadOnly extends LeadPageObjects {
 			}
 			List<String> countryCode = CampaignTestDataProcess.getCountryMapping(leadCountryLeadOnly);
 			
-			if (placement.contains(countryCode.get(0))|| placement.contains(countryCode.get(1))) {
+			if (placement.contains(countryCode.get(0))|| placement.contains(countryCode.get(1)) || openNotesCountry.equals("ALL")) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Placement check for country code is successfully done");
 			} else {
 				selectvalueRejectionReasonDropdown("Non-spec Country (Placement mismatch)");
