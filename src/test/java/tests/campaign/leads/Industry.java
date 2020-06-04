@@ -32,6 +32,7 @@ public class Industry extends LeadPageObjects {
 		String IndusValue = null;
 		
 		String openNotesIndustryValue = campaignTestDataProcess().getOpenNotesIndustryVertical();
+		String openNotesCompanySizeValue = campaignTestDataProcess().getLeadsCompanySize();
 		String linkedinIndustry = campaignTestDataProcess().getLinkedinIndustry();
 		List<String> mapIndustries = CampaignTestDataProcess.getIndustryInfo(linkedinIndustry);
 
@@ -39,7 +40,7 @@ public class Industry extends LeadPageObjects {
 		logger.info("Industry Mentioned in LinkedIn: " + linkedinIndustry);
 		logger.info("Matched Industry/keyword from Repository: " + mapIndustries);
 		
-		if (!openNotesIndustryValue.contains("TAL")) {
+		if (!openNotesIndustryValue.contains("TAL") && !openNotesCompanySizeValue.contains("TAL")) {
 
 	//		String IndustryFromSite = "Information Technology and Services";
 			setIndustyToggle();
