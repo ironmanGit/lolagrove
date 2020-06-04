@@ -281,6 +281,9 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 				getIndustries.add(industry);
 				System.out.println(getIndustries);
 			}
+			else {
+				logger.info("No Match Found");
+			}
 		}
 		return getIndustries;
 	}
@@ -300,6 +303,9 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 				mapIndustries.add(FinalIndustry);
 				System.out.println(mapIndustries);
 			}
+			else {
+				logger.info("No Match Found for Industry: "+ IndustryFromSite);
+			}
 		}
 		return mapIndustries;
 	}
@@ -316,6 +322,9 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 				JobRoleValue = JobRoleValue.toString();
 				matchingRoles.add(JobRoleValue);
 				System.out.println(JobRoleValue);
+			}
+			else {
+				logger.info("No Match Found for Job Title: "+ JobTitle);
 			}
 		}
 //		if (result == null) {
@@ -337,6 +346,9 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 				matchingFunctions.add(JobFunctionValue);
 				System.out.println(JobFunctionValue);
 			}
+			else {
+				logger.info("No Match Found for Job Title: "+ JobTitle);
+			}			
 		}
 		return matchingFunctions;
 	}
