@@ -32,8 +32,6 @@ public class JobFunction extends LeadPageObjects {
 		if(openNoteJobFunction.contains(value)) {
 			isAccepted = true;
 			logger.info("Matched Job Title/Keyword with Open Notes:" + value);
-		} else {
-			logger.info("Unmatched Job Title/Keyword with Open Notes:" + value);
 		}
 	}
 	
@@ -64,10 +62,9 @@ public class JobFunction extends LeadPageObjects {
 		}
 	}
 	else {
-		logger.info("None of Job Title/Keyword matched with Open Notes");
-		ExtentTestManager.getTest().log(LogStatus.FAIL, "None of Job Title/Keyword matched with Open Notes");
+		logger.info("REJECT THE LEAD, None of Job Title/Keyword:"+JobFunction+" matched with Open Notes "+openNoteJobFunction);
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "REJECT THE LEAD, None of Job Title/Keyword matched with Open Notes");
 	}
-			
 	return leadPage();
 	}
 }
