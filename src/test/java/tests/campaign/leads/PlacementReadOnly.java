@@ -24,31 +24,37 @@ public class PlacementReadOnly extends LeadPageObjects {
 			logger.info("Placement value is:" + placement);
 			logger.info("Lead type value is:" + leadType);
 			logger.info("Lead type value is:" + leadCountryLeadOnly);
-			if (leadType.equals("undefined")) {
-				ExtentTestManager.getTest().log(LogStatus.INFO, "Lead type value is undefined");
+			if (placement.equals("undefined")) {
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Placement value is undefined");
+				ExtentTestManager.getTest().log(LogStatus.PASS,
+						"Placement check is skipped since the value is undefined");
 			} else {
-				if (placement.contains(leadType)) {
-					ExtentTestManager.getTest().log(LogStatus.PASS,
-							"Placement check for leas type is successfully done");
+				if (leadType.equals("undefined")) {
+					ExtentTestManager.getTest().log(LogStatus.INFO, "Lead type value is undefined");
 				} else {
-					selectvalueRejectionReasonDropdown("Non-spec Lead Type (Placement mismatch)");
-					setvalueRejectionReasonEvidence("placement check does not match as per open notes");
+					if (placement.contains(leadType)) {
+						ExtentTestManager.getTest().log(LogStatus.PASS,
+								"Placement check for leas type is successfully done");
+					} else {
+						selectvalueRejectionReasonDropdown("Non-spec Lead Type (Placement mismatch)");
+						setvalueRejectionReasonEvidence("placement check does not match as per open notes");
+						ExtentTestManager.getTest().log(LogStatus.FAIL, "Placement check failed");
+					}
+				}
+				List<String> countryCode = CampaignTestDataProcess.getCountryMapping(leadCountryLeadOnly);
+
+				if (placement.contains(countryCode.get(0)) || placement.contains(countryCode.get(1))
+						|| openNotesCountry.equals("ALL")) {
+					ExtentTestManager.getTest().log(LogStatus.PASS,
+							"Placement check for country code is successfully done");
+				} else if (placement.contains("EMEA")) {
+					ExtentTestManager.getTest().log(LogStatus.PASS,
+							"Placement check for country code is successfully done");
+				} else {
+					selectvalueRejectionReasonDropdown("Non-spec Country (Placement mismatch)");
+					setvalueRejectionReasonEvidence("placement check country code is not available");
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "Placement check failed");
 				}
-			}
-			List<String> countryCode = CampaignTestDataProcess.getCountryMapping(leadCountryLeadOnly);
-
-			if (placement.contains(countryCode.get(0)) || placement.contains(countryCode.get(1))
-					|| openNotesCountry.equals("ALL")) {
-				ExtentTestManager.getTest().log(LogStatus.PASS,
-						"Placement check for country code is successfully done");
-			} else if (placement.contains("EMEA")) {
-				ExtentTestManager.getTest().log(LogStatus.PASS,
-						"Placement check for country code is successfully done");
-			} else {
-				selectvalueRejectionReasonDropdown("Non-spec Country (Placement mismatch)");
-				setvalueRejectionReasonEvidence("placement check country code is not available");
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Placement check failed");
 			}
 		} catch (Exception e) {
 			selectvalueRejectionReasonDropdown("Non-spec Country (Placement mismatch)");

@@ -14,7 +14,7 @@ import utils.ExtentReports.ExtentTestManager;
 public class CampaignTest extends PageFactoryInitializer {
 	private Logger logger = Logger.getLogger(CampaignTest.class.getName());
 	private String getCompanySize;
-	private List<String> getIndustrialVertical;
+	private String getIndustrialVertical;
 	private String getJobFunction;
 	private String getJobTitle;
 	private String getCountry;
@@ -50,7 +50,7 @@ public class CampaignTest extends PageFactoryInitializer {
 	public void getOpenNotesRecord() throws Exception {
 		getCountry = campaignTestDataProcess().getLeadsCountry();
 		getCompanySize = campaignTestDataProcess().getLeadsCompanySize();
-		getIndustrialVertical = campaignTestDataProcess().getLeadsIndustrialVertical();
+		getIndustrialVertical = campaignTestDataProcess().getOpenNotesIndustryVertical();
 		getJobFunction = campaignTestDataProcess().getLeadsJobFunction();
 		getJobTitle = campaignTestDataProcess().getLeadsJobTitle();
 		logger.info("Country details : " + getCountry);
