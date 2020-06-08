@@ -2175,9 +2175,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 				"company_evidence", "company_size", "companysize_evidence", "turnover", "turnover_evidence" };
 
 //		WebElement[] dropDownElements = { industryDropdown, turnoverDropdown, jobFunctionDropdown, jobRoleDropdown };
-		WebElement[] dropDownElements = {industryDropdown};
+		WebElement[] dropDownElements = {industryDropdown, jobRoleDropdown};
 
-		String[] dropdownElementId = {"ddnIndustry"};
+		String[] dropdownElementId = {"ddnIndustry", "ddlIntelJobRole"};
 //		String[] dropdownElementId = { "ddnIndustry", "ddnTurnover", "ddlIntelJobFunction", "ddlIntelJobRole" };
 
 		for (int i = 0; i < textElements.length; i++) {

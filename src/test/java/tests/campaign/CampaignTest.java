@@ -18,6 +18,7 @@ public class CampaignTest extends PageFactoryInitializer {
 	private String getJobFunction;
 	private String getJobTitle;
 	private String getCountry;
+	private String getEmail;
 
 	@Test(priority = 1, description = "Navigate to Campaign")
 	public void campaignCheck() throws Exception {
@@ -53,11 +54,13 @@ public class CampaignTest extends PageFactoryInitializer {
 		getIndustrialVertical = campaignTestDataProcess().getOpenNotesIndustryVertical();
 		getJobFunction = campaignTestDataProcess().getLeadsJobFunction();
 		getJobTitle = campaignTestDataProcess().getLeadsJobTitle();
+		getEmail = campaignTestDataProcess().getEmail();
 		logger.info("Country details : " + getCountry);
 		logger.info("Company Size : " + getCompanySize);
 		logger.info("Industrial : " + getIndustrialVertical);
 		logger.info("Job Function: " + getJobFunction);
 		logger.info("Job Title : " + getJobTitle);
+		logger.info("Email : " + getEmail);
 		List<String> customRegions = CampaignTestDataProcess.getCustomRegions("Cus_EMEA");
 		logger.info("custom Regions data : " + customRegions);
 		List<String> countryMapping = CampaignTestDataProcess.getCountryMapping("NORDIC");
