@@ -14,13 +14,14 @@ public class CompanySize extends LeadPageObjects {
 		String companySizeOpenNoteValue = campaignTestDataProcess().getLeadsCompanySize();
 		boolean isLinkedIn = true;
 		boolean isMatchFound = true;
+		String companySizeDropdownType = campaignTestDataProcess().getCompanySizeDropdownType();
+
 		if (companySizeOpenNoteValue.contains("TAL")) {
 			logger.info("Company size value is:" + companySizeOpenNoteValue);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Company size in open notes is 'TAL' so no check needed");
 			if (isLinkedIn) {
 				ExtentTestManager.getTest().log(LogStatus.INFO, "company size check in linkedin");
 				selectLinkedInvalueCompanyToolsDropdown();
-				String companySizeDropdownType = campaignTestDataProcess().getCompanySizeDropdownType();
 				String linkedInCompanySize = linkedInPage().getCompanySizeValue(companySizeDropdownType);
 				linkedInPage().getIndustriesValue();
 				if (linkedInCompanySize == null) {
@@ -46,7 +47,7 @@ public class CompanySize extends LeadPageObjects {
 			if (!isLinkedIn) {
 				ExtentTestManager.getTest().log(LogStatus.INFO, "company size check in zoom info");
 				selectZoomInfovalueCompanyToolsDropdown();
-				String zoomInfoCompanySize = zoomInfoPage().getEmployeesValue();
+				String zoomInfoCompanySize = zoomInfoPage().getEmployeesValue(companySizeDropdownType);
 				String zoomInfoUrl = getZoomInfoCurrentUrl();
 				if (zoomInfoCompanySize != null) {
 					isMatchFound = true;
@@ -70,7 +71,6 @@ public class CompanySize extends LeadPageObjects {
 			if (isLinkedIn) {
 				ExtentTestManager.getTest().log(LogStatus.INFO, "company size check in linkedin");
 				selectLinkedInvalueCompanyToolsDropdown();
-				String companySizeDropdownType = campaignTestDataProcess().getCompanySizeDropdownType();
 				String linkedInCompanySize = linkedInPage().getCompanySizeValue(companySizeDropdownType);
 				linkedInPage().getIndustriesValue();
 				String linkedInUrl = getLinkedInCurrentUrl();
@@ -93,7 +93,7 @@ public class CompanySize extends LeadPageObjects {
 			if (!isLinkedIn) {
 				ExtentTestManager.getTest().log(LogStatus.INFO, "company size check in zoom info");
 				selectZoomInfovalueCompanyToolsDropdown();
-				String zoomInfoCompanySize = zoomInfoPage().getEmployeesValue();
+				String zoomInfoCompanySize = zoomInfoPage().getEmployeesValue(companySizeDropdownType);
 				String zoomInfoUrl = getZoomInfoCurrentUrl();
 				if (zoomInfoCompanySize != null) {
 					isMatchFound = true;

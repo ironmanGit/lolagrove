@@ -61,7 +61,6 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	private WebElement orgNonEligible;
 
 	public String getWebsiteValue() throws Exception {
-		ExplicitWaiting.explicitWaitVisibilityOfElement(websiteValue, 15);
 		String value = getText(websiteValue);
 		try {
 			if (value != null) {
@@ -75,7 +74,6 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	}
 
 	public String getIndustriesValue() throws Exception {
-		ExplicitWaiting.explicitWaitVisibilityOfElement(industriesValue, 15);
 		String value = null;
 		if (isFieldExist(companySizeValue)) {
 			value = getText(industriesValue);
@@ -122,7 +120,6 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	}
 
 	public String getHeadquartersValue() throws Exception {
-		ExplicitWaiting.explicitWaitVisibilityOfElement(headquartersValue, 15);
 		String value = getText(headquartersValue);
 		try {
 			if (value != null) {
@@ -136,7 +133,6 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	}
 
 	public String getTypeValue() throws Exception {
-		ExplicitWaiting.explicitWaitVisibilityOfElement(typeValue, 15);
 		String value = getText(typeValue);
 		try {
 			if (value != null) {
@@ -150,7 +146,6 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	}
 
 	public String getFoundedValue() throws Exception {
-		ExplicitWaiting.explicitWaitVisibilityOfElement(foundedValue, 15);
 		String value = getText(foundedValue);
 		try {
 			if (value != null) {
@@ -164,7 +159,6 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	}
 
 	public String getSpecialtiesValue() throws Exception {
-		ExplicitWaiting.explicitWaitVisibilityOfElement(specialtiesValue, 15);
 		String value = getText(specialtiesValue);
 		try {
 			if (value != null) {
@@ -188,7 +182,6 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	}
 
 	public String getFullNameValue() throws Exception {
-		ExplicitWaiting.explicitWaitVisibilityOfElement(fullName, 15);
 		String value = getText(fullName);
 		try {
 			if (value != null) {
@@ -237,7 +230,6 @@ public class LinkedInPageObjects extends PageFactoryInitializer {
 	}
 
 	public String getCompanyValue() throws Exception {
-		ExplicitWaiting.explicitWaitVisibilityOfElement(jobCompany, 15);
 		String value = getText(jobCompany);
 		try {
 			if (value != null) {
