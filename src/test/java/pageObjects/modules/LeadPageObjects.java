@@ -2175,9 +2175,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 				"company_evidence", "company_size", "companysize_evidence", "turnover", "turnover_evidence" };
 
 //		WebElement[] dropDownElements = { industryDropdown, turnoverDropdown, jobFunctionDropdown, jobRoleDropdown };
-		WebElement[] dropDownElements = { turnoverDropdown, jobRoleDropdown };
+		WebElement[] dropDownElements = {industryDropdown};
 
-		String[] dropdownElementId = { "ddnTurnover", "ddlIntelJobRole" };
+		String[] dropdownElementId = {"ddnIndustry"};
 //		String[] dropdownElementId = { "ddnIndustry", "ddnTurnover", "ddlIntelJobFunction", "ddlIntelJobRole" };
 
 		for (int i = 0; i < textElements.length; i++) {
@@ -2223,6 +2223,11 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
+	public LeadPageObjects emailCheck() throws Exception {
+		email().emailCheck();
+		return this;
+	}
+	
 	public LeadPageObjects companySizeCheck() throws Exception {
 		companySize().companySizeCheck();
 		return this;

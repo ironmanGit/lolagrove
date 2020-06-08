@@ -42,7 +42,7 @@ public class CampaignTest extends PageFactoryInitializer {
 		endoleDriver();
 		Thread.sleep(3000);
 		linkedInDriver();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		zoomInfoDriver();
 		}
 	
@@ -81,17 +81,17 @@ public class CampaignTest extends PageFactoryInitializer {
 		ExtentTestManager.startTest("Lead Id--> " + leadId, "Lead Testing");
 		leadPage()
 		.clickLeadsFromFile(leadsLine)
-//		.placementCheck()
-//		.countryCheck()
+		.placementCheck()
+		.emailCheck()
+		.countryCheck()
 		.companySizeCheck()
-//		.companyTurnoverCheck()
+		.companyTurnoverCheck()
 		.firstnameLastnameJobTitleCheck()
 		.jobFunctionCheck()
 //		.jobLevelCheck()
 		.industryCheck()
 		.updateManuallyVerify()
 		.clickSaveBtn();
-		//.clickCloseBtn();
 		ExtentTestManager.endTest();
 	}
 }

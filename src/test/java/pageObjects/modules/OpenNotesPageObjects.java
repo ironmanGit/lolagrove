@@ -186,7 +186,7 @@ public class OpenNotesPageObjects extends PageFactoryInitializer {
 //		getIndustryVerticalFromOpenNotes();
 		getJobFunctionFromOpenNotes();
 		getJobTitleFromOpenNotes();
-		getExclusionCompanyListDetailsFromOpenNotes();
+//		getExclusionCompanyListDetailsFromOpenNotes();
 		getCompanyListDetailsFromOpenNotes();
 		return this;
 	}
