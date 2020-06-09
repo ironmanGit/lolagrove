@@ -37,7 +37,6 @@ public class ZoomInfoPageObjects extends PageFactoryInitializer {
 	private WebElement revenueValue;
 
 	public String getHeadquartersValue() throws Exception {
-		ExplicitWaiting.explicitWaitVisibilityOfElement(headquartersValue, 15);
 		String value = getText(headquartersValue);
 		try {
 			if (value != null) {
@@ -51,7 +50,6 @@ public class ZoomInfoPageObjects extends PageFactoryInitializer {
 	}
 
 	public String getPhoneValue() throws Exception {
-		ExplicitWaiting.explicitWaitVisibilityOfElement(phoneValue, 15);
 		String value = getText(phoneValue);
 		try {
 			if (value != null) {
@@ -65,7 +63,6 @@ public class ZoomInfoPageObjects extends PageFactoryInitializer {
 	}
 
 	public String getWebsiteValue() throws Exception {
-		ExplicitWaiting.explicitWaitVisibilityOfElement(websiteValue, 15);
 		String value = getText(websiteValue);
 		try {
 			if (value != null) {
@@ -79,7 +76,6 @@ public class ZoomInfoPageObjects extends PageFactoryInitializer {
 	}
 
 	public String getEmployeesValue(String type) throws Exception {
-		ExplicitWaiting.explicitWaitVisibilityOfElement(employeesValue, 15);
 		String value = getText(employeesValue);
 		value = getText(employeesValue).replaceAll("[a-z]| ", "");
 		value = value.replaceAll(".+(?<=-)", "");
@@ -97,7 +93,6 @@ public class ZoomInfoPageObjects extends PageFactoryInitializer {
 	}
 
 	public String getRevenueValue(String type) throws Exception {
-		ExplicitWaiting.explicitWaitVisibilityOfElement(revenueValue, 15);
 		String revenue = getText(revenueValue);
 		String value = null;
 		if (revenue.contains("Unreported") || revenue == null || revenue.equals("")) {
