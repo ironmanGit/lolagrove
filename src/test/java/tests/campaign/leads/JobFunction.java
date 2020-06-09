@@ -26,7 +26,7 @@ public class JobFunction extends LeadPageObjects {
 //	if(m) { to add code for managing Open Notes like Management plus / +
 //		
 //	}
-	
+	selectvalueJobFunctionDropdown("- Function-");
 	logger.info("Accepted Job Function(s) as per Open Notes:" + openNoteJobFunction);
 	for(String value:JobFunction) {
 		if(openNoteJobFunction.contains(value)) {
@@ -37,6 +37,7 @@ public class JobFunction extends LeadPageObjects {
 	
 	if (isAccepted){
 		List<WebElement> options = getvaluesJobFunctionDropdown();
+		
 		for(WebElement item:options) {
 			logger.info("Job Function Dropdown Value :" + item.getText());
 			

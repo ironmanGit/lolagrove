@@ -39,6 +39,9 @@ public class Industry extends LeadPageObjects {
 		logger.info("Industry Mentioned in Open Notes: " + openNotesIndustryValue);
 		logger.info("Industry Mentioned in LinkedIn: " + linkedinIndustry);
 		logger.info("Matched Industry/keyword from Repository: " + mapIndustries);
+		selectvalueIndustryDropdown("- Industry -");
+		String industryEvidence = getTextUsingScript("companysize_evidence");
+		setvalueCompanyEvidence(industryEvidence);
 		
 		if (!openNotesIndustryValue.contains("TAL") && !openNotesCompanySizeValue.contains("TAL")) {
 
@@ -63,7 +66,7 @@ public class Industry extends LeadPageObjects {
 			if (industryStatus) {		
 				List<WebElement> options = getvaluesIndustryDropdown();
 				for(WebElement item:options) { 
-					logger.info("Industry Dropdown values are: " + item.getText());
+//					logger.info("Industry Dropdown values are: " + item.getText());
 					
 					for (int i=0; i<filteredIndustries.size(); i++) {
 						if (item.getText().contains(filteredIndustries.get(i))) {
@@ -80,13 +83,13 @@ public class Industry extends LeadPageObjects {
 					if (isSelected) {
 						break;
 					}					
-					else {
-						logger.info("Industry Dropdown Value: " 
-								+IndusValue+" not listed in the dropdown");
-						ExtentTestManager.getTest().log(LogStatus.FAIL, "Industry Dropdown Value: "
-								+IndusValue+" not listed in the dropdown");
-					}		
 			    }
+				if (!isSelected) {
+					logger.info("Industry Dropdown Value: " 
+							+IndusValue+" not listed in the dropdown");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Industry Dropdown Value: "
+							+IndusValue+" not listed in the dropdown");
+				}
 			}
 			else {
 				rejectLead = true;
@@ -105,8 +108,8 @@ public class Industry extends LeadPageObjects {
 					if (item.getText().contains(mapIndustries.get(i))) {
 						IndusValue = mapIndustries.get(i);
 						isSelected = true;
-						selectvalueIndustryDropdown(item.getText());
-						String industryEvidence = getTextUsingScript("companysize_evidence");
+//						selectvalueIndustryDropdown(item.getText());
+//						String industryEvidence = getTextUsingScript("companysize_evidence");
 						setvalueCompanyEvidence(industryEvidence);
 						logger.info("Industry Dropdown Value: "
 								+item.getText()+" is selected for the Industry: "+mapIndustries.get(i));
