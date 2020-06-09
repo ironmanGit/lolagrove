@@ -86,6 +86,7 @@ public class LandingPageObjects extends PageFactoryInitializer {
 		}catch(Exception e){
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Failed to select "+campaignText);
 		}
+		refreshPage();
 		Thread.sleep(3000);
 		selectCampaignDateValue();
 		Thread.sleep(3000);

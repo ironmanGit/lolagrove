@@ -78,9 +78,13 @@ public class ZoomInfoPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public String getEmployeesValue() throws Exception {
+	public String getEmployeesValue(String type) throws Exception {
 		ExplicitWaiting.explicitWaitVisibilityOfElement(employeesValue, 15);
 		String value = getText(employeesValue);
+		value = getText(employeesValue).replaceAll("[a-z]| ", "");
+		value = value.replaceAll(".+(?<=-)", "");
+		value = value.replaceAll("([,|+])", "");
+		value = roundOffCompanySize(type, value);
 		try {
 			if (value != null) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "employees value is " + value);

@@ -91,12 +91,12 @@ public class OpenNotesPageObjects extends PageFactoryInitializer {
 	public String getIndustryVertical() {
 		String industrialVerticalText = industrialVertical.getText();
 		boolean isTAL = industrialVerticalText.contains("TAL");
-		campaignTestDataProcess().setOpenNotesIndustryVertical(industrialVerticalText);
 		if (isTAL) {
 			industrialVerticalText = "TAL";
 		} else {
 			industrialVerticalText = getListOfTexts(industrialVertical);
 		}
+		campaignTestDataProcess().setOpenNotesIndustryVertical(industrialVerticalText);
 		ExtentTestManager.getTest().log(LogStatus.INFO, "Industry in Open Notes : " + industrialVerticalText);
 		return industrialVerticalText;
 	}
@@ -183,10 +183,10 @@ public class OpenNotesPageObjects extends PageFactoryInitializer {
 		getCountryDetailsFromOpenNotes();
 		getCompanySizeFromOpenNotes();
 		getIndustryVertical();
-//		getIndustryVerticalFromOpenNotes();
 		getJobFunctionFromOpenNotes();
 		getJobTitleFromOpenNotes();
-		getExclusionCompanyListDetailsFromOpenNotes();
+		getEmailFromOpenNotes();
+//		getExclusionCompanyListDetailsFromOpenNotes();
 		getCompanyListDetailsFromOpenNotes();
 		return this;
 	}
