@@ -14,14 +14,33 @@ public class Email extends LeadPageObjects {
 
 	public LeadPageObjects emailCheck() throws Exception {
 		String emailOpenNoteValue = campaignTestDataProcess().getEmail();
+		String firstName = getvalueFirstName();
+		String lastName = getvalueLastName();
+		String companyName = getvalueCompanyName();
+		String emailFromLeads = getvalueEmail();
+		String emailEvidenceFromLeads = getvalueEmailEvidence();
 		if (emailOpenNoteValue.contains("Person@Company")) {
-			String emailFromLeads = getvalueEmail();
-			String emailEvidenceFromLeads = getvalueEmailEvidence();
 			logger.info("Email value in lead page is:" + emailFromLeads);
 			if(isValidEmail(emailFromLeads)) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Email in lead page is in valid format");
 				if(emailEvidenceFromLeads.equals("Email Verified")) {
 					ExtentTestManager.getTest().log(LogStatus.PASS, "Email evidence - Email Verified");
+				} else {
+					if(emailFromLeads.contains(firstName)) {
+						ExtentTestManager.getTest().log(LogStatus.INFO, "First name matched with email");	
+					} else {
+						ExtentTestManager.getTest().log(LogStatus.INFO, "First name not matched with email");
+					}
+					if(emailFromLeads.contains(lastName)) {
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Last name matched with email");	
+					} else {
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Last name not matched with email");
+					}
+					if(emailFromLeads.contains(companyName)) {
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Comapny name matched with email");	
+					} else {
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Comapny name not matched with email");
+					}
 				}
 			} else {
 				setvalueRejectionReason("email format is invalid");
@@ -29,26 +48,54 @@ public class Email extends LeadPageObjects {
 			}
 			
 		}else if(emailOpenNoteValue.contains("info@Company")) {
-			String emailFromLeads = getvalueEmail();
-			String emailEvidenceFromLeads = getvalueEmailEvidence();
 			logger.info("Email value in lead page is:" + emailFromLeads);
 			if(isValidEmail(emailFromLeads)) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Email in lead page is in valid format");
 				if(emailEvidenceFromLeads.equals("Email Verified")) {
 					ExtentTestManager.getTest().log(LogStatus.PASS, "Email evidence - Email Verified");
+				} else {
+					if(emailFromLeads.contains(firstName)) {
+						ExtentTestManager.getTest().log(LogStatus.INFO, "First name matched with email");	
+					} else {
+						ExtentTestManager.getTest().log(LogStatus.INFO, "First name not matched with email");
+					}
+					if(emailFromLeads.contains(firstName)) {
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Last name matched with email");	
+					} else {
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Last name not matched with email");
+					}
+					if(emailFromLeads.contains(companyName)) {
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Comapny name matched with email");	
+					} else {
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Comapny name not matched with email");
+					}
 				}
 			} else {
 				setvalueRejectionReason("email format is invalid");
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "Email in lead page is in invalid format");
 			}
 		} else if(emailOpenNoteValue.contains("All")) {
-			String emailFromLeads = getvalueEmail();
-			String emailEvidenceFromLeads = getvalueEmailEvidence();
 			logger.info("Email value in lead page is:" + emailFromLeads);
 			if(isValidEmail(emailFromLeads)) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Email in lead page is in valid format");
 				if(emailEvidenceFromLeads.equals("Email Verified")) {
 					ExtentTestManager.getTest().log(LogStatus.PASS, "Email evidence - Email Verified");
+				} else {
+					if(emailFromLeads.contains(firstName)) {
+						ExtentTestManager.getTest().log(LogStatus.INFO, "First name matched with email");	
+					} else {
+						ExtentTestManager.getTest().log(LogStatus.INFO, "First name not matched with email");
+					}
+					if(emailFromLeads.contains(firstName)) {
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Last name matched with email");	
+					} else {
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Last name not matched with email");
+					}
+					if(emailFromLeads.contains(companyName)) {
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Comapny name matched with email");	
+					} else {
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Comapny name not matched with email");
+					}
 				}
 			} else {
 				setvalueRejectionReason("email format is invalid");

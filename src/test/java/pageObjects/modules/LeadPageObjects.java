@@ -2092,6 +2092,28 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return endolePage();
 	}
 
+	public GooglePageObjects selectEmailEvidenceAndUpdateEmailEvidenceDropdown(String searchValue) throws Exception {
+		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(emailToolsDropdown, 15);
+			selectByVisibleText(emailToolsDropdown, "Google (Generic)");
+			logger.info("Google (Generic)");
+			switchToNewTab();
+			updateSearchValueInGoogleAndSearch(searchValue);
+			// clickSearchResult1();
+			String url = getSearchResult1();
+			if (url.contains("endole")) {
+				getEndoleWebDriver().navigate().to(url);
+			} else {
+				logger.info("invalid url for endole search");
+			}
+			ExtentTestManager.getTest().log(LogStatus.PASS,
+					"Selected value from companyToolsDropdown is Google (Generic)");
+		} catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from companyToolsDropdown " + e);
+		}
+		return googlePage();
+	}
+	
 	public LeadPageObjects selectvalueIndustryDropdown(String value) throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(industryDropdown, 15);

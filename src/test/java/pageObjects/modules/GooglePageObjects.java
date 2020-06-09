@@ -3,6 +3,8 @@
  */
 package pageObjects.modules;
 
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
@@ -24,6 +26,9 @@ public class GooglePageObjects extends PageFactoryInitializer {
 
 	@FindBy(css = "a>h3")
 	private WebElement searchResult1;
+	
+	@FindBy(css = "a>h3")
+	private List<WebElement> descriptionContains;
 	
 	public GooglePageObjects clickonGmailLink() throws Exception {
 		click(gmailLink);
