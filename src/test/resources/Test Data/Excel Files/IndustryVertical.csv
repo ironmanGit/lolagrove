@@ -1,14 +1,12 @@
 Industry,Acceptance
-Metals / Mining,Yes
-Clothing & Textiles,Yes
-Electronics & Computers,Yes
-Food & Beverage,Yes
-Wood, Leather & Paper,Yes
+Manufacturing Metals / Mining,Yes
+Manufacturing Clothing & Textiles,Yes
+Manufacturing Electronics & Computers,Yes
+Manufacturing Food & Beverage,Yes
+Manufacturing Wood, Leather & Paper,Yes
 Engineering,Yes
-Energy & Utilities,Yes
-Environment,Yes
-Entertainment,Yes
+Automotive,Yes
 Industrial,Yes
 Logistics & Distribution,Yes
-IT - Distribution/Vendor/Resellers,Yes
-IT - Other,Yes
+Transportation,Yes
+Wholesale,Yes
