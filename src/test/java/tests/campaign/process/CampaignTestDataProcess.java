@@ -279,7 +279,7 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 			if (status.contains("Yes")) {
 				industry = industry.toString();
 				getIndustries.add(industry);
-				System.out.println(getIndustries);
+				logger.info("Matched Value: "+ getIndustries);
 			}
 			else {
 				logger.info("No Match Found");
@@ -292,20 +292,20 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 	public static List<String> getIndustryInfo(String IndustryFromSite, String FilePath) throws Exception {
 		List<String> mapIndustries = new ArrayList<String>();
 		List<String> lines = ExcelUtils.readFileToLines(FilePath);
+		boolean isMatched = false;
 		for (String line : lines) {
 			String[] columns = line.split(",");
 			String FinalIndustry = columns[0];
 			String Industry = columns[1];
-			System.out.println(FinalIndustry);
-			System.out.println(Industry);
 			if (IndustryFromSite.contains(Industry)) {
+				isMatched = true;
 				FinalIndustry = FinalIndustry.toString();
 				mapIndustries.add(FinalIndustry);
-				System.out.println(mapIndustries);
+				logger.info("Matched Value: "+ mapIndustries);
 			}
-			else {
-				logger.info("No Match Found for Industry: "+ IndustryFromSite);
-			}
+		}
+		if (!isMatched) {
+			logger.info("No Match Found for Industry: "+ IndustryFromSite);
 		}
 		return mapIndustries;
 	}
@@ -314,18 +314,20 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 	public static List<String> getJobRoleInfo(String JobTitle, String FilePath) throws Exception {
 		List<String> matchingRoles = new ArrayList<String>();
 		List<String> lines = ExcelUtils.readFileToLines(FilePath);
+		boolean isMatched = false;
 		for (String line : lines) {
 			String[] columns = line.split(",");
 			String JTitle = columns[1];
 			String JobRoleValue = columns[0];
 			if (JobTitle.contains(JTitle)) {
+				isMatched = true;
 				JobRoleValue = JobRoleValue.toString();
 				matchingRoles.add(JobRoleValue);
-				System.out.println(JobRoleValue);
+				logger.info("Matched Value: "+ JobRoleValue);
 			}
-			else {
-				logger.info("No Match Found for Job Title: "+ JobTitle);
-			}
+		}
+		if (!isMatched) {
+			logger.info("No Match Found for Job Title: "+ JobTitle);
 		}
 //		if (result == null) {
 //			throw new Exception("Error : Cannot find Job Tile: " + JobTitle + " from the CSV file for Job Function Field" + FilePath);
@@ -337,19 +339,21 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 	public static List<String> getJobFunctionInfo(String JobTitle, String FilePath) throws Exception {
 		List<String> matchingFunctions = new ArrayList<String>();
 		List<String> lines = ExcelUtils.readFileToLines(FilePath);
+		boolean isMatched = false;
 		for (String line : lines) {
 			String[] columns = line.split(",");
 			String JTitle = columns[1];
 			String JobFunctionValue = columns[0];
 			if (JobTitle.contains(JTitle)) {
+				isMatched = true;
 				JobFunctionValue = JobFunctionValue.toString();
 				matchingFunctions.add(JobFunctionValue);
-				System.out.println(JobFunctionValue);
+				logger.info("Matched Value: "+ JobFunctionValue);
 			}
-			else {
-				logger.info("No Match Found for Job Title: "+ JobTitle);
-			}			
 		}
+		if (!isMatched) {
+			logger.info("No Match Found for Job Title: "+ JobTitle);
+		}			
 		return matchingFunctions;
 	}
 	
