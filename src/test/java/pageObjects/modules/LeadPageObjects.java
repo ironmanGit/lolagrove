@@ -1993,6 +1993,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	public LeadPageObjects selectvalueJobRoleDropdown(String value) throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(jobRoleDropdown, 15);
+			selectByIndex(jobRoleDropdown,0);
+			handleAlert();
 			selectByVisibleText(jobRoleDropdown, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from jobRoleDropdown is " + value);
 		} catch (Exception e) {
