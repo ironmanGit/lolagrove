@@ -83,6 +83,8 @@ Brokerage & VCs,Brokerage
 Business Consultants,Business Consultants
 Clothing & Textiles,Clothing
 Clothing & Textiles,Textiles
+Manufacturing,Clothing
+Manufacturing,Textiles
 Construction,Construction
 Consumer Goods,Consumer Goods
 Defence,Defence
@@ -93,6 +95,8 @@ Emergency Services,Emergency Services
 Energy & Utilities,Energy
 Energy & Utilities,Utilities
 Environment,Environment
+Environment,Renewables
+Environment,Renewables & Environment
 Foreign Exchange Services,Foreign Exchange Services
 Government - Central,Government - Central
 Government - Local,Government - Local
