@@ -2117,6 +2117,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 	public LeadPageObjects selectvalueIndustryDropdown(String value) throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(industryDropdown, 15);
+			selectByIndex(industryDropdown, 0);
+			handleAlert();
 			selectByVisibleText(industryDropdown, value);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from industryDropdown is " + value);
 		} catch (Exception e) {
@@ -2199,9 +2201,9 @@ public class LeadPageObjects extends PageFactoryInitializer {
 				"company_evidence", "company_size", "companysize_evidence", "turnover", "turnover_evidence" };
 
 //		WebElement[] dropDownElements = { industryDropdown, turnoverDropdown, jobFunctionDropdown, jobRoleDropdown };
-		WebElement[] dropDownElements = {industryDropdown, jobRoleDropdown};
+		WebElement[] dropDownElements = {};
 
-		String[] dropdownElementId = {"ddnIndustry", "ddlIntelJobRole"};
+		String[] dropdownElementId = {};
 //		String[] dropdownElementId = { "ddnIndustry", "ddnTurnover", "ddlIntelJobFunction", "ddlIntelJobRole" };
 
 		for (int i = 0; i < textElements.length; i++) {
