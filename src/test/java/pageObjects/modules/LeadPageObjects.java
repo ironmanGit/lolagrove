@@ -2202,10 +2202,8 @@ public class LeadPageObjects extends PageFactoryInitializer {
 
 //		WebElement[] dropDownElements = { industryDropdown, turnoverDropdown, jobFunctionDropdown, jobRoleDropdown };
 		WebElement[] dropDownElements = {};
-		WebElement[] dropDownElements = {jobRoleDropdown};
 
-		String[] dropdownElementId = {};
-		String[] dropdownElementId = {"ddlIntelJobRole"};
+//		String[] dropdownElementId = {};
 //		String[] dropdownElementId = { "ddnIndustry", "ddnTurnover", "ddlIntelJobFunction", "ddlIntelJobRole" };
 
 		for (int i = 0; i < textElements.length; i++) {
@@ -2229,19 +2227,10 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		}
 
 		for (int i = 0; i < dropDownElements.length; i++) {
-			String value = getTextUsingIdScript(dropdownElementId[i]);
 			selectByIndex(dropDownElements[i], 0);
 			handleAlert();
 			selectByIndex(dropDownElements[i], 1);
 			handleAlert();
-//			if (isFieldExist(dropDownElements[i])) {
-//				
-////				if (value.contains("-")) {
-////					
-////				}
-////			} else {
-////				
-//			}
 		}
 		return this;
 	}

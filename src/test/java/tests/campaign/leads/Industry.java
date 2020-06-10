@@ -51,8 +51,6 @@ public class Industry extends LeadPageObjects {
 		setvalueCompanyEvidence(industryEvidence);
 		
 		if (!openNotesIndustryValue.contains("TAL") && !openNotesCompanySizeValue.contains("TAL")) {
-
-	//		String IndustryFromSite = "Information Technology and Services";
 			setIndustyToggle();
 			List<String> AcceptedIndustries = campaignTestDataProcess().getLeadsIndustrialVertical();		
 			List<String> filteredIndustries = new ArrayList<String>();
@@ -73,8 +71,6 @@ public class Industry extends LeadPageObjects {
 			if (industryStatus) {		
 				List<WebElement> options = getvaluesIndustryDropdown();
 				for(WebElement item:options) { 
-//					logger.info("Industry Dropdown values are: " + item.getText());
-					
 					for (int i=0; i<filteredIndustries.size(); i++) {
 						if (item.getText().contains(filteredIndustries.get(i))) {
 							IndusValue = filteredIndustries.get(i);
@@ -115,9 +111,7 @@ public class Industry extends LeadPageObjects {
 					if (item.getText().contains(mapIndustries.get(i))) {
 						IndusValue = mapIndustries.get(i);
 						isSelected = true;
-//						selectvalueIndustryDropdown(item.getText());
-//						String industryEvidence = getTextUsingScript("companysize_evidence");
-						setvalueCompanyEvidence(industryEvidence);
+						selectvalueIndustryDropdown(item.getText());
 						logger.info("Industry Dropdown Value: "
 								+item.getText()+" is selected for the Industry: "+mapIndustries.get(i));
 						ExtentTestManager.getTest().log(LogStatus.PASS, "Industry Dropdown Value: "
