@@ -258,7 +258,7 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 			String country = columns[0];
 			String countryCode = columns[1];
 			regionCode = columns[2];
-			if (country.contains(sendCountry)) {
+			if (country.toLowerCase().contains(sendCountry.toLowerCase())) {
 				regionCode = regionCode.toString();
 				break;
 			}
@@ -276,7 +276,7 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 			String status = columns[1];
 			System.out.println(industry);
 			System.out.println(status);
-			if (status.contains("Yes")) {
+			if (status.toLowerCase().contains("yes")) {
 				industry = industry.toString();
 				getIndustries.add(industry);
 				logger.info("Matched Value: "+ getIndustries);
@@ -297,7 +297,7 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 			String[] columns = line.split(",");
 			String FinalIndustry = columns[0];
 			String Industry = columns[1];
-			if (IndustryFromSite.contains(Industry)) {
+			if (IndustryFromSite.toLowerCase().contains(Industry.toLowerCase())) {
 				isMatched = true;
 				FinalIndustry = FinalIndustry.toString();
 				mapIndustries.add(FinalIndustry);
@@ -319,7 +319,7 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 			String[] columns = line.split(",");
 			String JTitle = columns[1];
 			String JobRoleValue = columns[0];
-			if (JobTitle.contains(JTitle)) {
+			if (JobTitle.toLowerCase().contains(JTitle.toLowerCase())) {
 				isMatched = true;
 				JobRoleValue = JobRoleValue.toString();
 				matchingRoles.add(JobRoleValue);
@@ -344,7 +344,7 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 			String[] columns = line.split(",");
 			String JTitle = columns[1];
 			String JobFunctionValue = columns[0];
-			if (JobTitle.contains(JTitle)) {
+			if (JobTitle.toLowerCase().contains(JTitle.toLowerCase())) {
 				isMatched = true;
 				JobFunctionValue = JobFunctionValue.toString();
 				matchingFunctions.add(JobFunctionValue);
@@ -376,7 +376,7 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 			String countryName = columns[0];
 			String countryCodeOne = columns[1];
 			String countryCodeTwo = columns[2];
-			if (countryName.contains(country)) {
+			if (countryName.toLowerCase().contains(country.toLowerCase())) {
 					result.add(countryCodeOne);
 					result.add(countryCodeTwo);
 					break;
