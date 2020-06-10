@@ -85,7 +85,7 @@ public class CampaignTest extends PageFactoryInitializer {
 		leadPage()
 		.clickLeadsFromFile(leadsLine)
 		.placementCheck()
-//		.emailCheck()
+		.emailCheck()
 		.countryCheck()
 		.companySizeCheck()
 		.companyTurnoverCheck()

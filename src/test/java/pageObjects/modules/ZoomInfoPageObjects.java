@@ -76,38 +76,49 @@ public class ZoomInfoPageObjects extends PageFactoryInitializer {
 	}
 
 	public String getEmployeesValue(String type) throws Exception {
-		String value = getText(employeesValue);
-		value = getText(employeesValue).replaceAll("[a-z]| ", "");
-		value = value.replaceAll(".+(?<=-)", "");
-		value = value.replaceAll("([,|+])", "");
-		value = roundOffCompanySize(type, value);
-		try {
-			if (value != null) {
-				ExtentTestManager.getTest().log(LogStatus.PASS, "employees value is " + value);
-			} else
-				ExtentTestManager.getTest().log(LogStatus.INFO, "employees value is null");
-		} catch (Exception e) {
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from employees " + e);
+		String value = null;
+		if (isFieldExist(employeesValue)) {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(employeesValue, 15);
+			value = getText(employeesValue).replaceAll("[a-z]| ", "");
+			value = value.replaceAll(".+(?<=-)", "");
+			value = value.replaceAll("([,|+])", "");
+			value = roundOffCompanySize(type, value);
+			try {
+				if (value != null) {
+					ExtentTestManager.getTest().log(LogStatus.PASS, "companySize value is " + value);
+				} else
+					ExtentTestManager.getTest().log(LogStatus.INFO, "companySize value is null");
+			} catch (Exception e) {
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from companySize " + e);
+			}
+		} else {
+			value = null;
 		}
 		return value;
 	}
 
 	public String getRevenueValue(String type) throws Exception {
-		String revenue = getText(revenueValue);
 		String value = null;
-		if (revenue.contains("Unreported") || revenue == null || revenue.equals("")) {
-			value = revenue;
-			ExtentTestManager.getTest().log(LogStatus.INFO, "revenue value is null or unreported or empty");
-		} else {
-			String mORb = revenue.replaceAll("[a-z]|[0-9]|\\£|\\$", "").toLowerCase();
-			value = revenue.replaceAll("([a-z]|[A-Z]|\\£|\\$| )", "");
-			value = value.replaceAll("(\\.\\d+)", "");
-			value = roundOffTurnover(value, mORb, type);
-			try {
-				ExtentTestManager.getTest().log(LogStatus.PASS, "revenue value is " + value);
-			} catch (Exception e) {
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from revenue " + e);
+		if (isFieldExist(revenueValue)) {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(revenueValue, 15);
+			String turnover = getText(revenueValue);
+			if (turnover.contains("Unreported") || turnover == null || turnover.equals(" ") || turnover.equals("")
+					|| turnover.equals("No records")) {
+				value = "Unreported";
+				ExtentTestManager.getTest().log(LogStatus.INFO, "turnover value is null or unreported or empty");
+			} else {
+				String mORb = turnover.replaceAll("[a-z]|[0-9]|\\£|\\$", "").toLowerCase();
+				value = turnover.replaceAll("([a-z]|[A-Z]|\\£|\\$| )", "");
+				value = value.replaceAll("(\\.\\d+)", "");
+				value = roundOffTurnover(value, mORb, type);
+				try {
+					ExtentTestManager.getTest().log(LogStatus.PASS, "turnover value is " + value);
+				} catch (Exception e) {
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to get value from turnover " + e);
+				}
 			}
+		} else {
+			value = null;
 		}
 		return value;
 	}
