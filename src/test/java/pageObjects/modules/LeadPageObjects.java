@@ -2227,7 +2227,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		}
 
 		for (int i = 0; i < dropDownElements.length; i++) {
-			String value = getTextUsingIdScript(dropdownElementId[i]);
+//			String value = getTextUsingIdScript(dropdownElementId[i]);
 			selectByIndex(dropDownElements[i], 0);
 			handleAlert();
 			selectByIndex(dropDownElements[i], 1);

@@ -115,9 +115,7 @@ public class Industry extends LeadPageObjects {
 					if (item.getText().contains(mapIndustries.get(i))) {
 						IndusValue = mapIndustries.get(i);
 						isSelected = true;
-//						selectvalueIndustryDropdown(item.getText());
-//						String industryEvidence = getTextUsingScript("companysize_evidence");
-						setvalueCompanyEvidence(industryEvidence);
+						selectvalueIndustryDropdown(item.getText());
 						logger.info("Industry Dropdown Value: "
 								+item.getText()+" is selected for the Industry: "+mapIndustries.get(i));
 						ExtentTestManager.getTest().log(LogStatus.PASS, "Industry Dropdown Value: "

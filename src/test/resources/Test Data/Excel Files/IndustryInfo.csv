@@ -45,10 +45,11 @@ Shipping,Shipping
 Retail,Retail
 Recreation,Recreation
 Others,Others
-Not For Profit,Not For Profit
+Not For Profit,Non-Profit
 Media,Media
 Manufacturing,Manufacturing
 Machinery,Machinery
+Industrial,Machinery
 Insurance,Insurance
 Hospitality,Hospitality
 Healthcare,Healthcare
@@ -122,3 +123,4 @@ Sport & Leisure,Leisure
 Tourism & Travel,Tourism
 Tourism & Travel,Travel
 Wholesale,Wholesale
+Life Sciences - Medical Devices,Medical Devices

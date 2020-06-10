@@ -35,6 +35,7 @@ public class JobFunction extends LeadPageObjects {
 	handleAlert();
 	selectByIndex(jobFunctionDropdown, 0);
 	handleAlert();
+	logger.info("Job Title Mentioned in the Lead:" + jobTitleFromLead);
 	logger.info("Accepted Job Function(s) as per Open Notes:" + openNoteJobFunction);
 	for(String value:JobFunction) {
 		if(openNoteJobFunction.contains(value)) {
@@ -71,6 +72,8 @@ public class JobFunction extends LeadPageObjects {
 		}
 	}
 	else {
+		selectvalueRejectionReasonDropdown("Non-spec job title/function");
+		setvalueRejectionReasonEvidence("Job Function Mismatch");
 		logger.info("REJECT THE LEAD, None of Job Title/Keyword:"+JobFunction+" matched with Open Notes "+openNoteJobFunction);
 		ExtentTestManager.getTest().log(LogStatus.FAIL, "REJECT THE LEAD, None of Job Title/Keyword matched with Open Notes");
 	}

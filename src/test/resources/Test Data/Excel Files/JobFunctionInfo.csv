@@ -94,6 +94,7 @@ Finance,Transaction
 Finance,Treasury
 Finance,Underwriting
 Finance,Wealth
+IT,SAP
 IT,DevOps
 IT,Applications
 IT,Application
@@ -143,6 +144,7 @@ IT,Telecommunications
 IT,Web Application
 IT,IP Engineer
 IT,designer
+IT Generalist/Other IT,SAP
 IT Generalist/Other IT,DevOps
 IT Generalist/Other IT,designer
 IT Generalist/Other IT,Data
@@ -233,6 +235,55 @@ Marketing,Advertising
 Marketing,Digital
 Marketing,E-commerce
 Marketing,Product
+HR,Human Resource
+HR,Benefits
+HR,Career progression
+HR,Category
+HR,Compensation
+HR,Culture
+HR,Diversity
+HR,Employee Relations
+HR,Employee Retention
+HR,Employee Satisfaction
+HR,Employee Training
+HR,Employment
+HR,Global Talent
+HR,Hiring
+HR,HR
+HR,HR BP
+HR,HR Business Partner
+HR,HRD
+HR,HRIS
+HR,HR
+HR,Job analysis
+HR,Labor
+HR,Leadership development
+HR,Learning
+HR,Learning & Development
+HR,Manpower
+HR,Onboarding
+HR,Organizational Development
+HR,Payroll
+HR,People
+HR,People Excellence
+HR,Performance Evaluation
+HR,Performance management
+HR,Personnel
+HR,Recruit
+HR,Recruitment
+HR,Recruits
+HR,Rewards
+HR,Staff Development
+HR,Staffing
+HR,Succession planning
+HR,Talent
+HR,Talent Acquisition
+HR,Talent Management
+HR,Talent Mgmt
+HR,Training
+HR,Training and development
+HR,Workforce Intelligence
+Human Resource,Human Resource
 Human Resource,Benefits
 Human Resource,Career progression
 Human Resource,Category
