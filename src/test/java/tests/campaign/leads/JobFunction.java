@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import com.relevantcodes.extentreports.LogStatus;
 
@@ -14,6 +15,9 @@ import utils.ExtentReports.ExtentTestManager;
 public class JobFunction extends LeadPageObjects {
 	
 	private Logger logger = Logger.getLogger(LeadPageObjects.class.getName());
+
+	@FindBy(css = "input[name='job_function'] + div>select")
+	private WebElement jobFunctionDropdown;
 	
 	public LeadPageObjects jobFunctionCheck() throws Exception {
 	Boolean isSelected = false;
@@ -26,7 +30,11 @@ public class JobFunction extends LeadPageObjects {
 //	if(m) { to add code for managing Open Notes like Management plus / +
 //		
 //	}
-	selectvalueJobFunctionDropdown("- Function-");
+//	selectvalueJobFunctionDropdown("- Function-");
+	selectByIndex(jobFunctionDropdown, 1);
+	handleAlert();
+	selectByIndex(jobFunctionDropdown, 0);
+	handleAlert();
 	logger.info("Accepted Job Function(s) as per Open Notes:" + openNoteJobFunction);
 	for(String value:JobFunction) {
 		if(openNoteJobFunction.contains(value)) {

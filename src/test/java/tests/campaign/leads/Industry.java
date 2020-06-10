@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import com.relevantcodes.extentreports.LogStatus;
 
@@ -19,6 +20,9 @@ import utils.ExtentReports.ExtentTestManager;
 public class Industry extends LeadPageObjects {
 	
 	private Logger logger = Logger.getLogger(LeadPageObjects.class.getName());
+	
+	@FindBy(css = "select#ddnIndustry")
+	private WebElement industryDropdown;
 	
 	public void setIndustyToggle() throws Exception {
 		List<String> AcceptedIndustries = CampaignTestDataProcess.getIndustryVertical();
@@ -39,7 +43,10 @@ public class Industry extends LeadPageObjects {
 		logger.info("Industry Mentioned in Open Notes: " + openNotesIndustryValue);
 		logger.info("Industry Mentioned in LinkedIn: " + linkedinIndustry);
 		logger.info("Matched Industry/keyword from Repository: " + mapIndustries);
-		selectvalueIndustryDropdown("- Industry -");
+		selectByIndex(industryDropdown, 1);
+		handleAlert();
+		selectByIndex(industryDropdown, 0);
+		handleAlert();
 		String industryEvidence = getTextUsingScript("companysize_evidence");
 		setvalueCompanyEvidence(industryEvidence);
 		
