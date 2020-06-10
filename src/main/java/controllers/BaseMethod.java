@@ -503,6 +503,19 @@ public class BaseMethod extends WebDriverFactory {
 				result = "5000+";
 			}
 			break;
+		case "0-5":
+			if (size <= 5) {
+				result = "0-5";
+			} else if ((size >= 6) && (size <= 50)) {
+				result = "6-50";
+			} else if ((size >= 51) && (size <= 200)) {
+				result = "51-200";
+			} else if ((size >= 201) && (size <= 2000)) {
+				result = "201-2000";
+			} else {
+				result = "2001+";
+			}
+			break;
 		case "1-49":
 			if (size < 50) {
 				result = "1-49";
@@ -541,6 +554,21 @@ public class BaseMethod extends WebDriverFactory {
 				result = "5000-9999";
 			} else {
 				result = "10,000+";
+			}
+			break;
+		case "< 1,000":
+			if (size < 1000) {
+				result = "< 1,000";
+			} else if ((size >= 1000) && (size <= 2500)) {
+				result = "1,000- 2,500";
+			} else if ((size >= 2501) && (size <= 5000)) {
+				result = "2,501- 5,000";
+			} else if ((size >= 5001) && (size <= 7500)) {
+				result = "5,001- 7,500";
+			} else if ((size >= 7501) && (size <= 10000)) {
+				result = "7,501- 10,000";
+			} else {
+				result = "> 10,000";
 			}
 			break;
 		default:
