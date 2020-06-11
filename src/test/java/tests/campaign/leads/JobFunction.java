@@ -1,5 +1,6 @@
 package tests.campaign.leads;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -26,7 +27,8 @@ public class JobFunction extends LeadPageObjects {
 	String jobTitleFromLead =  getvalueJobTitle();
 	List<String> JobFunction = CampaignTestDataProcess.getJobFunctionInfo(jobTitleFromLead);
 	String openNoteJobFunction = campaignTestDataProcess().getLeadsJobFunction();
-
+	List<String> filteredJobFunction = new ArrayList<String>();
+	
 //	if(m) { to add code for managing Open Notes like Management plus / +
 //		
 //	}
@@ -37,45 +39,50 @@ public class JobFunction extends LeadPageObjects {
 	handleAlert();
 	logger.info("Job Title Mentioned in the Lead:" + jobTitleFromLead);
 	logger.info("Accepted Job Function(s) as per Open Notes:" + openNoteJobFunction);
-	for(String value:JobFunction) {
-		if(openNoteJobFunction.contains(value)) {
-			isAccepted = true;
-			logger.info("Matched Job Title/Keyword with Open Notes:" + value);
-		}
-	}
-	
-	if (isAccepted){
-		List<WebElement> options = getvaluesJobFunctionDropdown();
-		
-		for(WebElement item:options) {
-			logger.info("Job Function Dropdown Value :" + item.getText());
-			
-			for (int i=0; i<JobFunction.size(); i++) {
-				if (item.getText().contains(JobFunction.get(i))) {
-					logger.info("Matched Job Title/Keyword with Job Function Dropdown :" + JobFunction.get(i));
-					isSelected = true;
-					jobFunctionValue = JobFunction.get(i);
-					selectvalueJobFunctionDropdown(item.getText());
-					logger.info("Selected Job Function Dropdown Value:" + item.getText());
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Job Function Dropdown Value: "
-					+item.getText()+" is selected for the Job Function: "+JobFunction.get(i));
-					break;
-				}
+	if (!JobFunction.isEmpty()){
+		for(String value:JobFunction) {
+			if(openNoteJobFunction.toLowerCase().contains(value.toLowerCase())) {
+				isAccepted = true;
+				filteredJobFunction.add(value);
 			}
-			if (isSelected) {
-				break;
-			}	
 		}
-		if (!isSelected) {
-			logger.info("Job Function: "+jobFunctionValue+" not listed in the dropdown");
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Job Function: "+jobFunctionValue+" not listed in the dropdown");
+	
+		logger.info("Matched Job Title/Keyword with Open Notes:" + filteredJobFunction);
+	
+		if (isAccepted){
+			List<WebElement> options = getvaluesJobFunctionDropdown();
+			
+			for(WebElement item:options) {
+				for (int i=0; i<filteredJobFunction.size(); i++) {
+					if (item.getText().contains(filteredJobFunction.get(i))) {
+						isSelected = true;
+						jobFunctionValue = filteredJobFunction.get(i);
+						selectvalueJobFunctionDropdown(item.getText());
+						logger.info("Selected Job Function Dropdown Value:" + item.getText());
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Job Function Dropdown Value: "
+						+item.getText()+" is selected for the Job Function: "+filteredJobFunction.get(i));
+						break;
+					}
+				}
+				if (isSelected) {
+					break;
+				}	
+			}
+			if (!isSelected) {
+				logger.info("Job Function: "+jobFunctionValue+" NOT listed in the dropdown - UPDATE KEYWORD DICTIONARY");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Job Function: "+jobFunctionValue+" not listed in the dropdown");
+			}
+		}
+		else {
+			selectvalueRejectionReasonDropdown("Non-Spec Job Title/Function");
+			setvalueRejectionReasonEvidence("Job Function Mismatch");
+			logger.info("REJECT THE LEAD, None of Job Title/Keyword:"+JobFunction+" matched with Open Notes "+openNoteJobFunction);
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "REJECT THE LEAD, None of Job Title/Keyword matched with Open Notes");
 		}
 	}
 	else {
-		selectvalueRejectionReasonDropdown("Non-spec job title/function");
-		setvalueRejectionReasonEvidence("Job Function Mismatch");
-		logger.info("REJECT THE LEAD, None of Job Title/Keyword:"+JobFunction+" matched with Open Notes "+openNoteJobFunction);
-		ExtentTestManager.getTest().log(LogStatus.FAIL, "REJECT THE LEAD, None of Job Title/Keyword matched with Open Notes");
+		logger.info("No Matched found for Job Title/Keyword: "+jobTitleFromLead+" - UPDATE KEYWORD DICTIONARY");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "No Matched found for Job Title/Keyword: "+jobTitleFromLead+" - UPDATE KEYWORD DICTIONARY");
 	}
 	return leadPage();
 	}
