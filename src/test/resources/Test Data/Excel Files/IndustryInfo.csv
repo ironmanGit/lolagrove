@@ -48,6 +48,7 @@ Others,Others
 Not For Profit,Non-Profit
 Media,Media
 Manufacturing,Manufacturing
+Consumer Goods,Cosmetics
 Machinery,Machinery
 Industrial,Machinery
 Insurance,Insurance
@@ -66,10 +67,12 @@ Consulting,Consulting
 Construction,Construction
 Communications,Communications
 Chemicals,Chemicals
+Industrial,Chemicals
 Biotechnology,Biotechnology
 Banking,Banking
 Apparel,Apparel
 Agriculture,Agriculture
+Accountants & Actuaries,Accounting
 Accountants & Actuaries,Accountants
 Accountants & Actuaries,Actuaries
 Aerospace & Aviation,Aerospace
@@ -124,3 +127,5 @@ Tourism & Travel,Tourism
 Tourism & Travel,Travel
 Wholesale,Wholesale
 Life Sciences - Medical Devices,Medical Devices
+Consumer Goods,Cosmetic
+Electronics & Computers,Semiconductors

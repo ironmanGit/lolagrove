@@ -76,10 +76,10 @@ public class Industry extends LeadPageObjects {
 							IndusValue = filteredIndustries.get(i);
 							isSelected = true;
 							selectvalueIndustryDropdown(item.getText());
-							logger.info("Industry Dropdown Value: "
-									+item.getText()+" is selected for the Industry: "+filteredIndustries.get(i));
-							ExtentTestManager.getTest().log(LogStatus.PASS, "Industry Dropdown Value: "
-									+item.getText()+" is selected for the Industry: "+filteredIndustries.get(i));
+//							logger.info("Industry Dropdown Value: "
+//									+item.getText()+" is selected for the Industry: "+filteredIndustries.get(i));
+//							ExtentTestManager.getTest().log(LogStatus.PASS, "Industry Dropdown Value: "
+//									+item.getText()+" is selected for the Industry: "+filteredIndustries.get(i));
 							break;
 						}
 					}

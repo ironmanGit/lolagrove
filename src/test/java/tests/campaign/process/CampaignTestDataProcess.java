@@ -301,12 +301,15 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 				isMatched = true;
 				FinalIndustry = FinalIndustry.toString();
 				mapIndustries.add(FinalIndustry);
-				logger.info("Matched Value: "+ mapIndustries);
 			}
 		}
-		if (!isMatched) {
-			logger.info("No Match Found for Industry: "+ IndustryFromSite);
+		if (isMatched) {
+			logger.info("Matched Value: "+ mapIndustries);
 		}
+		else {
+			logger.info("No Match Found for Industry: "+ IndustryFromSite + " - UPDATE KEYWORD DICTIONARY");
+		}
+			
 		return mapIndustries;
 	}
 	
@@ -323,11 +326,13 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 				isMatched = true;
 				JobRoleValue = JobRoleValue.toString();
 				matchingRoles.add(JobRoleValue);
-				logger.info("Matched Value: "+ JobRoleValue);
 			}
 		}
-		if (!isMatched) {
-			logger.info("No Match Found for Job Title: "+ JobTitle);
+		if (isMatched) {
+			logger.info("Matched Value: "+ matchingRoles);
+		}
+		else {
+			logger.info("No Match Found for Job Title: "+ JobTitle+ " - UPDATE KEYWORD DICTIONARY");
 		}
 //		if (result == null) {
 //			throw new Exception("Error : Cannot find Job Tile: " + JobTitle + " from the CSV file for Job Function Field" + FilePath);
@@ -348,12 +353,14 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 				isMatched = true;
 				JobFunctionValue = JobFunctionValue.toString();
 				matchingFunctions.add(JobFunctionValue);
-				logger.info("Matched Value: "+ JobFunctionValue);
 			}
 		}
-		if (!isMatched) {
-			logger.info("No Match Found for Job Title: "+ JobTitle);
-		}			
+		if (isMatched) {
+			logger.info("Matched Value: "+ matchingFunctions);
+		}
+		else {
+			logger.info("No Match Found for Job Title: "+ JobTitle + " - UPDATE KEYWORD DICTIONARY");
+		}
 		return matchingFunctions;
 	}
 	
