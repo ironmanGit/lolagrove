@@ -342,3 +342,77 @@ Procurement,category
 Procurement,Purchase
 Procurement,Resourcing
 Procurement,Sourcing
+CIO (Chief Information Officer),CIO
+CIO (Chief Information Officer),Chief Information Officer
+CTO (Chief Technology Officer),CTO
+CTO (Chief Technology Officer),Chief Technology Officer
+COO (Chief Operating Officer),COO
+COO (Chief Operating Officer),Chief Operating Officer
+CISO (Chief Information Security Officer),CISO
+CISO (Chief Information Security Officer),Chief Information Security Officer
+Owner/Executive Management,Owner
+Owner/Executive Management,CEO
+Owner/Executive Management,Chief Executive Officer
+Owner/Executive Management,Managing Director
+Owner/Executive Management,Partner
+Owner/Executive Management,President
+Owner/Executive Management,Vice President
+Owner/Executive Management,General Manager
+Owner/Executive Management,Director (Only director, NOT with any other departments)
+Owner/Executive Management,Founder
+Owner/Executive Management,Co Founder
+Owner/Executive Management,Proprietor
+IT Management,IT Manager
+IT Management,IT Director
+IT Management,Head of IT
+IT Management,VP of IT
+IT Management,IT Specialist
+IT Management,IT Lead
+IT Management,IT Leader
+IT Management,IT Architect
+Data Sciences,Data Scientist
+Data Sciences,Data science Manager
+Software/Application Development/Engineering,Software
+Software/Application Development/Engineering,Application
+Hardware Development/Engineering,Hardware
+Solution/System Architecture,Solution Architect
+Solution/System Architecture,System Architect
+Infrastructure/Datacenter Architecture,Infrastructure
+Infrastructure/Datacenter Architecture,Datacenter
+Network Architecture/Engineering,Network
+Network Architecture/Engineering,Telecommunication
+Network Architecture/Engineering,LTE
+Network Architecture/Engineering,LAN
+Network Architecture/Engineering,WAN
+Network Architecture/Engineering,4G/5G
+IT Information Security,IT security
+IT Information Security,Information security
+Facilities/Audio Video,Facilities
+Facilities/Audio Video,Audio
+Facilities/Audio Video,Video
+Product/Service Management,Product
+Product/Service Management,Service
+Finance/Procurement,Finance
+Finance/Procurement,Accounting
+Finance/Procurement,Audit
+Finance/Procurement,Procurement
+Finance/Procurement,Logistics
+Finance/Procurement,Purchasing
+Finance/Procurement,Supply chain
+Sales,Sales
+Sales,Business Development
+Sales,Commercial
+Marketing,Marketing
+Marketing,Brand
+Marketing,Merchandising
+Marketing,Commerce
+Consultant/Analyst,Consultant
+Consultant/Analyst,Analyst
+Hobbyist/Maker,Hobbyist
+Hobbyist/Maker,Maker
+Professor/Teacher,Professor
+Professor/Teacher,Teacher
+Professor/Teacher,Lecturer
+Student,Student
+Scientist/Researcher,Scientist
+Scientist/Researcher,Researcher
