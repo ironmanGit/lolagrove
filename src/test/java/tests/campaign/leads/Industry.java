@@ -32,7 +32,6 @@ public class Industry extends LeadPageObjects {
 	public LeadPageObjects industryCheck() throws Exception {
 		Boolean isSelected = false;
 		Boolean industryStatus = false;
-		Boolean rejectLead = false;
 		String IndusValue = null;
 		
 		String openNotesIndustryValue = campaignTestDataProcess().getOpenNotesIndustryVertical();
@@ -59,7 +58,7 @@ public class Industry extends LeadPageObjects {
 					
 			for (int i=0; i<AcceptedIndustries.size(); i++) {
 				for (int j=0; j<mapIndustries.size(); j++) {
-					if (AcceptedIndustries.get(i).contains(mapIndustries.get(j))) {
+					if (AcceptedIndustries.get(i).toLowerCase().contains(mapIndustries.get(j).toLowerCase())) {
 						industryStatus = true;
 						filteredIndustries.add(mapIndustries.get(j));
 					}
@@ -72,7 +71,7 @@ public class Industry extends LeadPageObjects {
 				List<WebElement> options = getvaluesIndustryDropdown();
 				for(WebElement item:options) { 
 					for (int i=0; i<filteredIndustries.size(); i++) {
-						if (item.getText().contains(filteredIndustries.get(i))) {
+						if (item.getText().toLowerCase().contains(filteredIndustries.get(i).toLowerCase())) {
 							IndusValue = filteredIndustries.get(i);
 							isSelected = true;
 							selectvalueIndustryDropdown(item.getText());
@@ -95,7 +94,29 @@ public class Industry extends LeadPageObjects {
 				}
 			}
 			else {
-				rejectLead = true;
+				List<WebElement> options = getvaluesIndustryDropdown();
+				for(WebElement item:options) { 
+					for (int i=0; i<mapIndustries.size(); i++) {
+						if (item.getText().toLowerCase().contains(mapIndustries.get(i).toLowerCase())) {
+							IndusValue = mapIndustries.get(i);
+							isSelected = true;
+							selectvalueIndustryDropdown(item.getText());
+							break;
+						}
+					}
+					if (isSelected) {
+						break;
+					}					
+			    }
+				if (!isSelected) {
+					logger.info("Industry Dropdown Value: " 
+							+IndusValue+" not listed in the dropdown");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Industry Dropdown Value: "
+							+IndusValue+" not listed in the dropdown");
+				}
+				
+				selectvalueRejectionReasonDropdown("Non-spec Asset (Industry Mismatch)");
+				setvalueRejectionReasonEvidence(industryEvidence);
 				logger.info("Identified Industries: "+mapIndustries+" are not accepted in vertical list: "
 						+AcceptedIndustries+" hence reject the Lead");
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "Identified Industries: "
