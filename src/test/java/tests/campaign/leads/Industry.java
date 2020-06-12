@@ -71,7 +71,7 @@ public class Industry extends LeadPageObjects {
 				List<WebElement> options = getvaluesIndustryDropdown();
 				for(WebElement item:options) { 
 					for (int i=0; i<filteredIndustries.size(); i++) {
-						if (item.getText().toLowerCase().contains(filteredIndustries.get(i).toLowerCase())) {
+						if (item.getText().toLowerCase().contentEquals(filteredIndustries.get(i).toLowerCase())) {
 							IndusValue = filteredIndustries.get(i);
 							isSelected = true;
 							selectvalueIndustryDropdown(item.getText());
@@ -97,7 +97,7 @@ public class Industry extends LeadPageObjects {
 				List<WebElement> options = getvaluesIndustryDropdown();
 				for(WebElement item:options) { 
 					for (int i=0; i<mapIndustries.size(); i++) {
-						if (item.getText().toLowerCase().contains(mapIndustries.get(i).toLowerCase())) {
+						if (item.getText().toLowerCase().contentEquals(mapIndustries.get(i).toLowerCase())) {
 							IndusValue = mapIndustries.get(i);
 							isSelected = true;
 							selectvalueIndustryDropdown(item.getText());
