@@ -274,15 +274,9 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 			String[] columns = line.split(",");
 			String industry = columns[0];
 			String status = columns[1];
-			System.out.println(industry);
-			System.out.println(status);
 			if (status.toLowerCase().contains("yes")) {
 				industry = industry.toString();
 				getIndustries.add(industry);
-				logger.info("Matched Value: "+ getIndustries);
-			}
-			else {
-				logger.info("No Match Found");
 			}
 		}
 		return getIndustries;
@@ -303,10 +297,7 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 				mapIndustries.add(FinalIndustry);
 			}
 		}
-		if (isMatched) {
-			logger.info("Matched Value: "+ mapIndustries);
-		}
-		else {
+		if (!isMatched) {
 			logger.info("No Match Found for Industry: "+ IndustryFromSite + " - UPDATE KEYWORD DICTIONARY");
 		}
 			
@@ -328,10 +319,7 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 				matchingRoles.add(JobRoleValue);
 			}
 		}
-		if (isMatched) {
-			logger.info("Matched Value: "+ matchingRoles);
-		}
-		else {
+		if (!isMatched) {
 			logger.info("No Match Found for Job Title: "+ JobTitle+ " - UPDATE KEYWORD DICTIONARY");
 		}
 //		if (result == null) {
@@ -355,10 +343,7 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 				matchingFunctions.add(JobFunctionValue);
 			}
 		}
-		if (isMatched) {
-			logger.info("Matched Value: "+ matchingFunctions);
-		}
-		else {
+		if (!isMatched) {
 			logger.info("No Match Found for Job Title: "+ JobTitle + " - UPDATE KEYWORD DICTIONARY");
 		}
 		return matchingFunctions;
