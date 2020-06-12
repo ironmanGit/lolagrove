@@ -101,6 +101,16 @@ public class TelephonePageObjects extends PageFactoryInitializer {
 		}
 		return this;
 	}
+	
+	public String checkTelephoneNumber() throws Exception {
+//		try {
+			ExplicitWaiting.explicitWaitVisibilityOfElement(getPhoneNumberStatus, 15);
+			String status = getPhoneNumberStatus.getText();
+//		} catch (Exception e) {
+//			ExtentTestManager.getTest().log(LogStatus.FAIL, "Some issue while rendering the Phonenumber Status. " + e);
+//		}
+		return status;
+	}
 
 	
 

@@ -33,16 +33,20 @@ public class Telephone extends TelephonePageObjects {
 		
 		for (int i=0; i<telephoneNumber.size(); i++) {
 			String regionCode = CampaignTestDataProcess.getRegionCode(country.get(i));
-			logger.info("Matched Region Code :" + regionCode);
+			logger.info("Matched Region Code :" + regionCode + " for the Country: "+ country.get(i));
 			setvaluePhoneNumber(telephoneNumber.get(i));
 			setvalueRegionCode(regionCode);
 			clickSubmitbtn();
-			
-			
+			String status = checkTelephoneNumber();
+			if (status.toLowerCase() == "true") {
+				logger.info("Telephone Number"+telephoneNumber.get(i)+" is ACTIVE as per the merite provided site");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Telephone Number "+telephoneNumber.get(i)+" is ACTIVE as per the Merit provided site");
+			}
+			else {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Telephone Number "+telephoneNumber.get(i)+" is NOT ACTIVE as per the merite provided site");
+			}
 		}
-		
-		
-		
+			
 	return telephonePage();
 	}
 }

@@ -258,7 +258,7 @@ public class CampaignTestDataProcess extends PageFactoryInitializer {
 			String country = columns[0];
 			String countryCode = columns[1];
 			regionCode = columns[2];
-			if (country.toLowerCase().contains(sendCountry.toLowerCase())) {
+			if (country.toLowerCase().contentEquals(sendCountry.toLowerCase())) {
 				regionCode = regionCode.toString();
 				break;
 			}
