@@ -13,6 +13,7 @@ Manufacturing - Automotive,Manufacturing - Automotive
 Manufacturing - Consumer Goods,Manufacturing - Consumer Goods
 Manufacturing - Industrial,Industrial
 Manufacturing - Industrial,Mechanical
+Manufacturing,Industrial
 Media & Entertainment,Entertainment
 Media & Entertainment,Media
 Membership Organizations,Membership Organizations
@@ -39,8 +40,13 @@ Utilities,Utilities
 Transportation,Transportation
 Telecommunications,Telecommunications
 Technology,Technology
+Technology,Software
 Technology,Internet
 Technology,Software
+Technology,Internet
+Technology,Computer
+Technology,IT
+Technology,Information Technology
 Shipping,Shipping
 Retail,Retail
 Recreation,Recreation
@@ -56,6 +62,8 @@ Hospitality,Hospitality
 Healthcare,Healthcare
 Government,Government
 Food & Beverage,Food & Beverage
+Food & Beverage,Food
+Food & Beverage,Beverage
 Finance,Finance
 Environmental,Environmental
 Entertainment,Entertainment
@@ -91,6 +99,7 @@ Manufacturing,Clothing
 Manufacturing,Textiles
 Construction,Construction
 Consumer Goods,Consumer Goods
+Retail,Consumer Goods
 Defence,Defence
 Design,Design
 Electronics & Computers,Electronics
