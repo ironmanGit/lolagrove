@@ -4,6 +4,7 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 
 import com.relevantcodes.extentreports.LogStatus;
@@ -15,12 +16,16 @@ import utils.ExtentReports.ExtentTestManager;
 
 public class JobLevel extends LeadPageObjects {
 	
+	private Logger logger = Logger.getLogger(LeadPageObjects.class.getName());
+
 	public LeadPageObjects jobLevelCheck() throws Exception {
 	Boolean isSelected = false;
 	String jobTitleFromLead =  getvalueJobTitle();
 	String jobRoleValue = null;
 	List<String> JobRole = CampaignTestDataProcess.getJobRoleInfo(jobTitleFromLead);
  
+	logger.info("Matched Dropdown Values for Job Role: "+ JobRole);
+	
 	boolean IsJobRoleExist = isJobRoleFieldExist();
 	if (IsJobRoleExist) {
 		ExtentTestManager.getTest().log(LogStatus.INFO, "Job Role Field Exists in lead page");

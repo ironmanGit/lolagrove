@@ -37,6 +37,7 @@ public class JobFunction extends LeadPageObjects {
 	handleAlert();
 	selectByIndex(jobFunctionDropdown, 0);
 	handleAlert();
+	logger.info("Matched Dropdown Values for Job Function: "+ JobFunction);
 	logger.info("Job Title Mentioned in the Lead:" + jobTitleFromLead);
 	logger.info("Accepted Job Function(s) as per Open Notes:" + openNoteJobFunction);
 	if (!JobFunction.isEmpty()){
