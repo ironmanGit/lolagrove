@@ -2,9 +2,10 @@ Manufacturing Metals / Mining,Yes
 Manufacturing Clothing & Textiles,Yes
 Manufacturing Electronics & Computers,Yes
 Manufacturing Food & Beverage,Yes
-Automotive,Yes
+Automotive,No
 Industrial,Yes
-Logistics & Distribution,Yes
-Transportation,Yes
-Wholesale,Yes
-Manufacturing Wood, Leather & Paper,Yes
+Logistics & Distribution,No
+Transportation,No
+Wholesale,No
+Retail,Yes
+Manufacturing Wood Leather & Paper,Yes

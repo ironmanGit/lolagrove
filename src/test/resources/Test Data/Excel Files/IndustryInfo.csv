@@ -75,11 +75,11 @@ Consulting,Consulting
 Construction,Construction
 Communications,Communications
 Chemicals,Chemicals
-Industrial,Chemicals
 Biotechnology,Biotechnology
 Banking,Banking
 Apparel,Apparel
 Agriculture,Agriculture
+Agriculture,Farming
 Accountants & Actuaries,Accounting
 Accountants & Actuaries,Accountants
 Accountants & Actuaries,Actuaries
@@ -102,6 +102,10 @@ Construction,Construction
 Consumer Goods,Consumer Goods
 Retail,Consumer Goods
 Defence,Defence
+Others,Defence
+Others,Defense & Space
+Others,Defense
+Others,Space
 Design,Design
 Electronics & Computers,Electronics
 Electronics & Computers,Computers
@@ -139,3 +143,7 @@ Wholesale,Wholesale
 Life Sciences - Medical Devices,Medical Devices
 Consumer Goods,Cosmetic
 Electronics & Computers,Semiconductors
+Electronics,Semiconductors
+Others,Mining & Metals
+Others,Mining
+Others,Metals
