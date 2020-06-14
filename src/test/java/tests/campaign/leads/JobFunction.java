@@ -37,8 +37,8 @@ public class JobFunction extends LeadPageObjects {
 	handleAlert();
 	selectByIndex(jobFunctionDropdown, 0);
 	handleAlert();
-	logger.info("Matched Dropdown Values for Job Function: "+ JobFunction);
 	logger.info("Job Title Mentioned in the Lead:" + jobTitleFromLead);
+	logger.info("Matched Dropdown Values for Job Function: "+ JobFunction);
 	logger.info("Accepted Job Function(s) as per Open Notes:" + openNoteJobFunction);
 	if (!JobFunction.isEmpty()){
 		for(String value:JobFunction) {
@@ -104,7 +104,7 @@ public class JobFunction extends LeadPageObjects {
 		}
 	}
 	else {
-		logger.info("No Matched found for Job Title/Keyword: "+jobTitleFromLead+" - UPDATE KEYWORD DICTIONARY");
+		logger.info("No Matched found for Job Title Keyword: "+jobTitleFromLead+" - UPDATE KEYWORD DICTIONARY");
 		ExtentTestManager.getTest().log(LogStatus.FAIL, "No Matched found for Job Title/Keyword: "+jobTitleFromLead+" - UPDATE KEYWORD DICTIONARY");
 	}
 	return leadPage();
