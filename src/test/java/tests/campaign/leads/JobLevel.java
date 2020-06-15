@@ -29,17 +29,18 @@ public class JobLevel extends LeadPageObjects {
 	List<String> JobRole = CampaignTestDataProcess.getJobRoleInfo(jobTitleFromLead);
 	String openNoteJobRole = campaignTestDataProcess().getLeadsJobTitle();
 
-	selectByIndex(jobRoleDropdown, 1);
-	handleAlert();
-	selectByIndex(jobRoleDropdown, 0);
-	handleAlert();
-	
 	logger.info("Job Title Mentioned in the Lead:" + jobTitleFromLead);
-	logger.info("Matched Dropdown Values for Job Role: "+ JobRole);
 	logger.info("Accepted Job Function(s) as per Open Notes:" + openNoteJobRole);
+	logger.info("Matched Dropdown Values for Job Role: "+ JobRole);
 	
 	boolean IsJobRoleExist = isJobRoleFieldExist();
 	if (IsJobRoleExist) {
+		
+		selectByIndex(jobRoleDropdown, 1);
+		handleAlert();
+		selectByIndex(jobRoleDropdown, 0);
+		handleAlert();
+		
 		if (!JobRole.isEmpty()){
 			ExtentTestManager.getTest().log(LogStatus.INFO, "Job Role Field Exists in lead page");
 			List<WebElement> options = getvaluesJobRoleDropdown();
