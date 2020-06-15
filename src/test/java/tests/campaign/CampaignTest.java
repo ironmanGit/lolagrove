@@ -8,7 +8,6 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import pageObjects.initializePageObjects.PageFactoryInitializer;
 import tests.campaign.process.CampaignTestDataProcess;
-import utils.ExcelUtils;
 import utils.ExtentReports.ExtentTestManager;
 
 public class CampaignTest extends PageFactoryInitializer {
@@ -23,13 +22,12 @@ public class CampaignTest extends PageFactoryInitializer {
 	@Test(priority = 1, description = "Navigate to Campaign")
 	public void campaignCheck() throws Exception {
 		ExtentTestManager.startTest("Navigate to Campaign", "Navigate to Campaign");
-		openNotesPage()
-		//loginPage()
-		//.login()
-		//.verifyCampaignTab()
-		//.selectCampaign()
-		//.navigateToLeadsPage()
-		//.clickOpenNotesLink()
+		loginPage()
+		.login()
+		.verifyCampaignTab()
+		.selectCampaign()
+		.navigateToLeadsPage()
+		.clickOpenNotesLink()
 		.getAllFieldsFromOpenNotes()
 		.closeOpenNotesTab()
 		.setTestDataCheck();
@@ -92,7 +90,7 @@ public class CampaignTest extends PageFactoryInitializer {
 		.companyTurnoverCheck()
 		.firstnameLastnameJobTitleCheck()
 		.jobFunctionCheck()
-//		.jobLevelCheck()
+		.jobLevelCheck()
 		.industryCheck()
 		.companyTALCheck()
 		.companyExclusionCheck()
