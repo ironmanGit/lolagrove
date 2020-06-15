@@ -84,7 +84,7 @@ public class CampaignTest extends PageFactoryInitializer {
 		leadPage()
 		.clickLeadsFromFile(leadsLine)
 		.placementCheck()
-		.emailCheck()
+//		.emailCheck()
 		.countryCheck()
 		.companySizeCheck()
 		.companyTurnoverCheck()
@@ -92,8 +92,8 @@ public class CampaignTest extends PageFactoryInitializer {
 		.jobFunctionCheck()
 		.jobLevelCheck()
 		.industryCheck()
-		.companyTALCheck()
-		.companyExclusionCheck()
+//		.companyTALCheck()
+//		.companyExclusionCheck()
 		.updateManuallyVerify()
 		.clickSaveBtn();
 		ExtentTestManager.endTest();
