@@ -130,7 +130,7 @@ public class Industry extends LeadPageObjects {
 			else {
 				List<WebElement> options = getvaluesIndustryDropdown();
 				for(WebElement item:options) { 
-					logger.info("Industry Dropdown values are: " + item.getText());
+//					logger.info("Industry Dropdown values are: " + item.getText());
 					
 					for (int i=0; i<mapIndustries.size(); i++) {
 						if (item.getText().contains(mapIndustries.get(i))) {
