@@ -350,6 +350,20 @@ public class BaseMethod extends WebDriverFactory {
 		click(searchButton);
 	}
 
+	public void clearSearchValueInGoogleAndSearch(String value) throws Exception {
+		WebElement element = getWebDriver().findElement(By.cssSelector("input[title='Search']"));
+		element.clear();
+		element.sendKeys(value);
+		WebElement searchButton = getWebDriver().findElement(By.cssSelector("button[type='submit']"));
+		click(searchButton);
+	}
+	
+	/* Click on google search icon */
+	public void clickSearchIcon() throws Exception {
+		WebElement searchButton = getWebDriver().findElement(By.cssSelector("button[type='submit']"));
+		click(searchButton);
+	}
+	
 	/* Click on google search result1 */
 	public void clickSearchResult1() throws Exception {
 		WebElement element = getWebDriver().findElement(By.cssSelector("a>h3"));
@@ -363,6 +377,22 @@ public class BaseMethod extends WebDriverFactory {
 		return url;
 	}
 
+	
+	/* Click on google search result1 */
+	public List<String> getHrefMatchedDescription(String value) throws Exception {
+		List<String> matchingEmailHref = new ArrayList<>();
+		List<WebElement> descElements = getWebDriver().findElements(By.cssSelector("div.s div span.st"));
+		List<WebElement> hrefElements = getWebDriver().findElements(By.cssSelector("div#rso >div.g >div.rc >div.r >a"));
+		int elementsSize = descElements.size();
+		for (int i = 0; i < elementsSize; i++) {
+			WebElement description = descElements.get(i);
+			if (description.getText().contains(value)) {
+				matchingEmailHref.add(hrefElements.get(i).getAttribute("href"));
+			}
+		}
+		return matchingEmailHref;
+	}
+	
 	/* return current url */
 	public String getCurrentUrl() throws Exception {
 		String url = getWebDriver().getCurrentUrl();

@@ -1891,15 +1891,18 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return value;
 	}
 
-	public LeadPageObjects selectvalueEmailToolsDropdown(String value) throws Exception {
+	public GooglePageObjects selectvalueEmailToolsDropdown(String value) throws Exception {
 		try {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(emailToolsDropdown, 15);
 			selectByVisibleText(emailToolsDropdown, value);
+			logger.info("Email evidence Search");
+			switchToNewTab();
+			clickSearchIcon();
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from emailToolsDropdown is " + value);
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from emailToolsDropdown " + e);
 		}
-		return this;
+		return googlePage();
 	}
 
 	public LeadPageObjects selectvaluePhoneReformatDropdown(String value) throws Exception {
@@ -2008,6 +2011,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 			ExplicitWaiting.explicitWaitVisibilityOfElement(companyToolsDropdown, 15);
 			selectByVisibleText(companyToolsDropdown, value);
 			logger.info(value);
+			switchToNewTab();
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected value from companyToolsDropdown is " + value);
 		} catch (Exception e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Unable to select value from companyToolsDropdown " + e);
@@ -2201,7 +2205,7 @@ public class LeadPageObjects extends PageFactoryInitializer {
 				"company_evidence", "company_size", "companysize_evidence", "turnover", "turnover_evidence" };
 
 //		WebElement[] dropDownElements = { industryDropdown, turnoverDropdown, jobFunctionDropdown, jobRoleDropdown };
-		WebElement[] dropDownElements = {};
+		WebElement[] dropDownElements = {turnoverDropdown, jobRoleDropdown};
 
 //		String[] dropdownElementId = {};
 //		String[] dropdownElementId = { "ddnIndustry", "ddnTurnover", "ddlIntelJobFunction", "ddlIntelJobRole" };
@@ -2270,6 +2274,16 @@ public class LeadPageObjects extends PageFactoryInitializer {
 		return this;
 	}
 
+	public LeadPageObjects companyTALCheck() throws Exception {
+		companyTAL().companyTALCheck();
+		return this;
+	}
+	
+	public LeadPageObjects companyExclusionCheck() throws Exception {
+		companyExclusion().companyExclusionCheck();
+		return this;
+	}
+	
 	// added by Anand
 	public boolean isJobRoleFieldExist() throws Exception {
 		boolean isJobRoleFieldExist = isFieldExist(jobRole);

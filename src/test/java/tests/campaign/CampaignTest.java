@@ -23,12 +23,13 @@ public class CampaignTest extends PageFactoryInitializer {
 	@Test(priority = 1, description = "Navigate to Campaign")
 	public void campaignCheck() throws Exception {
 		ExtentTestManager.startTest("Navigate to Campaign", "Navigate to Campaign");
-		loginPage()
-		.login()
-		.verifyCampaignTab()
-		.selectCampaign()
-		.navigateToLeadsPage()
-		.clickOpenNotesLink()
+		openNotesPage()
+		//loginPage()
+		//.login()
+		//.verifyCampaignTab()
+		//.selectCampaign()
+		//.navigateToLeadsPage()
+		//.clickOpenNotesLink()
 		.getAllFieldsFromOpenNotes()
 		.closeOpenNotesTab()
 		.setTestDataCheck();
@@ -93,6 +94,8 @@ public class CampaignTest extends PageFactoryInitializer {
 		.jobFunctionCheck()
 //		.jobLevelCheck()
 		.industryCheck()
+		.companyTALCheck()
+		.companyExclusionCheck()
 		.updateManuallyVerify()
 		.clickSaveBtn();
 		ExtentTestManager.endTest();

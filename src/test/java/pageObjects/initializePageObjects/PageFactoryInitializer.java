@@ -15,7 +15,9 @@ import pageObjects.modules.LoginPageObjects;
 import pageObjects.modules.OpenNotesPageObjects;
 import pageObjects.modules.TelephonePageObjects;
 import pageObjects.modules.ZoomInfoPageObjects;
+import tests.campaign.leads.CompanyExclusion;
 import tests.campaign.leads.CompanySize;
+import tests.campaign.leads.CompanyTAL;
 import tests.campaign.leads.CompanyTurnover;
 import tests.campaign.leads.Country;
 import tests.campaign.leads.Email;
@@ -115,6 +117,16 @@ public class PageFactoryInitializer extends BaseMethod
 		return PageFactory.initElements(getWebDriver(), JobTitle.class);
 	}
 
+	public CompanyTAL companyTAL() 
+	{
+		return PageFactory.initElements(getWebDriver(), CompanyTAL.class);
+	}
+	
+	public CompanyExclusion companyExclusion() 
+	{
+		return PageFactory.initElements(getWebDriver(), CompanyExclusion.class);
+	}
+	
 	//Added by Anand
 	public JobLevel jobLevel() 
 	{
