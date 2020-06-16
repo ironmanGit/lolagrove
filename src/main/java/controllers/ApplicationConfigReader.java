@@ -24,6 +24,9 @@ public class ApplicationConfigReader
 	@Property(value="Url")
 	private String WebsiteUrl;
 	
+	@Property(value="TelephoneCheckUrl")
+	private String TelephoneCheckUrl;
+	
 	@Property(value="MaxPageLoadTime")
 	private int MaxPageLoadTime;
 	
@@ -66,6 +69,10 @@ public class ApplicationConfigReader
 		return WebsiteUrl;
 	}
 
+	public String getTelephoneCheckUrl() {
+		return TelephoneCheckUrl;
+	}
+	
 	public int getMaxPageLoadTime() {
 		return MaxPageLoadTime;
 	}

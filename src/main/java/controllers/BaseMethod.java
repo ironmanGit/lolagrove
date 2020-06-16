@@ -42,7 +42,7 @@ public class BaseMethod extends WebDriverFactory {
 
 	/* To get the Website Name */
 	public String getUrlTitle() throws Exception {
-		URL aURL = new URL(WebsiteURL);
+		URL aURL = new URL(lolagroveUrl);
 		String WebName = aURL.getHost();
 		String WebSiteName = WebName.toUpperCase();
 		return WebSiteName;
@@ -181,6 +181,11 @@ public class BaseMethod extends WebDriverFactory {
 		return text;
 	}
 
+	/* To launch application */
+	public void launchApplication(String url) throws Exception {
+		getWebDriver().get(url);
+	}
+	
 	/* To Upload a File using JAVA AWT ROBOT */
 	public void fileUpload(String FileToUpload) throws Exception {
 		Thread.sleep(5000);

@@ -36,10 +36,9 @@ public class WebDriverFactory extends BrowserFactory {
 	public void beforeClass() throws Exception
 	{
 		System.out.println("Browser: " + Browser);
-		System.out.println("WebsiteURL: " + WebsiteURL);
+		System.out.println("WebsiteURL: " + lolagroveUrl);
 		new WebDriverFactory();
 		WebDriver driver = WebDriverFactory.createDriver();
-		driver.get(WebsiteURL);
 		setWebDriver(driver);
 	}
 

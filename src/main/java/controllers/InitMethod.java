@@ -26,7 +26,8 @@ public class InitMethod
 {
 	public static ApplicationConfigReader appConfig = new ApplicationConfigReader();
 	
-	public static String WebsiteURL = appConfig.getWebsiteUrl();
+	public static String lolagroveUrl = appConfig.getWebsiteUrl();
+	public static String telephoneCheckUrl = appConfig.getTelephoneCheckUrl();
 	public static String Browser = appConfig.getBrowser();
 	public static int MaxPageLoadTime = appConfig.getMaxPageLoadTime();
 	public static int ImplicitlyWait = appConfig.getImplicitlyWait();

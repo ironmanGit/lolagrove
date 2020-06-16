@@ -1,5 +1,6 @@
 package tests.campaign;
 
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import java.util.ArrayList;
@@ -19,6 +20,11 @@ public class CampaignTest extends PageFactoryInitializer {
 	private String getCountry;
 	private String getEmail;
 
+	@BeforeClass
+	public void launchUrl() throws Exception {
+		launchApplication(lolagroveUrl);
+	}
+	
 	@Test(priority = 1, description = "Navigate to Campaign")
 	public void campaignCheck() throws Exception {
 		ExtentTestManager.startTest("Navigate to Campaign", "Navigate to Campaign");
@@ -83,11 +89,11 @@ public class CampaignTest extends PageFactoryInitializer {
 		ExtentTestManager.startTest("Lead Id--> " + leadId, "Lead Testing");
 		leadPage()
 		.clickLeadsFromFile(leadsLine)
-		.placementCheck()
+//		.placementCheck()
 //		.emailCheck()
-		.countryCheck()
+//		.countryCheck()
 		.companySizeCheck()
-		.companyTurnoverCheck()
+//		.companyTurnoverCheck()
 		.firstnameLastnameJobTitleCheck()
 		.jobFunctionCheck()
 		.jobLevelCheck()
