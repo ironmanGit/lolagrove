@@ -16,7 +16,6 @@ Manager,Specialist
 Director,Head
 Director,Managing Director
 Director,Partner
-Director,Director
 VP/SVP,SVP
 VP/SVP,VP
 VP/SVP,AVP
@@ -31,7 +30,6 @@ Professional/Staff/Associate,Team Lead
 Owner/Partner,Owner
 Owner/Partner,Partner
 Owner/Partner,MD
-Owner/Partner,Managing Director
 Owner/Partner,Founder
 Owner/Partner,Co-founder
 Owner/Partner,Co founder
